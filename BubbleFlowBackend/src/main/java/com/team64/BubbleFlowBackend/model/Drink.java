@@ -8,12 +8,12 @@ import jakarta.persistence.Table;
 @Table(name = "Drinks")
 public class Drink {
     @Id
-    int drink_id;
+    private int drink_id;
 
-    int drink_category_id;
-    String drink_name;
-    double drink_price;
-    String active_months;
+    private int drink_category_id;
+    private String drink_name;
+    private double drink_price;
+    private String active_months;
 
     public Drink(){};
 
