@@ -45,7 +45,7 @@ export default function DrinkCard({
         <Badge className="bg-[#DBC89E] text-[#6F403A] font-normal px-3 rounded-3xl">
           {drinkCategory}
         </Badge>
-        <p className="text-sm">${drinkPrice}</p>
+        <p className="text-sm">${Number(drinkPrice).toFixed(2)}</p>
       </div>
       <Dialog>
         <DialogTrigger asChild>
