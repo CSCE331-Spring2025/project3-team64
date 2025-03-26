@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import MenuCategory from "@/components/menuCategory";
 import { RiSearchLine } from "react-icons/ri";
+import DrinkCard from "@/components/drinkCard";
 
 export default function Employee() {
   const categories = [
@@ -14,6 +14,48 @@ export default function Employee() {
     { categoryName: "Ice Blended", itemCount: 50 },
     { categoryName: "Tea Mojito", itemCount: 15 },
     { categoryName: "Creama", itemCount: 10 },
+  ];
+  const drinks = [
+    {
+      drinkName: "Classic Pearl Milk Tea",
+      drinkCategory: "Milk Tea",
+      drinkPrice: 5.50,
+    },
+    {
+      drinkName: "Taro Milk Tea",
+      drinkCategory: "Milk Tea",
+      drinkPrice: 6.00,
+    },
+    {
+      drinkName: "Green Milk Tea",
+      drinkCategory: "Milk Tea",
+      drinkPrice: 5.00,
+    },
+    {
+      drinkName: "Oolong Tea",
+      drinkCategory: "Brewed Teas",
+      drinkPrice: 4.50,
+    },
+    {
+      drinkName: "Passion Fruit Tea",
+      drinkCategory: "Fruit Tea",
+      drinkPrice: 5.50,
+    },
+    {
+      drinkName: "Fresh Milk",
+      drinkCategory: "Fresh Milk",
+      drinkPrice: 4.00,
+    },
+    {
+        drinkName: "Fresh Milk",
+        drinkCategory: "Fresh Milk",
+        drinkPrice: 4.00,
+    },
+    {
+        drinkName: "Fresh Milk",
+        drinkCategory: "Fresh Milk",
+        drinkPrice: 4.00,
+    },
   ];
   return (
     <main className="flex flex-col px-16">
@@ -33,6 +75,16 @@ export default function Employee() {
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
           <RiSearchLine className="text-white" size={15} />
         </div>
+      </div>
+      <div className="mt-2 grid grid-cols-6 gap-2">
+        {drinks.map((drink, index) => (
+          <DrinkCard
+            key={index}
+            drinkName={drink.drinkName}
+            drinkCategory={drink.drinkCategory}
+            drinkPrice={drink.drinkPrice}
+          />
+        ))}
       </div>
     </main>
   );

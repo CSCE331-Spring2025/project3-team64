@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center">
-      <div className="w-96">
+    <main className="flex flex-col items-center justify-center px-16">
+      <div className="w-96 mt-16">
         <p className=" text-3xl font-bold mb-6 text-center">Login to Your Account</p>
         <div className=" flex flex-col gap-4">
           <div>
