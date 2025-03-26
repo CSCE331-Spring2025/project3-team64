@@ -1,0 +1,45 @@
+insert into Drink_Categories(Drink_Category_ID, Drink_Category_NAME) values 
+(1, 'Milk Teas'),
+(2, 'Brewed Tea'),
+(3, 'Fruit Tea'),
+(4, 'Fresh Milk'),
+(5, 'Ice Blended'),
+(6, 'Tea Mojito'),
+(7, 'Creama');
+
+insert into Drinks(Drink_ID, Drink_Category_ID, Drink_Name, Drink_Price) values 
+(001, 1, 'Classic Milk Tea', 4.75),
+(002, 1, 'Honey Milk Tea', 4.85),
+(003, 1, 'Classic Coffee', 4.85),
+(004, 1, 'Ginger Milk Tea', 4.85),
+(005, 1, 'Thai Pearl Milk Tea', 5.75),
+(006, 1, 'Taro Pearl Milk Tea', 5.75),
+(007, 2, 'Classic Tea', 4.25),
+(008, 2, 'Wintermelon Tea', 4.25),
+(009, 2, 'Honey Tea', 4.55),
+(010, 2, 'Ginger Tea', 4.55),
+(011, 3, 'Mango Green Tea', 5.75),
+(012, 3, 'Wintermelon Lemonade', 5.75),
+(013, 3, 'Strawberry Tea', 5.75),
+(014, 3, 'Peach Tea with Aiyu Jelly', 5.75),
+(015, 3, 'Kiwi Fruit Tea with Aiyu Jelly', 5.90),
+(016, 3, 'Mango & Passion Fruit Tea', 5.90),
+(017, 4, 'Cocoa Lover with Fresh Milk', 5.00),
+(018, 4, 'Homemade Taro with Fresh Milk', 6.50),
+(019, 4, 'Matcha with Fresh Milk', 5.15),
+(020, 5, 'Oreo Ice Blended with Pearl', 6.75),
+(021, 5, 'Matcha Red Bean Ice Blended with Ice Cream', 6.75),
+(022, 5, 'Coffee Ice Blended with Ice Cream', 6.75),
+(023, 5, 'Mango Ice Blended with Ice Cream', 6.75),
+(024, 5, 'Strawberry Ice Blended with Lychee Jelly & Ice Cream', 6.75),
+(025, 6, 'Lime Mojito', 6.00),
+(026, 6, 'Mango Mojito', 6.00),
+(027, 6, 'Peach Mojito', 6.00),
+(028, 6, 'Strawberry Mojito', 6.00),
+(029, 7, 'Creama Tea', 6.00),
+(030, 7, 'Match Creama', 6.00),
+(031, 7, 'Coffee Creama', 6.15),
+(032, 7, 'Cocoa Creama', 6.50);
+
+-- select * from Drinks;
+-- select * from Drink_Categories;
