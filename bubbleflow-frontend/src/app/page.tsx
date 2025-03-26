@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <main>
-      <div className=" w-96">
+    <main className="flex items-center justify-center">
+      <div className="w-96">
         <p className=" text-3xl font-bold mb-6 text-center">Login to Your Account</p>
         <div className=" flex flex-col gap-4">
           <div>
@@ -23,7 +23,6 @@ export default function Home() {
           <Button className=" bg-[#6F403A] flex-1">Login with Google</Button>
         </div>
       </div>
-
     </main>
   );
 }
