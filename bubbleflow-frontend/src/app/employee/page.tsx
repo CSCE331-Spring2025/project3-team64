@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import MenuCategory from "@/components/menuCategory";
+import { RiSearchLine } from "react-icons/ri";
 
 export default function Employee() {
   const categories = [
@@ -16,7 +16,7 @@ export default function Employee() {
     { categoryName: "Creama", itemCount: 10 },
   ];
   return (
-    <main className="flex px-16">
+    <main className="flex flex-col px-16">
       <div className="mt-16">
         <div className=" flex gap-2">
           {categories.map((category, index) => (
@@ -28,8 +28,11 @@ export default function Employee() {
           ))}
         </div>
       </div>
-      <div>
-       
+      <div className=" mt-2 relative">
+        <Input className=" border-[#6F403A] h-10 rounded-3xl" placeholder="Search for Menu Item"/>
+        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
+          <RiSearchLine className="text-white" size={15} />
+        </div>
       </div>
     </main>
   );
