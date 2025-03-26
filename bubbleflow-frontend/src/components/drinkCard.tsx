@@ -14,7 +14,7 @@ export default function DrinkCard({
 }: DrinkCardProps) {
   return (
     <div className="border border-[#6F403A] p-2 rounded-xl">
-      <div className="h-30 bg-[#DBC89E] rounded-xl"></div>
+      <div className=" h-36 bg-[#DBC89E] rounded-xl"></div>
       <p className="mt-2 font-semibold">{drinkName}</p>
       <div className="flex justify-between mt-1">
         <Badge className="bg-[#DBC89E] text-[#6F403A] font-normal px-3 rounded-3xl">
