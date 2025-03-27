@@ -16,6 +16,7 @@ public class DrinkCategoryController {
     @Autowired
     private DrinkCategoryService drinkCategoryService;
 
+
     @GetMapping
     public List<DrinkCategory> getAllDrinkCategories(){
         return drinkCategoryService.getAllDrinkCategories();
