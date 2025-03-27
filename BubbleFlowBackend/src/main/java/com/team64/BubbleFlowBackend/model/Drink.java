@@ -1,8 +1,6 @@
 package com.team64.BubbleFlowBackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Drinks")
@@ -10,7 +8,10 @@ public class Drink {
     @Id
     private int drink_id;
 
-    private int drink_category_id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "drink_category_id")
+    private DrinkCategory drink_category_id;
+
     private String drink_name;
     private double drink_price;
     private String active_months;
@@ -25,11 +26,11 @@ public class Drink {
         this.drink_id = drink_id;
     }
 
-    public int getDrink_category_id() {
+    public DrinkCategory getDrink_category_id() {
         return drink_category_id;
     }
 
-    public void setDrink_category_id(int drink_category_id) {
+    public void setDrink_category_id(DrinkCategory drink_category_id) {
         this.drink_category_id = drink_category_id;
     }
 
