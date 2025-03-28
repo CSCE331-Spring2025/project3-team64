@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import MenuCategory from "@/components/menuCategory";
 import { RiSearchLine } from "react-icons/ri";
