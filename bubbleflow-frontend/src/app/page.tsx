@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import NavBar from "@/components/navBar";
 
 export default function Home() {
 const router = useRouter();
