@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import NavBar from "@/components/navBar";
 
 export default function Home() {
 const router = useRouter();
@@ -15,7 +16,9 @@ const router = useRouter();
   };
 
   return (
-    <main className="flex flex-col items-center justify-center px-16">
+    <>
+      <NavBar />
+      <main className="flex flex-col items-center justify-center px-16">
       <div className="w-96 mt-16">
         <p className=" text-3xl font-bold mb-8 text-center">Login to Your Account</p>
         <div className=" flex flex-col gap-4">
@@ -33,6 +36,7 @@ const router = useRouter();
           <Button className=" bg-[#6F403A] flex-1">Login with Google</Button>
         </div>
       </div>
-    </main>
+      </main>
+    </>
   );
 }

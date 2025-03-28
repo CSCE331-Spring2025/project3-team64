@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import MenuCategory from "@/components/menuCategory";
 import { RiSearchLine } from "react-icons/ri";
 import DrinkCard from "@/components/drinkCard";
+import NavBarEmp from "@/components/navBarEmployee";
 
 export default function Employee() {
   const categories = [
@@ -57,14 +58,16 @@ export default function Employee() {
     },
   ];
   return (
+    <>
+      <NavBarEmp />
     <main className="flex flex-col px-16">
       <div>
         <div className=" flex flex-wrap gap-2">
           {categories.map((category, index) => (
             <MenuCategory
-              key={index}
-              categoryName={category.categoryName}
-              itemCount={category.itemCount}
+            key={index}
+            categoryName={category.categoryName}
+            itemCount={category.itemCount}
             />
           ))}
         </div>
@@ -78,13 +81,14 @@ export default function Employee() {
       <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
         {drinks.map((drink, index) => (
           <DrinkCard
-            key={index}
-            drinkName={drink.drinkName}
-            drinkCategory={drink.drinkCategory}
-            drinkPrice={drink.drinkPrice}
+          key={index}
+          drinkName={drink.drinkName}
+          drinkCategory={drink.drinkCategory}
+          drinkPrice={drink.drinkPrice}
           />
         ))}
       </div>
     </main>
+    </>
   );
 }
