@@ -2,7 +2,6 @@ import { Input } from "@/components/ui/input";
 import MenuCategory from "@/components/menuCategory";
 import { RiSearchLine } from "react-icons/ri";
 import DrinkCard from "@/components/drinkCard";
-import NavBarEmp from "@/components/navBarEmployee";
 
 export default function Employee() {
   const categories = [
@@ -58,8 +57,6 @@ export default function Employee() {
     },
   ];
   return (
-    <>
-      <NavBarEmp />
     <main className="flex flex-col px-16">
       <div>
         <div className=" flex flex-wrap gap-2">
@@ -89,6 +86,5 @@ export default function Employee() {
         ))}
       </div>
     </main>
-    </>
   );
 }
