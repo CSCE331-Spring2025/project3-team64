@@ -12,7 +12,7 @@ export default function ViewOrder() {
           </div>
           <div>
             <div> 
-              <p>Classic Peral Milk Tea</p>
+              <p>Classic Pearl Milk Tea</p>
               <p>100% Ice</p>
               <p>100% Sugar</p>
             </div>
