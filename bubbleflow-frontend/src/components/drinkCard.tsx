@@ -44,8 +44,8 @@ export default function DrinkCard({
         <Image
           src="/classic-pearl-milk-tea.png" 
           alt="BubbleFlow Logo"
-          width={80} 
-          height={80} 
+          width={75} 
+          height={75} 
         />
       </div>
       <p className="mt-2 font-semibold">{drinkName}</p>
