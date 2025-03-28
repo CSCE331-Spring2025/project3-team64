@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import Image from "next/image";
 
 interface DrinkCardProps {
   drinkName: string;
@@ -39,7 +40,14 @@ export default function DrinkCard({
   ];
   return (
     <div className="border border-[#6F403A] p-2 rounded-xl">
-      <div className=" h-36 bg-[#DBC89E] rounded-xl"></div>
+      <div className="bg-[#DBC89E] rounded-xl flex justify-center py-4">
+        <Image
+          src="/classic-pearl-milk-tea.png" 
+          alt="BubbleFlow Logo"
+          width={80} 
+          height={80} 
+        />
+      </div>
       <p className="mt-2 font-semibold">{drinkName}</p>
       <div className="flex justify-between mt-1">
         <Badge className="bg-[#DBC89E] text-[#6F403A] font-normal px-3 rounded-3xl">
