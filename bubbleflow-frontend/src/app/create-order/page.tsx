@@ -1,5 +1,4 @@
 "use client";
-
 import { Input } from "@/components/ui/input";
 import MenuCategory from "@/components/menuCategory";
 import { RiSearchLine } from "react-icons/ri";
@@ -9,35 +8,36 @@ import { useEffect } from "react";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 
 export default function Employee() {
+  
+  const { drinks, loading: drinksLoading, error: drinksError, fetchDrinks } = useDrinks();
+  const { drinkCategories: categories, loading: categoriesLoading, error: categoriesError, fetchDrinkCategories } = useDrinkCategories();
 
-const {  drinks, loading: drinksLoading, error: drinksError, fetchDrinks } = useDrinks();
+  useEffect(() => {
+    fetchDrinks();
+    fetchDrinkCategories();
+  }, []);
 
-const { drinkCategories: categories, loading: categoriesLoading, error: categoriesError, fetchDrinkCategories } = useDrinkCategories();
-
-useEffect(() => {
-  fetchDrinks();
-  fetchDrinkCategories();
-}, [fetchDrinks, fetchDrinkCategories]);
-
-  if (drinksLoading || categoriesLoading) {
-    return <div>Loading...</div>;
+  if(drinksLoading || categoriesLoading){
+    return <div>Loading...</div>
   }
 
-  if (drinksError || categoriesError) {
-    return <div>Error: {drinksError || categoriesError}</div>;
+  if(drinksError || categoriesError){
+    return <div>Error: {drinksError || categoriesError}</div>
   }
 
+
+  
   return (
-    <main className="flex flex-col px-16">
-      <div className="mt-16">
+    <main className="flex flex-col px-16 pb-8">
+      <div>
         <div className=" flex flex-wrap gap-2">
-          {categories.map((category, index) => (
-            <MenuCategory
-              key={index}
-              categoryName={category.name}
-              itemCount={0}
-            />
-          ))}
+        {categories.map((category, index) => (
+          <MenuCategory
+            key={index}
+            categoryName={category?.drink_category_name || "No Category"}
+            itemCount={0}
+          />
+        ))}
         </div>
       </div>
       <div className=" mt-2 relative">
@@ -50,12 +50,14 @@ useEffect(() => {
         {drinks.map((drink, index) => (
           <DrinkCard
             key={index}
-            drinkName={drink.drink_name}
-            drinkCategory={drink.drink_category_id.name}
-            drinkPrice={drink.drink_price}
+            drinkName={drink?.drink_name || "No Name"}
+            drinkCategory={drink?.drink_category_id?.drink_category_name || "No Category"}
+            drinkPrice={drink?.drink_price || 0}
+            imageSrc={"/classic-pearl-milk-tea.png"}
           />
         ))}
       </div>
     </main>
   );
 }
+
