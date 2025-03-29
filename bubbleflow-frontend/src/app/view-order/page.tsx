@@ -24,7 +24,7 @@ export default function ViewOrder() {
       sugarLevel: "Less Sugar",
       toppings: ["Boba, Creama"],
       price: 6.49,
-      imageSrc: "/classic-pearl-milk-tea.png",
+      imageSrc: "/taro-milk-tea.png",
     },
     {
       drinkName: "Matcha Milk Tea",

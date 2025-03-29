@@ -25,7 +25,7 @@ export default function Employee() {
       drinkName: "Taro Milk Tea",
       drinkCategory: "Milk Tea",
       drinkPrice: 6.00,
-      imageSrc: "/classic-pearl-milk-tea.png",
+      imageSrc: "/taro-milk-tea.png",
     },
     {
       drinkName: "Green Milk Tea",
