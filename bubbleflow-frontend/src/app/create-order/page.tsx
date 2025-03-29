@@ -65,7 +65,7 @@ export default function Employee() {
     },
   ];
   return (
-    <main className="flex flex-col px-16">
+    <main className="flex flex-col px-16 pb-8">
       <div>
         <div className=" flex flex-wrap gap-2">
           {categories.map((category, index) => (

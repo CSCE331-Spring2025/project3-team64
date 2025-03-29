@@ -5,12 +5,12 @@ import OrderCard from "@/components/orderCard";
 export default function ViewOrder() {
   const orders = [
     {
-      drinkName: "Classic Pearl Milk Tea",
-      iceLevel: "100% Ice",
-      sugarLevel: "100% Sugar",
-      toppings: ["Boba", "Lychee Jelly"],
-      price: 5.99,
-      imageSrc: "/classic-pearl-milk-tea.png",
+        drinkName: "Classic Pearl Milk Tea",
+        iceLevel: "100% Ice",
+        sugarLevel: "100% Sugar",
+        toppings: ["Boba", "Lychee Jelly"],
+        price: 5.99,
+        imageSrc: "/classic-pearl-milk-tea.png",
     },
     {
       drinkName: "Taro Milk Tea",
@@ -31,7 +31,7 @@ export default function ViewOrder() {
   ];
 
   return (
-    <main className="flex px-16 gap-2 items-start">
+    <main className="flex px-16 gap-2 items-start pb-8">
       <div className="w-2/3 flex flex-col gap-2">
         {orders.map((order, index) => (
           <OrderCard
