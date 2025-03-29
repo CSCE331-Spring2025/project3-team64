@@ -1,13 +1,12 @@
 package com.team64.BubbleFlowBackend.model;
 
 import jakarta.persistence.*;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -19,14 +18,22 @@ public class Order {
     private int employee_id;
     private String payment_method;
 
-    /*
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
-     */
+    public Order() {}
 
+    // Add items to order
+    public void addItem(OrderItem item) {
+        items.add(item);
+        item.setOrder(this);
+    }
 
-    public Order(){};
+    // Remove items from order
+    public void removeItem(OrderItem item) {
+        items.remove(item);
+        item.setOrder(null);
+    }
 
     public int getOrder_id() {
         return order_id;
@@ -75,5 +82,12 @@ public class Order {
     public void setPayment_method(String payment_method) {
         this.payment_method = payment_method;
     }
-}
 
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
+}

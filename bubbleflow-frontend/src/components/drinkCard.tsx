@@ -59,7 +59,7 @@ export default function DrinkCard({
       </div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="mt-6 w-full bg-[#6F403A]">Add Toppings</Button>
+          <Button className="mt-6 w-full bg-[#6F403A]">Select Item</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
