@@ -1,62 +1,32 @@
-import Image from "next/image";
+"use client";
+
 import { Input } from "@/components/ui/input";
 import MenuCategory from "@/components/menuCategory";
 import { RiSearchLine } from "react-icons/ri";
 import DrinkCard from "@/components/drinkCard";
+import { useEffect } from "react";
+
+import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 
 export default function Employee() {
-  const categories = [
-    { categoryName: "All Menu", itemCount: 100 },
-    { categoryName: "Milk Teas", itemCount: 45 },
-    { categoryName: "Brewed Teas", itemCount: 30 },
-    { categoryName: "Fruit Tea", itemCount: 20 },
-    { categoryName: "Fresh Milk", itemCount: 25 },
-    { categoryName: "Ice Blended", itemCount: 50 },
-    { categoryName: "Tea Mojito", itemCount: 15 },
-    { categoryName: "Creama", itemCount: 10 },
-  ];
-  const drinks = [
-    {
-      drinkName: "Classic Pearl Milk Tea",
-      drinkCategory: "Milk Tea",
-      drinkPrice: 5.50,
-    },
-    {
-      drinkName: "Taro Milk Tea",
-      drinkCategory: "Milk Tea",
-      drinkPrice: 6.00,
-    },
-    {
-      drinkName: "Green Milk Tea",
-      drinkCategory: "Milk Tea",
-      drinkPrice: 5.00,
-    },
-    {
-      drinkName: "Oolong Tea",
-      drinkCategory: "Brewed Teas",
-      drinkPrice: 4.50,
-    },
-    {
-      drinkName: "Passion Fruit Tea",
-      drinkCategory: "Fruit Tea",
-      drinkPrice: 5.50,
-    },
-    {
-      drinkName: "Fresh Milk",
-      drinkCategory: "Fresh Milk",
-      drinkPrice: 4.00,
-    },
-    {
-        drinkName: "Fresh Milk",
-        drinkCategory: "Fresh Milk",
-        drinkPrice: 4.00,
-    },
-    {
-        drinkName: "Fresh Milk",
-        drinkCategory: "Fresh Milk",
-        drinkPrice: 4.00,
-    },
-  ];
+
+const {  drinks, loading: drinksLoading, error: drinksError, fetchDrinks } = useDrinks();
+
+const { drinkCategories: categories, loading: categoriesLoading, error: categoriesError, fetchDrinkCategories } = useDrinkCategories();
+
+useEffect(() => {
+  fetchDrinks();
+  fetchDrinkCategories();
+}, [fetchDrinks, fetchDrinkCategories]);
+
+  if (drinksLoading || categoriesLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (drinksError || categoriesError) {
+    return <div>Error: {drinksError || categoriesError}</div>;
+  }
+
   return (
     <main className="flex flex-col px-16">
       <div className="mt-16">
@@ -64,8 +34,8 @@ export default function Employee() {
           {categories.map((category, index) => (
             <MenuCategory
               key={index}
-              categoryName={category.categoryName}
-              itemCount={category.itemCount}
+              categoryName={category.name}
+              itemCount={0}
             />
           ))}
         </div>
@@ -80,9 +50,9 @@ export default function Employee() {
         {drinks.map((drink, index) => (
           <DrinkCard
             key={index}
-            drinkName={drink.drinkName}
-            drinkCategory={drink.drinkCategory}
-            drinkPrice={drink.drinkPrice}
+            drinkName={drink.drink_name}
+            drinkCategory={drink.drink_category_id.name}
+            drinkPrice={drink.drink_price}
           />
         ))}
       </div>

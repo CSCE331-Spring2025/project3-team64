@@ -1,7 +1,7 @@
 import { RiBook3Line } from "react-icons/ri";
 
 interface MenuCategoryProps {
-  categoryName: string;
+  categoryName: string | undefined;
   itemCount: number;
 }
 

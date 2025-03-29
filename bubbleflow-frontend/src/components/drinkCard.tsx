@@ -18,7 +18,7 @@ import {
 
 interface DrinkCardProps {
   drinkName: string;
-  drinkCategory: string;
+  drinkCategory: string | undefined;
   drinkPrice: number | string;
 }
 

@@ -8,7 +8,7 @@ public class Drink {
     @Id
     private int drink_id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drink_category_id")
     private DrinkCategory drink_category_id;
 
