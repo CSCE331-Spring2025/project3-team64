@@ -4,7 +4,6 @@ import OrderCard from "@/components/orderCard";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
