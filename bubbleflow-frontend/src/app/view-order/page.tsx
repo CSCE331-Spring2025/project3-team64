@@ -1,40 +1,34 @@
+'use client'
 import { Button } from "@/components/ui/button";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import OrderCard from "@/components/orderCard";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 
 export default function ViewOrder() {
-  const orders = [
-    {
-        drinkName: "Classic Pearl Milk Tea",
-        iceLevel: "100% Ice",
-        sugarLevel: "100% Sugar",
-        toppings: ["Boba", "Lychee Jelly"],
-        price: 5.99,
-        imageSrc: "/classic-pearl-milk-tea.png",
-    },
-    {
-      drinkName: "Taro Milk Tea",
-      iceLevel: "Regular Ice",
-      sugarLevel: "Less Sugar",
-      toppings: ["Boba, Creama"],
-      price: 6.49,
-      imageSrc: "/taro-milk-tea.png",
-    },
-    {
-      drinkName: "Matcha Milk Tea",
-      iceLevel: "No Ice",
-      sugarLevel: "Half Sugar",
-      toppings: ["Strawberry Boba, Grass Jelly, Pudding"],
-      price: 5.79,
-      imageSrc: "/classic-pearl-milk-tea.png",
-    },
-  ];
+  interface Order {
+    drinkName: string;
+    drinkCategory: string;
+    drinkPrice: number;
+    imageSrc: string;
+    sugarLevel: string;
+    iceLevel: string;
+    toppings: string[];
+    
+  }
+  const [orders, setOrders] = useState<Order[]>([]);
+
+  useEffect(() => {
+    const storedOrders = localStorage.getItem("orderItems");
+    if (storedOrders) {
+      setOrders(JSON.parse(storedOrders));
+    }
+  }, []);
 
   return (
     <main className="flex px-16 gap-2 items-start pb-8">
@@ -46,7 +40,7 @@ export default function ViewOrder() {
             iceLevel={order.iceLevel}
             sugarLevel={order.sugarLevel}
             toppings={order.toppings}
-            price={order.price}
+            price={order.drinkPrice}
             imageSrc={order.imageSrc}
           />
         ))}

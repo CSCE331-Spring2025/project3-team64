@@ -8,6 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
+import { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -23,6 +24,7 @@ interface DrinkCardProps {
   drinkPrice: number | string;
   imageSrc: string;
 }
+
 
 export default function DrinkCard({
   drinkName,
@@ -40,6 +42,35 @@ export default function DrinkCard({
     "Aloe",
     "Coconut Jelly",
   ];
+
+  const [selectedSugar, setSelectedSugar] = useState(sugarOptions[0]);
+  const [selectedIce, setSelectedIce] = useState(iceOptions[0]);
+  const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
+
+  const handleToppingSelection = (topping: string) => {
+    setSelectedToppings((prev) =>
+      prev.includes(topping)
+        ? prev.filter((t) => t !== topping)
+        : [...prev, topping]
+    );
+  };
+
+  const handleAddToOrder = () => {
+    const orderItem = {
+      drinkName,
+      drinkCategory,
+      drinkPrice,
+      imageSrc,
+      sugarLevel: selectedSugar,
+      iceLevel: selectedIce,
+      toppings: selectedToppings.length === 0 ? ["None"] : selectedToppings,
+    };
+    const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
+    existingOrders.push(orderItem);
+    localStorage.setItem("orderItems", JSON.stringify(existingOrders));
+    alert(`${drinkName} added to order!`);
+  };
+
   return (
     <div className="border border-[#6F403A] p-2 rounded-xl">
       <div className="bg-[#DBC89E] rounded-xl flex justify-center py-4">
@@ -70,7 +101,7 @@ export default function DrinkCard({
               <Label className="mb-2">
                 Sugar
               </Label>
-              <Select>
+              <Select onValueChange={setSelectedSugar}>
                 <SelectTrigger className=" w-full">
                   <SelectValue placeholder="Select an Option" />
                 </SelectTrigger>
@@ -87,7 +118,7 @@ export default function DrinkCard({
               <Label className="mb-2">
                 Ice
               </Label>
-              <Select>
+              <Select onValueChange={setSelectedIce}>
                 <SelectTrigger className=" w-full">
                   <SelectValue placeholder="Select an Option" />
                 </SelectTrigger>
@@ -109,15 +140,17 @@ export default function DrinkCard({
                   <Badge
                     key={idx}
                     className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
+                    variant = {selectedToppings.includes(topping) ? "default" : "outline"}
+                    onClick={() => handleToppingSelection(topping)}
                   >
-                    <div className="w-4 h-4 rounded-full border mr-1"></div>
+                    <div className={selectedToppings.includes(topping) ? "w-4 h-4 rounded-full border mr-1 bg-black border-black" : "w-4 h-4 rounded-full border mr-1"}></div>
                     <p className="text-sm font-normal">{topping}</p>
                   </Badge>
                 ))}
               </div>
             </div>
           </div>
-          <Button type="submit" className=" bg-[#6F403A]">Add Item to Order</Button>
+          <Button type="submit" className=" bg-[#6F403A]" onClick={handleAddToOrder}>Add Item to Order</Button>
         </DialogContent>
       </Dialog>
     </div>
