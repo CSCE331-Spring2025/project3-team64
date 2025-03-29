@@ -1,6 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import OrderCard from "@/components/orderCard";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export default function ViewOrder() {
   const orders = [
@@ -82,9 +89,26 @@ export default function ViewOrder() {
             </div>
           </div>
         </div>
-        <Button className="bg-[#6F403A] w-full mb-4 mt-4">
-          Submit Order
-        </Button>
+        <Dialog>
+          <DialogTrigger className="w-full">
+            <Button className="bg-[#6F403A] w-full mb-4 mt-4">
+              Submit Order
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogTitle className=" flex justify-center text-3xl">$14.28</DialogTitle>
+            <div className=" flex flex-col justify-center text-center">
+              <p>Transaction Complete</p>
+              <p className=" text-sm text-gray-400">Order #69</p>
+            </div>
+            <div className=" flex flex-col gap-4 mt-4">
+              <Button className="bg-[#6F403A]">Print Reciept</Button>
+              <Button className="bg-[#6F403A]">Email Reciept</Button>
+              <Button className="bg-[#6F403A]">Text Reciept</Button>
+              <Button className="bg-[#6F403A]">No Reciept</Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </main>
   );
