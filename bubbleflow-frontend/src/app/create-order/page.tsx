@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { Input } from "@/components/ui/input";
 import MenuCategory from "@/components/menuCategory";
 import { RiSearchLine } from "react-icons/ri";
@@ -8,6 +8,7 @@ import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 
 export default function Employee() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const {
     drinks,
@@ -40,12 +41,17 @@ export default function Employee() {
     );
   }
 
-  const filteredDrinks = selectedCategory
-    ? drinks.filter(
-        (drink) =>
-          drink?.drink_category_id?.drink_category_name === selectedCategory
-      )
-    : drinks;
+  const filteredDrinks = drinks.filter((drink) => {
+    const matchesCategory = selectedCategory
+      ? drink?.drink_category_id?.drink_category_name === selectedCategory
+      : true;
+
+    const matchesSearch = drink?.drink_name
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <main className="flex flex-col px-16 pb-8">
@@ -81,6 +87,10 @@ export default function Employee() {
         <Input
           className="border-[#6F403A] h-10 rounded-3xl pr-12"
           placeholder="Search for Menu Item"
+          value={searchTerm}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setSearchTerm(e.target.value)
+          }
         />
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
           <RiSearchLine className="text-white" size={15} />
@@ -102,4 +112,5 @@ export default function Employee() {
     </main>
   );
 }
+
 
