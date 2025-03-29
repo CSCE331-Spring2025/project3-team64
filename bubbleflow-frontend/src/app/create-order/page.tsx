@@ -15,7 +15,7 @@ export default function Employee() {
   useEffect(() => {
     fetchDrinks();
     fetchDrinkCategories();
-  }, []);
+  }, [fetchDrinks, fetchDrinkCategories]);
 
   if(drinksLoading || categoriesLoading){
     return <div>Loading...</div>
@@ -46,7 +46,7 @@ export default function Employee() {
           <RiSearchLine className="text-white" size={15} />
         </div>
       </div>
-      <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
+      <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2 items-start">
         {drinks.map((drink, index) => (
           <DrinkCard
             key={index}
