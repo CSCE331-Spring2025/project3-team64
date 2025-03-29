@@ -1,80 +1,43 @@
+"use client";
 import { Input } from "@/components/ui/input";
 import MenuCategory from "@/components/menuCategory";
 import { RiSearchLine } from "react-icons/ri";
 import DrinkCard from "@/components/drinkCard";
+import { useEffect } from "react";
+
+import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 
 export default function Employee() {
-  const categories = [
-    { categoryName: "All Menu", itemCount: 100 },
-    { categoryName: "Milk Teas", itemCount: 45 },
-    { categoryName: "Brewed Teas", itemCount: 30 },
-    { categoryName: "Fruit Tea", itemCount: 20 },
-    { categoryName: "Fresh Milk", itemCount: 25 },
-    { categoryName: "Ice Blended", itemCount: 50 },
-    { categoryName: "Tea Mojito", itemCount: 15 },
-    { categoryName: "Creama", itemCount: 10 },
-  ];
-  const drinks = [
-    {
-      drinkName: "Classic Pearl Milk Tea",
-      drinkCategory: "Milk Tea",
-      drinkPrice: 5.50,
-      imageSrc: "/classic-pearl-milk-tea.png",
-    },
-    {
-      drinkName: "Taro Milk Tea",
-      drinkCategory: "Milk Tea",
-      drinkPrice: 6.00,
-      imageSrc: "/taro-milk-tea.png",
-    },
-    {
-      drinkName: "Green Milk Tea",
-      drinkCategory: "Milk Tea",
-      drinkPrice: 5.00,
-      imageSrc: "/classic-pearl-milk-tea.png",
-    },
-    {
-      drinkName: "Oolong Tea",
-      drinkCategory: "Brewed Teas",
-      drinkPrice: 4.50,
-      imageSrc: "/classic-pearl-milk-tea.png",
-    },
-    {
-      drinkName: "Passion Fruit Tea",
-      drinkCategory: "Fruit Tea",
-      drinkPrice: 5.50,
-      imageSrc: "/classic-pearl-milk-tea.png",
-    },
-    {
-      drinkName: "Fresh Milk",
-      drinkCategory: "Fresh Milk",
-      drinkPrice: 4.00,
-      imageSrc: "/classic-pearl-milk-tea.png",
-    },
-    {
-      drinkName: "Fresh Milk",
-      drinkCategory: "Fresh Milk",
-      drinkPrice: 4.00,
-      imageSrc: "/classic-pearl-milk-tea.png",
-    },
-    {
-      drinkName: "Fresh Milk",
-      drinkCategory: "Fresh Milk",
-      drinkPrice: 4.00,
-      imageSrc: "/classic-pearl-milk-tea.png",
-    },
-  ];
+  
+  const { drinks, loading: drinksLoading, error: drinksError, fetchDrinks } = useDrinks();
+  const { drinkCategories: categories, loading: categoriesLoading, error: categoriesError, fetchDrinkCategories } = useDrinkCategories();
+
+  useEffect(() => {
+    fetchDrinks();
+    fetchDrinkCategories();
+  }, []);
+
+  if(drinksLoading || categoriesLoading){
+    return <div>Loading...</div>
+  }
+
+  if(drinksError || categoriesError){
+    return <div>Error: {drinksError || categoriesError}</div>
+  }
+
+
+  
   return (
     <main className="flex flex-col px-16 pb-8">
       <div>
         <div className=" flex flex-wrap gap-2">
-          {categories.map((category, index) => (
-            <MenuCategory
+        {categories.map((category, index) => (
+          <MenuCategory
             key={index}
-            categoryName={category.categoryName}
-            itemCount={category.itemCount}
-            />
-          ))}
+            categoryName={category?.drink_category_name || "No Category"}
+            itemCount={0}
+          />
+        ))}
         </div>
       </div>
       <div className=" mt-2 relative">
@@ -86,14 +49,15 @@ export default function Employee() {
       <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
         {drinks.map((drink, index) => (
           <DrinkCard
-          key={index}
-          drinkName={drink.drinkName}
-          drinkCategory={drink.drinkCategory}
-          drinkPrice={drink.drinkPrice}
-          imageSrc={drink.imageSrc}
+            key={index}
+            drinkName={drink?.drink_name || "No Name"}
+            drinkCategory={drink?.drink_category_id?.drink_category_name || "No Category"}
+            drinkPrice={drink?.drink_price || 0}
+            imageSrc={"/classic-pearl-milk-tea.png"}
           />
         ))}
       </div>
     </main>
   );
 }
+
