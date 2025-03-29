@@ -21,12 +21,14 @@ interface DrinkCardProps {
   drinkName: string;
   drinkCategory: string;
   drinkPrice: number | string;
+  imageSrc: string;
 }
 
 export default function DrinkCard({
   drinkName,
   drinkCategory,
   drinkPrice,
+  imageSrc,
 }: DrinkCardProps) {
   const sugarOptions = ["No Sugar", "Less Sugar", "Half Sugar", "Full Sugar"];
   const iceOptions = ["No Ice", "Less Ice", "Regular Ice", "Extra Ice"];
@@ -42,8 +44,8 @@ export default function DrinkCard({
     <div className="border border-[#6F403A] p-2 rounded-xl">
       <div className="bg-[#DBC89E] rounded-xl flex justify-center py-4">
         <Image
-          src="/classic-pearl-milk-tea.png" 
-          alt="BubbleFlow Logo"
+          src={imageSrc} 
+          alt={drinkName}
           width={75} 
           height={75} 
         />

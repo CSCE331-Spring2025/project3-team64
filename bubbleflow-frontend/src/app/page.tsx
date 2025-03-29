@@ -11,7 +11,7 @@ const router = useRouter();
     // Perform login logic here
     // After successful login, navigate to the dashboard
     // (it just makes the button switch pages for rn)
-    router.push("/employee");
+    router.push("/select-role");
   };
 
   return (
@@ -20,8 +20,8 @@ const router = useRouter();
         <p className=" text-3xl font-bold mb-8 text-center">Login to Your Account</p>
         <div className=" flex flex-col gap-4">
           <div>
-            <Label className=" mb-2">Employee ID</Label>
-            <Input placeholder="Employee ID" />
+            <Label className=" mb-2">User ID</Label>
+            <Input placeholder="User ID" />
           </div>
           <div>
             <Label className=" mb-2">Password</Label>

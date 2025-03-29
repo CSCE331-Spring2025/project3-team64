@@ -19,41 +19,49 @@ export default function Employee() {
       drinkName: "Classic Pearl Milk Tea",
       drinkCategory: "Milk Tea",
       drinkPrice: 5.50,
+      imageSrc: "/classic-pearl-milk-tea.png",
     },
     {
       drinkName: "Taro Milk Tea",
       drinkCategory: "Milk Tea",
       drinkPrice: 6.00,
+      imageSrc: "/classic-pearl-milk-tea.png",
     },
     {
       drinkName: "Green Milk Tea",
       drinkCategory: "Milk Tea",
       drinkPrice: 5.00,
+      imageSrc: "/classic-pearl-milk-tea.png",
     },
     {
       drinkName: "Oolong Tea",
       drinkCategory: "Brewed Teas",
       drinkPrice: 4.50,
+      imageSrc: "/classic-pearl-milk-tea.png",
     },
     {
       drinkName: "Passion Fruit Tea",
       drinkCategory: "Fruit Tea",
       drinkPrice: 5.50,
+      imageSrc: "/classic-pearl-milk-tea.png",
     },
     {
       drinkName: "Fresh Milk",
       drinkCategory: "Fresh Milk",
       drinkPrice: 4.00,
+      imageSrc: "/classic-pearl-milk-tea.png",
     },
     {
-        drinkName: "Fresh Milk",
-        drinkCategory: "Fresh Milk",
-        drinkPrice: 4.00,
+      drinkName: "Fresh Milk",
+      drinkCategory: "Fresh Milk",
+      drinkPrice: 4.00,
+      imageSrc: "/classic-pearl-milk-tea.png",
     },
     {
-        drinkName: "Fresh Milk",
-        drinkCategory: "Fresh Milk",
-        drinkPrice: 4.00,
+      drinkName: "Fresh Milk",
+      drinkCategory: "Fresh Milk",
+      drinkPrice: 4.00,
+      imageSrc: "/classic-pearl-milk-tea.png",
     },
   ];
   return (
@@ -82,6 +90,7 @@ export default function Employee() {
           drinkName={drink.drinkName}
           drinkCategory={drink.drinkCategory}
           drinkPrice={drink.drinkPrice}
+          imageSrc={drink.imageSrc}
           />
         ))}
       </div>

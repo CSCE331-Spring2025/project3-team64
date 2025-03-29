@@ -12,7 +12,7 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 
 export default function NavBar() {
   const pathname = usePathname();
-  const showNavLinks = pathname !== "/";
+  const showNavLinks = pathname !== "/" && pathname !== "/select-role";
 
   return (
     <div className="flex px-16 py-6 justify-between">
@@ -26,7 +26,7 @@ export default function NavBar() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/employee" legacyBehavior passHref>
+              <Link href="/create-order" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Create Order
                 </NavigationMenuLink>

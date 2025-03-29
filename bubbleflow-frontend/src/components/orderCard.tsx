@@ -7,7 +7,7 @@ interface OrderCardProps {
   iceLevel: string;
   toppings: string[]; 
   price: number;
-  imageSrc?: string;
+  imageSrc: string;
 }
 
 export default function OrderCard({
@@ -16,7 +16,7 @@ export default function OrderCard({
   iceLevel,
   toppings,
   price,
-  imageSrc = "/classic-pearl-milk-tea.png",
+  imageSrc,
 }: OrderCardProps) {
   return (
     <div className="flex gap-4 border border-[#6F403A] p-2 rounded-xl pr-4">
