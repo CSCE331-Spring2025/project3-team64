@@ -12,7 +12,7 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 
 export default function NavBar() {
   const pathname = usePathname();
-  const showNavLinks = pathname !== "/" && pathname !== "/select-role";
+  const showNavLinks = pathname !== "/" && pathname !== "/select-role" && pathname !== "/menu-board";
 
   return (
     <div className="flex px-16 py-6 justify-between">
@@ -36,6 +36,19 @@ export default function NavBar() {
               <Link href="/view-order" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   View Order
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      )}
+      {!showNavLinks && (
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <Link href="/menu-board" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Menu Board
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
