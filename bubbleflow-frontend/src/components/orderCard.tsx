@@ -1,5 +1,7 @@
+import { Item } from "@radix-ui/react-navigation-menu";
 import Image from "next/image";
 import { RiPencilLine, RiFileCopyLine, RiDeleteBin5Line } from "react-icons/ri";
+import { useState } from "react";
 
 interface OrderCardProps {
   drinkName: string;
@@ -18,6 +20,18 @@ export default function OrderCard({
   price,
   imageSrc,
 }: OrderCardProps) {
+  const handleDelete = () => {
+    let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
+    orderItems = orderItems.filter(
+      (item:any) => 
+      item.drinkName !== drinkName ||
+      item.sugarLevel !== sugarLevel ||
+      item.iceLevel !== iceLevel ||
+      JSON.stringify(item.toppings) !== JSON.stringify(toppings)
+    );
+    localStorage.setItem("orderItems", JSON.stringify(orderItems));
+    window.location.reload();
+  };
   return (
     <div className="flex gap-4 border border-[#6F403A] p-2 rounded-xl pr-4">
       <div className="bg-[#DBC89E] rounded-xl flex justify-center py-4 w-1/4">
@@ -41,7 +55,9 @@ export default function OrderCard({
             <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2">
               <RiFileCopyLine className="text-white" size={20} />
             </div>
-            <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2">
+            <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
+                 onClick={handleDelete}
+            >
               <RiDeleteBin5Line className="text-white" size={20} />
             </div>
           </div>
