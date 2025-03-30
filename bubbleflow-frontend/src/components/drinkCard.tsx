@@ -69,6 +69,11 @@ export default function DrinkCard({
     const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
     existingOrders.push(orderItem);
     localStorage.setItem("orderItems", JSON.stringify(existingOrders));
+
+    //Edit the price total Local Variable
+    const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
+    const newTotal = currentTotal + parseFloat(drinkPrice as string);
+    localStorage.setItem("orderprice", newTotal.toString());
     
     //I have literally no idea where the "x" is in the dialog box so I just made a variable to close it
     setIsOpen(false);
