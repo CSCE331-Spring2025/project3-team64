@@ -30,6 +30,12 @@ export default function OrderCard({
       JSON.stringify(item.toppings) !== JSON.stringify(toppings)
     );
     localStorage.setItem("orderItems", JSON.stringify(orderItems));
+
+    //Update order price
+    const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
+    const newTotal = currentTotal - price;
+    localStorage.setItem("orderprice", newTotal.toString())
+    ;
     window.location.reload();
   };
   return (

@@ -1,0 +1,17 @@
+Meeting time: 3/30/2025 5:20PM
+
+1) Who needs to get what done
+    -Toppings implementation: Abhisri
+    -Order submission: Josh
+    -Price values in order summary: Luke
+    -Category item counts: Sophia & Cam's associates
+    -Menu board: Sophia
+
+2) What we expect our MVP to do
+    -Get drinks & categories from database
+    -Select drinks and go to the checkout screen
+    -Placing an order should add the order to the database
+
+3) Ideas for future work implementation
+    -Prices for certain toppings
+    -How to implement thumbnails for drinks/products: files with drink ID as name?

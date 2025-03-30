@@ -22,13 +22,20 @@ export default function ViewOrder() {
     
   }
   const [orders, setOrders] = useState<Order[]>([]);
+  const [orderPrice, setOrderPrice] = useState(0);
 
   useEffect(() => {
     const storedOrders = localStorage.getItem("orderItems");
     if (storedOrders) {
       setOrders(JSON.parse(storedOrders));
     }
+
+    const storedPrice = parseFloat(localStorage.getItem("orderprice") || "0");
+    setOrderPrice(storedPrice);
   }, []);
+
+  const tax = orderPrice * 0.1;
+  const total = orderPrice + tax;
 
   return (
     <main className="flex px-16 gap-2 items-start pb-8">
@@ -48,16 +55,16 @@ export default function ViewOrder() {
       <div className="border border-[#6F403A] p-2 px-4 w-1/3 rounded-xl">
         <div className="flex justify-between">
           <p className="text-sm">Subtotal</p>
-          <p className="text-sm">$12.98</p>
+          <p className="text-sm">${orderPrice.toFixed(2)}</p>
         </div>
         <div className="flex justify-between">
           <p className="text-sm text-gray-400">Tax (10%)</p>
-          <p className="text-sm text-gray-400">$1.30</p>
+          <p className="text-sm text-gray-400">${tax.toFixed(2)}</p>
         </div>
         <hr className="mt-4 mb-4 border-[#6F403A]" />
         <div className="flex justify-between">
           <p className="font-semibold">Total</p>
-          <p className="font-semibold">$14.28</p>
+          <p className="font-semibold">${total.toFixed(2)}</p>
         </div>
         <div className="mt-2">
           <p className="font-semibold">Payment Method</p>
