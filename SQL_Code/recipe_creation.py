@@ -1,3 +1,4 @@
+#Outdated
 def generate_drink_recipes(output_file):
     boba_recipe_items = {
         "Green Tea Base": 1,

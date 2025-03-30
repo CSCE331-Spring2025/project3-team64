@@ -1,3 +1,4 @@
+#Outdated
 #Run script: python3 scriptname.py <password> <execute commands (y/n)>
 #password is the database password (pinned in discord)
 
