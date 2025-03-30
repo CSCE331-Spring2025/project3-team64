@@ -46,6 +46,7 @@ export default function DrinkCard({
   const [selectedSugar, setSelectedSugar] = useState(sugarOptions[0]);
   const [selectedIce, setSelectedIce] = useState(iceOptions[0]);
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleToppingSelection = (topping: string) => {
     setSelectedToppings((prev) =>
@@ -68,7 +69,9 @@ export default function DrinkCard({
     const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
     existingOrders.push(orderItem);
     localStorage.setItem("orderItems", JSON.stringify(existingOrders));
-    alert(`${drinkName} added to order!`);
+    
+    //I have literally no idea where the "x" is in the dialog box so I just made a variable to close it
+    setIsOpen(false);
   };
 
   return (
@@ -88,7 +91,7 @@ export default function DrinkCard({
         </Badge>
         <p className="text-sm">${Number(drinkPrice).toFixed(2)}</p>
       </div>
-      <Dialog>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <Button className="mt-6 w-full bg-[#6F403A]">Select Item</Button>
         </DialogTrigger>
