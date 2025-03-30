@@ -1,0 +1,25 @@
+Meeting time: 3/29/2025, 10:00PM
+1) Figure out what exactly is needed to be finished by the end of sprint 1.
+    -Minimum Viable Product (MVP)
+    -Create & place orders (Luke worked on it, Josh work on database connection)
+    -Deploy it on the web
+    -Springboot for database integration
+    -Integrate authentication solution eventually (OAuth or NextAuth)
+
+
+2) Create our backlog
+    -Add sub-tasks to our general stages in our Jira
+    -Start the sprint
+    -Add future tasks that are known as well (such as authentication solution)
+
+
+3) Plan future sprint
+    -Add future backlog tasks that are known as well (such as authentication solution)
+    -Manager view & reports
+    -Implementing machine translation
+    -Talk with Taele about specific requirements
+
+
+4) Share findings to improve efficiency:
+    -Tailwind CSS for coding UI
+    -Shadcn for ui design & components
