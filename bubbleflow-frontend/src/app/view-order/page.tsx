@@ -96,7 +96,7 @@ export default function ViewOrder() {
           </div>
         </div>
         <Dialog>
-          <DialogTrigger className="w-full">
+          <DialogTrigger className="w-full" asChild>
             <Button className="bg-[#6F403A] w-full mb-4 mt-4"
             onClick={() => {
               const orderItems = localStorage.getItem("orderItems");
