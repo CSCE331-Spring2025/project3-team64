@@ -114,13 +114,6 @@ function DrinkCustomizationDialog({
     }
   }, [sugarOptions, iceOptions, selectedSugarObj, selectedIceObj]);
 
-  // Debug extras loading
-  useEffect(() => {
-    console.log("Extras loaded:", extras);
-    console.log("Sugar options:", sugarOptions);
-    console.log("Ice options:", iceOptions);
-    console.log("Toppings:", toppings);
-  }, [extras, sugarOptions, iceOptions, toppings]);
 
   // handle sugar selection
   const handleSugarChange = (value: string) => {
