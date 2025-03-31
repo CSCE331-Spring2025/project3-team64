@@ -98,8 +98,8 @@ function DrinkCustomizationDialog({
   const filterExtraByCategoryId = (extras: Extra[], categoryId: number): Extra[] => {
     return extras.filter(extra => extra.extra_category_id.extra_category_id === categoryId);
   }
-  const sugarOptions: Extra[] = filterExtraByCategoryId(extras || [], 1);
-  const iceOptions: Extra[] = filterExtraByCategoryId(extras || [], 2);
+  const sugarOptions: Extra[] = filterExtraByCategoryId(extras || [], 2);
+  const iceOptions: Extra[] = filterExtraByCategoryId(extras || [], 1);
   const toppings: Extra[] = filterExtraByCategoryId(extras || [], 3);
 
   // store the full Extra objects
@@ -110,7 +110,7 @@ function DrinkCustomizationDialog({
   // initialize defaults when extras data is available
   useEffect(() => {
     if (sugarOptions.length > 0 && !selectedSugarObj) {
-      setSelectedSugarObj(sugarOptions[0]);
+      setSelectedSugarObj(sugarOptions.length > 1 ? sugarOptions[1] : sugarOptions[0]);
     }
     if (iceOptions.length > 0 && !selectedIceObj) {
       setSelectedIceObj(iceOptions[0]);
