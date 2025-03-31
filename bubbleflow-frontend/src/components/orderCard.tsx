@@ -37,7 +37,7 @@ export default function OrderCard({
   price,
   imageSrc,
   drinkId,
-  itemId
+  itemId = Date.now(),
 }: OrderCardProps) {
   const categoryBackgrounds: Record<string, string> = {
     "Milk Teas": "bg-[#DBC89E]",
