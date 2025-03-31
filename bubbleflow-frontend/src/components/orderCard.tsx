@@ -50,6 +50,7 @@ export default function OrderCard({
     // fallback color if no match:
     default: "bg-gray-200",
   };
+  console.log(drinkCategory);
   const imageBgColor = categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");

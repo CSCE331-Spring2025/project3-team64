@@ -164,7 +164,7 @@ function DrinkCustomizationDialog({
   const handleAddToOrder = () => {
     const orderItem = {
       drinkName,
-      //drinkCategory,
+      drinkCategory,
       drinkPrice,
       imageSrc,
       sugarLevel: selectedSugarObj?.extra_name || "No Sugar",
