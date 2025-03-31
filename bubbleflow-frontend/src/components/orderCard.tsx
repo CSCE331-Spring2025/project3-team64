@@ -71,6 +71,7 @@ export default function OrderCard({
   const handleCopy = () => {
     const newOrder = {
       drinkName,
+      drinkCategory,
       drinkPrice: price,
       imageSrc,
       sugarLevel: sugarLevel,
