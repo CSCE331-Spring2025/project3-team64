@@ -162,15 +162,19 @@ function DrinkCustomizationDialog({
       id,
     };
     
-    const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
-    existingOrders.push(orderItem);
-    localStorage.setItem("orderItems", JSON.stringify(existingOrders));
-    
     // Edit the price total Local Variable
     const toppingPrice = selectedToppings.reduce((acc, topping) => acc + topping.extra_price, 0);
     const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
     const newTotal = currentTotal + parseFloat(drinkPrice as string) + toppingPrice;
     localStorage.setItem("orderprice", newTotal.toString());
+
+    //Save the total drink price as the price of the drink + toppings (this is 7 billion times easier than the alternative)
+    orderItem.drinkPrice = parseFloat(drinkPrice as string) + toppingPrice;
+
+    const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
+    existingOrders.push(orderItem);
+    localStorage.setItem("orderItems", JSON.stringify(existingOrders));
+    
     
     setIsOpen(false);
   };
