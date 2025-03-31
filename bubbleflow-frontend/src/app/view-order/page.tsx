@@ -45,6 +45,7 @@ export default function ViewOrder() {
           <OrderCard
             key={index}
             drinkName={order.drinkName}
+            drinkCategory={order.drinkCategory} 
             iceLevel={order.iceLevel}
             sugarLevel={order.sugarLevel}
             toppings={order.toppings}
