@@ -24,14 +24,12 @@ export interface Extra {
 }
 
 export interface OrderSubmission {
-    order_id: number;
-    order_total_price: number;
-    customer: string;
-    order_date: Date;
-    employee_id: number;
-    payment_method: string;
-    order_items: {
-        drink_id: number;
-        topping_ids: number[];
-    }[];
-}
+    totalPrice: number;
+    customerName: string;
+    employeeId: number;
+    paymentMethod: string;
+    drinks: Array<{
+      drink_id: number;
+      toppings: number[];
+    }>;
+  }

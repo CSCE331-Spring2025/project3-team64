@@ -46,48 +46,40 @@ public class OrderService {
         return orderRepo.save(order);
     }
 
-    //Uses the orderSubmissionObject
     public Order submitOrder(OrderSubmissionObject orderSubmissionObject) {
-        // Logic to process the order submission object and create an order from it
-        Order order = new Order();
+        // Create and populate the order
 
-        // Generate the next available order ID in the database
+        System.out.println(orderSubmissionObject);
+
+        Order order = new Order();
         order.setOrder_total_price(orderSubmissionObject.getTotalPrice());
-        order.setCustomer("bobbington");
+        order.setCustomer(orderSubmissionObject.getCustomerName());
         order.setEmployee_id(orderSubmissionObject.getEmployeeId());
         order.setPayment_method(orderSubmissionObject.getPaymentMethod());
-
-        //generate timestamp for date
         order.setOrder_date(new Timestamp(System.currentTimeMillis()));
 
-        System.out.println("Backend received order.");
+        // Save the order first to get its ID
+        order = orderRepo.save(order);
 
-        try {
-            order = orderRepo.save(order);
-        } catch (Exception e) {
-            System.err.println("Error saving order: " + e.getMessage());
-            e.printStackTrace();
-            return null; // Return null or handle the error as needed
-        }
-        int orderID = order.getOrder_id();
-
+        // Process drinks and add them to the order
         List<DrinkWithToppings> drinks = orderSubmissionObject.getDrinks();
-        for (DrinkWithToppings item : drinks) {
-            OrderItem orderItem = new OrderItem();
+        if (drinks != null) {
+            for (DrinkWithToppings item : drinks) {
+                OrderItem orderItem = new OrderItem();
+                orderItem.setDrink_id(item.getDrink_id());
+                orderItem.setOrder(order);
+                orderItem = orderItemRepo.save(orderItem);
 
-            orderItem.setDrink_id(item.getDrink_id());
-            orderItem.setOrder_id(orderID);
-            orderItem = orderItemRepo.save(orderItem); // Save the order item to the database
-            int orderItemID = orderItem.getOrder_item_id();
-
-            //Loop through item.getToppings() and add them to the order item
-            for (int toppingID : item.getToppings()) {
-                OrderExtra orderExtra = new OrderExtra();
-                orderExtra.setExtras_id(toppingID);
-                orderExtra.setOrder_item_id(orderItemID);
-                orderExtraRepo.save(orderExtra); // Save the order extra to the database
+                // Process toppings
+                for (int toppingID : item.getToppings()) {
+                    OrderExtra orderExtra = new OrderExtra();
+                    orderExtra.setExtras_id(toppingID);
+                    orderExtra.setOrder_item_id(orderItem.getOrder_item_id());
+                    orderExtraRepo.save(orderExtra);
+                }
             }
         }
+
         return order;
     }
 
