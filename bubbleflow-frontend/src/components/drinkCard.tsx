@@ -33,8 +33,6 @@ export default function DrinkCard({
   drinkPrice,
   imageSrc,
 }: DrinkCardProps) {
-  // Don't use the entire useExtras hook here
-  // Only use it inside the dialog when needed
   const [isOpen, setIsOpen] = useState(false);
   
   return (
@@ -161,7 +159,6 @@ function DrinkCustomizationDialog({
       sugarLevel: selectedSugarObj?.extra_name || "No Sugar",
       iceLevel: selectedIceObj?.extra_name || "No Ice",
       toppings: selectedToppings.length === 0 ? ["None"] : selectedToppings.map(t => t.extra_name),
-      // You can also store the full objects if needed
       sugarObject: selectedSugarObj,
       iceObject: selectedIceObj,
       toppingObjects: selectedToppings,
