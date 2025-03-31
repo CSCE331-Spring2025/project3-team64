@@ -1,6 +1,8 @@
 "use client";
 import { useEffect } from "react";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
+import { useExtras } from "@/app/hooks/useExtras";
+import { Extra } from "@/app/service/types";
 
 export default function MenuBoard() {
   const {
@@ -22,6 +24,12 @@ export default function MenuBoard() {
     fetchDrinkCategories();
   }, [fetchDrinks, fetchDrinkCategories]);
 
+  const {
+      extras,
+      loading: extrasLoading,
+      fetchExtras
+    } = useExtras();
+
   if (drinksLoading || categoriesLoading) {
     return <div className="px-16">Loading...</div>;
   }
@@ -30,15 +38,41 @@ export default function MenuBoard() {
     return <div className="px-16">Error: {drinksError || categoriesError}</div>;
   }
 
-  const iceLevels = ["Regular Ice", "Less Ice", "No Ice"];
-  const sugarLevels = [
+  const filterExtraByCategoryIdIce = (extras: Extra[], categoryId: number): string[] => {
+      return extras
+      .filter(extra => extra.extra_category_id.extra_category_id === categoryId)
+      .map(extra=>extra.extra_name);
+    }
+
+  const filterExtraByCategoryIdSugar = (extras: Extra[]): string[][] => {
+    return extras
+    .filter(extra => extra.extra_category_id.extra_category_id === 2)
+    .map(extra => {
+      const [label, percentage] = extra.extra_name.split(" ");
+      return [label, percentage];
+    });
+  }
+
+  const filterExtraByCategoryIdToppings = (extras: Extra[]) : string[][] => {
+    return extras
+    .filter(extra => extra.extra_category_id.extra_category_id === 3)
+    .map(extra => {
+      const [name, price] = [extra.extra_name, JSON.stringify(extra.extra_price)];
+      return [name, price];
+    });
+  }
+
+  //const iceLevels = ["Regular Ice", "Less Ice", "No Ice"];
+  const iceLevels: string[] = filterExtraByCategoryIdIce(extras || [], 1);
+  /* const sugarLevels = [
     { percentage: "100%", label: "Normal" },
     { percentage: "80%", label: "Less" },
     { percentage: "50%", label: "Half" },
     { percentage: "30%", label: "Light" },
     { percentage: "0%", label: "No Sugar" },
-  ];
-  const toppings = [
+  ]; */
+  const sugarLevels: string[][] = filterExtraByCategoryIdSugar(extras || []);
+  /* const toppings = [
     { name: "Pearl", price: "$0.75" },
     { name: "Mini Pearl", price: "$0.75" },
     { name: "Ice Cream", price: "$0.75" },
@@ -48,7 +82,8 @@ export default function MenuBoard() {
     { name: "Herb Jelly", price: "$0.75" },
     { name: "Aiyu Jelly", price: "$0.75" },
     { name: "Lychee Jelly", price: "$0.75" },
-  ];
+  ]; */
+  const toppings: string[][] = filterExtraByCategoryIdToppings(extras || []);
   const extraToppings = [
     { name: "Creama", price: "$1.00" },
   ];
@@ -100,8 +135,8 @@ export default function MenuBoard() {
             <div className="flex gap-4 justify-between">
               {sugarLevels.map((option, idx) => (
                 <div key={idx} className="flex flex-col items-center">
-                  <p className="font-semibold">{option.percentage}</p>
-                  <p className="text-sm">{option.label}</p>
+                  <p className="font-semibold">{option[0]}</p>
+                  <p className="text-sm">{option[1]}</p>
                 </div>
               ))}
             </div>
@@ -114,7 +149,7 @@ export default function MenuBoard() {
                 </div>
                 <div className="grid grid-cols-2 gap-1 text-sm">
                   {toppings.map((topping, idx) => (
-                    <p key={idx}>{topping.name}</p>
+                    <p key={idx}>{topping[0]}</p>
                   ))}
                 </div>
               </div>
