@@ -37,7 +37,7 @@ export default function OrderCard({
   price,
   imageSrc,
   drinkId,
-  itemId
+  itemId = Date.now(),
 }: OrderCardProps) {
   const categoryBackgrounds: Record<string, string> = {
     "Milk Teas": "bg-[#DBC89E]",
@@ -50,6 +50,7 @@ export default function OrderCard({
     // fallback color if no match:
     default: "bg-gray-200",
   };
+  console.log(drinkCategory);
   const imageBgColor = categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
@@ -71,6 +72,7 @@ export default function OrderCard({
   const handleCopy = () => {
     const newOrder = {
       drinkName,
+      drinkCategory,
       drinkPrice: price,
       imageSrc,
       sugarLevel: sugarLevel,

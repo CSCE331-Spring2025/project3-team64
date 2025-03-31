@@ -164,7 +164,7 @@ function DrinkCustomizationDialog({
   const handleAddToOrder = () => {
     const orderItem = {
       drinkName,
-      //drinkCategory,
+      drinkCategory,
       drinkPrice,
       imageSrc,
       sugarLevel: selectedSugarObj?.extra_name || "No Sugar",
@@ -175,6 +175,7 @@ function DrinkCustomizationDialog({
       iceObject: selectedIceObj,
       toppingObjects: selectedToppings, */
       drinkId,
+      itemId: Date.now(),
     };
     
     // Edit the price total Local Variable
