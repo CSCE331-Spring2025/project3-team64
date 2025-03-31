@@ -1,6 +1,6 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import { RiDeleteBin5Line, RiBankCardLine, RiBankCard2Line, RiAppleLine } from "react-icons/ri";
 import OrderCard from "@/components/orderCard";
 import { useEffect, useState } from "react";
 import {
@@ -9,7 +9,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { OrderSubmissionObject } from "com.team64.BubbleFlowBackend.model";
 
 export default function ViewOrder() {
   interface Order {
@@ -73,19 +72,19 @@ export default function ViewOrder() {
           <div className="flex gap-2 mt-2">
             <div className="border border-[#6F403A] p-2 rounded-xl w-1/3 flex flex-col items-center justify-center">
               <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center">
-                <RiDeleteBin5Line className="text-white" size={20} />
+                <RiBankCardLine className="text-white" size={20} />
               </div>
               <p className="text-sm">Credit Card</p>
             </div>
             <div className="border border-[#6F403A] p-2 rounded-xl w-1/3 flex flex-col items-center justify-center">
               <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center">
-                <RiDeleteBin5Line className="text-white" size={20} />
+                <RiBankCard2Line className="text-white" size={20} />
               </div>
               <p className="text-sm">Gift Card</p>
             </div>
             <div className="border border-[#6F403A] p-2 rounded-xl w-1/3 flex flex-col items-center justify-center">
               <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center">
-                <RiDeleteBin5Line className="text-white" size={20} />
+                <RiAppleLine className="text-white" size={20} />
               </div>
               <p className="text-sm">Apple Pay</p>
             </div>
@@ -100,18 +99,18 @@ export default function ViewOrder() {
               
               const parsedOrderItems = orderItems ? JSON.parse(orderItems) : [];
               const drinkOrders = parsedOrderItems.map((item: any) => ({
-              drinkName: item.drinkName,
-              toppings: item.toppings,
+                drinkName: item.drinkName,
+                toppings: item.toppings,
               }));
 
-              const orderSubmission: OrderSubmissionObject = {
+              const orderSubmission = {
                 drinks: drinkOrders,
                 totalPrice: orderPrice,
                 customerName: "John Doe", //placeholder
                 paymentMethod: "Credit Card", //placeholder
                 employeeId: "1" //placeholder (need one for self-service kiosk / online orders)
               };
-              
+
               console.log("Order Submission Object:", orderSubmission);
 
               //Clear local storage & reset screen after order is submitted
