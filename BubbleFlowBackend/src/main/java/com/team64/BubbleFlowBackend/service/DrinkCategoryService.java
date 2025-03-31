@@ -14,6 +14,7 @@ public class DrinkCategoryService {
     private DrinkCategoryRepo drinkCategoryRepo;
 
     public List<DrinkCategory> getAllDrinkCategories(){
+
         return drinkCategoryRepo.findAll();
     }
 }

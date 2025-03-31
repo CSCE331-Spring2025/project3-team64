@@ -1,7 +1,5 @@
-import { Item } from "@radix-ui/react-navigation-menu";
 import Image from "next/image";
 import { RiPencilLine, RiFileCopyLine, RiDeleteBin5Line } from "react-icons/ri";
-import { useState } from "react";
 
 interface OrderCardProps {
   drinkName: string;
@@ -10,6 +8,15 @@ interface OrderCardProps {
   toppings: string[]; 
   price: number;
   imageSrc: string;
+}
+
+interface OrderItem{
+  drinkName: string;
+  sugarLevel: string;
+  iceLevel: string;
+  toppings: string[];
+  price: number;
+  imageSrc?: string;
 }
 
 export default function OrderCard({
@@ -23,7 +30,7 @@ export default function OrderCard({
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
     orderItems = orderItems.filter(
-      (item:any) => 
+      (item: OrderItem) => 
       item.drinkName !== drinkName ||
       item.sugarLevel !== sugarLevel ||
       item.iceLevel !== iceLevel ||
@@ -34,8 +41,7 @@ export default function OrderCard({
     //Update order price
     const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
     const newTotal = currentTotal - price;
-    localStorage.setItem("orderprice", newTotal.toString())
-    ;
+    localStorage.setItem("orderprice", newTotal.toString());
     window.location.reload();
   };
   return (

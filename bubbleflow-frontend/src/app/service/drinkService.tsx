@@ -14,4 +14,5 @@ export const drinkService = {
         return api.get<DrinkCategory[]>('/drink-categories').then(res => res.data);
     }
 
+
 }

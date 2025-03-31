@@ -21,3 +21,4 @@ public class DrinkController {
         return drinkService.getAllDrinks();
     }
 }
+

@@ -10,3 +10,15 @@ export interface Drink {
     drink_price: number;
     active_months: string | null;
 }
+
+export interface ExtraCategory {
+    extra_category_id: number;
+    extra_category_name: string;
+}
+
+export interface Extra {
+    extra_id: number;
+    extra_category_id: ExtraCategory;
+    extra_name: string;
+    extra_price: number;
+}
