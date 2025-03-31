@@ -9,6 +9,6 @@ export const orderService = {
     //},
 
     submitOrder: (order: OrderSubmission) => {
-        return api.post<OrderSubmission>('/orders', order).then(res => res.data);
+        return api.post<OrderSubmission>('/orders/submit', order).then(res => res.data);
     }
 };
