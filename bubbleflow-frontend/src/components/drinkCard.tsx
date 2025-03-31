@@ -81,7 +81,6 @@ function DrinkCustomizationDialog({
   const {
     extras,
     loading: extrasLoading,
-    error: extrasError,
     fetchExtras
   } = useExtras();
   
