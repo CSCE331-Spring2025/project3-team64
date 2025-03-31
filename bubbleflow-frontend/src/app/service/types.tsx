@@ -22,3 +22,16 @@ export interface Extra {
     extra_name: string;
     extra_price: number;
 }
+
+export interface OrderSubmission {
+    order_id: number;
+    order_total_price: number;
+    customer: string;
+    order_date: Date;
+    employee_id: number;
+    payment_method: string;
+    order_items: {
+        drink_id: number;
+        topping_ids: number[];
+    }[];
+}

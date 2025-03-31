@@ -8,13 +8,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class OrderItem {
 
     @Id
+    @SequenceGenerator(name = "seq", sequenceName = "seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private int order_item_id;
 
     @Column(nullable = false)
     private int drink_id;
 
     @Column(name = "id", nullable = false)
-    private int id;
+    private int order_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
@@ -39,12 +41,12 @@ public class OrderItem {
         this.drink_id = drink_id;
     }
 
-    public int getId() {
-        return id;
+    public int getOrder_id() {
+        return order_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrder_id(int id) {
+        this.order_id = id;
     }
 
     public Order getOrder() {

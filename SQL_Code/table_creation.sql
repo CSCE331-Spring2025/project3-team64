@@ -105,7 +105,7 @@ create table if not exists Order_Items(
     Order_ID int NOT NULL,
     Drink_ID int NOT NULL,
     PRIMARY KEY (Order_Item_ID),
-    FOREIGN KEY (Order_ID)
+    FOREIGN KEY (Order_Item_ID)
         REFERENCES Orders (Order_ID)
 	ON DELETE CASCADE,
     FOREIGN KEY (Drink_ID)
