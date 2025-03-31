@@ -3,6 +3,7 @@ import { RiPencilLine, RiFileCopyLine, RiDeleteBin5Line } from "react-icons/ri";
 
 interface OrderCardProps {
   drinkName: string;
+  drinkCategory: string;
   sugarLevel: string;
   iceLevel: string;
   toppings: string[]; 
@@ -15,6 +16,7 @@ interface OrderCardProps {
 
 interface OrderItem{
   drinkName: string;
+  drinkCategory: string;
   sugarLevel: string;
   iceLevel: string;
   toppings: string[];
@@ -27,6 +29,7 @@ interface OrderItem{
 
 export default function OrderCard({
   drinkName,
+  drinkCategory,
   sugarLevel,
   iceLevel,
   toppings,
@@ -36,6 +39,18 @@ export default function OrderCard({
   drinkId,
   itemId
 }: OrderCardProps) {
+  const categoryBackgrounds: Record<string, string> = {
+    "Milk Teas": "bg-[#DBC89E]",
+    "Brewed Tea": "bg-amber-200",
+    "Fruit Tea": "bg-rose-200",
+    "Fresh Milk": "bg-zinc-200",
+    "Ice Blended": "bg-cyan-200",
+    "Tea Mojito": "bg-green-200",
+    "Creama": "bg-yellow-200",
+    // fallback color if no match:
+    default: "bg-gray-200",
+  };
+  const imageBgColor = categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
     orderItems = orderItems.filter(
@@ -79,7 +94,7 @@ export default function OrderCard({
 
   return (
     <div className="flex gap-4 border border-[#6F403A] p-2 rounded-xl pr-4">
-      <div className="bg-[#DBC89E] rounded-xl flex justify-center py-4 w-1/4">
+      <div className={`${imageBgColor} rounded-xl flex justify-center py-4 w-1/4`}>
         <Image src={imageSrc} alt={drinkName} width={60} height={75} />
       </div>
       <div className="flex justify-between w-3/4">

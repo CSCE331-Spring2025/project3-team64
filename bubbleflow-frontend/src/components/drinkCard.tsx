@@ -38,10 +38,22 @@ export default function DrinkCard({
   itemId,
 }: DrinkCardProps) {
   const [isOpen, setIsOpen] = useState(false);
-  
+  const categoryColors: Record<string, { badgeBg: string; badgeText: string}> = {
+    "Milk Teas": { badgeBg: "bg-[#DBC89E]", badgeText: "text-[#6F403A]"},
+    "Brewed Tea": { badgeBg: "bg-amber-200", badgeText: "text-amber-800" },
+    "Fruit Tea": { badgeBg: "bg-rose-200", badgeText: "text-rose-800"},
+    "Fresh Milk": { badgeBg: "bg-zinc-200", badgeText: "text-zinc-800"},
+    "Ice Blended": { badgeBg: "bg-cyan-200", badgeText: "text-cyan-800"},
+    "Tea Mojito": { badgeBg: "bg-green-200", badgeText: "text-green-800"},
+    "Creama": { badgeBg: "bg-yellow-200", badgeText: "text-yellow-800"},
+  };
+
+  // If drinkCategory is undefined or not in our mapping, fallback to a default color.
+  const categoryColor =
+    (drinkCategory && categoryColors[drinkCategory]) || { badgeBg: "bg-gray-200", badgeText: "text-gray-800", buttonBg: "bg-gray-800" };
   return (
     <div className="border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
-      <div className="bg-[#DBC89E] rounded-xl flex justify-center py-4">
+      <div className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4`}>
         <Image
           src={imageSrc} 
           alt={drinkName}
@@ -51,7 +63,7 @@ export default function DrinkCard({
       </div>
       <p className="mt-2 font-semibold">{drinkName}</p>
       <div className="flex justify-between mt-1">
-        <Badge className="bg-[#DBC89E] text-[#6F403A] font-normal px-3 rounded-3xl">
+        <Badge className={`${categoryColor.badgeBg} ${categoryColor.badgeText} font-normal px-3 rounded-3xl`}>
           {drinkCategory}
         </Badge>
         <p className="text-sm">${Number(drinkPrice).toFixed(2)}</p>

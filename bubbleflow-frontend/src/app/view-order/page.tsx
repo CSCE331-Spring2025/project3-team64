@@ -1,6 +1,6 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import { RiDeleteBin5Line, RiBankCardLine, RiBankCard2Line, RiAppleLine } from "react-icons/ri";
+import { RiBankCardLine, RiBankCard2Line, RiAppleLine } from "react-icons/ri";
 import OrderCard from "@/components/orderCard";
 import { useEffect, useState } from "react";
 import {
@@ -46,6 +46,7 @@ export default function ViewOrder() {
           <OrderCard
             key={index}
             drinkName={order.drinkName}
+            drinkCategory={order.drinkCategory} 
             iceLevel={order.iceLevel}
             sugarLevel={order.sugarLevel}
             toppings={order.toppings}
