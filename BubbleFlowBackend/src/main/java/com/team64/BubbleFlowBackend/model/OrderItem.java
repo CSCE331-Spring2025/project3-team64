@@ -15,8 +15,6 @@ public class OrderItem {
     @Column(nullable = false)
     private int drink_id;
 
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
     @JsonIgnore
