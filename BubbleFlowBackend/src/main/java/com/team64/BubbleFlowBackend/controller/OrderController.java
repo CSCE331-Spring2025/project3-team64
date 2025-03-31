@@ -28,7 +28,7 @@ public class OrderController {
     }
 
     @PostMapping("/submit")
-    public Order submitOrder(@RequestBody OrderSubmissionObject orderSubmissionObject) {
-        return orderService.submitOrder(orderSubmissionObject);
+    public Order submitOrder(@RequestBody OrderSubmissionObject order) {
+        return orderService.submitOrder(order);
     }
 }
