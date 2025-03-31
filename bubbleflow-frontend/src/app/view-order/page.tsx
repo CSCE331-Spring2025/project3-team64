@@ -70,16 +70,15 @@ export default function ViewOrder() {
       employee_id: 1, // Self-service kiosk
       payment_method: "Credit Card", // Not implemented yet
       order_items: orderItems.map((item: any) => ({
-        drink_id: item.drinkId,
-        topping_ids: item.toppingIds,
+      drink_id: item.drinkId,
+      topping_ids: item.toppingIds,
       })),
     };
     console.log("Order Submission Object:", orderSubmission);
-    submitOrder(orderSubmission);
-                
-    //Clear local storage & reset screen after order is submitted
-    //localStorage.removeItem("orderItems");
-    //localStorage.removeItem("orderprice");
+    //Clear the ordered items from local storage
+    localStorage.setItem("orderItems", "[]");
+    localStorage.setItem("orderprice", "0");
+    submitOrder(orderSubmission);              
   }
 
   const tax = orderPrice * 0.1;
@@ -150,7 +149,7 @@ export default function ViewOrder() {
             </div>
           </DialogTrigger>
           <DialogContent>
-            <DialogTitle className=" flex justify-center text-3xl">$14.28</DialogTitle>
+            <DialogTitle className=" flex justify-center text-3xl">${total}</DialogTitle>
             <div className=" flex flex-col justify-center text-center">
               <p>Transaction Complete</p>
               <p className=" text-sm text-gray-400">Order #69</p>
