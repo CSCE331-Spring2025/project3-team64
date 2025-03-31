@@ -38,7 +38,7 @@ export default function DrinkCard({
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="border border-[#6F403A] p-2 rounded-xl">
+    <div className="border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
       <div className="bg-[#DBC89E] rounded-xl flex justify-center py-4">
         <Image
           src={imageSrc} 
@@ -85,7 +85,6 @@ function DrinkCustomizationDialog({
   const {
     extras,
     loading: extrasLoading,
-    error: extrasError,
     fetchExtras
   } = useExtras();
   
