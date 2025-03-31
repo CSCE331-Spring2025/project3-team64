@@ -25,6 +25,7 @@ interface DrinkCardProps {
   drinkCategory: string | undefined;
   drinkPrice: number | string;
   imageSrc: string;
+  id: number;
 }
 
 export default function DrinkCard({
@@ -32,6 +33,7 @@ export default function DrinkCard({
   drinkCategory,
   drinkPrice,
   imageSrc,
+  id,
 }: DrinkCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   
@@ -63,6 +65,7 @@ export default function DrinkCard({
           imageSrc={imageSrc}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
+          id={id}
         />}
       </Dialog>
     </div>
@@ -76,6 +79,7 @@ function DrinkCustomizationDialog({
   drinkPrice,
   imageSrc,
   isOpen,
+  id,
   setIsOpen
 }: DrinkCardProps & { isOpen: boolean; setIsOpen: (open: boolean) => void }) {
   const {
@@ -154,6 +158,7 @@ function DrinkCustomizationDialog({
       sugarObject: selectedSugarObj,
       iceObject: selectedIceObj,
       toppingObjects: selectedToppings,
+      id,
     };
     
     const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");

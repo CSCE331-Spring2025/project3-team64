@@ -112,6 +112,8 @@ export default function Employee() {
             }
             drinkPrice={drink?.drink_price || 0}
             imageSrc={"/classic-pearl-milk-tea.png"}
+            id={drink?.drink_id}
+
           />
         ))}
       </div>

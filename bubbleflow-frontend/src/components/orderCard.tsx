@@ -8,6 +8,7 @@ interface OrderCardProps {
   toppings: string[]; 
   price: number;
   imageSrc: string;
+  id: number;
 }
 
 interface OrderItem{
@@ -17,6 +18,7 @@ interface OrderItem{
   toppings: string[];
   price: number;
   imageSrc?: string;
+  id: number;
 }
 
 export default function OrderCard({
@@ -26,6 +28,7 @@ export default function OrderCard({
   toppings,
   price,
   imageSrc,
+  id,
 }: OrderCardProps) {
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
@@ -42,6 +45,8 @@ export default function OrderCard({
     const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
     const newTotal = currentTotal - price;
     localStorage.setItem("orderprice", newTotal.toString());
+
+    //Reload the window
     window.location.reload();
   };
   return (

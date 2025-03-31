@@ -1,0 +1,20 @@
+Meeting time: 3/31/2025 During morning lecture-time (9:10)
+
+1) Final tasks left to do:
+    -Category item counts
+    -'transaction complete' popup needs total cost from localstorage
+    -Include order IDs in drink cards so it's easier to send requests to backend
+    -Order submission needs to save to database
+
+2) Self-review:
+    -Test placing an order and see what we think:
+        -Standardize the length of item cards (they stretch based on what toppings were selected)
+        -Doesn't go back to landing page after submitting an order
+
+3) Next steps:
+    -Edit & duplicate order buttons in view-order page
+
+4) Discuss how to solve future issues:
+    -How to do cashier page (vs customer self-service): copy self-service screen but get employee_id from their account
+    -Order editing & duplication: Re-use order creation dialogue, for duplication we can copy from duplicate 
+    -AI generating image thumbnails for drinks
