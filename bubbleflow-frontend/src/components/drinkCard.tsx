@@ -25,7 +25,8 @@ interface DrinkCardProps {
   drinkCategory: string | undefined;
   drinkPrice: number | string;
   imageSrc: string;
-  id: number;
+  drinkId: number;
+  itemId: number;
 }
 
 export default function DrinkCard({
@@ -33,7 +34,8 @@ export default function DrinkCard({
   drinkCategory,
   drinkPrice,
   imageSrc,
-  id,
+  drinkId,
+  itemId,
 }: DrinkCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   
@@ -65,7 +67,8 @@ export default function DrinkCard({
           imageSrc={imageSrc}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          id={id}
+          drinkId={drinkId}
+          itemId= {itemId}
         />}
       </Dialog>
     </div>
@@ -79,7 +82,7 @@ function DrinkCustomizationDialog({
   drinkPrice,
   imageSrc,
   isOpen,
-  id,
+  drinkId,
   setIsOpen
 }: DrinkCardProps & { isOpen: boolean; setIsOpen: (open: boolean) => void }) {
   const {
@@ -149,17 +152,17 @@ function DrinkCustomizationDialog({
   const handleAddToOrder = () => {
     const orderItem = {
       drinkName,
-      drinkCategory,
+      //drinkCategory,
       drinkPrice,
       imageSrc,
       sugarLevel: selectedSugarObj?.extra_name || "No Sugar",
       iceLevel: selectedIceObj?.extra_name || "No Ice",
       toppings: selectedToppings.length === 0 ? ["None"] : selectedToppings.map(t => t.extra_name),
       toppingIds: selectedToppings.map(t => t.extra_id),
-      sugarObject: selectedSugarObj,
+      /* sugarObject: selectedSugarObj,
       iceObject: selectedIceObj,
-      toppingObjects: selectedToppings,
-      id,
+      toppingObjects: selectedToppings, */
+      drinkId,
     };
     
     // Edit the price total Local Variable

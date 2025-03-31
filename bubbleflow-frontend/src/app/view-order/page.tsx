@@ -20,7 +20,8 @@ export default function ViewOrder() {
     iceLevel: string;
     toppings: string[];
     toppingIds: number[];
-    id: number;
+    drinkId: number;
+    itemId: number;
   }
   const [orders, setOrders] = useState<Order[]>([]);
   const [orderPrice, setOrderPrice] = useState(0);
@@ -51,7 +52,8 @@ export default function ViewOrder() {
             toppingIds={order.toppingIds}
             price={order.drinkPrice}
             imageSrc={order.imageSrc}
-            id={order.id}
+            drinkId={order.drinkId}
+            itemId={order.itemId}
           />
         ))}
       </div>

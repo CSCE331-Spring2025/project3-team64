@@ -9,7 +9,8 @@ interface OrderCardProps {
   toppingIds: number[];
   price: number;
   imageSrc: string;
-  id: number;
+  drinkId: number;
+  itemId: number;
 }
 
 interface OrderItem{
@@ -20,7 +21,8 @@ interface OrderItem{
   toppingIds: number[];
   price: number;
   imageSrc?: string;
-  id: number;
+  drinkId: number;
+  itemId: number;
 }
 
 export default function OrderCard({
@@ -28,18 +30,17 @@ export default function OrderCard({
   sugarLevel,
   iceLevel,
   toppings,
+  toppingIds,
   price,
   imageSrc,
-  id,
+  drinkId,
+  itemId
 }: OrderCardProps) {
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
     orderItems = orderItems.filter(
       (item: OrderItem) => 
-      item.drinkName !== drinkName ||
-      item.sugarLevel !== sugarLevel ||
-      item.iceLevel !== iceLevel ||
-      JSON.stringify(item.toppings) !== JSON.stringify(toppings)
+      item.itemId !== itemId
     );
     localStorage.setItem("orderItems", JSON.stringify(orderItems));
 
@@ -51,6 +52,31 @@ export default function OrderCard({
     //Reload the window
     window.location.reload();
   };
+
+  const handleCopy = () => {
+    const newOrder = {
+      drinkName,
+      drinkPrice: price,
+      imageSrc,
+      sugarLevel: sugarLevel,
+      iceLevel: iceLevel,
+      toppings,
+      toppingIds,
+      drinkId,
+      itemId: Date.now()
+    };
+
+    const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
+    existingOrders.push(newOrder);
+    localStorage.setItem("orderItems", JSON.stringify(existingOrders));
+
+    const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
+    const newTotal = currentTotal + newOrder.drinkPrice;
+    localStorage.setItem("orderprice", newTotal.toString());
+
+    window.location.reload();
+  }
+
   return (
     <div className="flex gap-4 border border-[#6F403A] p-2 rounded-xl pr-4">
       <div className="bg-[#DBC89E] rounded-xl flex justify-center py-4 w-1/4">
@@ -71,7 +97,8 @@ export default function OrderCard({
             <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2">
               <RiPencilLine className="text-white" size={20} />
             </div>
-            <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2">
+            <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
+                 onClick={handleCopy}>
               <RiFileCopyLine className="text-white" size={20} />
             </div>
             <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
