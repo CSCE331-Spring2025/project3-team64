@@ -23,6 +23,18 @@ export default function ViewOrder() {
     drinkId: number;
     itemId: number;
   }
+  
+  interface OrderSubmission {
+    drinks: {
+      drinkName: string;
+      toppings: string[];
+    }[];
+    totalPrice: number;
+    customerName: string;
+    paymentMethod: string;
+    employeeId: string;
+  }
+  
   const [orders, setOrders] = useState<Order[]>([]);
   const [orderPrice, setOrderPrice] = useState(0);
 
@@ -102,13 +114,13 @@ export default function ViewOrder() {
               const orderItems = localStorage.getItem("orderItems");
               console.log("Order Items:", orderItems);
               
-              const parsedOrderItems = orderItems ? JSON.parse(orderItems) : [];
-              const drinkOrders = parsedOrderItems.map((item: any) => ({
+              const parsedOrderItems: Order[] = orderItems ? JSON.parse(orderItems) : [];
+              const drinkOrders = parsedOrderItems.map((item: Order) => ({
                 drinkName: item.drinkName,
                 toppings: item.toppings,
               }));
 
-              const orderSubmission = {
+              const orderSubmission: OrderSubmission = {
                 drinks: drinkOrders,
                 totalPrice: orderPrice,
                 customerName: "John Doe", //placeholder
