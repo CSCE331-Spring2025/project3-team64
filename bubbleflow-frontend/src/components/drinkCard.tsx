@@ -175,6 +175,7 @@ function DrinkCustomizationDialog({
       iceObject: selectedIceObj,
       toppingObjects: selectedToppings, */
       drinkId,
+      itemId: Date.now(),
     };
     
     // Edit the price total Local Variable

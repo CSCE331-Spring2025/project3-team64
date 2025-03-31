@@ -37,7 +37,7 @@ export default function OrderCard({
   price,
   imageSrc,
   drinkId,
-  itemId
+  itemId = Date.now(),
 }: OrderCardProps) {
   const categoryBackgrounds: Record<string, string> = {
     "Milk Teas": "bg-[#DBC89E]",
@@ -78,7 +78,7 @@ export default function OrderCard({
       toppings,
       toppingIds,
       drinkId,
-      itemId: Date.now()
+      itemId
     };
 
     const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
