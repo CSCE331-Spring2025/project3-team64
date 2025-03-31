@@ -25,6 +25,7 @@ export interface Extra {
 
 export interface OrderSubmission {
     order_id: number;
+    order_total_price: number;
     customer: string;
     order_date: Date;
     employee_id: number;

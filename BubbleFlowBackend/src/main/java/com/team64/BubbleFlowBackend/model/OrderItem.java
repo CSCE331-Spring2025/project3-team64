@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class OrderItem {
 
     @Id
+    @SequenceGenerator(name = "seq", sequenceName = "seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private int order_item_id;
 
     @Column(nullable = false)
@@ -43,7 +45,7 @@ public class OrderItem {
         return order_id;
     }
 
-    public void set_id(int id) {
+    public void setOrder_id(int id) {
         this.order_id = id;
     }
 
