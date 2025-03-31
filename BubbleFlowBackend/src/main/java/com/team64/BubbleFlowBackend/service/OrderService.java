@@ -54,7 +54,7 @@ public class OrderService {
         order.setOrder_date(new Timestamp(System.currentTimeMillis()));
         
         orderRepo.save(order);
-
+        System.out.println("Backend received order at: " + order.getOrder_date());
         return order;
     }
 

@@ -14,7 +14,7 @@ public class OrderItem {
     private int drink_id;
 
     @Column(name = "id", nullable = false)
-    private int id;
+    private int order_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
@@ -39,12 +39,12 @@ public class OrderItem {
         this.drink_id = drink_id;
     }
 
-    public int getId() {
-        return id;
+    public int getOrder_id() {
+        return order_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void set_id(int id) {
+        this.order_id = id;
     }
 
     public Order getOrder() {
