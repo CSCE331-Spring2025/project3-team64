@@ -78,7 +78,7 @@ export default function OrderCard({
       toppings,
       toppingIds,
       drinkId,
-      itemId
+      itemId: Date.now()
     };
 
     const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
