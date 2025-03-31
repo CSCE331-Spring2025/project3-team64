@@ -9,7 +9,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { OrderSubmissionObject } from "com.team64.BubbleFlowBackend.model";
 
 export default function ViewOrder() {
   interface Order {
@@ -100,18 +99,18 @@ export default function ViewOrder() {
               
               const parsedOrderItems = orderItems ? JSON.parse(orderItems) : [];
               const drinkOrders = parsedOrderItems.map((item: any) => ({
-              drinkName: item.drinkName,
-              toppings: item.toppings,
+                drinkName: item.drinkName,
+                toppings: item.toppings,
               }));
 
-              const orderSubmission: OrderSubmissionObject = {
+              const orderSubmission = {
                 drinks: drinkOrders,
                 totalPrice: orderPrice,
                 customerName: "John Doe", //placeholder
                 paymentMethod: "Credit Card", //placeholder
                 employeeId: "1" //placeholder (need one for self-service kiosk / online orders)
               };
-              
+
               console.log("Order Submission Object:", orderSubmission);
 
               //Clear local storage & reset screen after order is submitted
