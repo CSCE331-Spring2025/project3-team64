@@ -67,20 +67,26 @@ export default function Employee() {
               itemCount={drinks.length}
             />
           </div>
-          {categories.map((category, index) => (
-            <div
-              key={index}
-              onClick={() =>
-                setSelectedCategory(category.drink_category_name)
-              }
-              className="cursor-pointer"
-            >
-              <MenuCategory
-                categoryName={category?.drink_category_name || "No Category"}
-                itemCount={0}
-              />
-            </div>
-          ))}
+          {categories.map((category, index) => {
+            const categoryName = category.drink_category_name || "No Category";
+            // Calculate count of drinks in this category.
+            const count = drinks.filter(
+              (drink) =>
+                drink?.drink_category_id?.drink_category_name === categoryName
+            ).length;
+            return (
+              <div
+                key={index}
+                onClick={() => setSelectedCategory(categoryName)}
+                className="cursor-pointer"
+              >
+                <MenuCategory
+                  categoryName={categoryName}
+                  itemCount={count}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="mt-2 relative">
@@ -96,7 +102,7 @@ export default function Employee() {
           <RiSearchLine className="text-white" size={15} />
         </div>
       </div>
-      <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2 items-start">
+      <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
         {filteredDrinks.map((drink, index) => (
           <DrinkCard
             key={index}
