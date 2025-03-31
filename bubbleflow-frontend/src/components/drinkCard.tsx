@@ -155,6 +155,7 @@ function DrinkCustomizationDialog({
       sugarLevel: selectedSugarObj?.extra_name || "No Sugar",
       iceLevel: selectedIceObj?.extra_name || "No Ice",
       toppings: selectedToppings.length === 0 ? ["None"] : selectedToppings.map(t => t.extra_name),
+      toppingIds: selectedToppings.map(t => t.extra_id),
       sugarObject: selectedSugarObj,
       iceObject: selectedIceObj,
       toppingObjects: selectedToppings,
@@ -164,10 +165,11 @@ function DrinkCustomizationDialog({
     const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
     existingOrders.push(orderItem);
     localStorage.setItem("orderItems", JSON.stringify(existingOrders));
-
+    
     // Edit the price total Local Variable
+    const toppingPrice = selectedToppings.reduce((acc, topping) => acc + topping.extra_price, 0);
     const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
-    const newTotal = currentTotal + parseFloat(drinkPrice as string);
+    const newTotal = currentTotal + parseFloat(drinkPrice as string) + toppingPrice;
     localStorage.setItem("orderprice", newTotal.toString());
     
     setIsOpen(false);

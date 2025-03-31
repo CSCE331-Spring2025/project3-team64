@@ -20,6 +20,7 @@ export default function ViewOrder() {
     sugarLevel: string;
     iceLevel: string;
     toppings: string[];
+    toppingIds: number[];
     id: number;
   }
   const [orders, setOrders] = useState<Order[]>([]);
@@ -48,6 +49,7 @@ export default function ViewOrder() {
             iceLevel={order.iceLevel}
             sugarLevel={order.sugarLevel}
             toppings={order.toppings}
+            toppingIds={order.toppingIds}
             price={order.drinkPrice}
             imageSrc={order.imageSrc}
             id={order.id}

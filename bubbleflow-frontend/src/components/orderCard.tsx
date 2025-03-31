@@ -6,6 +6,7 @@ interface OrderCardProps {
   sugarLevel: string;
   iceLevel: string;
   toppings: string[]; 
+  toppingIds: number[];
   price: number;
   imageSrc: string;
   id: number;
@@ -16,6 +17,7 @@ interface OrderItem{
   sugarLevel: string;
   iceLevel: string;
   toppings: string[];
+  toppingIds: number[];
   price: number;
   imageSrc?: string;
   id: number;
