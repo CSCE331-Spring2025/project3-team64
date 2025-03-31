@@ -10,6 +10,8 @@ import java.util.List;
 public class Order {
 
     @Id
+    @SequenceGenerator(name = "seq", sequenceName = "seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private int order_id;
 
     private String customer;

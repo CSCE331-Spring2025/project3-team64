@@ -17,17 +17,42 @@ import java.util.List;
  */
 
 public class OrderSubmissionObject {
-    private List<DrinkOrder> drinks;
     private double totalPrice;
     private String customerName;
     private String paymentMethod;
     private int employeeId;
-    public List<DrinkOrder> getDrinks() {
-        return drinks;
+    
+    private List<DrinkWithToppings> order_items;
+    
+    public static class DrinkWithToppings {
+        private int drink_id;
+        private List<Integer> toppings;
+
+        public int getDrink_id() {
+            return drink_id;
+        }
+
+        public void setDrink_id(int drink_id) {
+            this.drink_id = drink_id;
+        }
+
+        public List<Integer> getToppings() {
+            return toppings;
+        }
+
+        public void setToppings(List<Integer> newToppings) {
+            this.toppings = newToppings;
+        }
     }
 
-    public void setDrinks(List<DrinkOrder> drinks) {
-        this.drinks = drinks;
+    
+
+    public List<DrinkWithToppings> getDrinks() {
+        return order_items;
+    }
+
+    public void setDrinks(List<DrinkWithToppings> drinks) {
+        this.order_items = drinks;
     }
 
     public double getTotalPrice() {
