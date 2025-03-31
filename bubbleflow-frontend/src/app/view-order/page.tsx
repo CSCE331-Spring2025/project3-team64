@@ -1,6 +1,6 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import { RiDeleteBin5Line, RiBankCardLine, RiBankCard2Line, RiAppleLine } from "react-icons/ri";
+import { RiBankCardLine, RiBankCard2Line, RiAppleLine } from "react-icons/ri";
 import OrderCard from "@/components/orderCard";
 import { useEffect, useState } from "react";
 import {
