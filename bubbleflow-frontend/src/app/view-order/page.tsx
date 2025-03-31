@@ -65,8 +65,10 @@ export default function ViewOrder() {
       //Clear the ordered items from local storage
       localStorage.setItem("orderItems", "[]");
       localStorage.setItem("orderprice", "0");
-      submitOrder(orderSubmission);              
+      submitOrder(orderSubmission);
+
     }
+
 
   const tax = orderPrice * 0.1;
   const total = orderPrice + tax;
@@ -127,7 +129,12 @@ export default function ViewOrder() {
             </div>
           </div>
         </div>
-        <Dialog>
+        <Dialog onOpenChange={(open) => {
+            // When dialog closes (open becomes false), refresh the window
+            if (!open) {
+              window.location.reload();
+            }
+          }}>
           <DialogTrigger className="w-full" asChild>
             <div onClick={() => submitOrderHook()}>
               <Button className="bg-[#6F403A] w-full mb-4 mt-4">
