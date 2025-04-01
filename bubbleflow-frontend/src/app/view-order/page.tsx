@@ -9,7 +9,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { OrderSubmission } from '../service/types';
 import { useOrders } from "../hooks/useOrders";
 
 
@@ -47,7 +46,7 @@ export default function ViewOrder() {
 
     /// Function to handle order submission (is a button click handler for the submit order button)
     function submitOrderHook() {
-      const orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
+      const orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]") as Order[];
       const orderPrice = parseFloat(localStorage.getItem("orderprice") || "0");
       
       const orderSubmission = {
@@ -55,7 +54,7 @@ export default function ViewOrder() {
         customerName: "John Doe", // Adding the customer name field
         employeeId: 1, // Self-service kiosk
         paymentMethod: "Credit Card",
-        drinks: orderItems.map((item: any) => ({
+        drinks: orderItems.map((item: Order) => ({
           drink_id: item.drinkId,
           toppings: item.toppingIds,
         })),
@@ -66,7 +65,6 @@ export default function ViewOrder() {
       localStorage.setItem("orderItems", "[]");
       localStorage.setItem("orderprice", "0");
       submitOrder(orderSubmission);
-
     }
 
 
