@@ -4,6 +4,7 @@ import com.team64.BubbleFlowBackend.model.Order;
 import com.team64.BubbleFlowBackend.model.OrderSubmissionObject;
 import com.team64.BubbleFlowBackend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/orders")
+@CrossOrigin(origins = "https://bubbleflow.vercel.app")
 public class OrderController {
 
     private final OrderService orderService;

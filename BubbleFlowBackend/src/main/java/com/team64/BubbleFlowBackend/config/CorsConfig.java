@@ -28,7 +28,7 @@ public class CorsConfig implements WebMvcConfigurer {
         config.setAllowCredentials(true);
         config.addAllowedOrigin("https://bubbleflow.vercel.app");
         config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedOrigin("http://localhost:8080");
+        config.addAllowedOrigin("http://localhost:8080")
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
