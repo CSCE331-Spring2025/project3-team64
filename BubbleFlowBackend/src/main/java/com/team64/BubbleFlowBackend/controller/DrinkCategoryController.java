@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/drink-categories")
-@CrossOrigin(origins = "https://bubbleflow.vercel.app")
 public class DrinkCategoryController {
 
     @Autowired

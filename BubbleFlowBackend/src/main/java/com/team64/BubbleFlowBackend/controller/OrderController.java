@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/orders")
-@CrossOrigin(origins = "https://bubbleflow.vercel.app")
 public class OrderController {
 
     private final OrderService orderService;

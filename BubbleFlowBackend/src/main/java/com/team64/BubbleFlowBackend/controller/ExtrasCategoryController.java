@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/extras-categories")
-@CrossOrigin(origins = "https://bubbleflow.vercel.app")
 public class ExtrasCategoryController {
     @Autowired
     private ExtrasCategoryService extrasCategoryService;
