@@ -147,7 +147,7 @@ export default function MenuBoard() {
                   <p>+</p>
                   <p className="font-semibold">$0.75</p>
                 </div>
-                <div className="grid grid-cols-2 gap-1 text-sm">
+                <div className="grid grid-cols-2 gap-1 gap-x-4 text-sm">
                   {toppings.map((topping, idx) => (
                     <p key={idx}>{topping[0]}</p>
                   ))}

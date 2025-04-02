@@ -40,12 +40,12 @@ export default function DrinkCard({
   const [isOpen, setIsOpen] = useState(false);
   const categoryColors: Record<string, { badgeBg: string; badgeText: string}> = {
     "Milk Teas": { badgeBg: "bg-[#DBC89E]", badgeText: "text-[#6F403A]"},
-    "Brewed Tea": { badgeBg: "bg-amber-200", badgeText: "text-amber-800" },
-    "Fruit Tea": { badgeBg: "bg-rose-200", badgeText: "text-rose-800"},
-    "Fresh Milk": { badgeBg: "bg-zinc-200", badgeText: "text-zinc-800"},
-    "Ice Blended": { badgeBg: "bg-cyan-200", badgeText: "text-cyan-800"},
-    "Tea Mojito": { badgeBg: "bg-green-200", badgeText: "text-green-800"},
-    "Creama": { badgeBg: "bg-yellow-200", badgeText: "text-yellow-800"},
+    "Brewed Tea": { badgeBg: "bg-[#cfc0ac]", badgeText: "text-[#6F403A]" },
+    "Fruit Tea": { badgeBg: "bg-[#dbb9a7]", badgeText: "text-[#6F403A]"},
+    "Fresh Milk": { badgeBg: "bg-[#f0dece]", badgeText: "text-[#6F403A]"},
+    "Ice Blended": { badgeBg: "bg-[#d7aa7c]", badgeText: "text-[#6F403A]"},
+    "Tea Mojito": { badgeBg: "bg-[#f6cdb1]", badgeText: "text-[#6F403A]"},
+    "Creama": { badgeBg: "bg-[#cdac8a]", badgeText: "text-[#6F403A]"},
   };
 
   // If drinkCategory is undefined or not in our mapping, fallback to a default color.
