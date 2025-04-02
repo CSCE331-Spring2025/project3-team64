@@ -20,6 +20,8 @@ export default function ViewOrder() {
     drinkName: string;
     drinkCategory: string;
     drinkPrice: number;
+    topPrice: number;
+    totalPrice: number;
     imageSrc: string;
     sugarLevel: string;
     iceLevel: string;
@@ -87,7 +89,9 @@ export default function ViewOrder() {
             sugarLevel={order.sugarLevel}
             toppings={order.toppings}
             toppingIds={order.toppingIds}
-            price={order.drinkPrice}
+            drinkPrice={order.drinkPrice}
+            topPrice={order.topPrice}
+            totalPrice={order.totalPrice}
             imageSrc={order.imageSrc}
             drinkId={order.drinkId}
             itemId={order.itemId}

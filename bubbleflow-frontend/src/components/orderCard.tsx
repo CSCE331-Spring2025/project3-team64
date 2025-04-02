@@ -2,21 +2,10 @@ import Image from "next/image";
 import { RiPencilLine, RiFileCopyLine, RiDeleteBin5Line } from "react-icons/ri";
 import {
   Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { useState, useEffect } from "react";
+import DrinkEditDialog from "@/components/editCard"
 
 interface OrderCardProps {
   drinkName: string;
@@ -25,7 +14,9 @@ interface OrderCardProps {
   iceLevel: string;
   toppings: string[];
   toppingIds: number[];
-  price: number;
+  drinkPrice: number;
+  topPrice: number;
+  totalPrice: number;
   imageSrc: string;
   drinkId: number;
   itemId: number;
@@ -51,11 +42,17 @@ export default function OrderCard({
   iceLevel,
   toppings,
   toppingIds,
-  price,
+  drinkPrice,
+  topPrice,
+  totalPrice,
   imageSrc,
   drinkId,
   itemId = Date.now(),
 }: OrderCardProps) {
+
+  //function to control customization dialog state
+  const [isOpen, setIsOpen] = useState(false);
+
   const categoryBackgrounds: Record<string, string> = {
     "Milk Teas": "bg-[#ead2a2]",
     "Brewed Tea": "bg-[#e5ceb5]",
@@ -79,6 +76,8 @@ export default function OrderCard({
   console.log(drinkCategory);
   const imageBgColor =
     categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
+
+
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
     orderItems = orderItems.filter((item: OrderItem) => item.itemId !== itemId);
@@ -86,7 +85,7 @@ export default function OrderCard({
 
     //Update order price
     const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
-    const newTotal = currentTotal - price;
+    const newTotal = currentTotal - totalPrice;
     localStorage.setItem("orderprice", newTotal.toString());
 
     //Reload the window
@@ -94,10 +93,12 @@ export default function OrderCard({
   };
 
   const handleCopy = () => {
-    const newOrder = {
+    const orderItem = {
       drinkName,
       drinkCategory,
-      drinkPrice: price,
+      drinkPrice,
+      topPrice,
+      totalPrice,
       imageSrc,
       sugarLevel: sugarLevel,
       iceLevel: iceLevel,
@@ -110,11 +111,11 @@ export default function OrderCard({
     const existingOrders = JSON.parse(
       localStorage.getItem("orderItems") || "[]"
     );
-    existingOrders.push(newOrder);
+    existingOrders.push(orderItem);
     localStorage.setItem("orderItems", JSON.stringify(existingOrders));
 
     const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
-    const newTotal = currentTotal + newOrder.drinkPrice;
+    const newTotal = currentTotal + orderItem.totalPrice;
     localStorage.setItem("orderprice", newTotal.toString());
 
     window.location.reload();
@@ -136,70 +137,29 @@ export default function OrderCard({
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-right text-[#6F403A] font-semibold">
-            ${price.toFixed(2)}
+            ${totalPrice.toFixed(2)}
           </p>
           <div className="flex gap-2">
-            <Dialog>
-              <DialogTrigger asChild>
-              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26]">
+            { <Dialog>
+              <DialogTrigger asChild> 
+              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26]"
+              onClick={() => setIsOpen(true)}>
               <RiPencilLine className="text-white" size={20} />
             </div>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                  <DialogTitle>{drinkName}</DialogTitle>
-                </DialogHeader>
-                <div className="flex flex-col gap-8 py-4">
-                  <div className="items-center gap-4">
-                    <Label className="mb-2">Sugar</Label>
-                    <Select>
-                      <SelectTrigger className=" w-full">
-                        <SelectValue placeholder="Select an Option" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {sugarOptions.map((option, idx) => (
-                          <SelectItem key={idx} value={option}>
-                            {option}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="items-center gap-4">
-                    <Label className="mb-2">Ice</Label>
-                    <Select>
-                      <SelectTrigger className=" w-full">
-                        <SelectValue placeholder="Select an Option" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {iceOptions.map((option, idx) => (
-                          <SelectItem key={idx} value={option}>
-                            {option}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <Label className="mb-2">Toppings</Label>
-                    <div className=" flex flex-wrap gap-2">
-                      {myToppings.map((topping, idx) => (
-                        <Badge
-                          key={idx}
-                          className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
-                        >
-                          <div className="w-4 h-4 rounded-full border mr-1"></div>
-                          <p className="text-sm font-normal">{topping}</p>
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <Button type="submit" className=" bg-[#6F403A]">
-                  Add Item to Order
-                </Button>
-              </DialogContent>
-            </Dialog>
+              {isOpen && <DrinkEditDialog
+                drinkPrice={drinkPrice}
+                topPrice={topPrice}
+                totalPrice={totalPrice}
+                iceOption={iceLevel}
+                sugarOption={sugarLevel}
+                drinkName={drinkName}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                itemId={itemId}
+                currToppings={toppings}
+              />}
+            </Dialog> }
             <div
               className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
               onClick={handleCopy}
