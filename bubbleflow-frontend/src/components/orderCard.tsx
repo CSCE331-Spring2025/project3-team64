@@ -57,14 +57,14 @@ export default function OrderCard({
   itemId = Date.now(),
 }: OrderCardProps) {
   const categoryBackgrounds: Record<string, string> = {
-    "Milk Teas": "bg-[#DBC89E]",
-    "Brewed Tea": "bg-[#cfc0ac]",
+    "Milk Teas": "bg-[#ead2a2]",
+    "Brewed Tea": "bg-[#e5ceb5]",
     "Fruit Tea": "bg-[#dbb9a7]",
     "Fresh Milk": "bg-[#f0dece]",
-    "Ice Blended": "bg-[#d7aa7c]",
-    "Tea Mojito": "bg-green-200",
-    Creama: "bg-yellow-200",
-    default: "bg-gray-200",
+    "Ice Blended": "bg-[#ebd1b5]",
+    "Tea Mojito": "bg-[#f6cdb1]",
+    "Creama": "bg-[#f3ecdf]",
+    default: "bg-[#f0dece]",
   };
   const sugarOptions = ["No Sugar", "Less Sugar", "Half Sugar", "Full Sugar"];
   const iceOptions = ["No Ice", "Less Ice", "Regular Ice", "Extra Ice"];

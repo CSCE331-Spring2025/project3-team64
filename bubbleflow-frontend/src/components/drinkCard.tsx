@@ -39,18 +39,17 @@ export default function DrinkCard({
 }: DrinkCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const categoryColors: Record<string, { badgeBg: string; badgeText: string}> = {
-    "Milk Teas": { badgeBg: "bg-[#DBC89E]", badgeText: "text-[#6F403A]"},
-    "Brewed Tea": { badgeBg: "bg-[#cfc0ac]", badgeText: "text-[#6F403A]" },
+    "Milk Teas": { badgeBg: "bg-[#ead2a2]", badgeText: "text-[#6F403A]"},
+    "Brewed Tea": { badgeBg: "bg-[#e5ceb5]", badgeText: "text-[#6F403A]" },
     "Fruit Tea": { badgeBg: "bg-[#dbb9a7]", badgeText: "text-[#6F403A]"},
     "Fresh Milk": { badgeBg: "bg-[#f0dece]", badgeText: "text-[#6F403A]"},
-    "Ice Blended": { badgeBg: "bg-[#d7aa7c]", badgeText: "text-[#6F403A]"},
+    "Ice Blended": { badgeBg: "bg-[#ebd1b5]", badgeText: "text-[#6F403A]"},
     "Tea Mojito": { badgeBg: "bg-[#f6cdb1]", badgeText: "text-[#6F403A]"},
-    "Creama": { badgeBg: "bg-[#cdac8a]", badgeText: "text-[#6F403A]"},
+    "Creama": { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]"},
   };
 
-  // If drinkCategory is undefined or not in our mapping, fallback to a default color.
   const categoryColor =
-    (drinkCategory && categoryColors[drinkCategory]) || { badgeBg: "bg-gray-200", badgeText: "text-gray-800", buttonBg: "bg-gray-800" };
+    (drinkCategory && categoryColors[drinkCategory]) || { badgeBg: "bg-[#f0dece]", badgeText: "text-[#6F403A]"};
   return (
     <div className="border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
       <div className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4`}>
