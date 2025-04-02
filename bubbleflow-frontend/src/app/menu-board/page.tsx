@@ -90,8 +90,7 @@ export default function MenuBoard() {
 
   return (
     <main className="flex flex-col px-16 pb-8">
-      <p className="text-2xl font-semibold">Menu</p>
-      <div className="flex items-start mt-2 gap-4">
+      <div className="flex items-start mt-0 gap-4">
         <div className="w-2/3 grid grid-cols-2 gap-2">
           {categories.map((category, index) => {
             const drinksInCategory = drinks.filter(
