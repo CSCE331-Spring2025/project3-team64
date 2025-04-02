@@ -47,7 +47,6 @@ export default function OrderCard({
     "Ice Blended": "bg-cyan-200",
     "Tea Mojito": "bg-green-200",
     "Creama": "bg-yellow-200",
-    // fallback color if no match:
     default: "bg-gray-200",
   };
   console.log(drinkCategory);
