@@ -1,0 +1,17 @@
+Retrospective meeting held 4/2/2025, 9:30AM
+
+what went right and wrong during the previous sprint?
+    -Most of us got started on work late.
+    -Deployment was a big issue and should have been figured out well before demo time.
+    -More documentation on how files are meant to interact with each other should have been made.
+    -Our front-end looks very pretty like the figma design.
+
+what changes (if any) need to be made regarding procedure?
+    -We need to update our Jira backlog during or immediately after SCRUM meetings, and utilize it for task distribution.
+    -Add comments to our code.
+    -Add additional usage instructions for teammates.
+
+what adjustments might need to be made to the product backlog?
+    -We need to add tasks to do during SCRUM meetings.
+    -We need to claim tasks before beginning work on them.
+    -We need to regularly update task status and time distributions

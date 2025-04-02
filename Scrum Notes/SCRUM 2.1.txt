@@ -1,0 +1,24 @@
+Meeting time: 4/2/2025, 9:50AM
+
+Agenda:
+1) Reflect on sprint 1
+    -Done in sprint 1 retrospective meeting direcly prior to this (technically separate meeting)
+
+2) Plan what needs to be done for sprint 2
+    -Manager UI:
+        -X report
+        -Z report
+        -Sales report
+        -Employee management
+        -Order trends
+        -Graphs or not? Maybe pie chart?
+    -Finish customer UI:
+        -Implement topping prices
+        -Debug order submission
+        -Maybe update order submission to calculate prices from the back-end to prevent customers from sending fake prices
+
+3) What needs to be done today
+    -Peer evals
+    -Update project backlog
+    -Try burndown chart
+    -Update website URL
