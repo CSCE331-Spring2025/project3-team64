@@ -55,12 +55,12 @@ export default function OrderCard({
 
   const categoryBackgrounds: Record<string, string> = {
     "Milk Teas": "bg-[#ead2a2]",
-    "Brewed Tea": "bg-[#e5ceb5]",
+    "Brewed Tea": "bg-[#e3ceb7]",
     "Fruit Tea": "bg-[#dbb9a7]",
     "Fresh Milk": "bg-[#f0dece]",
     "Ice Blended": "bg-[#ebd1b5]",
     "Tea Mojito": "bg-[#f6cdb1]",
-    "Creama": "bg-[#f3ecdf]",
+    Creama: "bg-[#f3ecdf]",
     default: "bg-[#f0dece]",
   };
   const sugarOptions = ["No Sugar", "Less Sugar", "Half Sugar", "Full Sugar"];
@@ -126,7 +126,9 @@ export default function OrderCard({
       <div
         className={`${imageBgColor} rounded-xl flex justify-center py-4 w-1/4`}
       >
-        <Image src={imageSrc} alt={drinkName} width={60} height={75} />
+        <div className="transition-transform duration-300 hover:scale-110">
+          <Image src={imageSrc} alt={drinkName} width={60} height={75} />
+        </div>
       </div>
       <div className="flex justify-between w-3/4">
         <div>
