@@ -6,7 +6,7 @@ interface OrderCardProps {
   drinkCategory: string;
   sugarLevel: string;
   iceLevel: string;
-  toppings: string[]; 
+  toppings: string[];
   toppingIds: number[];
   price: number;
   imageSrc: string;
@@ -14,7 +14,7 @@ interface OrderCardProps {
   itemId: number;
 }
 
-interface OrderItem{
+interface OrderItem {
   drinkName: string;
   drinkCategory: string;
   sugarLevel: string;
@@ -41,22 +41,20 @@ export default function OrderCard({
 }: OrderCardProps) {
   const categoryBackgrounds: Record<string, string> = {
     "Milk Teas": "bg-[#DBC89E]",
-    "Brewed Tea": "bg-amber-200",
-    "Fruit Tea": "bg-rose-200",
-    "Fresh Milk": "bg-zinc-200",
-    "Ice Blended": "bg-cyan-200",
+    "Brewed Tea": "bg-[#cfc0ac]",
+    "Fruit Tea": "bg-[#dbb9a7]",
+    "Fresh Milk": "bg-[#f0dece]",
+    "Ice Blended": "bg-[#d7aa7c]",
     "Tea Mojito": "bg-green-200",
-    "Creama": "bg-yellow-200",
+    Creama: "bg-yellow-200",
     default: "bg-gray-200",
   };
   console.log(drinkCategory);
-  const imageBgColor = categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
+  const imageBgColor =
+    categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
-    orderItems = orderItems.filter(
-      (item: OrderItem) => 
-      item.itemId !== itemId
-    );
+    orderItems = orderItems.filter((item: OrderItem) => item.itemId !== itemId);
     localStorage.setItem("orderItems", JSON.stringify(orderItems));
 
     //Update order price
@@ -79,10 +77,12 @@ export default function OrderCard({
       toppings,
       toppingIds,
       drinkId,
-      itemId: Date.now()
+      itemId: Date.now(),
     };
 
-    const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
+    const existingOrders = JSON.parse(
+      localStorage.getItem("orderItems") || "[]"
+    );
     existingOrders.push(newOrder);
     localStorage.setItem("orderItems", JSON.stringify(existingOrders));
 
@@ -91,11 +91,13 @@ export default function OrderCard({
     localStorage.setItem("orderprice", newTotal.toString());
 
     window.location.reload();
-  }
+  };
 
   return (
     <div className="flex gap-4 border border-[#6F403A] p-2 rounded-xl pr-4">
-      <div className={`${imageBgColor} rounded-xl flex justify-center py-4 w-1/4`}>
+      <div
+        className={`${imageBgColor} rounded-xl flex justify-center py-4 w-1/4`}
+      >
         <Image src={imageSrc} alt={drinkName} width={60} height={75} />
       </div>
       <div className="flex justify-between w-3/4">
@@ -113,12 +115,15 @@ export default function OrderCard({
             <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2">
               <RiPencilLine className="text-white" size={20} />
             </div>
-            <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
-                 onClick={handleCopy}>
+            <div
+              className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
+              onClick={handleCopy}
+            >
               <RiFileCopyLine className="text-white" size={20} />
             </div>
-            <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
-                 onClick={handleDelete}
+            <div
+              className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
+              onClick={handleDelete}
             >
               <RiDeleteBin5Line className="text-white" size={20} />
             </div>
