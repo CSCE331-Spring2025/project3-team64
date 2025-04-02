@@ -58,7 +58,7 @@ export default function OrderCard({
 }: OrderCardProps) {
   const categoryBackgrounds: Record<string, string> = {
     "Milk Teas": "bg-[#ead2a2]",
-    "Brewed Tea": "bg-[#e5ceb5]",
+    "Brewed Tea": "bg-[#e3ceb7]",
     "Fruit Tea": "bg-[#dbb9a7]",
     "Fresh Milk": "bg-[#f0dece]",
     "Ice Blended": "bg-[#ebd1b5]",

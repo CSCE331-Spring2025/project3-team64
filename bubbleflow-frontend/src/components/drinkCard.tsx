@@ -40,7 +40,7 @@ export default function DrinkCard({
   const [isOpen, setIsOpen] = useState(false);
   const categoryColors: Record<string, { badgeBg: string; badgeText: string}> = {
     "Milk Teas": { badgeBg: "bg-[#ead2a2]", badgeText: "text-[#6F403A]"},
-    "Brewed Tea": { badgeBg: "bg-[#e5ceb5]", badgeText: "text-[#6F403A]" },
+    "Brewed Tea": { badgeBg: "bg-[#dfcebb]", badgeText: "text-[#6F403A]" },
     "Fruit Tea": { badgeBg: "bg-[#dbb9a7]", badgeText: "text-[#6F403A]"},
     "Fresh Milk": { badgeBg: "bg-[#f0dece]", badgeText: "text-[#6F403A]"},
     "Ice Blended": { badgeBg: "bg-[#ebd1b5]", badgeText: "text-[#6F403A]"},
