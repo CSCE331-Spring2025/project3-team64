@@ -1,5 +1,22 @@
 import Image from "next/image";
 import { RiPencilLine, RiFileCopyLine, RiDeleteBin5Line } from "react-icons/ri";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 interface OrderCardProps {
   drinkName: string;
@@ -49,6 +66,16 @@ export default function OrderCard({
     Creama: "bg-yellow-200",
     default: "bg-gray-200",
   };
+  const sugarOptions = ["No Sugar", "Less Sugar", "Half Sugar", "Full Sugar"];
+  const iceOptions = ["No Ice", "Less Ice", "Regular Ice", "Extra Ice"];
+  const myToppings = [
+    "Boba",
+    "Grass Jelly",
+    "Pudding",
+    "Red Bean",
+    "Aloe",
+    "Coconut Jelly",
+  ];
   console.log(drinkCategory);
   const imageBgColor =
     categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
@@ -112,9 +139,67 @@ export default function OrderCard({
             ${price.toFixed(2)}
           </p>
           <div className="flex gap-2">
-            <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2">
+            <Dialog>
+              <DialogTrigger asChild>
+              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26]">
               <RiPencilLine className="text-white" size={20} />
             </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>{drinkName}</DialogTitle>
+                </DialogHeader>
+                <div className="flex flex-col gap-8 py-4">
+                  <div className="items-center gap-4">
+                    <Label className="mb-2">Sugar</Label>
+                    <Select>
+                      <SelectTrigger className=" w-full">
+                        <SelectValue placeholder="Select an Option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {sugarOptions.map((option, idx) => (
+                          <SelectItem key={idx} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="items-center gap-4">
+                    <Label className="mb-2">Ice</Label>
+                    <Select>
+                      <SelectTrigger className=" w-full">
+                        <SelectValue placeholder="Select an Option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {iceOptions.map((option, idx) => (
+                          <SelectItem key={idx} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label className="mb-2">Toppings</Label>
+                    <div className=" flex flex-wrap gap-2">
+                      {myToppings.map((topping, idx) => (
+                        <Badge
+                          key={idx}
+                          className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
+                        >
+                          <div className="w-4 h-4 rounded-full border mr-1"></div>
+                          <p className="text-sm font-normal">{topping}</p>
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <Button type="submit" className=" bg-[#6F403A]">
+                  Add Item to Order
+                </Button>
+              </DialogContent>
+            </Dialog>
             <div
               className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
               onClick={handleCopy}

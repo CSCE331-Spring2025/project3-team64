@@ -29,8 +29,8 @@ const router = useRouter();
           </div>
         </div>
         <div className=" mt-8 flex gap-6">
-          <Button className=" bg-[#6F403A] flex-1" onClick={handleLogin}>Login</Button>
-          <Button className=" bg-[#6F403A] flex-1">Login with Google</Button>
+          <Button className=" bg-[#6F403A] flex-1 hover:bg-[#4E2D26]" onClick={handleLogin}>Login</Button>
+          <Button className=" bg-[#6F403A] flex-1 hover:bg-[#4E2D26]">Login with Google</Button>
         </div>
       </div>
     </main>

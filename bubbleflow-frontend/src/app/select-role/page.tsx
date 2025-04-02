@@ -17,9 +17,9 @@ const router = useRouter();
       <div className="w-96 mt-16">
         <p className=" text-3xl font-bold mb-8 text-center">I am a...</p>
         <div className=" flex flex-col gap-4">
-          <Button className=" bg-[#6F403A]" onClick={handleEmployeeLogin}>Customer</Button>
-          <Button className=" bg-[#6F403A]" onClick={handleEmployeeLogin}>Employee</Button>
-          <Button className=" bg-[#6F403A]" onClick={handleEmployeeLogin}>Manager</Button>
+          <Button className=" bg-[#6F403A] hover:bg-[#4E2D26]" onClick={handleEmployeeLogin}>Customer</Button>
+          <Button className=" bg-[#6F403A] hover:bg-[#4E2D26]" onClick={handleEmployeeLogin}>Employee</Button>
+          <Button className=" bg-[#6F403A] hover:bg-[#4E2D26]" onClick={handleEmployeeLogin}>Manager</Button>
         </div>
       </div>
     </main>

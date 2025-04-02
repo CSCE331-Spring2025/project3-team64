@@ -139,7 +139,7 @@ export default function ViewOrder() {
           }}>
           <DialogTrigger className="w-full" asChild>
             <div onClick={() => submitOrderHook()}>
-              <Button className="bg-[#6F403A] w-full mb-4 mt-4">
+              <Button className="bg-[#6F403A] w-full mb-4 mt-4 hover:bg-[#4E2D26]">
                 Submit Order
               </Button>
             </div>

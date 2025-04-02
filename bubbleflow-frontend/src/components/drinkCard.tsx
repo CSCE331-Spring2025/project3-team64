@@ -70,7 +70,7 @@ export default function DrinkCard({
       </div>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Button className="mt-6 w-full bg-[#6F403A]">Select Item</Button>
+          <Button className="mt-6 w-full bg-[#6F403A] hover:bg-[#4E2D26]">Select Item</Button>
         </DialogTrigger>
         {isOpen && <DrinkCustomizationDialog 
           drinkName={drinkName}
@@ -275,7 +275,7 @@ function DrinkCustomizationDialog({
       </div>
       <Button 
         type="submit" 
-        className="bg-[#6F403A]" 
+        className="bg-[#6F403A] hover:bg-[#4E2D26]" 
         onClick={handleAddToOrder}
         disabled={extrasLoading}
       >
