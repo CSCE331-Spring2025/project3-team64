@@ -4,7 +4,7 @@ import {
   Dialog,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DrinkEditDialog from "@/components/editCard"
 
 interface OrderCardProps {
@@ -63,16 +63,16 @@ export default function OrderCard({
     Creama: "bg-[#f3ecdf]",
     default: "bg-[#f0dece]",
   };
-  const sugarOptions = ["No Sugar", "Less Sugar", "Half Sugar", "Full Sugar"];
-  const iceOptions = ["No Ice", "Less Ice", "Regular Ice", "Extra Ice"];
-  const myToppings = [
-    "Boba",
-    "Grass Jelly",
-    "Pudding",
-    "Red Bean",
-    "Aloe",
-    "Coconut Jelly",
-  ];
+  // const sugarOptions = ["No Sugar", "Less Sugar", "Half Sugar", "Full Sugar"];
+  // const iceOptions = ["No Ice", "Less Ice", "Regular Ice", "Extra Ice"];
+  // const myToppings = [
+  //   "Boba",
+  //   "Grass Jelly",
+  //   "Pudding",
+  //   "Red Bean",
+  //   "Aloe",
+  //   "Coconut Jelly",
+  // ];
   console.log(drinkCategory);
   const imageBgColor =
     categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;

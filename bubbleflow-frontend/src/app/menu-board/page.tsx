@@ -1,10 +1,10 @@
 "use client";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 import { useExtras } from "@/app/hooks/useExtras";
-import { Extra } from "@/app/service/types";
+import { Drink, Extra } from "@/app/service/types";
 
-export default function MenuBoard() {
+export default function MenuBoard(){
   const {
     drinks,
     loading: drinksLoading,
@@ -24,77 +24,72 @@ export default function MenuBoard() {
     fetchDrinkCategories();
   }, [fetchDrinks, fetchDrinkCategories]);
 
-  const {
-      extras,
-      loading: extrasLoading,
-      fetchExtras
-    } = useExtras();
+  const { extras, loading: extrasLoading } = useExtras();
 
-  if (drinksLoading || categoriesLoading) {
+  if (drinksLoading || categoriesLoading || extrasLoading) {
     return <div className="px-16">Loading...</div>;
   }
 
   if (drinksError || categoriesError) {
-    return <div className="px-16">Error: {drinksError || categoriesError}</div>;
+    return (
+      <div className="px-16">
+        Error: {drinksError || categoriesError}
+      </div>
+    );
   }
 
-  const filterExtraByCategoryIdIce = (extras: Extra[], categoryId: number): string[] => {
-      return extras
-      .filter(extra => extra.extra_category_id.extra_category_id === categoryId)
-      .map(extra=>extra.extra_name);
-    }
+  const filterExtraByCategoryIdIce = (
+    extras: Extra[],
+    categoryId: number
+  ): string[] => {
+    return extras
+      .filter(
+        (extra: Extra) =>
+          extra.extra_category_id.extra_category_id === categoryId
+      )
+      .map((extra: Extra) => extra.extra_name);
+  };
 
   const filterExtraByCategoryIdSugar = (extras: Extra[]): string[][] => {
     return extras
-    .filter(extra => extra.extra_category_id.extra_category_id === 2)
-    .map(extra => {
-      const [label, percentage] = extra.extra_name.split(" ");
-      return [label, percentage];
-    });
-  }
+      .filter(
+        (extra: Extra) =>
+          extra.extra_category_id.extra_category_id === 2
+      )
+      .map((extra: Extra): string[] => {
+        const [label, percentage] = extra.extra_name.split(" ");
+        return [label, percentage];
+      });
+  };
 
-  const filterExtraByCategoryIdToppings = (extras: Extra[]) : string[][] => {
-    return extras
-    .filter(extra => extra.extra_category_id.extra_category_id === 3)
-    .map(extra => {
-      const [name, price] = [extra.extra_name, JSON.stringify(extra.extra_price)];
-      return [name, price];
-    });
-  }
+  const toppings075: [string, number][] = (extras || [])
+    .filter(
+      (extra: Extra) =>
+        extra.extra_category_id.extra_category_id === 3 &&
+        extra.extra_price === 0.75
+    )
+    .map((extra: Extra): [string, number] => [extra.extra_name, extra.extra_price])
+    .sort((a, b) => a[1] - b[1]);
 
-  //const iceLevels = ["Regular Ice", "Less Ice", "No Ice"];
+  const toppings100: [string, number][] = (extras || [])
+    .filter(
+      (extra: Extra) =>
+        extra.extra_category_id.extra_category_id === 3 &&
+        extra.extra_price === 1.0
+    )
+    .map((extra: Extra): [string, number] => [extra.extra_name, extra.extra_price])
+    .sort((a, b) => a[1] - b[1]);
+
   const iceLevels: string[] = filterExtraByCategoryIdIce(extras || [], 1);
-  /* const sugarLevels = [
-    { percentage: "100%", label: "Normal" },
-    { percentage: "80%", label: "Less" },
-    { percentage: "50%", label: "Half" },
-    { percentage: "30%", label: "Light" },
-    { percentage: "0%", label: "No Sugar" },
-  ]; */
   const sugarLevels: string[][] = filterExtraByCategoryIdSugar(extras || []);
-  /* const toppings = [
-    { name: "Pearl", price: "$0.75" },
-    { name: "Mini Pearl", price: "$0.75" },
-    { name: "Ice Cream", price: "$0.75" },
-    { name: "Pudding", price: "$0.75" },
-    { name: "Aloe Vera", price: "$0.75" },
-    { name: "Red Bean", price: "$0.75" },
-    { name: "Herb Jelly", price: "$0.75" },
-    { name: "Aiyu Jelly", price: "$0.75" },
-    { name: "Lychee Jelly", price: "$0.75" },
-  ]; */
-  const toppings: string[][] = filterExtraByCategoryIdToppings(extras || []);
-  const extraToppings = [
-    { name: "Creama", price: "$1.00" },
-  ];
 
   return (
     <main className="flex flex-col px-16 pb-8">
-      <div className="flex items-start mt-0 gap-4">
+      <div className="flex items-start gap-4">
         <div className="w-2/3 grid grid-cols-2 gap-2">
-          {categories.map((category, index) => {
+          {categories.map((category, index: number) => {
             const drinksInCategory = drinks.filter(
-              (drink) =>
+              (drink: Drink) =>
                 drink?.drink_category_id?.drink_category_name ===
                 category.drink_category_name
             );
@@ -107,7 +102,7 @@ export default function MenuBoard() {
                   {category.drink_category_name}
                 </p>
                 <div className="flex flex-col gap-1 mt-1">
-                  {drinksInCategory.map((drink, idx) => (
+                  {drinksInCategory.map((drink: Drink, idx: number) => (
                     <div key={idx} className="flex justify-between">
                       <p className="text-sm">{drink.drink_name}</p>
                       <p className="text-sm text-gray-400">
@@ -124,7 +119,7 @@ export default function MenuBoard() {
           <div>
             <p className="text-[#6F403A] font-semibold">Ice Levels</p>
             <div className="flex flex-col gap-1">
-              {iceLevels.map((level, idx) => (
+              {iceLevels.map((level: string, idx: number) => (
                 <p key={idx} className="text-sm">
                   {level}
                 </p>
@@ -132,36 +127,36 @@ export default function MenuBoard() {
             </div>
             <p className="text-[#6F403A] font-semibold mt-4">Sugar Levels</p>
             <div className="flex gap-4 justify-between">
-              {sugarLevels.map((option, idx) => (
+              {sugarLevels.map((option: string[], idx: number) => (
                 <div key={idx} className="flex flex-col items-center">
                   <p className="font-semibold">{option[0]}</p>
                   <p className="text-sm">{option[1]}</p>
                 </div>
               ))}
             </div>
-            <p className="text-[#6F403A] font-semibold mt-4">Toppings</p>
-            <div className="flex flex-col mt-1 gap-2">
-              <div className="flex gap-2">
-                <div className="border border-[#6F403A] w-16 h-16 rounded-full flex flex-col items-center justify-center">
-                  <p>+</p>
-                  <p className="font-semibold">$0.75</p>
-                </div>
-                <div className="grid grid-cols-2 gap-1 gap-x-4 text-sm">
-                  {toppings.map((topping, idx) => (
-                    <p key={idx}>{topping[0]}</p>
-                  ))}
-                </div>
+            <p className="text-[#6F403A] font-semibold mt-4">
+              Toppings
+            </p>
+            <div className="flex gap-2 mt-1">
+              <div className="border border-[#6F403A] w-16 h-16 rounded-full flex flex-col items-center justify-center">
+                <p>+</p>
+                <p className="font-semibold">$0.75</p>
               </div>
-              <div className="flex gap-2 items-center">
-                <div className="border border-[#6F403A] w-16 h-16 rounded-full flex flex-col items-center justify-center">
-                  <p>+</p>
-                  <p className="font-semibold">$1.00</p>
-                </div>
-                <div className="grid grid-cols-2 gap-1 text-sm">
-                  {extraToppings.map((topping, idx) => (
-                    <p key={idx}>{topping.name}</p>
-                  ))}
-                </div>
+              <div className="grid grid-cols-2 gap-1 gap-x-4 text-sm">
+                {toppings075.map((topping: [string, number], idx: number) => (
+                  <p key={idx}>{topping[0]}</p>
+                ))}
+              </div>
+            </div>
+            <div className="flex gap-2 mt-1 items-center">
+              <div className="border border-[#6F403A] w-16 h-16 rounded-full flex flex-col items-center justify-center">
+                <p>+</p>
+                <p className="font-semibold">$1.00</p>
+              </div>
+              <div className="grid grid-cols-2 gap-1 text-sm">
+                {toppings100.map((topping: [string, number], idx: number) => (
+                  <p key={idx}>{topping[0]}</p>
+                ))}
               </div>
             </div>
           </div>
@@ -170,3 +165,4 @@ export default function MenuBoard() {
     </main>
   );
 }
+
