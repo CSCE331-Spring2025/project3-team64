@@ -135,7 +135,7 @@ export default function OrderCard({
           <p className="font-semibold text-[#6F403A]">{drinkName}</p>
           <p className="text-sm text-gray-400">{iceLevel}</p>
           <p className="text-sm text-gray-400">{sugarLevel}</p>
-          <p className="text-sm text-gray-400">{toppings.join(", ")}</p>
+          <p className="text-sm text-gray-400">{toppings.length > 0 ? toppings.join(", ") : "No Toppings"}</p>
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-right text-[#6F403A] font-semibold">

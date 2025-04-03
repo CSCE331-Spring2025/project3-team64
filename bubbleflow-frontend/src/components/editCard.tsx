@@ -141,7 +141,7 @@ interface DrinkCardProps {
         totalPrice,
         sugarLevel: selectedSugarObj?.extra_name || "No Sugar",
         iceLevel: selectedIceObj?.extra_name || "No Ice",
-        toppings: selectedToppings.length === 0 ? ["None"] : selectedToppings.map(t => t.extra_name),
+        toppings: selectedToppings.length === 0 ? ["No Toppings"] : selectedToppings.map(t => t.extra_name),
         toppingIds: selectedToppings.map(t => t.extra_id),
         itemId,
       };
