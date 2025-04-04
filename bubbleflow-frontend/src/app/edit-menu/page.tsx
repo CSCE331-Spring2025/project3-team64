@@ -121,6 +121,7 @@ export default function EditMenu() {
               </div>
             );
           })}
+          <RiAddLine className=" -ml-1" size={16} />
         </div>
       </div>
       <div className="mt-2 flex items-center gap-2">
@@ -138,7 +139,7 @@ export default function EditMenu() {
           </div>
         </div>
         <div>
-          <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center">
+          <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26]">
             <RiAddLine className="text-white" size={18} />
           </div>
         </div>
