@@ -6,7 +6,7 @@ import { RiSearchLine } from "react-icons/ri";
 import DrinkCard from "@/components/drinkCard";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 
-export default function Employee() {
+export default function CreateOrder() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
