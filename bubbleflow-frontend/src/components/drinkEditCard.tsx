@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import {
@@ -38,6 +39,29 @@ export default function DrinkEditCard({
   itemId,
 }: DrinkCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const categoryOptions = [
+    "Milk Teas",
+    "Brewed Tea",
+    "Fruit Tea",
+    "Fresh Milk",
+    "Ice Blended",
+    "Tea Mojito",
+    "Creama",
+  ];
+  const toppings = [
+    "January",
+    "Febuary",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   const categoryColors: Record<string, { badgeBg: string; badgeText: string }> =
     {
       "Milk Teas": { badgeBg: "bg-[#ead2a2]", badgeText: "text-[#6F403A]" },
@@ -77,18 +101,56 @@ export default function DrinkEditCard({
             Edit Drink
           </Button>
         </DialogTrigger>
-        {isOpen && (
-          <DrinkCustomizationDialog
-            drinkName={drinkName}
-            drinkCategory={drinkCategory}
-            drinkPrice={drinkPrice}
-            imageSrc={imageSrc}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            drinkId={drinkId}
-            itemId={itemId}
-          />
-        )}
+        <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Edit {drinkName}</DialogTitle>
+              </DialogHeader>
+              <div className="flex flex-col gap-8 py-4">
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Item Name</Label>
+                  <Input placeholder="Item Name" />
+                </div>
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Item Category</Label>
+                  <Select>
+                    <SelectTrigger className=" w-full">
+                      <SelectValue placeholder="Select a Category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categoryOptions.map((option, idx) => (
+                        <SelectItem key={idx} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Price</Label>
+                  <Input placeholder="Price" />
+                </div>
+                <div>
+                  <Label className="mb-2">Seasonal Range</Label>
+                  <div className=" flex flex-wrap gap-2">
+                    {toppings.map((topping, idx) => (
+                      <Badge
+                        key={idx}
+                        className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
+                      >
+                        <div className="w-4 h-4 rounded-full border mr-1"></div>
+                        <p className="text-sm font-normal">{topping}</p>
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <Button
+                type="submit"
+                className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+              >
+                Edit Menu Item
+              </Button>
+            </DialogContent>
       </Dialog>
     </div>
   );
