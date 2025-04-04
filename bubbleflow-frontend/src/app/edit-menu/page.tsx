@@ -6,20 +6,20 @@ import { RiSearchLine, RiAddLine } from "react-icons/ri";
 import DrinkEditCard from "@/components/drinkEditCard";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -40,7 +40,15 @@ export default function EditMenu() {
     error: categoriesError,
     fetchDrinkCategories,
   } = useDrinkCategories();
-  const categoryOptions = ["Milk Teas", "Brewed Tea", "Fruit Tea", "Fresh Milk", "Ice Blended", "Tea Mojito", "Creama"];
+  const categoryOptions = [
+    "Milk Teas",
+    "Brewed Tea",
+    "Fruit Tea",
+    "Fresh Milk",
+    "Ice Blended",
+    "Tea Mojito",
+    "Creama",
+  ];
   const toppings = [
     "January",
     "Febuary",
@@ -65,11 +73,7 @@ export default function EditMenu() {
   }
 
   if (drinksError || categoriesError) {
-    return (
-      <div className="px-16">
-        Error: {drinksError || categoriesError}
-      </div>
-    );
+    return <div className="px-16">Error: {drinksError || categoriesError}</div>;
   }
 
   const imageMap: Record<string, string> = {
@@ -95,7 +99,8 @@ export default function EditMenu() {
     "Oreo Ice Blended with Pearl": "/oreo-ice-blended-with-pearl.png",
     "Matcha Red Bean Ice Blended with Ice Cream":
       "/matcha-red-bean-ice-blended-with-ice-cream.png",
-    "Coffee Ice Blended with Ice Cream": "/coffee-ice-blended-with-ice-cream.png",
+    "Coffee Ice Blended with Ice Cream":
+      "/coffee-ice-blended-with-ice-cream.png",
     "Mango Ice Blended with Ice Cream": "/mango-ice-blended-with-ice-cream.png",
     "Strawberry Ice Blended with Lychee Jelly & Ice Cream":
       "/strawberry-ice-blended-with-lychee-and-ice-cream.png",
@@ -152,7 +157,28 @@ export default function EditMenu() {
               </div>
             );
           })}
-          <RiAddLine className=" -ml-1" size={16} />
+          <Dialog>
+            <DialogTrigger className="flex align-top hover:-translate-y-2 duration-300">
+              <RiAddLine className=" -ml-1" size={16} />
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Add Menu Category</DialogTitle>
+              </DialogHeader>
+              <div className="flex flex-col gap-8 py-4">
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Category Name</Label>
+                  <Input placeholder="Category Name" />
+                </div>
+              </div>
+              <Button
+                type="submit"
+                className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+              >
+                Create Menu Category
+              </Button>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
       <div className="mt-2 flex items-center gap-2">
@@ -162,7 +188,7 @@ export default function EditMenu() {
             placeholder="Search for Menu Item"
             value={searchTerm}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setSearchTerm(e.target.value)
+              setSearchTerm(e.target.value)
             }
           />
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
@@ -177,58 +203,55 @@ export default function EditMenu() {
               </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Add Menu Item</DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col gap-8 py-4">
-            <div className="items-center gap-4">
-              <Label className="mb-2">
-                Item Name
-              </Label>
-              <Input placeholder="Item Name"/>
-            </div>
-            <div className="items-center gap-4">
-              <Label className="mb-2">
-                Item Category
-              </Label>
-              <Select>
-                <SelectTrigger className=" w-full">
-                  <SelectValue placeholder="Select a Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categoryOptions.map((option, idx) => (
-                    <SelectItem key={idx} value={option}>
-                      {option}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="items-center gap-4">
-              <Label className="mb-2">
-                Price
-              </Label>
-              <Input placeholder="Price"/>
-            </div>
-            <div>
-              <Label className="mb-2">
-                Seasonal Range
-              </Label>
-              <div className=" flex flex-wrap gap-2">
-                {toppings.map((topping, idx) => (
-                  <Badge
-                    key={idx}
-                    className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
-                  >
-                    <div className="w-4 h-4 rounded-full border mr-1"></div>
-                    <p className="text-sm font-normal">{topping}</p>
-                  </Badge>
-                ))}
+              <DialogHeader>
+                <DialogTitle>Add Menu Item</DialogTitle>
+              </DialogHeader>
+              <div className="flex flex-col gap-8 py-4">
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Item Name</Label>
+                  <Input placeholder="Item Name" />
+                </div>
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Item Category</Label>
+                  <Select>
+                    <SelectTrigger className=" w-full">
+                      <SelectValue placeholder="Select a Category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categoryOptions.map((option, idx) => (
+                        <SelectItem key={idx} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Price</Label>
+                  <Input placeholder="Price" />
+                </div>
+                <div>
+                  <Label className="mb-2">Seasonal Range</Label>
+                  <div className=" flex flex-wrap gap-2">
+                    {toppings.map((topping, idx) => (
+                      <Badge
+                        key={idx}
+                        className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
+                      >
+                        <div className="w-4 h-4 rounded-full border mr-1"></div>
+                        <p className="text-sm font-normal">{topping}</p>
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]">Create Menu Item</Button>
-        </DialogContent>
+              <Button
+                type="submit"
+                className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+              >
+                Create Menu Item
+              </Button>
+            </DialogContent>
           </Dialog>
         </div>
       </div>
