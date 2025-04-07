@@ -20,6 +20,7 @@ import {
 import Image from "next/image";
 import { useExtras } from "@/app/hooks/useExtras";
 import { Extra } from "@/app/service/types";
+import { RiCloseLine } from "react-icons/ri";
 
 interface DrinkCardProps {
   drinkName: string;
@@ -78,7 +79,8 @@ export default function DrinkEditCard({
     badgeText: "text-[#6F403A]",
   };
   return (
-    <div className="border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
+    <div className="relative border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
+      <RiCloseLine className="absolute top-3 right-3 text-xl cursor-pointer hover:-translate-y-1 duration-300" size={16}/>
       <div
         className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4`}
       >
