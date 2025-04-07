@@ -6,24 +6,24 @@ import java.io.Serializable;
 
 public class OrderExtraId implements Serializable {
     @Column(name = "order_item_id")
-    private Integer order_item_id;
+    private Integer orderItemId;
 
     @Column(name = "extras_id")
-    private Integer extras_id;
+    private Integer extrasId;
 
-    public Integer getOrder_item_id() {
-        return order_item_id;
+    public Integer getOrderItemId() {
+        return orderItemId;
     }
 
-    public void setOrder_item_id(Integer order_item_id) {
-        this.order_item_id = order_item_id;
+    public void setOrderItemId(Integer orderItemId) {
+        this.orderItemId = orderItemId;
     }
 
-    public Integer getExtras_id() {
-        return extras_id;
+    public Integer getExtrasId() {
+        return extrasId;
     }
 
-    public void setExtras_id(Integer extras_id) {
-        this.extras_id = extras_id;
+    public void setExtrasId(Integer extrasId) {
+        this.extrasId = extrasId;
     }
 }
