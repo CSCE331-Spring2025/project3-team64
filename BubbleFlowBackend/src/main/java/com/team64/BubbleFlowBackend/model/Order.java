@@ -25,17 +25,6 @@ public class Order {
 
     public Order() {}
 
-    // Add items to order
-    public void addItem(OrderItem item) {
-        items.add(item);
-        item.setOrder(this);
-    }
-
-    // Remove items from order
-    public void removeItem(OrderItem item) {
-        items.remove(item);
-        item.setOrder(null);
-    }
 
     public int getOrder_id() {
         return order_id;

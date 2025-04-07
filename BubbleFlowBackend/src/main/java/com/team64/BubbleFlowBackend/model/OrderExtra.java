@@ -1,31 +1,46 @@
 package com.team64.BubbleFlowBackend.model;
 
 import jakarta.persistence.*;
-//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "Order_Extra")
+@Table(name = "order_extra")
 public class OrderExtra{
-    @Id
-    @Column(name = "Order_Item_ID", nullable = false)
-    private int order_item_id;
 
-    @Column(name = "Extras_ID", nullable = false)
-    private int extras_id;
+    @EmbeddedId
+    private OrderExtraId id;
 
-    public int getOrder_item_id() {
-        return order_item_id;
+    @ManyToOne
+    @MapsId("orderItemId")
+    @JoinColumn(name = "order_item_id")
+    private OrderItem orderItem;
+
+    @ManyToOne
+    @MapsId("extrasId")
+    @JoinColumn(name = "extras_id")
+    private Extra extra;
+
+
+    public OrderExtraId getId() {
+        return id;
     }
 
-    public void setOrder_item_id(int order_item_id) {
-        this.order_item_id = order_item_id;
+    public void setId(OrderExtraId id) {
+        this.id = id;
     }
 
-    public int getExtras_id() {
-        return extras_id;
+    public OrderItem getOrderItem() {
+        return orderItem;
     }
 
-    public void setExtras_id(int extras_id) {
-        this.extras_id = extras_id;
+    public void setOrderItem(OrderItem orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public Extra getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Extra extra) {
+        this.extra = extra;
     }
 }
