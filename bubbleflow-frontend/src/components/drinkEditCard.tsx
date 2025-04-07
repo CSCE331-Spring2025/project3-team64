@@ -20,7 +20,7 @@ import {
 import Image from "next/image";
 import { useExtras } from "@/app/hooks/useExtras";
 import { Extra } from "@/app/service/types";
-import { RiCloseLine } from "react-icons/ri";
+import {RiDeleteBin5Line } from "react-icons/ri";
 
 interface DrinkCardProps {
   drinkName: string;
@@ -79,8 +79,7 @@ export default function DrinkEditCard({
     badgeText: "text-[#6F403A]",
   };
   return (
-    <div className="relative border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
-      <RiCloseLine className="absolute top-3 right-3 text-xl cursor-pointer hover:-translate-y-1 duration-300" size={16}/>
+    <div className="border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
       <div
         className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4`}
       >
@@ -97,63 +96,65 @@ export default function DrinkEditCard({
         </Badge>
         <p className="text-sm">${Number(drinkPrice).toFixed(2)}</p>
       </div>
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger asChild>
-          <Button className="mt-6 w-full bg-[#6F403A] hover:bg-[#4E2D26]">
-            Edit Drink
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Edit {drinkName}</DialogTitle>
-              </DialogHeader>
-              <div className="flex flex-col gap-8 py-4">
-                <div className="items-center gap-4">
-                  <Label className="mb-2">Item Name</Label>
-                  <Input placeholder="Item Name" />
-                </div>
-                <div className="items-center gap-4">
-                  <Label className="mb-2">Item Category</Label>
-                  <Select>
-                    <SelectTrigger className=" w-full">
-                      <SelectValue placeholder="Select a Category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categoryOptions.map((option, idx) => (
-                        <SelectItem key={idx} value={option}>
-                          {option}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="items-center gap-4">
-                  <Label className="mb-2">Price</Label>
-                  <Input placeholder="Price" />
-                </div>
-                <div>
-                  <Label className="mb-2">Seasonal Range</Label>
-                  <div className=" flex flex-wrap gap-2">
-                    {toppings.map((topping, idx) => (
-                      <Badge
-                        key={idx}
-                        className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
-                      >
-                        <div className="w-4 h-4 rounded-full border mr-1"></div>
-                        <p className="text-sm font-normal">{topping}</p>
-                      </Badge>
+      <div className=" flex gap-2">
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogTrigger asChild>
+            <Button className="mt-6 flex-1 bg-[#6F403A] hover:bg-[#4E2D26]">
+              Edit Drink
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Edit {drinkName}</DialogTitle>
+            </DialogHeader>
+            <div className="flex flex-col gap-8 py-4">
+              <div className="items-center gap-4">
+                <Label className="mb-2">Item Name</Label>
+                <Input placeholder="Item Name" />
+              </div>
+              <div className="items-center gap-4">
+                <Label className="mb-2">Item Category</Label>
+                <Select>
+                  <SelectTrigger className=" w-full">
+                    <SelectValue placeholder="Select a Category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categoryOptions.map((option, idx) => (
+                      <SelectItem key={idx} value={option}>
+                        {option}
+                      </SelectItem>
                     ))}
-                  </div>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="items-center gap-4">
+                <Label className="mb-2">Price</Label>
+                <Input placeholder="Price" />
+              </div>
+              <div>
+                <Label className="mb-2">Seasonal Range</Label>
+                <div className=" flex flex-wrap gap-2">
+                  {toppings.map((topping, idx) => (
+                    <Badge
+                      key={idx}
+                      className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
+                    >
+                      <div className="w-4 h-4 rounded-full border mr-1"></div>
+                      <p className="text-sm font-normal">{topping}</p>
+                    </Badge>
+                  ))}
                 </div>
               </div>
-              <Button
-                type="submit"
-                className=" bg-[#6F403A] hover:bg-[#4E2D26]"
-              >
-                Edit Menu Item
-              </Button>
-            </DialogContent>
-      </Dialog>
+            </div>
+            <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]">
+              Edit Menu Item
+            </Button>
+          </DialogContent>
+        </Dialog>
+        <div className="bg-[#6F403A] w-8 h-8 mt-6 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer">
+          <RiDeleteBin5Line className="text-white" size={20} />
+        </div>
+      </div>
     </div>
   );
 }
@@ -244,21 +245,29 @@ function DrinkCustomizationDialog({
       imageSrc,
       sugarLevel: selectedSugarObj?.extra_name || "No Sugar",
       iceLevel: selectedIceObj?.extra_name || "No Ice",
-      toppings: selectedToppings.length === 0 ? ["No Toppings"] : selectedToppings.map(t => t.extra_name),
-      toppingIds: selectedToppings.map(t => t.extra_id),
+      toppings:
+        selectedToppings.length === 0
+          ? ["No Toppings"]
+          : selectedToppings.map((t) => t.extra_name),
+      toppingIds: selectedToppings.map((t) => t.extra_id),
       drinkId,
       itemId: Date.now(),
     };
 
     // Edit the price total Local Variable
-    orderItem.topPrice = selectedToppings.reduce((acc, topping) => acc + topping.extra_price, 0);
+    orderItem.topPrice = selectedToppings.reduce(
+      (acc, topping) => acc + topping.extra_price,
+      0
+    );
     orderItem.totalPrice = orderItem.topPrice + orderItem.drinkPrice;
     const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
     const newTotal = currentTotal + orderItem.totalPrice;
     localStorage.setItem("orderprice", newTotal.toString());
 
     //Save the total drink price as the price of the drink + toppings (this is 7 billion times easier than the alternative)
-    const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
+    const existingOrders = JSON.parse(
+      localStorage.getItem("orderItems") || "[]"
+    );
     existingOrders.push(orderItem);
     localStorage.setItem("orderItems", JSON.stringify(existingOrders));
 
