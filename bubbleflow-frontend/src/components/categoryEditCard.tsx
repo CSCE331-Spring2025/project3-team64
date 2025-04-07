@@ -7,7 +7,9 @@ import {
   RiSnowflakeLine,
   RiGobletLine,
   RiDropLine,
-  RiCloseLine,
+  RiPencilLine,
+  RiMore2Line,
+  RiDeleteBin5Line,
 } from "react-icons/ri";
 import {
   Dialog,
@@ -17,7 +19,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 interface CategoryEditCard {
   categoryName?: string;
   itemCount: number;
@@ -46,28 +56,68 @@ export default function CategoryEditCard({
 
   return (
     <div className="relative outline outline-[#6F403A] p-4 rounded-md h-30 w-30 hover:-translate-y-2 duration-300">
-      <Dialog>
-        <DialogTrigger asChild>
-          <RiCloseLine
-            className="absolute top-1 right-1 text-xl cursor-pointer"
-            size={16}
-          />
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Delete {categoryName}</DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col gap-8 py-2">
-            <p className=" text-sm">
-              Are you sure you want to delete {categoryName}. Once {categoryName} is
-              deleted, you cannot undo it!
-            </p>
-          </div>
-          <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]">
-            Delete {categoryName}
-          </Button>
-        </DialogContent>
-      </Dialog>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <RiMore2Line className="absolute top-2 right-2 text-xl cursor-pointer hover:-translate-y-1 duration-300" size={16} />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent side="left" align="start">
+          <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+            <Dialog>
+              <DialogTrigger>
+                <div className="flex items-center w-full gap-2 justify-center">
+                  <RiDeleteBin5Line />
+                  Delete Category
+                </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Delete {categoryName}</DialogTitle>
+                </DialogHeader>
+                <div className="flex flex-col gap-8 py-2">
+                  <p className=" text-sm">
+                    Are you sure you want to delete {categoryName}? Once{" "}
+                    {categoryName} is deleted, you cannot undo it!
+                  </p>
+                </div>
+                <Button
+                  type="submit"
+                  className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+                >
+                  Delete {categoryName}
+                </Button>
+              </DialogContent>
+            </Dialog>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+            <Dialog>
+              <DialogTrigger>
+                <div className="flex items-center w-full gap-2 justify-center">
+                  <RiPencilLine />
+                  Edit Category
+                </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Edit Menu Category</DialogTitle>
+                </DialogHeader>
+                <div className="flex flex-col gap-8 py-2">
+                  <div className="items-center gap-4">
+                    <Label className="mb-2">Category Name</Label>
+                    <Input placeholder="Category Name" />
+                  </div>
+                </div>
+                <Button
+                  type="submit"
+                  className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+                >
+                  Edit Menu Category
+                </Button>
+              </DialogContent>
+            </Dialog>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
       <div className="bg-[#6F403A] w-10 h-10 rounded-full flex items-center justify-center mb-2">
         <Icon className="text-white" size={20} />
       </div>

@@ -163,7 +163,7 @@ export default function DrinkEditCard({
           </DialogHeader>
           <div className="flex flex-col gap-8 py-2">
             <p className=" text-sm">
-              Are you sure you want to delete {drinkName}. Once {drinkName} is
+              Are you sure you want to delete {drinkName}? Once {drinkName} is
               deleted, you cannot undo it!
             </p>
           </div>
