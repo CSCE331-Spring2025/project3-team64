@@ -20,7 +20,7 @@ import {
 import Image from "next/image";
 import { useExtras } from "@/app/hooks/useExtras";
 import { Extra } from "@/app/service/types";
-import {RiDeleteBin5Line } from "react-icons/ri";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 interface DrinkCardProps {
   drinkName: string;
@@ -151,7 +151,7 @@ export default function DrinkEditCard({
             </Button>
           </DialogContent>
         </Dialog>
-        <div className="bg-[#6F403A] w-8 h-8 mt-6 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer">
+        <div className="bg-[#6F403A] w-8 h-8 mt-6 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300">
           <RiDeleteBin5Line className="text-white" size={20} />
         </div>
       </div>

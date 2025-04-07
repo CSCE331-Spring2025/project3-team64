@@ -37,13 +37,13 @@ export default function EmployeeCard({ id, name, email, phone, role }: EmployeeC
         <div className="flex gap-2">
           <div
             onClick={handleEdit}
-            className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer"
+            className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300"
           >
             <RiPencilLine className="text-white" size={20} />
           </div>
           <div
             onClick={handleDelete}
-            className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer"
+            className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300"
           >
             <RiDeleteBin5Line className="text-white" size={20} />
           </div>

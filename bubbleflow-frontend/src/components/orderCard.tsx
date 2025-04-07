@@ -1,11 +1,8 @@
 import Image from "next/image";
 import { RiPencilLine, RiFileCopyLine, RiDeleteBin5Line } from "react-icons/ri";
-import {
-  Dialog,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
-import DrinkEditDialog from "@/components/editCard"
+import DrinkEditDialog from "@/components/editCard";
 
 interface OrderCardProps {
   drinkName: string;
@@ -49,7 +46,6 @@ export default function OrderCard({
   drinkId,
   itemId = Date.now(),
 }: OrderCardProps) {
-
   //function to control customization dialog state
   const [isOpen, setIsOpen] = useState(false);
 
@@ -76,7 +72,6 @@ export default function OrderCard({
   console.log(drinkCategory);
   const imageBgColor =
     categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
-
 
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
@@ -135,41 +130,49 @@ export default function OrderCard({
           <p className="font-semibold text-[#6F403A]">{drinkName}</p>
           <p className="text-sm text-gray-400">{iceLevel}</p>
           <p className="text-sm text-gray-400">{sugarLevel}</p>
-          <p className="text-sm text-gray-400">{toppings.length > 0 ? toppings.join(", ") : "No Toppings"}</p>
+          <p className="text-sm text-gray-400">
+            {toppings.length > 0 ? toppings.join(", ") : "No Toppings"}
+          </p>
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-right text-[#6F403A] font-semibold">
             ${totalPrice.toFixed(2)}
           </p>
           <div className="flex gap-2">
-            { <Dialog>
-              <DialogTrigger asChild> 
-              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26]"
-              onClick={() => setIsOpen(true)}>
-              <RiPencilLine className="text-white" size={20} />
-            </div>
-              </DialogTrigger>
-              {isOpen && <DrinkEditDialog
-                drinkPrice={drinkPrice}
-                topPrice={topPrice}
-                totalPrice={totalPrice}
-                iceOption={iceLevel}
-                sugarOption={sugarLevel}
-                drinkName={drinkName}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                itemId={itemId}
-                currToppings={toppings}
-              />}
-            </Dialog> }
+            {
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div
+                    className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] hover:-translate-y-1 duration-300"
+                    onClick={() => setIsOpen(true)}
+                  >
+                    <RiPencilLine className="text-white" size={20} />
+                  </div>
+                </DialogTrigger>
+                {isOpen && (
+                  <DrinkEditDialog
+                    drinkPrice={drinkPrice}
+                    topPrice={topPrice}
+                    totalPrice={totalPrice}
+                    iceOption={iceLevel}
+                    sugarOption={sugarLevel}
+                    drinkName={drinkName}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    itemId={itemId}
+                    currToppings={toppings}
+                  />
+                )}
+              </Dialog>
+            }
             <div
-              className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
+              className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300"
               onClick={handleCopy}
             >
               <RiFileCopyLine className="text-white" size={20} />
             </div>
             <div
-              className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer"
+              className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300"
               onClick={handleDelete}
             >
               <RiDeleteBin5Line className="text-white" size={20} />
