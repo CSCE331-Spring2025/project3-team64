@@ -1,34 +1,33 @@
 package com.team64.BubbleFlowBackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "drink_categories")
 public class DrinkCategory {
 
     @Id
-    private int drink_category_id;
+    @Column(name = "drink_category_id")
+    private int drinkCategoryId;
 
-    private String drink_category_name;
+    @Column(name = "drink_category_name")
+    private String drinkCategoryName;
 
-    public DrinkCategory () {};
+    public DrinkCategory() {}
 
-    public int getDrink_category_id() {
-        return drink_category_id;
+    public int getDrinkCategoryId() {
+        return drinkCategoryId;
     }
 
-    public void setDrink_category_id(int drink_category_id) {
-        this.drink_category_id = drink_category_id;
+    public void setDrinkCategoryId(int drinkCategoryId) {
+        this.drinkCategoryId = drinkCategoryId;
     }
 
-    public String getDrink_category_name() {
-        return drink_category_name;
+    public String getDrinkCategoryName() {
+        return drinkCategoryName;
     }
 
-    public void setDrink_category_name(String drink_category_name) {
-        this.drink_category_name = drink_category_name;
+    public void setDrinkCategoryName(String drinkCategoryName) {
+        this.drinkCategoryName = drinkCategoryName;
     }
 }

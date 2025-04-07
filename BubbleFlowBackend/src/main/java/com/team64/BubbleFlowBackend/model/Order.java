@@ -12,26 +12,34 @@ public class Order {
     @Id
     @SequenceGenerator(name = "seq", sequenceName = "seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    private int order_id;
+    @Column(name = "order_id")
+    private int orderId;
 
     private String customer;
-    private double order_total_price;
-    private Timestamp order_date;
-    private int employee_id;
-    private String payment_method;
+
+    @Column(name = "order_total_price")
+    private double orderTotalPrice;
+
+    @Column(name = "order_date")
+    private Timestamp orderDate;
+
+    @Column(name = "employee_id")
+    private int employeeId;
+
+    @Column(name = "payment_method")
+    private String paymentMethod;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
     public Order() {}
 
-
-    public int getOrder_id() {
-        return order_id;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public String getCustomer() {
@@ -42,36 +50,36 @@ public class Order {
         this.customer = customer;
     }
 
-    public double getOrder_total_price() {
-        return order_total_price;
+    public double getOrderTotalPrice() {
+        return orderTotalPrice;
     }
 
-    public void setOrder_total_price(double order_total_price) {
-        this.order_total_price = order_total_price;
+    public void setOrderTotalPrice(double orderTotalPrice) {
+        this.orderTotalPrice = orderTotalPrice;
     }
 
-    public Timestamp getOrder_date() {
-        return order_date;
+    public Timestamp getOrderDate() {
+        return orderDate;
     }
 
-    public void setOrder_date(Timestamp order_date) {
-        this.order_date = order_date;
+    public void setOrderDate(Timestamp orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public int getEmployee_id() {
-        return employee_id;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public String getPayment_method() {
-        return payment_method;
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setPayment_method(String payment_method) {
-        this.payment_method = payment_method;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public List<OrderItem> getItems() {

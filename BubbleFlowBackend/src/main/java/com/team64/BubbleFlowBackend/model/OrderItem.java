@@ -10,24 +10,22 @@ import java.util.List;
 public class OrderItem {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_item_id")
-    private Integer orderItemId;
+    private int orderItemId;
 
-    @Column(name = "order_id")
-    private Integer orderId;
+    @Column(name = "order_id", insertable = false, updatable = false)
+    private int orderId;
 
-    @Column(name = "drink_id")
-    private Integer drinkId;
-
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "drink_id", insertable = false, updatable = false)
+    private int drinkId;
 
     @ManyToOne
-    @JoinColumn(name = "drink_id", insertable = false, updatable = false)
+    @JoinColumn(name = "drink_id")
     private Drink drink;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL)
@@ -35,52 +33,44 @@ public class OrderItem {
 
     public OrderItem() {}
 
-    public void setDrink(Drink drink) {
-        this.drink = drink;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Integer getOrderItemId() {
+    public int getOrderItemId() {
         return orderItemId;
     }
 
-    public void setOrderItemId(Integer orderItemId) {
+    public void setOrderItemId(int orderItemId) {
         this.orderItemId = orderItemId;
     }
 
-    public Integer getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
-    public Integer getDrinkId() {
+    public int getDrinkId() {
         return drinkId;
     }
 
-    public void setDrinkId(Integer drinkId) {
+    public void setDrinkId(int drinkId) {
         this.drinkId = drinkId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Drink getDrink() {
         return drink;
     }
 
+    public void setDrink(Drink drink) {
+        this.drink = drink;
+    }
+
     public Order getOrder() {
         return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public List<OrderExtra> getExtras() {
