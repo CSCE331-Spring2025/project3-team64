@@ -2,7 +2,22 @@
 import { Input } from "@/components/ui/input";
 import EmployeeCard from "@/components/employeeCard";
 import { RiSearchLine, RiAddLine } from "react-icons/ri";
-
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 export default function ManageEmployees() {
   const employees = [
     {
@@ -28,7 +43,7 @@ export default function ManageEmployees() {
           <div className="mt-2 relative w-80">
             <Input
               className="border-[#6F403A] h-10 rounded-3xl pr-12"
-              placeholder="Search for Menu Item"
+              placeholder="Search for an Employee"
             />
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
               <RiSearchLine className="text-white" size={15} />

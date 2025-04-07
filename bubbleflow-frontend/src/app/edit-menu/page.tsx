@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, ChangeEvent } from "react";
 import { Input } from "@/components/ui/input";
-import MenuCategory from "@/components/menuCategory";
-import { RiSearchLine, RiAddLine } from "react-icons/ri";
+import CategoryEditCard from "@/components/categoryEditCard";
+import { RiSearchLine, RiAddLine} from "react-icons/ri";
 import DrinkEditCard from "@/components/drinkEditCard";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 import {
@@ -139,7 +139,7 @@ export default function EditMenu() {
             onClick={() => setSelectedCategory(null)}
             className="cursor-pointer"
           >
-            <MenuCategory categoryName="All Drinks" itemCount={drinks.length} />
+            <CategoryEditCard categoryName="All Drinks" itemCount={drinks.length} />
           </div>
           {categories.map((category, index) => {
             const categoryName = category.drink_category_name || "No Category";
@@ -153,7 +153,7 @@ export default function EditMenu() {
                 onClick={() => setSelectedCategory(categoryName)}
                 className="cursor-pointer"
               >
-                <MenuCategory categoryName={categoryName} itemCount={count} />
+                <CategoryEditCard categoryName={categoryName} itemCount={count} />
               </div>
             );
           })}
