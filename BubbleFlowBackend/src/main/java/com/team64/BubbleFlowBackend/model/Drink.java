@@ -10,7 +10,7 @@ public class Drink {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drink_category_id")
-    private DrinkCategory drink_category_id;
+    private DrinkCategory drinkCategory;
 
     private String drink_name;
     private double drink_price;
@@ -18,20 +18,13 @@ public class Drink {
 
     public Drink(){};
 
+
     public int getDrink_id() {
         return drink_id;
     }
 
     public void setDrink_id(int drink_id) {
         this.drink_id = drink_id;
-    }
-
-    public DrinkCategory getDrink_category_id() {
-        return drink_category_id;
-    }
-
-    public void setDrink_category_id(DrinkCategory drink_category_id) {
-        this.drink_category_id = drink_category_id;
     }
 
     public String getDrink_name() {

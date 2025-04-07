@@ -35,6 +35,13 @@ public class OrderItem {
 
     public OrderItem() {}
 
+    public void setDrink(Drink drink) {
+        this.drink = drink;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     public Integer getOrderItemId() {
         return orderItemId;
@@ -72,16 +79,8 @@ public class OrderItem {
         return drink;
     }
 
-    public void setDrink(Drink drink) {
-        this.drink = drink;
-    }
-
     public Order getOrder() {
         return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public List<OrderExtra> getExtras() {

@@ -1,7 +1,6 @@
 package com.team64.BubbleFlowBackend.model;
 
 import jakarta.persistence.*;
-//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "order_extra")
