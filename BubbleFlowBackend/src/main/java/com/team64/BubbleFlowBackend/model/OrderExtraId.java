@@ -1,29 +1,45 @@
 package com.team64.BubbleFlowBackend.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
+@Embeddable
 public class OrderExtraId implements Serializable {
     @Column(name = "order_item_id")
-    private Integer order_item_id;
+    private int orderItemId;
 
     @Column(name = "extras_id")
-    private Integer extras_id;
+    private int extrasId;
 
-    public Integer getOrder_item_id() {
-        return order_item_id;
+    public int getOrderItemId() {
+        return orderItemId;
     }
 
-    public void setOrder_item_id(Integer order_item_id) {
-        this.order_item_id = order_item_id;
+    public void setOrderItemId(int orderItemId) {
+        this.orderItemId = orderItemId;
     }
 
-    public Integer getExtras_id() {
-        return extras_id;
+    public int getExtrasId() {
+        return extrasId;
     }
 
-    public void setExtras_id(Integer extras_id) {
-        this.extras_id = extras_id;
+    public void setExtrasId(int extrasId) {
+        this.extrasId = extrasId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderExtraId that = (OrderExtraId) o;
+        return orderItemId == that.orderItemId && extrasId == that.extrasId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderItemId, extrasId);
     }
 }

@@ -9,10 +9,10 @@ import java.util.List;
 public class Extra {
     @Id
     @Column(name = "extra_id")
-    private Integer extraId;
+    private int extraId;
 
     @Column(name = "extra_category_id")
-    private Integer extraCategoryId;
+    private int extraCategoryId;
 
     @Column(name = "extra_name")
     private String extraName;
@@ -23,19 +23,19 @@ public class Extra {
     @OneToMany(mappedBy = "extra")
     private List<OrderExtra> orderItems;
 
-    public Integer getExtraId() {
+    public int getExtraId() {
         return extraId;
     }
 
-    public void setExtraId(Integer extraId) {
+    public void setExtraId(int extraId) {
         this.extraId = extraId;
     }
 
-    public Integer getExtraCategoryId() {
+    public int getExtraCategoryId() {
         return extraCategoryId;
     }
 
-    public void setExtraCategoryId(Integer extraCategoryId) {
+    public void setExtraCategoryId(int extraCategoryId) {
         this.extraCategoryId = extraCategoryId;
     }
 
@@ -63,6 +63,3 @@ public class Extra {
         this.orderItems = orderItems;
     }
 }
-
-
-

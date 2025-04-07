@@ -43,11 +43,11 @@ public class OrderService {
         System.out.println(orderSubmissionObject);
 
         Order order = new Order();
-        order.setOrder_total_price(orderSubmissionObject.getTotalPrice());
+        order.setOrderTotalPrice(orderSubmissionObject.getTotalPrice());
         order.setCustomer(orderSubmissionObject.getCustomerName());
-        order.setEmployee_id(orderSubmissionObject.getEmployeeId());
-        order.setPayment_method(orderSubmissionObject.getPaymentMethod());
-        order.setOrder_date(new Timestamp(System.currentTimeMillis()));
+        order.setEmployeeId(orderSubmissionObject.getEmployeeId());
+        order.setPaymentMethod(orderSubmissionObject.getPaymentMethod());
+        order.setOrderDate(new Timestamp(System.currentTimeMillis()));
 
         // Save the order first to get its ID
         order = orderRepo.save(order);
@@ -59,7 +59,7 @@ public class OrderService {
                 OrderItem orderItem = new OrderItem();
                 orderItem.setDrinkId(item.getDrink_id());
                 orderItem.setOrder(order);
-                orderItem.setOrderId(order.getOrder_id()); // Ensure order_id is set
+                orderItem.setOrderId(order.getOrderId()); // Ensure order_id is set
 
                 // Save the order item to get its ID
                 orderItem = orderItemRepo.save(orderItem);
@@ -89,7 +89,7 @@ public class OrderService {
         }
 
         // Fetch the complete order with all its items and extras
-        return orderRepo.findById(order.getOrder_id()).orElse(order);
+        return orderRepo.findById(order.getOrderId()).orElse(order);
     }
 
     @Transactional
