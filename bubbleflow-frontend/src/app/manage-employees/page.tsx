@@ -35,6 +35,7 @@ export default function ManageEmployees() {
       role: "Manager",
     },
   ];
+  const categoryOptions = ["Employee", "Manager"];
   return (
     <main className="flex flex-col px-16">
       <div className="flex items-center justify-between">
@@ -49,9 +50,53 @@ export default function ManageEmployees() {
               <RiSearchLine className="text-white" size={15} />
             </div>
           </div>
-          <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26] mt-2">
-            <RiAddLine className="text-white" size={18} />
-          </div>
+          <Dialog>
+            <DialogTrigger>
+              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26] mt-2">
+                <RiAddLine className="text-white" size={18} />
+              </div>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Add Employee</DialogTitle>
+              </DialogHeader>
+              <div className="flex flex-col gap-8 py-4">
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Name</Label>
+                  <Input placeholder="Name" />
+                </div>
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Email</Label>
+                  <Input placeholder="Email" />
+                </div>
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Phone Number</Label>
+                  <Input placeholder="Phone Number" />
+                </div>
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Position</Label>
+                  <Select>
+                    <SelectTrigger className=" w-full">
+                      <SelectValue placeholder="Select a Position" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categoryOptions.map((option, idx) => (
+                        <SelectItem key={idx} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <Button
+                type="submit"
+                className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+              >
+                Add Employee
+              </Button>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
       <div className=" mt-4 flex flex-col gap-2">
