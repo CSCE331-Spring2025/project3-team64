@@ -27,6 +27,7 @@ export default function CreateOrder() {
   useEffect(() => {
     fetchDrinks();
     fetchDrinkCategories();
+    console.log(drinks);
   }, [fetchDrinks, fetchDrinkCategories]);
 
   if (drinksLoading || categoriesLoading) {
@@ -80,7 +81,7 @@ export default function CreateOrder() {
 
   const filteredDrinks = drinks.filter((drink) => {
     const matchesCategory = selectedCategory
-      ? drink?.drink_category_id?.drink_category_name === selectedCategory
+      ? drink?.drink_category?.drink_category_name === selectedCategory
       : true;
     const matchesSearch = drink?.drink_name
       ?.toLowerCase()
@@ -89,8 +90,8 @@ export default function CreateOrder() {
   });
 
   const orderedDrinks = [...filteredDrinks].sort((a, b) => {
-    const aCat = a.drink_category_id?.drink_category_name || "";
-    const bCat = b.drink_category_id?.drink_category_name || "";
+    const aCat = a.drink_category?.drink_category_name || "";
+    const bCat = b.drink_category?.drink_category_name || "";
     return aCat.localeCompare(bCat);
   });
 
@@ -109,7 +110,7 @@ export default function CreateOrder() {
             const categoryName = category.drink_category_name || "No Category";
             const count = drinks.filter(
               (drink) =>
-                drink?.drink_category_id?.drink_category_name === categoryName
+                drink?.drink_category?.drink_category_name === categoryName
             ).length;
             return (
               <div
@@ -142,7 +143,7 @@ export default function CreateOrder() {
             key={index}
             drinkName={drink?.drink_name || "No Name"}
             drinkCategory={
-              drink?.drink_category_id?.drink_category_name || "No Category"
+              drink?.drink_category?.drink_category_name || "No Category"
             }
             drinkPrice={drink?.drink_price || 0}
             imageSrc={

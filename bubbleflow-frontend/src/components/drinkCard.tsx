@@ -110,6 +110,7 @@ function DrinkCustomizationDialog({
   useEffect(() => {
     if (isOpen) {
       fetchExtras();
+      console.log(extras);
     }
   }, [isOpen, fetchExtras]);
 
@@ -118,9 +119,10 @@ function DrinkCustomizationDialog({
     categoryId: number
   ): Extra[] => {
     return extras.filter(
-      (extra) => extra.extra_category_id.extra_category_id === categoryId
+      (extra) => extra.extra_category_id === categoryId
     );
   };
+  
   const sugarOptions: Extra[] = filterExtraByCategoryId(extras || [], 2);
   const iceOptions: Extra[] = filterExtraByCategoryId(extras || [], 1);
   const toppings: Extra[] = filterExtraByCategoryId(extras || [], 3);

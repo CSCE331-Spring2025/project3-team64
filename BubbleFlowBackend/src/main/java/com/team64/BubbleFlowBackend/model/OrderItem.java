@@ -12,13 +12,13 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_item_id")
-    private int orderItemId;
+    private int order_item_id;
 
     @Column(name = "order_id", insertable = false, updatable = false)
-    private int orderId;
+    private int order_id;
 
     @Column(name = "drink_id", insertable = false, updatable = false)
-    private int drinkId;
+    private int drink_id;
 
     @ManyToOne
     @JoinColumn(name = "drink_id")
@@ -28,33 +28,33 @@ public class OrderItem {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order_item", cascade = CascadeType.ALL)
     private List<OrderExtra> extras;
 
     public OrderItem() {}
 
-    public int getOrderItemId() {
-        return orderItemId;
+    public int getOrder_item_id() {
+        return order_item_id;
     }
 
-    public void setOrderItemId(int orderItemId) {
-        this.orderItemId = orderItemId;
+    public void setOrder_item_id(int order_item_id) {
+        this.order_item_id = order_item_id;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getOrder_id() {
+        return order_id;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 
-    public int getDrinkId() {
-        return drinkId;
+    public int getDrink_id() {
+        return drink_id;
     }
 
-    public void setDrinkId(int drinkId) {
-        this.drinkId = drinkId;
+    public void setDrink_id(int drink_id) {
+        this.drink_id = drink_id;
     }
 
     public Drink getDrink() {

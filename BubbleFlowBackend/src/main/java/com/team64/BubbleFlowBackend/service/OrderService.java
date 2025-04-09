@@ -43,11 +43,11 @@ public class OrderService {
         System.out.println(orderSubmissionObject);
 
         Order order = new Order();
-        order.setOrderTotalPrice(orderSubmissionObject.getTotalPrice());
+        order.setOrder_total_price(orderSubmissionObject.getTotalPrice());
         order.setCustomer(orderSubmissionObject.getCustomerName());
-        order.setEmployeeId(orderSubmissionObject.getEmployeeId());
-        order.setPaymentMethod(orderSubmissionObject.getPaymentMethod());
-        order.setOrderDate(new Timestamp(System.currentTimeMillis()));
+        order.setEmployee_id(orderSubmissionObject.getEmployeeId());
+        order.setPayment_method(orderSubmissionObject.getPaymentMethod());
+        order.setOrder_date(new Timestamp(System.currentTimeMillis()));
 
         // Save the order first to get its ID
         order = orderRepo.save(order);
@@ -57,14 +57,14 @@ public class OrderService {
         if (drinks != null) {
             for (DrinkWithToppings item : drinks) {
                 OrderItem orderItem = new OrderItem();
-                orderItem.setDrinkId(item.getDrink_id());
+                orderItem.setDrink_id(item.getDrink_id());
                 orderItem.setOrder(order);
-                orderItem.setOrderId(order.getOrderId()); // Ensure order_id is set
-                orderItem.setOrderItemId(2147483645); // Set to a dummy value, should be auto-generated.
+                orderItem.setOrder_id(order.getOrderId()); // Ensure order_id is set
+                orderItem.setOrder_item_id(2147483645); // Set to a dummy value, should be auto-generated.
 
                 // Save the order item to get its generated ID
                 orderItem = orderItemRepo.save(orderItem);
-                int orderItemID = orderItem.getOrderItemId();
+                int orderItemID = orderItem.getOrder_item_id();
 
                 // Process toppings
                 List<OrderExtra> extras = new ArrayList<>();
@@ -75,11 +75,13 @@ public class OrderService {
 
                     // Create composite key
                     OrderExtraId orderExtraId = new OrderExtraId();
+                    orderExtraId.setOrder_item_id(orderItemID);
+                    orderExtraId.setExtras_id(toppingID);
 
                     // Create OrderExtra and set relationships
                     OrderExtra orderExtra = new OrderExtra();
-                    orderExtra.setId(orderItemID);
-                    orderExtra.setOrderItem(orderItem);
+                    orderExtra.setId(orderExtraId);
+                    orderExtra.setOrder_item(orderItem);
                     orderExtra.setExtra(extra);
 
                     extras.add(orderExtraRepo.save(orderExtra));
@@ -104,11 +106,13 @@ public class OrderService {
 
         // Create composite key
         OrderExtraId orderExtraId = new OrderExtraId();
+        orderExtraId.setOrder_item_id(orderItemId);
+        orderExtraId.setExtras_id(extraId);
 
         // Create and save the new order extra
         OrderExtra orderExtra = new OrderExtra();
         orderExtra.setId(orderExtraId);
-        orderExtra.setOrderItem(orderItem);
+        orderExtra.setOrder_item(orderItem);
         orderExtra.setExtra(extra);
 
         orderExtraRepo.save(orderExtra);
@@ -117,7 +121,4 @@ public class OrderService {
         return orderItemRepo.findById(orderItemId).orElse(null);
     }
 
-    public List<OrderExtra> getExtrasForOrderItem(int orderItemId) {
-        return orderExtraRepo.findByOrderItemId(orderItemId);
-    }
 }

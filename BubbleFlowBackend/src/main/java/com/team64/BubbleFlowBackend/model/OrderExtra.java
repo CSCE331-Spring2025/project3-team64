@@ -10,13 +10,13 @@ public class OrderExtra{
     private OrderExtraId id;
 
     @ManyToOne
-    @MapsId("Order_Item_ID")
-    @JoinColumn(name = "Order_Item_ID")
-    private OrderItem orderItem;
+    @MapsId("order_item_id")
+    @JoinColumn(name = "order_item_id")
+    private OrderItem order_item;
 
     @ManyToOne
-    @MapsId("Extras_ID")
-    @JoinColumn(name = "Extras_ID")
+    @MapsId("extras_id")
+    @JoinColumn(name = "extras_id")
     private Extra extra;
 
 
@@ -28,12 +28,12 @@ public class OrderExtra{
         this.id = id;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
+    public OrderItem getOrder_item() {
+        return order_item;
     }
 
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
+    public void setOrder_item(OrderItem order_item) {
+        this.order_item = order_item;
     }
 
     public Extra getExtra() {

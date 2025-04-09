@@ -7,26 +7,27 @@ import jakarta.persistence.*;
 public class ExtrasCategory {
     @Id
     @Column(name = "extra_category_id")
-    private int extraCategoryId;
+    private int extra_category_id;
 
     @Column(name = "extra_category_name")
-    private String extraCategoryName;
+    private String extra_category_name;
 
-    public ExtrasCategory() {}
-
-    public int getExtraCategoryId() {
-        return extraCategoryId;
+    public ExtrasCategory() {
     }
 
-    public void setExtraCategoryId(int extraCategoryId) {
-        this.extraCategoryId = extraCategoryId;
+    public int getExtra_category_id() {
+        return extra_category_id;
     }
 
-    public String getExtraCategoryName() {
-        return extraCategoryName;
+    public void setExtra_category_id(int extra_category_id) {
+        this.extra_category_id = extra_category_id;
     }
 
-    public void setExtraCategoryName(String extraCategoryName) {
-        this.extraCategoryName = extraCategoryName;
+    public String getExtra_category_name() {
+        return extra_category_name;
+    }
+
+    public void setExtra_category_name(String extra_category_name) {
+        this.extra_category_name = extra_category_name;
     }
 }

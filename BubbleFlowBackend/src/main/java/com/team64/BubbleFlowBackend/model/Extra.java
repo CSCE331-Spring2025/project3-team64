@@ -9,57 +9,58 @@ import java.util.List;
 public class Extra {
     @Id
     @Column(name = "extra_id")
-    private int extraId;
+    private int extra_id;
 
     @Column(name = "extra_category_id")
-    private int extraCategoryId;
+    private int extra_category_id;
 
     @Column(name = "extra_name")
-    private String extraName;
+    private String extra_name;
 
     @Column(name = "extra_price")
-    private Double extraPrice;
+    private Double extra_price;
 
     @OneToMany(mappedBy = "extra")
-    private List<OrderExtra> orderItems;
+    private List<OrderExtra> order_items;
 
-    public int getExtraId() {
-        return extraId;
+
+    public int getExtra_id() {
+        return extra_id;
     }
 
-    public void setExtraId(int extraId) {
-        this.extraId = extraId;
+    public void setExtra_id(int extra_id) {
+        this.extra_id = extra_id;
     }
 
-    public int getExtraCategoryId() {
-        return extraCategoryId;
+    public int getExtra_category_id() {
+        return extra_category_id;
     }
 
-    public void setExtraCategoryId(int extraCategoryId) {
-        this.extraCategoryId = extraCategoryId;
+    public void setExtra_category_id(int extra_category_id) {
+        this.extra_category_id = extra_category_id;
     }
 
-    public String getExtraName() {
-        return extraName;
+    public String getExtra_name() {
+        return extra_name;
     }
 
-    public void setExtraName(String extraName) {
-        this.extraName = extraName;
+    public void setExtra_name(String extra_name) {
+        this.extra_name = extra_name;
     }
 
-    public Double getExtraPrice() {
-        return extraPrice;
+    public Double getExtra_price() {
+        return extra_price;
     }
 
-    public void setExtraPrice(Double extraPrice) {
-        this.extraPrice = extraPrice;
+    public void setExtra_price(Double extra_price) {
+        this.extra_price = extra_price;
     }
 
-    public List<OrderExtra> getOrderItems() {
-        return orderItems;
+    public List<OrderExtra> getOrder_items() {
+        return order_items;
     }
 
-    public void setOrderItems(List<OrderExtra> orderItems) {
-        this.orderItems = orderItems;
+    public void setOrder_items(List<OrderExtra> order_items) {
+        this.order_items = order_items;
     }
 }

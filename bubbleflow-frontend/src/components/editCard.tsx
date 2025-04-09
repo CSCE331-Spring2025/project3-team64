@@ -72,7 +72,7 @@ interface DrinkCardProps {
     }, [isOpen, fetchExtras]);
     
     const filterExtraByCategoryId = (extras: Extra[], categoryId: number): Extra[] => {
-      return extras.filter(extra => extra.extra_category_id.extra_category_id === categoryId);
+      return extras.filter(extra => extra.extra_category_id === categoryId);
     }
   
     const sugarOptions: Extra[] = filterExtraByCategoryId(extras || [], 2);
