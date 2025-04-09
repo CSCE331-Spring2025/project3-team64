@@ -7,60 +7,60 @@ import jakarta.persistence.*;
 public class Drink {
     @Id
     @Column(name = "drink_id")
-    private int drinkId;
+    private int drink_id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drink_category_id")
-    private DrinkCategory drinkCategory;
+    private DrinkCategory drink_category;
 
     @Column(name = "drink_name")
-    private String drinkName;
+    private String drink_name;
 
     @Column(name = "drink_price")
-    private double drinkPrice;
+    private double drink_price;
 
     @Column(name = "active_months")
-    private String activeMonths;
+    private String active_months;
 
     public Drink() {}
 
-    public int getDrinkId() {
-        return drinkId;
+    public int getDrink_id() {
+        return drink_id;
     }
 
-    public void setDrinkId(int drinkId) {
-        this.drinkId = drinkId;
+    public void setDrink_id(int drink_id) {
+        this.drink_id = drink_id;
     }
 
-    public DrinkCategory getDrinkCategory() {
-        return drinkCategory;
+    public DrinkCategory getDrink_category() {
+        return drink_category;
     }
 
-    public void setDrinkCategory(DrinkCategory drinkCategory) {
-        this.drinkCategory = drinkCategory;
+    public void setDrink_category(DrinkCategory drink_category) {
+        this.drink_category = drink_category;
     }
 
-    public String getDrinkName() {
-        return drinkName;
+    public String getDrink_name() {
+        return drink_name;
     }
 
-    public void setDrinkName(String drinkName) {
-        this.drinkName = drinkName;
+    public void setDrink_name(String drink_name) {
+        this.drink_name = drink_name;
     }
 
-    public double getDrinkPrice() {
-        return drinkPrice;
+    public double getDrink_price() {
+        return drink_price;
     }
 
-    public void setDrinkPrice(double drinkPrice) {
-        this.drinkPrice = drinkPrice;
+    public void setDrink_price(double drink_price) {
+        this.drink_price = drink_price;
     }
 
-    public String getActiveMonths() {
-        return activeMonths;
+    public String getActive_months() {
+        return active_months;
     }
 
-    public void setActiveMonths(String activeMonths) {
-        this.activeMonths = activeMonths;
+    public void setActive_months(String active_months) {
+        this.active_months = active_months;
     }
 }

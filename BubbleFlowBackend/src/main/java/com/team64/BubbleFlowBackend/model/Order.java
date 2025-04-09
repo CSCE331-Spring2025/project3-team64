@@ -18,16 +18,16 @@ public class Order {
     private String customer;
 
     @Column(name = "order_total_price")
-    private double orderTotalPrice;
+    private double order_total_price;
 
     @Column(name = "order_date")
-    private Timestamp orderDate;
+    private Timestamp order_date;
 
     @Column(name = "employee_id")
-    private int employeeId;
+    private int employee_id;
 
     @Column(name = "payment_method")
-    private String paymentMethod;
+    private String payment_method;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
@@ -50,36 +50,37 @@ public class Order {
         this.customer = customer;
     }
 
-    public double getOrderTotalPrice() {
-        return orderTotalPrice;
+
+    public double getOrder_total_price() {
+        return order_total_price;
     }
 
-    public void setOrderTotalPrice(double orderTotalPrice) {
-        this.orderTotalPrice = orderTotalPrice;
+    public void setOrder_total_price(double order_total_price) {
+        this.order_total_price = order_total_price;
     }
 
-    public Timestamp getOrderDate() {
-        return orderDate;
+    public Timestamp getOrder_date() {
+        return order_date;
     }
 
-    public void setOrderDate(Timestamp orderDate) {
-        this.orderDate = orderDate;
+    public void setOrder_date(Timestamp order_date) {
+        this.order_date = order_date;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public int getEmployee_id() {
+        return employee_id;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
     }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
+    public String getPayment_method() {
+        return payment_method;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public void setPayment_method(String payment_method) {
+        this.payment_method = payment_method;
     }
 
     public List<OrderItem> getItems() {

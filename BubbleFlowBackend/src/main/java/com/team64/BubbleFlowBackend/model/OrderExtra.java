@@ -12,7 +12,7 @@ public class OrderExtra{
     @ManyToOne
     @MapsId("Order_Item_ID")
     @JoinColumn(name = "Order_Item_ID")
-    private OrderItem orderItem;
+    private OrderItem order_item;
 
     @ManyToOne
     @MapsId("Extras_ID")
@@ -28,12 +28,12 @@ public class OrderExtra{
         this.id = id;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
+    public OrderItem getOrder_item() {
+        return order_item;
     }
 
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
+    public void setOrder_item(OrderItem order_item) {
+        this.order_item = order_item;
     }
 
     public Extra getExtra() {

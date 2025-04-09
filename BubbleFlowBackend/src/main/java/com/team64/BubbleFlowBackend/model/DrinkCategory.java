@@ -8,26 +8,26 @@ public class DrinkCategory {
 
     @Id
     @Column(name = "drink_category_id")
-    private int drinkCategoryId;
+    private int drink_category_id;
 
     @Column(name = "drink_category_name")
-    private String drinkCategoryName;
+    private String drink_category_name;
 
     public DrinkCategory() {}
 
-    public int getDrinkCategoryId() {
-        return drinkCategoryId;
+    public int getDrink_category_id() {
+        return drink_category_id;
     }
 
-    public void setDrinkCategoryId(int drinkCategoryId) {
-        this.drinkCategoryId = drinkCategoryId;
+    public void setDrink_category_id(int drink_category_id) {
+        this.drink_category_id = drink_category_id;
     }
 
-    public String getDrinkCategoryName() {
-        return drinkCategoryName;
+    public String getDrink_category_name() {
+        return drink_category_name;
     }
 
-    public void setDrinkCategoryName(String drinkCategoryName) {
-        this.drinkCategoryName = drinkCategoryName;
+    public void setDrink_category_name(String drink_category_name) {
+        this.drink_category_name = drink_category_name;
     }
 }
