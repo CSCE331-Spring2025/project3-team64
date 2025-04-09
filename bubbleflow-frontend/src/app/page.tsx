@@ -15,7 +15,7 @@ const router = useRouter();
   };
 
   return (
-    <main className="flex flex-col items-center justify-center px-16">
+    <main className="flex flex-col items-center  px-16">
       <div className="w-96 mt-16">
         <p className=" text-3xl font-bold mb-8 text-center">Login to Your Account</p>
         <div className=" flex flex-col gap-4">

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 import { useExtras } from "@/app/hooks/useExtras";
 import { Drink, Extra } from "@/app/service/types";

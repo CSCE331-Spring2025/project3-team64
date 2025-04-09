@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
     // your project has ESLint errors. Make sure you really want to ignore lint issues.
     ignoreDuringBuilds: true,
   },
+  images: {
+    domains: ['openweathermap.org'],
+  },
 };
 
 export default nextConfig;
