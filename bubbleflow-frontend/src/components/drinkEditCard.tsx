@@ -201,7 +201,7 @@ function DrinkCustomizationDialog({
     categoryId: number
   ): Extra[] => {
     return extras.filter(
-      (extra) => extra.extra_category_id.extra_category_id === categoryId
+      (extra) => extra.extra_category_id === categoryId
     );
   };
   const sugarOptions: Extra[] = filterExtraByCategoryId(extras || [], 2);

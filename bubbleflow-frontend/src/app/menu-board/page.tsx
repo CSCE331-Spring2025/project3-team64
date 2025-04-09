@@ -45,7 +45,7 @@ export default function MenuBoard(){
     return extras
       .filter(
         (extra: Extra) =>
-          extra.extra_category_id.extra_category_id === categoryId
+          extra.extra_category_id === categoryId
       )
       .map((extra: Extra) => extra.extra_name);
   };
@@ -54,7 +54,7 @@ export default function MenuBoard(){
     return extras
       .filter(
         (extra: Extra) =>
-          extra.extra_category_id.extra_category_id === 2
+          extra.extra_category_id === 2
       )
       .map((extra: Extra): string[] => {
         const [label, percentage] = extra.extra_name.split(" ");
@@ -65,7 +65,7 @@ export default function MenuBoard(){
   const toppings075: [string, number][] = (extras || [])
     .filter(
       (extra: Extra) =>
-        extra.extra_category_id.extra_category_id === 3 &&
+        extra.extra_category_id === 3 &&
         extra.extra_price === 0.75
     )
     .map((extra: Extra): [string, number] => [extra.extra_name, extra.extra_price])
@@ -74,7 +74,7 @@ export default function MenuBoard(){
   const toppings100: [string, number][] = (extras || [])
     .filter(
       (extra: Extra) =>
-        extra.extra_category_id.extra_category_id === 3 &&
+        extra.extra_category_id === 3 &&
         extra.extra_price === 1.0
     )
     .map((extra: Extra): [string, number] => [extra.extra_name, extra.extra_price])
@@ -92,7 +92,7 @@ export default function MenuBoard(){
           {categories.map((category, index: number) => {
             const drinksInCategory = drinks.filter(
               (drink: Drink) =>
-                drink?.drink_category_id?.drink_category_name ===
+                drink?.drink_category?.drink_category_name ===
                 category.drink_category_name
             );
             return (
