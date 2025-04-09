@@ -96,7 +96,7 @@ export default function CreateOrder() {
   });
 
   return (
-    <main className="flex flex-col px-16 pb-8">
+    <main className="flex flex-col px-16 pb-4">
       <div>
         <div className="flex flex-wrap gap-2">
           <div

@@ -78,7 +78,7 @@ export default function ViewOrder() {
   const total = orderPrice + tax;
 
   return (
-    <main className="flex px-16 gap-2 items-start pb-8">
+    <main className="flex px-16 gap-2 items-start pb-4">
       <div className="w-2/3 flex flex-col gap-2">
         {orders.map((order, index) => (
           <OrderCard

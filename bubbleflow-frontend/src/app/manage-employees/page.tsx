@@ -34,11 +34,60 @@ export default function ManageEmployees() {
       phone: "(555) 123 4567",
       role: "Manager",
     },
+    {
+      id: "987654321",
+      name: "Ur Mom",
+      email: "urmomsigma69@ligma.com",
+      phone: "(555) 123 4567",
+      role: "Manager",
+    },
+    {
+      id: "987654321",
+      name: "Ur Mom",
+      email: "urmomsigma69@ligma.com",
+      phone: "(555) 123 4567",
+      role: "Manager",
+    },
+    {
+      id: "987654321",
+      name: "Ur Mom",
+      email: "urmomsigma69@ligma.com",
+      phone: "(555) 123 4567",
+      role: "Manager",
+    },
+    {
+      id: "987654321",
+      name: "Ur Mom",
+      email: "urmomsigma69@ligma.com",
+      phone: "(555) 123 4567",
+      role: "Manager",
+    },
+    {
+      id: "987654321",
+      name: "Ur Mom",
+      email: "urmomsigma69@ligma.com",
+      phone: "(555) 123 4567",
+      role: "Manager",
+    },
+    {
+      id: "987654321",
+      name: "Ur Mom",
+      email: "urmomsigma69@ligma.com",
+      phone: "(555) 123 4567",
+      role: "Manager",
+    },
+    {
+      id: "987654321",
+      name: "Ur Mom",
+      email: "urmomsigma69@ligma.com",
+      phone: "(555) 123 4567",
+      role: "Manager",
+    },
   ];
   const categoryOptions = ["Employee", "Manager"];
   return (
-    <main className="flex flex-col px-16">
-      <div className="flex items-center justify-between">
+    <main className="flex flex-col px-16 pb-4 ">
+      <div className="flex items-center justify-between -mt-4">
         <p className=" text-xl font-semibold">Employee List</p>
         <div className=" flex items-center gap-2">
           <div className="mt-2 relative w-80">
