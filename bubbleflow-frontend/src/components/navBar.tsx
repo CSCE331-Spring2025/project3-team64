@@ -13,7 +13,7 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 export default function NavBar() {
   const pathname = usePathname();
   const showCustomerLinks = pathname == "/create-order" || pathname == "/view-order" ;
-  const showManagerLinks = pathname == "/manage-employees" || pathname == "/edit-menu" ;
+  const showManagerLinks = pathname == "/manage-employees" || pathname == "/edit-menu" || pathname == "/reports" ;
   return (
     <div className="flex items-center justify-between px-16 py-6">
       <div className="flex items-center gap-6">
@@ -53,6 +53,13 @@ export default function NavBar() {
               <Link href="/edit-menu" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Edit Menu
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/reports" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  View Reports
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>

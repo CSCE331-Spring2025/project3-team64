@@ -27,8 +27,11 @@ export default function CreateOrder() {
   useEffect(() => {
     fetchDrinks();
     fetchDrinkCategories();
-    console.log(drinks);
   }, [fetchDrinks, fetchDrinkCategories]);
+
+  useEffect(() => {
+    console.log(drinks);
+  }, [drinks]);
 
   if (drinksLoading || categoriesLoading) {
     return <div className="px-16">Loading...</div>;
