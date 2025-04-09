@@ -60,9 +60,11 @@ public class OrderService {
                 orderItem.setDrinkId(item.getDrink_id());
                 orderItem.setOrder(order);
                 orderItem.setOrderId(order.getOrderId()); // Ensure order_id is set
+                orderItem.setOrderItemId(2147483645); // Set to a dummy value, should be auto-generated.
 
-                // Save the order item to get its ID
+                // Save the order item to get its generated ID
                 orderItem = orderItemRepo.save(orderItem);
+                int orderItemID = orderItem.getOrderItemId();
 
                 // Process toppings
                 List<OrderExtra> extras = new ArrayList<>();
@@ -76,7 +78,7 @@ public class OrderService {
 
                     // Create OrderExtra and set relationships
                     OrderExtra orderExtra = new OrderExtra();
-                    orderExtra.setId(orderExtraId);
+                    orderExtra.setId(orderItemID);
                     orderExtra.setOrderItem(orderItem);
                     orderExtra.setExtra(extra);
 
