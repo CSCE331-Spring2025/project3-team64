@@ -10,13 +10,13 @@ public class OrderExtra{
     private OrderExtraId id;
 
     @ManyToOne
-    @MapsId("Order_Item_ID")
-    @JoinColumn(name = "Order_Item_ID")
+    @MapsId("order_item_id")
+    @JoinColumn(name = "order_item_id")
     private OrderItem order_item;
 
     @ManyToOne
-    @MapsId("Extras_ID")
-    @JoinColumn(name = "Extras_ID")
+    @MapsId("extras_id")
+    @JoinColumn(name = "extras_id")
     private Extra extra;
 
 

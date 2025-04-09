@@ -28,7 +28,7 @@ public class OrderItem {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order_item", cascade = CascadeType.ALL)
     private List<OrderExtra> extras;
 
     public OrderItem() {}

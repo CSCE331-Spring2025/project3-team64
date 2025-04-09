@@ -9,10 +9,5 @@ import java.util.List;
 
 @Repository
 public interface OrderExtraRepo extends JpaRepository<OrderExtra, OrderExtraId> {
-    List<OrderExtra> findByIdOrderItemId(int orderItemId);
-
-    default List<OrderExtra> findByOrderItemId(int orderItemId) {
-        return findByIdOrderItemId(orderItemId);
-    }
 
 }

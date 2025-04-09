@@ -121,7 +121,4 @@ public class OrderService {
         return orderItemRepo.findById(orderItemId).orElse(null);
     }
 
-    public List<OrderExtra> getExtrasForOrderItem(int orderItemId) {
-        return orderExtraRepo.findByOrderItemId(orderItemId);
-    }
 }
