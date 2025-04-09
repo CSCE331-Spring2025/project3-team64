@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import CategoryEditCard from "@/components/categoryEditCard";
 import { RiSearchLine, RiAddLine} from "react-icons/ri";
 import DrinkEditCard from "@/components/drinkEditCard";
+import MenuCategory from "@/components/menuCategory";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 import {
   Dialog,
@@ -139,7 +140,7 @@ export default function EditMenu() {
             onClick={() => setSelectedCategory(null)}
             className="cursor-pointer"
           >
-            <CategoryEditCard categoryName="All Drinks" itemCount={drinks.length} />
+            <MenuCategory categoryName="All Drinks" itemCount={drinks.length} />
           </div>
           {categories.map((category, index) => {
             const categoryName = category.drink_category_name || "No Category";

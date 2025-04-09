@@ -151,9 +151,27 @@ export default function DrinkEditCard({
             </Button>
           </DialogContent>
         </Dialog>
-        <div className="bg-[#6F403A] w-8 h-8 mt-6 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300">
-          <RiDeleteBin5Line className="text-white" size={20} />
-        </div>
+        <Dialog>
+          <DialogTrigger>
+            <div className="bg-[#6F403A] w-8 h-8 mt-6 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300">
+            <RiDeleteBin5Line className="text-white" size={20} />
+            </div>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Delete {drinkName}</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col gap-8 py-2">
+            <p className=" text-sm">
+              Are you sure you want to delete {drinkName}? Once {drinkName} is
+              deleted, you cannot undo it!
+            </p>
+          </div>
+          <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]">
+            Delete {drinkName}
+          </Button>
+        </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
