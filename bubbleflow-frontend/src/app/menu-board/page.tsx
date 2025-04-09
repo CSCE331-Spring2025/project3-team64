@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 import { useExtras } from "@/app/hooks/useExtras";
 import { Drink, Extra } from "@/app/service/types";
@@ -83,6 +83,8 @@ export default function MenuBoard(){
   const iceLevels: string[] = filterExtraByCategoryIdIce(extras || [], 1);
   const sugarLevels: string[][] = filterExtraByCategoryIdSugar(extras || []);
 
+  
+
   return (
     <main className="flex flex-col px-16 pb-8">
       <div className="flex items-start gap-4">
@@ -115,7 +117,8 @@ export default function MenuBoard(){
             );
           })}
         </div>
-        <div className="border border-[#6F403A] p-4 w-1/3 rounded-xl bg-[#FAEED3]">
+        <div className="flex flex-col gap-4 w-1/3">
+        <div className="border border-[#6F403A] p-4 rounded-xl bg-[#FAEED3]">
           <div>
             <p className="text-[#6F403A] font-semibold">Ice Levels</p>
             <div className="flex flex-col gap-1">
@@ -159,6 +162,9 @@ export default function MenuBoard(){
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+        <div>
           </div>
         </div>
       </div>
