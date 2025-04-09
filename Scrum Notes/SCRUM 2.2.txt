@@ -1,0 +1,21 @@
+Meeting time: 4/4/2025, 12:30PM
+
+Agenda:
+
+1) What needs to be done:
+    -Order toppings
+    -Manager view stuff:
+    -X report
+    -Z report (maybe save each day to look back at later?)
+    -Sales report (graphs?)
+    -Pictures for drinks
+    -Employee management
+    -Drink management (once it's finished on customer UI)
+
+2) Discuss specific functionality desired
+    -Generate multiple reports at once for x-report
+    -Graphs in the sales report
+
+3) discuss due dates
+    -Mid-project presentation slides: Sunday
+    -Sprint 1 written materials (meeting notes done, need burndown chart)
