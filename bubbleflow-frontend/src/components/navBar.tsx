@@ -9,8 +9,10 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { GoogleTranslate } from "@/components/GoogleTranslate";
 
 export default function NavBar() {
+  //const prefLangCookie = getPrefLangCookie();
   const pathname = usePathname();
   const showCustomerLinks = pathname == "/create-order" || pathname == "/view-order" ;
   const showManagerLinks = pathname == "/manage-employees" || pathname == "/edit-menu" || pathname == "/reports" ;
@@ -86,6 +88,7 @@ export default function NavBar() {
           </NavigationMenuList>
         </NavigationMenu>
       )}
+      <GoogleTranslate />
       </div>
   );
 }
