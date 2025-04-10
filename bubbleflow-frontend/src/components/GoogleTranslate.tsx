@@ -2,6 +2,18 @@
 import Script from "next/script";
 import React from "react";
 
+declare global {
+  interface Window {
+    google: {
+      translate: {
+        TranslateElement: any;
+      };
+    };
+    __gtInit: () => void;
+  }
+}
+
+
 const languages = [
   { label: "English", value: "en" },
   { label: "Spanish", value: "es" },
