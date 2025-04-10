@@ -186,12 +186,16 @@ interface DrinkCardProps {
                 {sugarOptions.length > 0 ? (
                   sugarOptions.map((option) => (
                     <SelectItem key={option.extra_id} value={option.extra_name}>
-                      {option.extra_name}
+                      <span>
+                        {option.extra_name}
+                      </span>
                     </SelectItem>
                   ))
                 ) : (
                   <SelectItem disabled value="loading">
-                    {extrasLoading ? "Loading options..." : "No options available"}
+                    <span>
+                      {extrasLoading ? "Loading options..." : "No options available"}
+                    </span>
                   </SelectItem>
                 )}
               </SelectContent>
@@ -209,12 +213,16 @@ interface DrinkCardProps {
                 {iceOptions.length > 0 ? (
                   iceOptions.map((option) => (
                     <SelectItem key={option.extra_id} value={option.extra_name}>
-                      {option.extra_name}
+                      <span>
+                        {option.extra_name}
+                      </span>
                     </SelectItem>
                   ))
                 ) : (
                   <SelectItem disabled value="loading">
-                    {extrasLoading ? "Loading options..." : "No options available"}
+                    <span>
+                      {extrasLoading ? "Loading options..." : "No options available"}
+                    </span>
                   </SelectItem>
                 )}
               </SelectContent>

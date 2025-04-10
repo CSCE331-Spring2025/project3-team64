@@ -110,9 +110,12 @@ function DrinkCustomizationDialog({
   useEffect(() => {
     if (isOpen) {
       fetchExtras();
-      console.log(extras);
     }
   }, [isOpen, fetchExtras]);
+  
+  useEffect(() => {
+    console.log(extras);
+  }, [extras]);
 
   const filterExtraByCategoryId = (
     extras: Extra[],
@@ -226,14 +229,19 @@ function DrinkCustomizationDialog({
               {sugarOptions.length > 0 ? (
                 sugarOptions.map((option) => (
                   <SelectItem key={option.extra_id} value={option.extra_name}>
-                    {option.extra_name}
+                    <span>
+                      {option.extra_name}
+                    </span>
                   </SelectItem>
                 ))
               ) : (
                 <SelectItem disabled value="loading">
-                  {extrasLoading
-                    ? "Loading options..."
-                    : "No options available"}
+                  <span>
+                    {extrasLoading
+                      ? "Loading options..."
+                      : "No options available"
+                    }
+                  </span>
                 </SelectItem>
               )}
             </SelectContent>
@@ -256,14 +264,18 @@ function DrinkCustomizationDialog({
               {iceOptions.length > 0 ? (
                 iceOptions.map((option) => (
                   <SelectItem key={option.extra_id} value={option.extra_name}>
-                    {option.extra_name}
+                    <span>
+                      {option.extra_name}
+                    </span>
                   </SelectItem>
                 ))
               ) : (
                 <SelectItem disabled value="loading">
+                  <span>
                   {extrasLoading
                     ? "Loading options..."
                     : "No options available"}
+                  </span>
                 </SelectItem>
               )}
             </SelectContent>

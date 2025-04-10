@@ -3,21 +3,56 @@ import React from "react";
 import Script from "next/script";
 import Head from "next/head";
 
+// Define your languages array.
 const languages = [
   { label: "English", value: "en" },
   { label: "Spanish", value: "es" },
   { label: "French", value: "fr" },
+  { label: "Chinese (Simplified)", value: "zh-CN" },
 ];
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const includedLanguages = languages.map((lang) => lang.value).join(",");
 
+// Declare global types so TypeScript knows about our custom window properties.
+declare global {
+  interface Window {
+    __gtInit?: () => void;
+    google?: any;
+  }
+}
+
 export function GoogleTranslate({ prefLangCookie }: { prefLangCookie: string }) {
+  // Decode the cookie value or default to "/auto/en"
   const [langCookie, setLangCookie] = React.useState(() =>
     decodeURIComponent(prefLangCookie ?? "/auto/en")
   );
+  React.useEffect(() => {
+    const cookieValue = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("googtrans="))
+      ?.split("=")[1];
+    if (cookieValue) {
+      const decodedCookie = decodeURIComponent(cookieValue);
+      if (decodedCookie !== langCookie) {
+        setLangCookie(decodedCookie);
+      }
+    }
+  }, []); // run only once on mount
 
+  // Initializes the Google Translate widget.
   const initTranslate = () => {
-    if (typeof window !== "undefined" && window.google?.translate?.TranslateElement) {
+    if (
+      typeof window !== "undefined" &&
+      window.google?.translate?.TranslateElement
+    ) {
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
@@ -28,14 +63,15 @@ export function GoogleTranslate({ prefLangCookie }: { prefLangCookie: string }) 
         "google_translate_element"
       );
     } else {
+      // Try again in 300ms if the script hasn't finished loading.
       setTimeout(initTranslate, 300);
     }
   };
 
   const removeTranslateBanner = () => {
     const frame = document.querySelector("iframe.goog-te-banner-frame");
-    if (frame?.parentNode) {
-      frame.parentNode.removeChild(frame);
+    if (frame) {
+      frame.remove();
     }
     document.body.style.top = "0px";
   };
@@ -45,12 +81,10 @@ export function GoogleTranslate({ prefLangCookie }: { prefLangCookie: string }) 
     setLangCookie(cookieVal);
     document.cookie = `googtrans=${cookieVal}; path=/`;
 
-    // Optional: clean the hash if present
     if (window.location.hash.includes("googtrans")) {
       history.replaceState(null, "", window.location.pathname + window.location.search);
     }
 
-    // Force refresh to apply language properly
     window.location.reload();
   };
 
@@ -66,7 +100,6 @@ export function GoogleTranslate({ prefLangCookie }: { prefLangCookie: string }) 
       }, 500);
     }
 
-    // Remove banner repeatedly in case it reappears
     const interval = setInterval(removeTranslateBanner, 300);
     setTimeout(() => clearInterval(interval), 5000);
   }, [langCookie]);
@@ -74,24 +107,21 @@ export function GoogleTranslate({ prefLangCookie }: { prefLangCookie: string }) 
   return (
     <>
       <Head>
-        <style>
-          {`
-            .goog-tooltip,
-            .goog-tooltip:hover {
-              display: none !important;
-            }
-            .goog-text-highlight {
-              background-color: transparent !important;
-              box-shadow: none !important;
-            }
-          `}
-        </style>
+        <style>{`
+          .goog-tooltip,
+          .goog-tooltip:hover {
+            display: none !important;
+          }
+          .goog-text-highlight {
+            background-color: transparent !important;
+            box-shadow: none !important;
+          }
+        `}</style>
       </Head>
-
       <div>
         <div
           id="google_translate_element"
-          style={{ visibility: "hidden", width: "1px", height: "1px" }}
+          className="invisible w-0 h-0"
         />
         <LanguageSelector onChange={onChange} value={langCookie} />
         <Script
@@ -115,12 +145,18 @@ function LanguageSelector({
 }) {
   const currentLang = value.split("/")[2] || "en";
   return (
-    <select onChange={(e) => onChange(e.target.value)} value={currentLang}>
-      {languages.map((lang) => (
-        <option key={lang.value} value={lang.value}>
-          {lang.label}
-        </option>
-      ))}
-    </select>
+    <Select onValueChange={onChange} value={currentLang}>
+      <SelectTrigger className="w-full border border-gray-300 rounded-md p-2">
+        <SelectValue placeholder="Select a language" />
+      </SelectTrigger>
+      <SelectContent>
+        {languages.map((lang) => (
+          <SelectItem key={lang.value} value={lang.value}>
+            <span>{lang.label}</span>
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }
+

@@ -140,22 +140,16 @@ export default function MenuBoard(){
             <p className="text-[#6F403A] font-semibold mt-4">
               Toppings
             </p>
-            <div className="flex gap-2 mt-1">
-              <div className="border border-[#6F403A] w-16 h-16 rounded-full flex flex-col items-center justify-center">
-                <p>+</p>
-                <p className="font-semibold">$0.75</p>
-              </div>
-              <div className="grid grid-cols-2 gap-1 gap-x-4 text-sm">
+            <div className="flex flex-col">
+              <p className="font-semibold">$0.75</p>
+              <div className="flex flex-wrap gap-1 gap-x-4 text-sm" >
                 {toppings075.map((topping: [string, number], idx: number) => (
                   <p key={idx}>{topping[0]}</p>
                 ))}
               </div>
             </div>
-            <div className="flex gap-2 mt-1 items-center">
-              <div className="border border-[#6F403A] w-16 h-16 rounded-full flex flex-col items-center justify-center">
-                <p>+</p>
+            <div className="flex flex-col mt-2">
                 <p className="font-semibold">$1.00</p>
-              </div>
               <div className="grid grid-cols-2 gap-1 text-sm">
                 {toppings100.map((topping: [string, number], idx: number) => (
                   <p key={idx}>{topping[0]}</p>

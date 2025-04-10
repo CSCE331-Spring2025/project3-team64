@@ -101,11 +101,11 @@ export default function CreateOrder() {
   return (
     <main className="flex flex-col px-16 pb-4">
       <div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 items-stretch">
           <div
             key="all-drinks"
             onClick={() => setSelectedCategory(null)}
-            className="cursor-pointer"
+            className="cursor-pointer flex-1"
           >
             <MenuCategory categoryName="All Drinks" itemCount={drinks.length} />
           </div>
@@ -119,7 +119,7 @@ export default function CreateOrder() {
               <div
                 key={index}
                 onClick={() => setSelectedCategory(categoryName)}
-                className="cursor-pointer"
+                className="cursor-pointer flex-1"
               >
                 <MenuCategory categoryName={categoryName} itemCount={count} />
               </div>

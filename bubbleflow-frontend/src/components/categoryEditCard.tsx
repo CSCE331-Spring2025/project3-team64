@@ -55,7 +55,7 @@ export default function CategoryEditCard({
     (categoryName && iconMapping[categoryName]) || iconMapping.default;
 
   return (
-    <div className="relative outline outline-[#6F403A] p-4 rounded-md h-30 w-30 hover:-translate-y-2 duration-300">
+    <div className="relative outline outline-[#6F403A] p-4 rounded-md min-h-30 h-full w-30 hover:-translate-y-2 duration-300 ">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <RiMore2Line className="absolute top-2 right-2 text-xl cursor-pointer hover:-translate-y-1 duration-300" size={16} />
