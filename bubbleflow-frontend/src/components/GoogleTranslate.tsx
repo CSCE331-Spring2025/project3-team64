@@ -1,6 +1,13 @@
 "use client";
 import Script from "next/script";
 import React from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 declare global {
   interface Window {
@@ -18,14 +25,15 @@ const languages = [
   { label: "English", value: "en" },
   { label: "Spanish", value: "es" },
   { label: "French", value: "fr" },
+  { label: "Chinese (Simplified)", value: "zh-CN" },
 ];
+
 
 const includedLanguages = languages.map((lang) => lang.value).join(",");
 
 export function GoogleTranslate() {
   const [langCookie, setLangCookie] = React.useState("/auto/en");
 
-  // ✅ Read googtrans cookie from the client
   React.useEffect(() => {
     const match = document.cookie.match(/(^| )googtrans=([^;]+)/);
     const cookieVal = match ? decodeURIComponent(match[2]) : "/auto/en";
@@ -50,6 +58,11 @@ export function GoogleTranslate() {
 
   const applyTranslation = (lang: string) => {
     const interval = setInterval(() => {
+      const frame = document.querySelector("iframe.goog-te-banner-frame");
+      if (frame) frame.remove();
+      document.body.style.top = "0px";
+      document.body.style.marginTop = "0px";
+      document.body.style.paddingTop = "0px";
       const element = document.querySelector(".goog-te-combo") as HTMLSelectElement;
       if (element) {
         element.value = lang;
@@ -98,12 +111,17 @@ function LanguageSelector({
 }) {
   const currentLang = value.split("/")[2] || "en";
   return (
-    <select onChange={(e) => onChange(e.target.value)} value={currentLang}>
-      {languages.map((lang) => (
-        <option key={lang.value} value={lang.value}>
-          {lang.label}
-        </option>
-      ))}
-    </select>
+    <Select onValueChange={onChange} value={currentLang}>
+      <SelectTrigger className="w-full border border-gray-300 rounded-md p-2">
+        <SelectValue placeholder="Select a language" />
+      </SelectTrigger>
+      <SelectContent>
+        {languages.map((lang) => (
+          <SelectItem key={lang.value} value={lang.value}>
+            <span>{lang.label}</span>
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }
