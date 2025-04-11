@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { GoogleTranslate } from "@/components/GoogleTranslate";
+import UserInfoButton from "@/components/userInfoButton";
 
 export default function NavBar() {
   //const prefLangCookie = getPrefLangCookie();
@@ -89,6 +90,7 @@ export default function NavBar() {
         </NavigationMenu>
       )}
       <GoogleTranslate />
+      <UserInfoButton />
       </div>
   );
 }

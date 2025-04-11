@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
 const router = useRouter();
@@ -12,6 +13,10 @@ const router = useRouter();
     // After successful login, navigate to the dashboard
     // (it just makes the button switch pages for rn)
     router.push("/select-role");
+  };
+
+  const handleGoogleLogin = () => {
+    signIn("google", { callbackUrl: "/select-role" });
   };
 
   return (
@@ -30,7 +35,7 @@ const router = useRouter();
         </div>
         <div className=" mt-8 flex gap-6">
           <Button className=" bg-[#6F403A] flex-1 hover:bg-[#4E2D26]" onClick={handleLogin}>Login</Button>
-          <Button className=" bg-[#6F403A] flex-1 hover:bg-[#4E2D26]">Login with Google</Button>
+          <Button className=" bg-[#6F403A] flex-1 hover:bg-[#4E2D26]" onClick={handleGoogleLogin}>Login with Google</Button>
         </div>
       </div>
     </main>
