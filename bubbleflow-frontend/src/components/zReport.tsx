@@ -2,7 +2,7 @@
 
 export default function ZReport() {
   return (
-    <main className="flex flex-col px-2">
+    <main className="flex px-2 gap-4">
       <div className="mt-4 w-[450px] border border-[#6F403A] p-4 rounded-xl flex flex-col gap-4">
         <div>
           <p className=" text-lg font-semibold">Sales and Taxes Summary</p>
@@ -79,6 +79,20 @@ export default function ZReport() {
             <p>Total Payments</p>
             <p>$16,278.50</p>
           </div>
+        </div>
+      </div>
+      <div className=" flex flex-col mt-4 border border-[#6F403A] items-center text-center p-4 rounded-xl self-start">
+        <p className=" text-lg font-semibold">Report Generation Details</p>
+        <div className=" mt-2 flex flex-col">
+          <p className=" font-semibold">Z-Report</p>
+          <p className=" font-semibold">Bubbleflow</p>
+          <p>789 Rue de Fleurs</p>
+          <p>55555 Belgueux, France</p>
+          <p>Owned by XYZ Sigma Inc.</p>
+        </div>
+        <div className="flex flex-col mt-2">
+          <p className=" font-semibold">Generated On</p>
+          <p>March 5, 2025 19:20:06</p>
         </div>
       </div>
     </main>
