@@ -9,8 +9,8 @@ export default function ZReport() {
           <hr className="border-t-2 border-[#6F403A] my-2" />
           <div className=" flex flex-col gap-1">
             <div className=" flex justify-between text-sm">
-                <p>Gross Sales</p>
-                <p>$16,278.50</p>
+              <p>Gross Sales</p>
+              <p>$16,278.50</p>
             </div>
             <div className=" flex justify-between text-sm text-gray-500">
               <p>Taxes (10%)</p>
@@ -21,6 +21,40 @@ export default function ZReport() {
           <div className=" flex justify-between font-semibold">
             <p>Total Net Sales</p>
             <p>$13,022.80</p>
+          </div>
+        </div>
+        <div>
+          <p className=" text-lg font-semibold">Sales Categories</p>
+          <div className="grid grid-cols-[1fr_auto_auto] gap-8 text-sm">
+            <p>Category</p>
+            <p>Quantity</p>
+            <p>Sales</p>
+          </div>
+          <hr className="border-t-2 border-[#6F403A] my-2" />
+          <div className="grid gap-1">
+            {[
+              ["Brewed Teas", "404", "$1,423.35"],
+              ["Creama", "339", "$1,911.40"],
+              ["Fresh Milk", "339", "$1,911.40"],
+              ["Fruit Teas", "339", "$1,911.40"],
+              ["Ice Blended", "339", "$1,911.40"],
+              ["Milk Teas", "339", "$1,911.40"],
+              ["Tea Mojito", "339", "$1,911.40"],
+            ].map(([name, count, price], idx) => (
+              <div
+                key={idx}
+                className="grid grid-cols-[1fr_auto_auto] gap-6 text-sm"
+              >
+                <p>{name}</p>
+                <p>{count}</p>
+                <p>{price}</p>
+              </div>
+            ))}
+          </div>
+          <hr className="border-t border-[#6F403A] my-2" />
+          <div className=" flex justify-between font-semibold">
+            <p>Total Payments</p>
+            <p>$16,278.50</p>
           </div>
         </div>
         <div>
