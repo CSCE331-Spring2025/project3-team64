@@ -1,5 +1,4 @@
 "use client";
-import { Badge } from "./ui/badge";
 import SalesCard from "./salesCard";
 interface Sales {
   id: number;

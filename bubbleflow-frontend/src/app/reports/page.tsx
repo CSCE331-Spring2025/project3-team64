@@ -1,10 +1,8 @@
 "use client";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import ZReport from "@/components/zReport";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SalesReport from "@/components/salesReport";
+import XReport from "@/components/xReport";
 
 export default function Reports() {
   return (
@@ -16,10 +14,14 @@ export default function Reports() {
           <TabsTrigger value="sales-report">Sales Report</TabsTrigger>
         </TabsList>
         <TabsContent value="x-report">
-          sigma
+          <XReport />
         </TabsContent>
-        <TabsContent value="z-report"><ZReport/></TabsContent>
-        <TabsContent value="sales-report"><SalesReport/></TabsContent>
+        <TabsContent value="z-report">
+          <ZReport />
+        </TabsContent>
+        <TabsContent value="sales-report">
+          <SalesReport />
+        </TabsContent>
       </Tabs>
     </main>
   );
