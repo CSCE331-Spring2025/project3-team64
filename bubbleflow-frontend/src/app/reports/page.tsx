@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import ZReport from "@/components/zReport";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import SalesReport from "@/components/salesReport";
 
 export default function Reports() {
   return (
@@ -18,7 +19,7 @@ export default function Reports() {
           sigma
         </TabsContent>
         <TabsContent value="z-report"><ZReport/></TabsContent>
-        <TabsContent value="sales-report">sigma sigma sigma</TabsContent>
+        <TabsContent value="sales-report"><SalesReport/></TabsContent>
       </Tabs>
     </main>
   );
