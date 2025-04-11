@@ -29,6 +29,7 @@ export default function NavBar() {
           />
         </Link>
       </div>
+      <div className=" flex gap-6">
       {showCustomerLinks && (
         <NavigationMenu>
           <NavigationMenuList>
@@ -91,6 +92,7 @@ export default function NavBar() {
       )}
       <GoogleTranslate />
       <UserInfoButton />
+      </div>
       </div>
   );
 }
