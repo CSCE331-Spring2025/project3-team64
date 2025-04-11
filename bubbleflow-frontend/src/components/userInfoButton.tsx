@@ -3,8 +3,10 @@
 import { useSession, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 
+
 export default function userInfoButton() {
-  const { data: session } = useSession();
+
+    const { data: session } = useSession();
 
   if (!session?.user) return null;
 
@@ -14,7 +16,7 @@ export default function userInfoButton() {
         <p className="text-sm font-medium">{session.user.name}</p>
         <p className="text-xs text-gray-500">{session.user.email}</p>
       </div>
-      <Button variant="outline" onClick={() => signOut()}>
+      <Button variant="outline" onClick={() => signOut({callbackUrl: "/"})}>
         Sign Out
       </Button>
     </div>
