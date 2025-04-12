@@ -2,8 +2,8 @@
 
 export default function ZReport() {
   return (
-    <main className="flex px-2 gap-4">
-      <div className="mt-4 w-[450px] border border-[#6F403A] p-4 rounded-xl flex flex-col gap-4">
+    <main className="mt-4 flex px-2 gap-4">
+      <div className="w-[450px] border border-[#6F403A] p-4 rounded-xl flex flex-col gap-4">
         <div>
           <p className=" text-lg font-semibold">Sales and Taxes Summary</p>
           <hr className="border-t-2 border-[#6F403A] my-2" />

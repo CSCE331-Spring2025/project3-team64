@@ -1,5 +1,6 @@
 "use client";
 import SalesCard from "./salesCard";
+import { DatePicker } from "./datePicker";
 interface Sales {
   id: number;
   name: string;
@@ -32,7 +33,21 @@ export default function SalesReport() {
     },
   ];
   return (
-    <main className="flex px-2 gap-4 mt-4">
+    <main className="flex flex-col px-2 gap-4 mt-4">
+      <div className="flex gap-4">
+        <div className=" flex gap-2 items-center">
+          <p>
+            From
+          </p>
+          <DatePicker/>
+        </div>
+        <div className=" flex gap-2 items-center">
+          <p>
+            To
+          </p>
+          <DatePicker/>
+        </div>
+      </div>
       <div className=" grid grid-cols-2 gap-2 w-full">
         {sales.map((sale) => (
           <SalesCard
