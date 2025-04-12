@@ -5,6 +5,6 @@ import { Report } from './types';
 export const xReportService = {
     // reports endpoints
     getXReport: () => {
-        return api.get<Report[]>('/reports/x-report').then(res => res.data);
+        return api.get<Report>('/reports/x-report').then(res => res.data);
     },
 }
