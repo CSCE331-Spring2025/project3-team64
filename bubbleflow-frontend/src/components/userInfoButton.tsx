@@ -104,7 +104,7 @@ export default function UserInfoButton() {
               </div>
             </div>
             <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]">
-              Edit Menu Item
+              Apply Settings
             </Button>
           </DialogContent>
           </Dialog>
