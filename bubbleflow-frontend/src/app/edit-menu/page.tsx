@@ -138,7 +138,7 @@ export default function EditMenu() {
           <div
             key="all-drinks"
             onClick={() => setSelectedCategory(null)}
-            className="cursor-pointer flex-1"
+            className="cursor-pointer"
           >
             <MenuCategory categoryName="All Drinks" itemCount={drinks.length} />
           </div>
@@ -152,7 +152,7 @@ export default function EditMenu() {
               <div
                 key={index}
                 onClick={() => setSelectedCategory(categoryName)}
-                className="cursor-pointer flex-1"
+                className="cursor-pointer"
               >
                 <CategoryEditCard categoryName={categoryName} itemCount={count} />
               </div>

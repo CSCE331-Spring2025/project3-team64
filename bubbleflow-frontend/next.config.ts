@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ['openweathermap.org'],
+    domains: ['openweathermap.org', 'lh3.googleusercontent.com'],
   },
 };
 

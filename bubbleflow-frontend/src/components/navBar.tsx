@@ -15,12 +15,16 @@ import UserInfoButton from "@/components/userInfoButton";
 export default function NavBar() {
   //const prefLangCookie = getPrefLangCookie();
   const pathname = usePathname();
-  const showCustomerLinks = pathname == "/create-order" || pathname == "/view-order" ;
-  const showManagerLinks = pathname == "/manage-employees" || pathname == "/edit-menu" || pathname == "/reports" ;
+  const showCustomerLinks =
+    pathname == "/create-order" || pathname == "/view-order";
+  const showManagerLinks =
+    pathname == "/manage-employees" ||
+    pathname == "/edit-menu" ||
+    pathname == "/reports";
   return (
-    <div className="flex items-center justify-between px-16 py-6">
+    <div className="flex items-center justify-between px-16 py-4">
       <div className="flex items-center gap-6">
-        <Link href ="/create-order">
+        <Link href="/create-order">
           <Image
             src="/bubbleflow-logo.png"
             alt="BubbleFlow Logo"
@@ -29,70 +33,72 @@ export default function NavBar() {
           />
         </Link>
       </div>
-      <div className=" flex gap-6">
-      {showCustomerLinks && (
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/create-order" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Create Order
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/view-order" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  View Order
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      )}
-      {showManagerLinks && (
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/edit-menu" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Edit Menu
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/reports" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  View Reports
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/manage-employees" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Manage Employees
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      )}
-      {(!showCustomerLinks && !showManagerLinks) && (
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/menu-board" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Menu Board
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      )}
-      <GoogleTranslate />
-      <UserInfoButton />
+      <div className=" flex gap-6 items-center">
+        {showCustomerLinks && (
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/create-order" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Create Order
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/view-order" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    View Order
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        )}
+        {showManagerLinks && (
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/edit-menu" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Edit Menu
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/reports" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    View Reports
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/manage-employees" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Manage Employees
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        )}
+        {!showCustomerLinks && !showManagerLinks && (
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/menu-board" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Menu Board
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        )}
+        <UserInfoButton />
+        <div className=" hidden">
+        <GoogleTranslate/>
+        </div>
       </div>
-      </div>
+    </div>
   );
 }
