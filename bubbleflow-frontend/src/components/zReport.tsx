@@ -86,13 +86,13 @@ export default function ZReport() {
         <div className=" mt-2 flex flex-col">
           <p className=" font-semibold">Z-Report</p>
           <p className=" font-semibold">Bubbleflow</p>
-          <p>789 Rue de Fleurs</p>
-          <p>55555 Belgueux, France</p>
-          <p>Owned by XYZ Sigma Inc.</p>
+          <p className=" text-sm">789 Rue de Fleurs</p>
+          <p className=" text-sm">55555 Belgueux, France</p>
+          <p className=" text-sm">Owned by XYZ Sigma Inc.</p>
         </div>
         <div className="flex flex-col mt-2">
           <p className=" font-semibold">Generated On</p>
-          <p>March 5, 2025 19:20:06</p>
+          <p className=" text-sm">March 5, 2025 19:20:06</p>
         </div>
       </div>
     </main>
