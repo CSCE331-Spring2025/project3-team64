@@ -32,4 +32,19 @@ export interface OrderSubmission {
       drink_id: number;
       toppings: number[];
     }>;
-  }
+}
+
+export interface HourlySale{
+    hour: number;
+    transactionCount: number;
+    totalSales: number;
+}
+
+export interface Report{
+    reportType: string;
+    generatedAt: string;
+    reportDate: string;
+    hourlySales: HourlySale[];
+    totalSales: number;
+    totalTransactions: number;
+}
