@@ -3,19 +3,33 @@ package com.team64.BubbleFlowBackend.controller;
 import com.team64.BubbleFlowBackend.model.Report;
 import com.team64.BubbleFlowBackend.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/reports")
 public class ReportController {
+
     @Autowired
     private ReportService reportService;
 
     @GetMapping("/x-report")
-    public Report getXReport() {
+    public Report getCurrentXReport() {
         return reportService.generateXReport();
     }
 
+    @GetMapping("/x-report/date/{date}")
+    public Report getXReportByDate(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return (reportService.generateXReportForDate(date));
+    }
+
+    @GetMapping("/z-report/date/{date}")
+    public Report getZReportByDate(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return reportService.generateZReportForDate(date);
+    }
 }

@@ -2,6 +2,7 @@ package com.team64.BubbleFlowBackend.service;
 
 import com.team64.BubbleFlowBackend.model.Report;
 import com.team64.BubbleFlowBackend.repository.ReportRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -12,34 +13,39 @@ import java.util.List;
 @Service
 public class ReportService {
 
-    private final ReportRepo reportRepo;
+    @Autowired
+    private ReportRepo reportRepo;
 
-    public ReportService(ReportRepo reportRepo) {
-        this.reportRepo = reportRepo;
+    public Report generateXReport() {
+        return generateReportForDate(LocalDate.now(), "X_REPORT");
     }
 
-    public Report generateXReport(){
-        List<Object[]> rawData = reportRepo.getXReportData();
-        return createReport("X_REPORT", LocalDate.now(), rawData);
+    public Report generateXReportForDate(LocalDate date) {
+        return generateReportForDate(date, "X_REPORT");
     }
 
-    private Report createReport(String reportType, LocalDate date, List<Object[]> rawData) {
+    public Report generateZReportForDate(LocalDate date) {
+        return generateReportForDate(date, "Z_REPORT");
+    }
+
+    private Report generateReportForDate(LocalDate date, String reportType) {
         Report report = new Report();
         report.setReportType(reportType);
         report.setGeneratedAt(LocalDateTime.now());
         report.setReportDate(date);
 
-        List<Report.HourlySales> hourlySalesData = new ArrayList<>();
+        List<Object[]> rawData = reportRepo.getReportDataByDate(date);
+        List<Report.HourlySales> hourlySales = new ArrayList<>();
 
         for (Object[] row : rawData) {
             Report.HourlySales hourData = new Report.HourlySales();
             hourData.setHour(((Number) row[0]).intValue());
             hourData.setTransactionCount(((Number) row[1]).intValue());
             hourData.setTotalSales(((Number) row[2]).doubleValue());
-            hourlySalesData.add(hourData);
+            hourlySales.add(hourData);
         }
 
-        report.setHourlySales(hourlySalesData);
+        report.setHourlySales(hourlySales);
         report.calculateTotals();
 
         return report;
