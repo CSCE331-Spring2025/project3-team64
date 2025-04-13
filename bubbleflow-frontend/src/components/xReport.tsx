@@ -84,7 +84,7 @@ export default function XReport() {
         <div className="flex gap-4 mt-4 flex-wrap">
           <div className="w-full max-w-[450px] border border-[#6F403A] p-4 rounded-xl flex flex-col gap-4">
             <div>
-              <p className="text-lg font-semibold">{report.reportType} Summary</p>
+              <p className="text-lg font-semibold">X Report Summary</p>
               <hr className="border-t-2 border-[#6F403A] my-2" />
               <div className="flex flex-col gap-1">
                 <div className="flex justify-between text-sm">
@@ -129,7 +129,7 @@ export default function XReport() {
           <div className="flex flex-col border border-[#6F403A] items-center text-center p-4 rounded-xl self-start">
             <p className="text-lg font-semibold">Report Generation Details</p>
             <div className="mt-2 flex flex-col">
-              <p className="font-semibold">{report.reportType}</p>
+              <p className="font-semibold">X Report</p>
               <p className="font-semibold">Bubbleflow</p>
               <p className="text-sm">789 Rue de Fleurs</p>
               <p className="text-sm">55555 Belgueux, France</p>
