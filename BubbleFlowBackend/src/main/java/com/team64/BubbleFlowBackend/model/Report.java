@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Report {
 
-    private String reportType; // X_REPORT, Z_REPORT
+    private String reportType; // X_REPORT
     private LocalDateTime generatedAt;
     private LocalDate reportDate;
 
