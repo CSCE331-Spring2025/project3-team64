@@ -16,25 +16,33 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "gross_SALES",
     "tax",
     "total_NET_SALES",
-    "salesCategories"
+    "salesCategories",
+    "sales_CATEGORY_TOTAL",
+    "paymentMethods",
+    "total_PAYMENTS"
 })
 
 public class ZReport {
     private String GROSS_SALES;
     private String TAX;
     private String TOTAL_NET_SALES;
+    private List<SalesCategory> salesCategories;
+    private String SALES_CATEGORY_TOTAL;
+    private List<PaymentMethod> paymentMethods; 
+    private String TOTAL_PAYMENTS; // unsure
 
     private String reportType;
     private LocalDateTime generatedAt;
     private LocalDate reportDate;
 
-    private List<SalesCategory> salesCategories;
-
-    public ZReport(String GROSS_SALES, String TAX, String TOTAL_NET_SALES, List<SalesCategory> salesCategories) {
-        this.GROSS_SALES = GROSS_SALES; // unsure
-        this.TAX = TAX; // unsure
-        this.TOTAL_NET_SALES = TOTAL_NET_SALES; // unsure
+    public ZReport(String GROSS_SALES, String TAX, String TOTAL_NET_SALES, List<SalesCategory> salesCategories, String SALES_CATEGORY_TOTAL, List<PaymentMethod> paymentMethods, String TOTAL_PAYMENTS) {
+        this.GROSS_SALES = GROSS_SALES; 
+        this.TAX = TAX; 
+        this.TOTAL_NET_SALES = TOTAL_NET_SALES; 
         this.salesCategories = salesCategories; //== null ? new ArrayList<>() : salesCategories; // if null
+        this.SALES_CATEGORY_TOTAL = SALES_CATEGORY_TOTAL;   
+        this.paymentMethods = paymentMethods; //== null ? new ArrayList<>() : paymentMethods; // if null
+        this.TOTAL_PAYMENTS = TOTAL_PAYMENTS; // unsure
     }
 
     public static class SalesCategory {
@@ -56,6 +64,22 @@ public class ZReport {
 
         public double getSales() { return Sales;}
         public void setSales(double sales) { this.Sales = sales;}
+    }
+
+    public static class PaymentMethod {
+        private String paymentMethod;
+        private double amount;
+
+        public PaymentMethod(String paymentMethod, double amount) {
+            this.paymentMethod = paymentMethod;
+            this.amount = amount;
+        }
+
+        public String getPaymentMethod() { return paymentMethod;}
+        public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod;}
+
+        public double getAmount() { return amount;}
+        public void setAmount(double amount) { this.amount = amount;}
     }
 
     public String getReportType() { return reportType;}
@@ -82,4 +106,17 @@ public class ZReport {
     public void setSalesCategories(List<SalesCategory> salesCategories) {
         this.salesCategories = salesCategories == null ? new ArrayList<>() : salesCategories; // if null
     }
+
+    public String getSALES_CATEGORY_TOTAL() { return SALES_CATEGORY_TOTAL;}
+    public void setSALES_CATEGORY_TOTAL(String SALES_CATEGORY_TOTAL) { this.SALES_CATEGORY_TOTAL = SALES_CATEGORY_TOTAL;}
+
+    public List<PaymentMethod> getPaymentMethods() {
+        return paymentMethods == null ? new ArrayList<>() : paymentMethods; // if null
+    }
+    public void setPaymentMethods(List<PaymentMethod> paymentMethods) {
+        this.paymentMethods = paymentMethods == null ? new ArrayList<>() : paymentMethods; // if null
+    }
+
+    public String getTOTAL_PAYMENTS() { return TOTAL_PAYMENTS;}
+    public void setTOTAL_PAYMENTS(String TOTAL_PAYMENTS) { this.TOTAL_PAYMENTS = TOTAL_PAYMENTS;}
 }
