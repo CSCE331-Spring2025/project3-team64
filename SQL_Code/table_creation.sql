@@ -1,11 +1,11 @@
 create table if not exists Drink_Categories(
-	Drink_Category_ID int NOT NULL, 
+	Drink_Category_ID SERIAL, 
     Drink_Category_NAME varchar(255) NOT NULL, 
     primary key (Drink_Category_ID)
 );
 
 create table if not exists Drinks(
-	Drink_ID int NOT NULL, 
+	Drink_ID SERIAL, 
     Drink_Category_ID int NOT NULL, 
     Drink_Name varchar(255) NOT NULL, 
     Drink_Price decimal(12,2) NOT NULL,
@@ -17,13 +17,13 @@ create table if not exists Drinks(
 );
 
 create table if not exists Extras_Categories (
-    Extra_Category_ID int NOT NULL,
+    Extra_Category_ID SERIAL,
     Extra_Category_NAME varchar(255) NOT NULL,
     PRIMARY KEY (Extra_Category_ID)
 );
 
 create table if not exists Extras_and_Toppings(
-	Extra_ID int NOT NULL, 
+	Extra_ID SERIAL, 
     Extra_Category_ID int NOT NULL, 
     Extra_Name varchar(255) NOT NULL, 
     Extra_Price decimal(12,2) NOT NULL, 
@@ -42,7 +42,7 @@ create table if not exists Ingredient_Categories (
 */
 
 create table if not exists Inventory (
-    Item_ID int NOT NULL,
+    Item_ID SERIAL,
     Item_Name varchar(255) NOT NULL,
     Item_Metric varchar(255) NOT NULL,
     Item_Quantity decimal NOT NULL,
@@ -79,7 +79,7 @@ create table if not exists Drink_Recipe (
 );
 
 create table if not exists Employees(
-    Employee_ID int NOT NULL, 
+    Employee_ID SERIAL,
 	Employee_Name varchar(100) NOT NULL, 
     Employee_Email varchar(100) NOT NULL, 
     Employee_Phone varchar(100) NOT NULL, 
@@ -88,11 +88,11 @@ create table if not exists Employees(
 );
 
 create table if not exists Orders(
-    Order_ID int NOT NULL,
+    Order_ID BIGSERIAL,
     Customer varchar(100) NOT NULL,
     Order_total_price decimal NOT NULL,
     Order_date TIMESTAMP NOT NULL,
-    Employee_ID int NOT NULL,
+    Employee_ID int, /* Allowed to be null so when if employee is deleted, it doesn't wipe out all of their orders. */
     Payment_method varchar(100) NOT NULL,
     FOREIGN KEY (Employee_ID)
         REFERENCES Employees (Employee_ID)
@@ -101,9 +101,9 @@ create table if not exists Orders(
 );
 
 create table if not exists Order_Items(
-    Order_Item_ID SERIAL,
+    Order_Item_ID BIGSERIAL,
     /*Order_Item_ID int NOT NULL,*/
-    Order_ID int NOT NULL,
+    Order_ID bigint NOT NULL,
     Drink_ID int NOT NULL,
     PRIMARY KEY (Order_Item_ID),
     FOREIGN KEY (Order_ID)
@@ -115,7 +115,7 @@ create table if not exists Order_Items(
 );
 
 create table if not exists Order_Extra(
-    Order_Item_ID int NOT NULL,
+    Order_Item_ID bigint NOT NULL,
     Extras_ID int NOT NULL,
     FOREIGN KEY (Order_Item_ID)
         REFERENCES Order_Items (Order_Item_ID)
