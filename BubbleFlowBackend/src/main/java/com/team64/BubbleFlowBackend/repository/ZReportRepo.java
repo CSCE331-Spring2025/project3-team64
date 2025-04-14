@@ -32,7 +32,7 @@ class ReportRepoImp implements ZReportRepo {
 
         // Sales & Taxes Summary: Tax
         String tax_STS_sql = """ 
-            select (sum(order_total_price)*0.2) as Tax from orders
+            select ROUND(CAST(SUM(order_total_price) * 0.2 AS numeric), 2) as Tax from orders
             where date(order_date) = CURRENT_DATE
         """;
         String tax = jdbcTemplate.queryForObject(tax_STS_sql, String.class);
@@ -41,7 +41,7 @@ class ReportRepoImp implements ZReportRepo {
 
         // Sales & Taxes Summary: Total Net sales
         String total_net_sales_STS_sql = """
-            select (sum(order_total_price)*0.8) as Total_Net_Sales from orders
+            select ROUND(CAST(SUM(order_total_price) * 0.8 AS numeric), 2) as Total_Net_Sales from orders
             where date(order_date) = CURRENT_DATE
         """;
         String total_net_sales = jdbcTemplate.queryForObject(total_net_sales_STS_sql, String.class);

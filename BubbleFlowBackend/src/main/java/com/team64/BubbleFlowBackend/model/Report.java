@@ -16,6 +16,10 @@ public class Report {
     private double totalSales;
     private int totalTransactions;
 
+    private List<ItemSales> itemSales; // for sales report
+    private LocalDate startReportDate; 
+    private LocalDate endReportDate; 
+
     // inner class for hourly sales data
     public static class HourlySales {
         private int hour;
@@ -67,6 +71,54 @@ public class Report {
         this.totalTransactions = transactions;
     }
 
+    public static class ItemSales {
+        private String itemName;
+        private int quantitySold;
+        private double totalSales;
+        private String category; 
+        private String type; // drink or extra
+
+        public String getItemName() {
+            return itemName;
+        }
+
+        public void setItemName(String itemName) {
+            this.itemName = itemName;
+        }
+
+        public int getQuantitySold() {
+            return quantitySold;
+        }
+
+        public void setQuantitySold(int quantitySold) {
+            this.quantitySold = quantitySold;
+        }
+
+        public double getTotalSales() {
+            return totalSales;
+        }
+
+        public void setTotalSales(double totalSales) {
+            this.totalSales = totalSales;
+        }
+
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+    }
+
     public String getReportType() {
         return reportType;
     }
@@ -113,5 +165,29 @@ public class Report {
 
     public void setTotalTransactions(int totalTransactions) {
         this.totalTransactions = totalTransactions;
+    }
+
+    public List<ItemSales> getItemSales() {
+        return itemSales;
+    }
+
+    public void setItemSales(List<ItemSales> itemSales) {
+        this.itemSales = itemSales;
+    }
+
+    public LocalDate getStartReportDate() {
+        return startReportDate;
+    }
+
+    public void setStartReportDate(LocalDate startReportDate) {
+        this.startReportDate = startReportDate;
+    }
+
+    public LocalDate getEndReportDate() {
+        return endReportDate;
+    }
+
+    public void setEndReportDate(LocalDate endReportDate) {
+        this.endReportDate = endReportDate;
     }
 }

@@ -26,4 +26,14 @@ public class ReportController {
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return (reportService.generateXReportForDate(date));
     }
+
+    // Sales report
+    @GetMapping("/sales-report/date/{starttime}/{endtime}")
+    public Report getSalesReport(
+        @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate starttime,
+        @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endtime
+    ) {
+        return (reportService.generateSalesReport(starttime, endtime));
+        // return ResponseEntity.ok(report);
+    }
 }
