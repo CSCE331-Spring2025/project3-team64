@@ -21,6 +21,8 @@ import Image from "next/image";
 import { useExtras } from "@/app/hooks/useExtras";
 import { Extra } from "@/app/service/types";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { DrinkCategory, Drink } from "@/app/service/types";
+
 
 interface DrinkCardProps {
   drinkName: string;
@@ -29,6 +31,7 @@ interface DrinkCardProps {
   imageSrc: string;
   drinkId: number;
   itemId: number;
+  categoryOptions: DrinkCategory[];
 }
 
 export default function DrinkEditCard({
@@ -38,19 +41,22 @@ export default function DrinkEditCard({
   imageSrc,
   drinkId,
   itemId,
+  categoryOptions,
 }: DrinkCardProps) {
   const [category, setCategory] = useState<string>(drinkCategory || "")
   const [isOpen, setIsOpen] = useState(false);
-  const categoryOptions = [
-    { id: "1", label: "Milk Teas" },
-    { id: "2", label: "Brewed Tea" },
-    { id: "3", label: "Fruit Tea" },
-    { id: "4", label: "Fresh Milk" },
-    { id: "5", label: "Ice Blended" },
-    { id: "6", label: "Tea Mojito" },
-    { id: "7", label: "Creama" },
-  ];
-  const toppings = [
+
+  /*const categoryOptions = [
+    "Milk Teas",
+    "Brewed Tea",
+    "Fruit Tea",
+    "Fresh Milk",
+    "Ice Blended",
+    "Tea Mojito",
+    "Creama",
+  ];*/
+
+  const toppings = [ //putting seasonal selection in toppings area from normal drink card
     "January",
     "Febuary",
     "March",
@@ -120,11 +126,9 @@ export default function DrinkEditCard({
                     <SelectValue placeholder="Milk Tea" />
                   </SelectTrigger>
                   <SelectContent>
-                    {categoryOptions.map((option) => (
-                      <SelectItem key={option.id} value={option.label}>
-                        <span>
-                          {option.label}
-                        </span>
+                    {categoryOptions.map((option, idx) => (
+                      <SelectItem key={idx} value={option.drink_category_name}>
+                        {option.drink_category_name}
                       </SelectItem>
                     ))}
                   </SelectContent>

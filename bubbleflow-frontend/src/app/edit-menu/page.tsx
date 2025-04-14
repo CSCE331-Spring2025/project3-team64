@@ -5,7 +5,7 @@ import CategoryEditCard from "@/components/categoryEditCard";
 import { RiSearchLine, RiAddLine} from "react-icons/ri";
 import DrinkEditCard from "@/components/drinkEditCard";
 import MenuCategory from "@/components/menuCategory";
-import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
+import { useDrinks, useDrinkCategories } from "@/app/hooks/useDrinks";
 import {
   Dialog,
   DialogContent,
@@ -42,7 +42,7 @@ export default function EditMenu() {
     error: categoriesError,
     fetchDrinkCategories,
   } = useDrinkCategories();
-  const categoryOptions = [
+  const categoryOptions = [ //should use categories instead of this
     "Milk Teas",
     "Brewed Tea",
     "Fruit Tea",
@@ -273,6 +273,7 @@ export default function EditMenu() {
             }
             drinkId={drink?.drink_id}
             itemId={Date.now()}
+            categoryOptions={categories}
           />
         ))}
       </div>

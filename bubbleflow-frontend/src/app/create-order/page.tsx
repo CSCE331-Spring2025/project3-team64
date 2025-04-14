@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import MenuCategory from "@/components/menuCategory";
 import { RiSearchLine } from "react-icons/ri";
 import DrinkCard from "@/components/drinkCard";
-import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
+import { useDrinks, useDrinkCategories } from "@/app/hooks/useDrinks";
 
 export default function CreateOrder() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
