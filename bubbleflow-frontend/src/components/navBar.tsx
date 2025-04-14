@@ -20,7 +20,7 @@ export default function NavBar() {
   const showManagerLinks =
     pathname == "/manage-employees" ||
     pathname == "/edit-menu" ||
-    pathname == "/reports";
+    pathname == "/reports" || pathname == "/view-inventory" || pathname == "/order-history";
   return (
     <div className="flex items-center justify-between px-16 py-4">
       <div className="flex items-center gap-6">
