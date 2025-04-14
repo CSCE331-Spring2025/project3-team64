@@ -1,17 +1,37 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import React from "react";
 import { GoogleTranslate } from "@/components/GoogleTranslate";
 import UserInfoButton from "@/components/userInfoButton";
-
+const managerRoutes: { title: string; href: string; description: string }[] = [
+  {
+    title: "View Order History",
+    href: "/order-history",
+    description: "View past orders and track order performance.",
+  },
+  {
+    title: "View Inventory",
+    href: "/view-inventory",
+    description: "Check current inventory levels and update stock information.",
+  },
+  {
+    title: "View Reports",
+    href: "/reports",
+    description: "Access detailed sales and performance reports.",
+  },
+];
 export default function NavBar() {
   //const prefLangCookie = getPrefLangCookie();
   const pathname = usePathname();
@@ -20,7 +40,9 @@ export default function NavBar() {
   const showManagerLinks =
     pathname == "/manage-employees" ||
     pathname == "/edit-menu" ||
-    pathname == "/reports" || pathname == "/view-inventory" || pathname == "/order-history";
+    pathname == "/reports" ||
+    pathname == "/view-inventory" ||
+    pathname == "/order-history";
   return (
     <div className="flex items-center justify-between px-16 py-4">
       <div className="flex items-center gap-6">
@@ -65,18 +87,27 @@ export default function NavBar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/reports" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    View Reports
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
                 <Link href="/manage-employees" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Manage Employees
                   </NavigationMenuLink>
                 </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Analytics</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-2 w-fit min-w-max">
+                    {managerRoutes.map((route) => (
+                      <ListItem
+                        key={route.title}
+                        title={route.title}
+                        href={route.href}
+                      >
+                        {route.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -96,9 +127,35 @@ export default function NavBar() {
         )}
         <UserInfoButton />
         <div className=" hidden">
-        <GoogleTranslate/>
+          <GoogleTranslate />
         </div>
       </div>
     </div>
   );
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";
