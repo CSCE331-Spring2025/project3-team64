@@ -42,7 +42,7 @@ export default function EditMenu() {
     error: categoriesError,
     fetchDrinkCategories,
   } = useDrinkCategories();
-  const categoryOptions = [ //should use categories instead of this
+  /*const categoryOptions = [ //Hard-coded values phased out
     "Milk Teas",
     "Brewed Tea",
     "Fruit Tea",
@@ -50,7 +50,7 @@ export default function EditMenu() {
     "Ice Blended",
     "Tea Mojito",
     "Creama",
-  ];
+  ];*/
   const toppings = [
     "January",
     "Febuary",
@@ -220,10 +220,10 @@ export default function EditMenu() {
                       <SelectValue placeholder="Milk Tea" />
                     </SelectTrigger>
                     <SelectContent>
-                      {categoryOptions.map((option, idx) => (
-                        <SelectItem key={idx} value={option}>
+                      {categories.map((option, idx) => (
+                        <SelectItem key={idx} value={option.drink_category_name}>
                           <span>
-                            {option}
+                            {option.drink_category_name}
                           </span>
                         </SelectItem>
                       ))}
