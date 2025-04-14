@@ -36,7 +36,7 @@ public class ReportService {
         report.setEndReportDate(endtime);
 
         List<Object[]> drinks = reportRepo.getTopSellingDrinks(starttime, endtime);
-        List<Object[]> extras = reportRepo.getTopSellingExtras(starttime, endtime);
+        // List<Object[]> extras = reportRepo.getTopSellingExtras(starttime, endtime);
 
         List<Report.ItemSales> itemSales = new ArrayList<>();
 
@@ -50,15 +50,15 @@ public class ReportService {
             itemSales.add(item);   
         }
 
-        for (Object[] row : extras) {
-            Report.ItemSales item = new Report.ItemSales();
-            item.setItemName((String) row[0]);
-            item.setQuantitySold(((Number) row[1]).intValue());
-            item.setTotalSales(((Number) row[2]).doubleValue());
-            item.setCategory((String) row[3]);
-            item.setType("Extras");
-            itemSales.add(item);   
-        }
+        // for (Object[] row : extras) {
+        //     Report.ItemSales item = new Report.ItemSales();
+        //     item.setItemName((String) row[0]);
+        //     item.setQuantitySold(((Number) row[1]).intValue());
+        //     item.setTotalSales(((Number) row[2]).doubleValue());
+        //     item.setCategory((String) row[3]);
+        //     item.setType("Extras");
+        //     itemSales.add(item);   
+        // }
 
         report.setItemSales(itemSales);
         return report;
