@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { OrderSubmission } from '../service/types';
 import { useOrders } from "../hooks/useOrders";
+import { useSession } from "next-auth/react";
 
 
 
@@ -34,6 +35,7 @@ export default function ViewOrder() {
   
   const [orders, setOrders] = useState<Order[]>([]);
   const [orderPrice, setOrderPrice] = useState(0);
+  const { data: session } = useSession();
 
   const {
     submitOrder,
@@ -49,29 +51,32 @@ export default function ViewOrder() {
     setOrderPrice(storedPrice);
   }, []);
 
-    /// Function to handle order submission (is a button click handler for the submit order button)
-    function submitOrderHook() {
-      const orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
-      const orderPrice = parseFloat(localStorage.getItem("orderprice") || "0");
-      
-      const orderSubmission = {
-        totalPrice: orderPrice,
-        customerName: "John Doe", // Adding the customer name field
-        employeeId: 1, // Self-service kiosk
-        paymentMethod: "Credit Card",
-        drinks: orderItems.map((item: any) => ({
-          drink_id: item.drinkId,
-          toppings: item.toppingIds,
-        })),
-      };
-      
-      console.log("Order Submission Object:", orderSubmission);
-      //Clear the ordered items from local storage
-      localStorage.setItem("orderItems", "[]");
-      localStorage.setItem("orderprice", "0");
-      submitOrder(orderSubmission);
+  /// Function to handle order submission (is a button click handler for the submit order button)
+  function submitOrderHook() {
+    const orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
+    const orderPrice = parseFloat(localStorage.getItem("orderprice") || "0");
+    const customer = session?.user;
+    const customerName = customer?.name || "Guest"; // Fallback to "Guest" if no name is available
+    const customerEmail = customer?.email || "guest@example.com"; // Fallback to a default email if not available
 
-    }
+    const orderSubmission = {
+      totalPrice: orderPrice,
+      customerName: customerName, // Adding the customer name field
+      customerEmail: customerEmail, // Adding the customer email field
+      employeeId: 1, // ID for self-service kiosk
+      paymentMethod: "Credit Card",
+      drinks: orderItems.map((item: any) => ({
+        drink_id: item.drinkId,
+        toppings: item.toppingIds,
+      })),
+    };
+
+    console.log("Order Submission Object:", orderSubmission);
+    //Clear the ordered items from local storage
+    localStorage.setItem("orderItems", "[]");
+    localStorage.setItem("orderprice", "0");
+    submitOrder(orderSubmission);
+  }
 
 
   const tax = orderPrice * 0.1;
