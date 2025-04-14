@@ -18,66 +18,67 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 export default function ManageEmployees() {
   const employees = [
     {
-      id: "123456789",
+      id: "1",
       name: "Sophia Phu",
       email: "sophiatiffphu@gmail.com",
       phone: "(832) 886 7189",
       role: "Employee",
     },
     {
-      id: "987654321",
+      id: "2",
       name: "Ur Mom",
       email: "urmomsigma69@ligma.com",
       phone: "(555) 123 4567",
       role: "Manager",
     },
     {
-      id: "987654321",
+      id: "3",
       name: "Ur Mom",
       email: "urmomsigma69@ligma.com",
       phone: "(555) 123 4567",
       role: "Manager",
     },
     {
-      id: "987654321",
+      id: "4",
       name: "Ur Mom",
       email: "urmomsigma69@ligma.com",
       phone: "(555) 123 4567",
       role: "Manager",
     },
     {
-      id: "987654321",
+      id: "5",
       name: "Ur Mom",
       email: "urmomsigma69@ligma.com",
       phone: "(555) 123 4567",
       role: "Manager",
     },
     {
-      id: "987654321",
+      id: "6",
       name: "Ur Mom",
       email: "urmomsigma69@ligma.com",
       phone: "(555) 123 4567",
       role: "Manager",
     },
     {
-      id: "987654321",
+      id: "7",
       name: "Ur Mom",
       email: "urmomsigma69@ligma.com",
       phone: "(555) 123 4567",
       role: "Manager",
     },
     {
-      id: "987654321",
+      id: "8",
       name: "Ur Mom",
       email: "urmomsigma69@ligma.com",
       phone: "(555) 123 4567",
       role: "Manager",
     },
     {
-      id: "987654321",
+      id: "9",
       name: "Ur Mom",
       email: "urmomsigma69@ligma.com",
       phone: "(555) 123 4567",
@@ -85,6 +86,7 @@ export default function ManageEmployees() {
     },
   ];
   const categoryOptions = ["Employee", "Manager"];
+  const [position, setPosition] = useState("Employee");
   return (
     <main className="flex flex-col px-16 pb-4 ">
       <div className="flex items-center justify-between -mt-4">
@@ -124,14 +126,16 @@ export default function ManageEmployees() {
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Position</Label>
-                  <Select>
+                  <Select value={position} onValueChange={setPosition}>
                     <SelectTrigger className=" w-full">
-                      <SelectValue placeholder="Select a Position" />
+                      <SelectValue placeholder="Employee" />
                     </SelectTrigger>
                     <SelectContent>
                       {categoryOptions.map((option, idx) => (
                         <SelectItem key={idx} value={option}>
-                          {option}
+                          <span>
+                            {option}
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>

@@ -7,7 +7,14 @@ export default function ViewInventory() {
   return (
     <main className="flex flex-col px-16">
       <div className="">
-        <p className=" ">Sigma Sigma Sigma (view inventory is a work in progress)</p>
+        <div>
+          <p className=" text-xl font-semibold">Ingredient Inventory</p>
+        </div>
+        <div>
+          <div>
+            <p className=" font-semibold text-[#6F403A]">Classic Pearl Milk Tea Base</p>
+          </div>
+        </div>
       </div>
     </main>
   );

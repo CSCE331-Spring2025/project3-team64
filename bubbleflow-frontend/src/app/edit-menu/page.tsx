@@ -221,7 +221,9 @@ export default function EditMenu() {
                     <SelectContent>
                       {categoryOptions.map((option, idx) => (
                         <SelectItem key={idx} value={option}>
-                          {option}
+                          <span>
+                            {option}
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>

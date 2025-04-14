@@ -41,13 +41,13 @@ export default function DrinkEditCard({
 }: DrinkCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const categoryOptions = [
-    "Milk Teas",
-    "Brewed Tea",
-    "Fruit Tea",
-    "Fresh Milk",
-    "Ice Blended",
-    "Tea Mojito",
-    "Creama",
+    { id: "1", label: "Milk Teas" },
+    { id: "2", label: "Brewed Tea" },
+    { id: "3", label: "Fruit Tea" },
+    { id: "4", label: "Fresh Milk" },
+    { id: "5", label: "Ice Blended" },
+    { id: "6", label: "Tea Mojito" },
+    { id: "7", label: "Creama" },
   ];
   const toppings = [
     "January",
@@ -119,9 +119,11 @@ export default function DrinkEditCard({
                     <SelectValue placeholder="Select a Category" />
                   </SelectTrigger>
                   <SelectContent>
-                    {categoryOptions.map((option, idx) => (
-                      <SelectItem key={idx} value={option}>
-                        {option}
+                    {categoryOptions.map((option) => (
+                      <SelectItem key={option.id} value={option.label}>
+                        <span>
+                          {option.label}
+                        </span>
                       </SelectItem>
                     ))}
                   </SelectContent>

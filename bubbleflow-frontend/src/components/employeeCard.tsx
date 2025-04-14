@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 interface EmployeeCardProps {
   id: string;
@@ -40,8 +41,11 @@ export default function EmployeeCard({
   function handleDelete(): void {
     console.log("Deleting employee with id:", id);
   }
-  const categoryOptions = ["Employee", "Manager"];
-
+  const categoryOptions = [
+    { id: "1", label: "Employee" },
+    { id: "2", label: "Manager" },
+  ];
+  const [position, setPosition] = useState(role);
   return (
     <div className="flex justify-between border p-4 border-[#6F403A] rounded-xl">
       <div>
@@ -75,26 +79,28 @@ export default function EmployeeCard({
               <div className="flex flex-col gap-8 py-4">
                 <div className="items-center gap-4">
                   <Label className="mb-2">Name</Label>
-                  <Input placeholder="Name" />
+                  <Input defaultValue={name}/>
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Email</Label>
-                  <Input placeholder="Email" />
+                  <Input defaultValue={email} />
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Phone Number</Label>
-                  <Input placeholder="Phone Number" />
+                  <Input defaultValue={phone} />
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Position</Label>
-                  <Select>
+                  <Select value={position} onValueChange={setPosition}>
                     <SelectTrigger className=" w-full">
-                      <SelectValue placeholder="Select a Position" />
+                    <SelectValue defaultValue={role} />
                     </SelectTrigger>
                     <SelectContent>
-                      {categoryOptions.map((option, idx) => (
-                        <SelectItem key={idx} value={option}>
-                          {option}
+                      {categoryOptions.map((option) => (
+                        <SelectItem key={option.id} value={option.label}>
+                          <span>
+                            {option.label}
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>
