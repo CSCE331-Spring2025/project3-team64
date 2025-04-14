@@ -1,0 +1,24 @@
+Meeting time: 4/14/2025, 3:15PM
+
+1) What exactly do we still need finished before finalizing sprint 2 on Wednesday.
+    -Sales report.
+    -Manager inventory view.
+    -Backend functionality for manager employees.
+    -Finish backend functionality for menu editing.
+    -Calculate order cost from back-end.
+    -Secure paths to ensure authentication.
+    -Only allow employees to get into manager view.
+    -Order history
+    
+
+2) Figure out who's doing what.
+    -Sophia working on UI design and coding for order history & inventory management.
+    -Abhisri & Cameron working on sales report
+    -Josh working on menu & employee management backend functionality, and calculating order cost from back-end
+    -Luke work on secure paths & authentication.
+
+3) Discuss future goals for Sprint 3.
+    -Accessibility stuff: Contrast mode
+    -Chat bot API
+    -Button size changing / another third accessibility feature.
+    -Employee order view
