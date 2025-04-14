@@ -142,7 +142,7 @@ export default function ZReport() {
           <div className="flex flex-col border border-[#6F403A] items-center text-center p-4 rounded-xl self-start">
             <p className="text-lg font-semibold">Report Generation Details</p>
             <div className="mt-2 flex flex-col">
-              <p className="font-semibold">{report.reportType}</p>
+              <p className="font-semibold">Z Report</p>
               <p className="font-semibold">Bubbleflow</p>
               <p className="text-sm">789 Rue de Fleurs</p>
               <p className="text-sm">55555 Belgueux, France</p>

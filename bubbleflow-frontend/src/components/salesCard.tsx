@@ -23,7 +23,7 @@ export default function SalesCard({ id, name, type, price, revenue }: SalesCardP
       </div>
       <div className="flex flex-col gap-1">
         <p className="font-semibold text-right">{revenue}</p>
-        <p className="text-sm text-gray-500 text-right">ID: {id}</p>
+        <p className="text-sm text-gray-500 text-right">Count: {id}</p>
       </div>
     </div>
   );
