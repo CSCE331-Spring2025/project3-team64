@@ -24,26 +24,27 @@ export default function XReport() {
     return format(selectedDate, "yyyy-MM-dd");
   };
   
-  // fetch report data from API
   const fetchReportData = async () => {
-    if (!selectedDate) return;
-    
+    if(!selectedDate) return;
+
     setIsLoading(true);
     setError(null);
-    
-    try {
-      // Call the API service
-      const data = await xReportService.getXReport();
-      
-      setReport(data)
-    } catch (error) {
-      console.error("Error fetching report:", error);
-      setError("Failed to load report data. Please try again.");
+
+    try{
+      const formattedDate = getFormattedDateForAPI();
+      const data = await xReportService.getXReportByDate(formattedDate);
+      setReport(data);
+
+    }
+    catch(error){
+      console.error("Error fetching report for that day:", error);
+      setError("Failed to load report data for that day. Please try again");
       setReport(null);
-    } finally {
+    }
+    finally{
       setIsLoading(false);
     }
-  };
+  }
   
   // Fetch report data when component mounts or date changes
   useEffect(() => {
@@ -93,7 +94,7 @@ export default function XReport() {
                 </div>
                 <div className="flex justify-between text-sm">
                   <p>Total Transactions</p>
-                  <p>${report.totalTransactions}</p>
+                  <p>{report.totalTransactions}</p>
                 </div>
               </div>
             </div>

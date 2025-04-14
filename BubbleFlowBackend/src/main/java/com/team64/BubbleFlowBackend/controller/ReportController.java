@@ -26,10 +26,4 @@ public class ReportController {
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return (reportService.generateXReportForDate(date));
     }
-
-    @GetMapping("/z-report/date/{date}")
-    public Report getZReportByDate(
-            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return reportService.generateZReportForDate(date);
-    }
 }
