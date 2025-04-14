@@ -2,7 +2,9 @@ package com.team64.BubbleFlowBackend.model;
 
 import jakarta.persistence.*;
 
+
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "extras_and_toppings")
@@ -21,6 +23,7 @@ public class Extra {
     private Double extra_price;
 
     @OneToMany(mappedBy = "extra")
+    @JsonIgnore
     private List<OrderExtra> order_items;
 
 
