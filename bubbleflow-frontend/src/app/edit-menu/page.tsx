@@ -27,6 +27,7 @@ import { Badge } from "@/components/ui/badge";
 export default function EditMenu() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [category, setCategory] = useState<string>("Milk Teas")
 
   const {
     drinks,
@@ -214,9 +215,9 @@ export default function EditMenu() {
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Item Category</Label>
-                  <Select>
+                  <Select value={category} onValueChange={setCategory}>
                     <SelectTrigger className=" w-full">
-                      <SelectValue placeholder="Select a Category" />
+                      <SelectValue placeholder="Milk Tea" />
                     </SelectTrigger>
                     <SelectContent>
                       {categoryOptions.map((option, idx) => (

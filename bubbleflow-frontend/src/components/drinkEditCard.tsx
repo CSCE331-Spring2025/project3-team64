@@ -39,6 +39,7 @@ export default function DrinkEditCard({
   drinkId,
   itemId,
 }: DrinkCardProps) {
+  const [category, setCategory] = useState<string>(drinkCategory)
   const [isOpen, setIsOpen] = useState(false);
   const categoryOptions = [
     { id: "1", label: "Milk Teas" },
@@ -114,9 +115,9 @@ export default function DrinkEditCard({
               </div>
               <div className="items-center gap-4">
                 <Label className="mb-2">Item Category</Label>
-                <Select>
+                <Select value={category} onValueChange={setCategory}>
                   <SelectTrigger className=" w-full">
-                    <SelectValue placeholder="Select a Category" />
+                    <SelectValue placeholder="Milk Tea" />
                   </SelectTrigger>
                   <SelectContent>
                     {categoryOptions.map((option) => (
