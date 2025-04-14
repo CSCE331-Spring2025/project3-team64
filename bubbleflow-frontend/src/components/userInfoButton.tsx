@@ -103,7 +103,7 @@ export default function UserInfoButton() {
                 <Input placeholder="None" />
               </div>
             </div>
-            <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]">
+            <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]" onClick={() => window.location.reload()}>
               Apply Settings
             </Button>
           </DialogContent>

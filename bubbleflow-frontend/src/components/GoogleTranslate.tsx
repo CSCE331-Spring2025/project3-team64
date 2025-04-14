@@ -76,7 +76,7 @@ export function GoogleTranslate() {
     const cookieVal = `/auto/${value}`;
     document.cookie = `googtrans=${cookieVal}; path=/`;
     setLangCookie(cookieVal);
-    window.location.reload(); // force translation to re-run
+    //window.location.reload(); // force translation to re-run
   };
 
   React.useEffect(() => {
