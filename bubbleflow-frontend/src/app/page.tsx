@@ -21,19 +21,19 @@ const router = useRouter();
 
   return (
     <main className="flex flex-col items-center  px-16">
-      <div className="w-96 mt-16">
+      <div className="mt-16 flex flex-col items-center">
         <p className=" text-3xl font-bold mb-8 text-center">Login to Your Account</p>
-        <div className=" flex flex-col gap-4">
+        <div className=" flex flex-col gap-4 w-96">
           <div>
-            <Label className=" mb-2">User ID</Label>
-            <Input placeholder="User ID" />
+            <Label className=" mb-2">Email</Label>
+            <Input placeholder="Email" />
           </div>
           <div>
             <Label className=" mb-2">Password</Label>
             <Input placeholder="Password" />
           </div>
         </div>
-        <div className=" mt-8 flex gap-6">
+        <div className=" mt-8 flex gap-6 w-96">
           <Button className=" bg-[#6F403A] flex-1 hover:bg-[#4E2D26]" onClick={handleLogin}>Login</Button>
           <Button className=" bg-[#6F403A] flex-1 hover:bg-[#4E2D26]" onClick={handleGoogleLogin}>Login with Google</Button>
         </div>
