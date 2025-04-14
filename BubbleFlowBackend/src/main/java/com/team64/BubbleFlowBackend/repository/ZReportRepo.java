@@ -79,7 +79,7 @@ class ReportRepoImp implements ZReportRepo {
             select 
                 dicn.Drink_Category_NAME as Category,  
                 count(dicn.Drink_Category_NAME) as Quantity,
-                sum(oip.Drink_Price) as Sales 
+                ROUND(CAST(sum(oip.Drink_Price) as numeric), 2) as Sales 
             from order_id_price oip 
             join drink_id_cat_nam dicn 
                 on oip.Drink_ID = dicn.Drink_ID 
