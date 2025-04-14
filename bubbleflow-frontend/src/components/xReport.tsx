@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { DatePicker } from "./datePicker";
 import { format } from "date-fns";
-import { xReportService } from "@/app/service/reportService";
+import { reportService } from "@/app/service/reportService";
 import { Report } from "@/app/service/types";
 
 export default function XReport() {
@@ -32,7 +32,7 @@ export default function XReport() {
 
     try{
       const formattedDate = getFormattedDateForAPI();
-      const data = await xReportService.getXReportByDate(formattedDate);
+      const data = await reportService.getXReportByDate(formattedDate);
       setReport(data);
 
     }
@@ -108,7 +108,7 @@ export default function XReport() {
               </div>
               <hr className="border-t-2 border-[#6F403A] my-2" />
               <div className="grid gap-1 max-h-64 overflow-y-auto">
-                {report.hourlySales.map((hourData, idx) => (
+                {report.hourlySales?.map((hourData, idx) => (
                   <div
                     key={idx}
                     className="grid grid-cols-[1fr_auto_auto] gap-6 text-sm"

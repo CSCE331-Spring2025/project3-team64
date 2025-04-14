@@ -34,17 +34,39 @@ export interface OrderSubmission {
     }>;
 }
 
-export interface HourlySale{
+export interface Report {
+    reportType: string;
+    generatedAt: string;
+    reportDate: string;
+    
+    // fields for X Report
+    hourlySales?: HourlySale[];
+    totalSales?: number;
+    totalTransactions?: number;
+    
+    // fields for Z Report
+    gross_SALES?: string;
+    tax?: string;
+    total_NET_SALES?: string;
+    salesCategories?: SalesCategory[];
+    sales_CATEGORY_TOTAL?: string;
+    paymentMethods?: PaymentMethod[];
+    total_PAYMENTS?: string;
+}
+
+export interface HourlySale {
     hour: number;
     transactionCount: number;
     totalSales: number;
 }
 
-export interface Report{
-    reportType: string;
-    generatedAt: string;
-    reportDate: string;
-    hourlySales: HourlySale[];
-    totalSales: number;
-    totalTransactions: number;
+export interface SalesCategory {
+    category: string;
+    quantity: number;
+    sales: number;
+}
+
+export interface PaymentMethod {
+    paymentMethod: string;
+    amount: number;
 }
