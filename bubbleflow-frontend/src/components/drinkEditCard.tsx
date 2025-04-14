@@ -128,7 +128,9 @@ export default function DrinkEditCard({
                   <SelectContent>
                     {categoryOptions.map((option, idx) => (
                       <SelectItem key={idx} value={option.drink_category_name}>
-                        {option.drink_category_name}
+                        <span>
+                          {option.drink_category_name}
+                        </span>
                       </SelectItem>
                     ))}
                   </SelectContent>
