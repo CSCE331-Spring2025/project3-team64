@@ -115,7 +115,7 @@ export default function XReport() {
                   >
                     <p>{formatHour(hourData.hour)}</p>
                     <p>{hourData.transactionCount}</p>
-                    <p>{hourData.totalSales}</p>
+                    <p>${hourData.totalSales}</p>
                   </div>
                 ))}
               </div>
