@@ -39,7 +39,7 @@ export default function DrinkEditCard({
   drinkId,
   itemId,
 }: DrinkCardProps) {
-  const [category, setCategory] = useState<string>(drinkCategory)
+  const [category, setCategory] = useState<string>(drinkCategory || "")
   const [isOpen, setIsOpen] = useState(false);
   const categoryOptions = [
     { id: "1", label: "Milk Teas" },
