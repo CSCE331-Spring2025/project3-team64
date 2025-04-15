@@ -89,11 +89,13 @@ export default function XReport() {
 
             <div>
               <p className="text-lg font-semibold">Hourly Sales</p>
-              <hr className="border-t-2 border-[#6F403A] my-2" />
               <div className="grid grid-cols-[1fr_auto_auto] gap-x-8 text-sm">
                 <div className="font-semibold pb-1">Time</div>
                 <div className="font-semibold pb-1">Transactions</div>
                 <div className="font-semibold pb-1 text-right">Sales</div>
+                <div className="col-span-3">
+                  <hr className="border-t-2 border-[#6F403A]" />
+                </div>
                 {report.hourlySales?.map((hourData, idx) => (
                   <React.Fragment key={idx}>
                     <div className="pt-1">{formatHour(hourData.hour)}</div>

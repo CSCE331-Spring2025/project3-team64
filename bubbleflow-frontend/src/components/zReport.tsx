@@ -45,11 +45,6 @@ export default function ZReport() {
       <div>
         <div className="flex items-center gap-2">
           <p className="text-lg font-semibold">Z Report</p>
-          {isLoading && (
-            <div className="ml-2 text-sm text-gray-500">
-              Loading...
-            </div>
-          )}
         </div>
         {error && (
           <div className="mt-2 text-red-500 text-sm">
@@ -57,7 +52,11 @@ export default function ZReport() {
           </div>
         )}
       </div>
-      
+      {isLoading && (
+        <div className="mt-4 text-gray-500">
+          Loading...
+        </div>
+      )}
       {report && !isLoading ? (
         <div className="flex gap-4 mt-4 flex-wrap">
           <div className="w-full max-w-[450px] border border-[#6F403A] p-4 rounded-xl flex flex-col gap-4">
@@ -82,14 +81,13 @@ export default function ZReport() {
             
             <div>
               <p className="text-lg font-semibold">Sales by Category</p>
-
-              <div className="grid grid-cols-[1fr_auto_auto] gap-8 text-sm">
-                <p>Category</p>
-                <p>Quantity</p>
-                <p>Sales</p>
-              </div>
-
-              <hr className="border-t-2 border-[#6F403A] my-2" />
+              <div className="grid grid-cols-[1fr_auto_auto] gap-x-8 text-sm">
+                <p className="font-semibold pb-1">Category</p>
+                <p className="font-semibold pb-1">Quantity</p>
+                <p className="font-semibold pb-1 text-right">Sales</p>
+                <div className="col-span-3">
+                  <hr className="border-t-2 border-[#6F403A]" />
+                </div>
               <div className="grid gap-1 max-h-64 overflow-y-auto">
                 {report.salesCategories && report.salesCategories.map((category, idx) => (
                   <div
@@ -101,6 +99,7 @@ export default function ZReport() {
                     <p>${category.sales}</p>
                   </div>
                 ))}
+              </div>
               </div>
               <hr className="border-t border-[#6F403A] my-2" />
               <div className="flex justify-between font-semibold">
