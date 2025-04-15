@@ -1,65 +1,107 @@
 "use client";
 import SalesCard from "./salesCard";
+import { Badge } from "./ui/badge";
 import { DatePicker } from "./datePicker";
-interface Sales {
-  id: number;
-  name: string;
-  type: string;
-  price: string;
-  revenue: string;
-}
+import { useState } from "react";
+import { reportService } from "@/app/service/reportService";
+import { Report } from "@/app/service/types";
+import { format } from "date-fns";
+
 export default function SalesReport() {
-  const sales: Sales[] = [
-    {
-      id: 1,
-      name: "Classic Pearl Milk Tea",
-      type: "Milk Tea",
-      price: "$5.99",
-      revenue: "$25023",
-    },
-    {
-      id: 2,
-      name: "Taro Milk Tea",
-      type: "Milk Tea",
-      price: "$6.49",
-      revenue: "$21045",
-    },
-    {
-      id: 3,
-      name: "Matcha Latte",
-      type: "Latte",
-      price: "$4.99",
-      revenue: "$18976",
-    },
-  ];
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | undefined>(
+    new Date()
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | undefined>(
+    new Date()
+  );
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [report, setReport] = useState<Report | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // format date for API when needed
+  const getFormattedDatesForAPI = () => {
+    if(!selectedStartDate || !selectedEndDate) return { 
+      startDate: "", 
+      endDate: "" 
+    };
+    
+    return{
+      startDate: format(selectedStartDate, "yyyy-MM-dd"), 
+      endDate: format(selectedEndDate, "yyyy-MM-dd")
+    };
+  };
+
+  const fetchSalesData = async () => {
+    setIsLoading(true);
+    setError(null);
+  
+    try {
+      const formattedDates = getFormattedDatesForAPI();
+      
+      if(!formattedDates.startDate || !formattedDates.endDate){
+        setError("Please select both start and end dates");
+        setIsLoading(false);
+        return;
+      }
+      
+      const data = await reportService.getSalesReport(formattedDates.startDate, formattedDates.endDate);
+      setReport(data);
+    } 
+    catch(error) {
+      console.error("Error fetching report:", error);
+      setError("Failed to load report data. Please try again");
+      setReport(null);
+    } 
+    finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <main className="flex flex-col px-2 gap-4 mt-4">
-      <div className="flex gap-4">
-        <div className=" flex gap-2 items-center">
-          <p>
-            From
-          </p>
-          <DatePicker/>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex gap-2 items-center">
+          <p>From</p>
+          <DatePicker value={selectedStartDate} onChange={setSelectedStartDate}/>
         </div>
-        <div className=" flex gap-2 items-center">
-          <p>
-            To
-          </p>
-          <DatePicker/>
+        <div className="flex gap-2 items-center">
+          <p>To</p>
+          <DatePicker value={selectedEndDate} onChange={setSelectedEndDate}/>
         </div>
+        <button 
+          onClick={fetchSalesData}
+          disabled={isLoading}
+          className="px-4 py-2 bg-green-200 text-white rounded-md hover:bg-gray-700 disabled:bg-gray-300"
+        >
+          {isLoading ? "Loading..." : "Generate Report"}
+        </button>
       </div>
-      <div className=" grid grid-cols-2 gap-2 w-full">
-        {sales.map((sale) => (
-          <SalesCard
-            key={sale.id}
-            id={sale.id}
-            name={sale.name}
-            type={sale.type}
-            price={sale.price}
-            revenue={sale.revenue}
-          />
-        ))}
-      </div>
+      
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+          {error}
+        </div>
+      )}
+      
+      {report && report.itemSales && report.itemSales.length > 0 ? (
+        <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {report.itemSales.map((item) => (
+              <SalesCard
+                key={item.itemName}
+                id={item.quantitySold}
+                name={item.itemName}
+                type={item.type}
+                price={`${item.totalSales.toFixed(2)}`}
+                revenue={`${item.quantitySold}`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : report ? (
+        <div className="text-center py-8">No sales data available for the selected period</div>
+      ) : null}
     </main>
   );
 }

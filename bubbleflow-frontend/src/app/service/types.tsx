@@ -38,6 +38,11 @@ export interface Report {
     reportType: string;
     generatedAt: string;
     reportDate: string;
+
+    // fields for sales report
+    itemSales?: ItemSale[];
+    startReportDate: string;
+    endReportDate: string;
     
     // fields for X Report
     hourlySales?: HourlySale[];
@@ -70,3 +75,13 @@ export interface PaymentMethod {
     paymentMethod: string;
     amount: number;
 }
+
+export interface ItemSale {
+    itemName: string;
+    quantitySold: number;
+    totalSales: number;
+    category: string;
+    type: string;
+}
+
+

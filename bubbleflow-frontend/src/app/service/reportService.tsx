@@ -14,5 +14,9 @@ export const reportService = {
 
     getZReport: () => {
         return api.get<Report>('/reports/z-report').then(res => res.data);
+    },
+
+    getSalesReport: (startDate: string, endDate: string) => {
+        return api.get<Report>(`/reports/sales-report/date/${startDate}/${endDate}`).then(res => res.data);
     }
 }
