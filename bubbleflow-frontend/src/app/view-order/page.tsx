@@ -85,23 +85,29 @@ export default function ViewOrder() {
   return (
     <main className="flex px-16 gap-2 items-start pb-4">
       <div className="w-2/3 flex flex-col gap-2">
-        {orders.map((order, index) => (
-          <OrderCard
-            key={index}
-            drinkName={order.drinkName}
-            drinkCategory={order.drinkCategory} 
-            iceLevel={order.iceLevel}
-            sugarLevel={order.sugarLevel}
-            toppings={order.toppings}
-            toppingIds={order.toppingIds}
-            drinkPrice={order.drinkPrice}
-            topPrice={order.topPrice}
-            totalPrice={order.totalPrice}
-            imageSrc={order.imageSrc}
-            drinkId={order.drinkId}
-            itemId={order.itemId}
-          />
-        ))}
+      {orders.length > 0 ? (
+          orders.map((order, index) => (
+            <OrderCard
+              key={index}
+              drinkName={order.drinkName}
+              drinkCategory={order.drinkCategory} 
+              iceLevel={order.iceLevel}
+              sugarLevel={order.sugarLevel}
+              toppings={order.toppings}
+              toppingIds={order.toppingIds}
+              drinkPrice={order.drinkPrice}
+              topPrice={order.topPrice}
+              totalPrice={order.totalPrice}
+              imageSrc={order.imageSrc}
+              drinkId={order.drinkId}
+              itemId={order.itemId}
+            />
+          ))
+        ) : (
+          <p className="text-gray-500">
+            There are no items in the cart. Please go order some drinks. 
+          </p>
+        )}
       </div>
       <div className="border border-[#6F403A] p-2 px-4 w-1/3 rounded-xl">
         <div className="flex justify-between">

@@ -46,7 +46,7 @@ export default function NavBar() {
   return (
     <div className="flex items-center justify-between px-16 py-4">
       <div className="flex items-center gap-6">
-        <Link href="/create-order">
+        <Link href="/select-role">
           <Image
             src="/bubbleflow-logo.png"
             alt="BubbleFlow Logo"
