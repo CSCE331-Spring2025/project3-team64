@@ -14,11 +14,11 @@ export default function SalesCard({ id, name, type, price, revenue }: SalesCardP
     <div className="flex border border-[#6F403A] p-4 rounded-xl w-full justify-between">
       <div className="flex flex-col gap-1">
         <p className="font-semibold">{name}</p>
-        <div className="flex gap-6">
+        <div className="flex gap-4">
           <Badge className="bg-[#ead2a2] text-[#6F403A] font-normal px-3 rounded-3xl">
             {type}
           </Badge>
-          <p className="text-sm text-gray-500">{price}</p>
+          <p className="text-sm text-gray-500">${price}</p>
         </div>
       </div>
       <div className="flex flex-col gap-1">

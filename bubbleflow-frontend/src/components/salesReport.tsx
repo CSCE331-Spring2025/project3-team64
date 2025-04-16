@@ -90,7 +90,7 @@ export default function SalesReport() {
       
       {report && report.itemSales && report.itemSales.length > 0 ? (
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {report.itemSales.map((item) => (
               <SalesCard
                 key={item.itemName}
