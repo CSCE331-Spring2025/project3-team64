@@ -2,7 +2,7 @@
 import SalesCard from "./salesCard";
 import { Badge } from "./ui/badge";
 import { DatePicker } from "./datePicker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { reportService } from "@/app/service/reportService";
 import { Report } from "@/app/service/types";
 import { format } from "date-fns";
@@ -21,13 +21,13 @@ export default function SalesReport() {
 
   // format date for API when needed
   const getFormattedDatesForAPI = () => {
-    if(!selectedStartDate || !selectedEndDate) return { 
-      startDate: "", 
-      endDate: "" 
+    if(!selectedStartDate || !selectedEndDate) return {
+      startDate: "",
+      endDate: ""
     };
     
     return{
-      startDate: format(selectedStartDate, "yyyy-MM-dd"), 
+      startDate: format(selectedStartDate, "yyyy-MM-dd"),
       endDate: format(selectedEndDate, "yyyy-MM-dd")
     };
   };
@@ -35,7 +35,7 @@ export default function SalesReport() {
   const fetchSalesData = async () => {
     setIsLoading(true);
     setError(null);
-  
+    
     try {
       const formattedDates = getFormattedDatesForAPI();
       
@@ -58,6 +58,14 @@ export default function SalesReport() {
     }
   };
 
+
+  // run fetchSalesData whenever dates change
+  useEffect(() => {
+    if (selectedStartDate && selectedEndDate) {
+      fetchSalesData();
+    }
+  }, [selectedStartDate, selectedEndDate]);
+
   return (
     <main className="flex flex-col px-2 gap-4 mt-4">
       <div className="flex flex-col sm:flex-row gap-4">
@@ -69,13 +77,9 @@ export default function SalesReport() {
           <p>To</p>
           <DatePicker value={selectedEndDate} onChange={setSelectedEndDate}/>
         </div>
-        <button 
-          onClick={fetchSalesData}
-          disabled={isLoading}
-          className="px-4 py-2 bg-green-200 text-white rounded-md hover:bg-gray-700 disabled:bg-gray-300"
-        >
-          {isLoading ? "Loading..." : "Generate Report"}
-        </button>
+        {isLoading && (
+          <span className="text-gray-500 flex items-center">Loading report...</span>
+        )}
       </div>
       
       {error && (
@@ -94,7 +98,7 @@ export default function SalesReport() {
                 name={item.itemName}
                 type={item.type}
                 price={`${item.totalSales.toFixed(2)}`}
-                revenue={`${item.quantitySold}`}
+                revenue={`$${item.totalSales}`}
               />
             ))}
           </div>
