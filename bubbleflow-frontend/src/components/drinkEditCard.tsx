@@ -45,6 +45,8 @@ export default function DrinkEditCard({
   categoryOptions,
 }: DrinkCardProps) {
   const [category, setCategory] = useState<string>(drinkCategory || "")
+  const [drink_price_input, setPrice] = useState<number>(drinkPrice);
+  const [drink_name_input, setName] = useState<string>(drinkName);
   const [isOpen, setIsOpen] = useState(false);
   
   const { deleteDrink } = useDeleteDrink();
@@ -69,12 +71,26 @@ export default function DrinkEditCard({
     const drink: Drink = {
       drink_id: drinkId,
       drink_category: { drink_category_id: 0, drink_category_name: category },
-      drink_name: drinkName,
-      drink_price: drinkPrice,
+      drink_name: drink_name_input,
+      drink_price: drink_price_input,
       active_months: null,
     };
     await updateDrink(drink);
     setIsOpen(false);
+  };
+
+  //handle updating item price
+  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newPrice = parseFloat(event.target.value);
+    if (!isNaN(newPrice)) {
+      setPrice(newPrice);
+    }
+  };
+
+  //handle updating item name
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newName = event.target.value;
+    setName(newName);
   };
 
   const toppings = [ //putting seasonal selection in toppings area from normal drink card
@@ -138,7 +154,7 @@ export default function DrinkEditCard({
             <div className="flex flex-col gap-8 py-4">
               <div className="items-center gap-4">
                 <Label className="mb-2">Item Name</Label>
-                <Input placeholder="Item Name" />
+                <Input placeholder="Item Name" defaultValue={drinkName} onChange={handleNameChange} />
               </div>
               <div className="items-center gap-4">
                 <Label className="mb-2">Item Category</Label>
@@ -159,7 +175,7 @@ export default function DrinkEditCard({
               </div>
               <div className="items-center gap-4">
                 <Label className="mb-2">Price</Label>
-                <Input placeholder="Price" />
+                <Input type="number" placeholder="Price" defaultValue={drinkPrice} onChange={handlePriceChange} />
               </div>
               <div>
                 <Label className="mb-2">Seasonal Range</Label>
@@ -176,7 +192,7 @@ export default function DrinkEditCard({
                 </div>
               </div>
             </div>
-            <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]">
+            <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]" onClick={() => handleUpdate()}>
               Edit Menu Item
             </Button>
           </DialogContent>
@@ -207,7 +223,7 @@ export default function DrinkEditCard({
   );
 }
 
-// Separate component for the dialog contents
+// Separate component for the dialog contents (NOT USED IN THIS PAGE)
 function DrinkCustomizationDialog({
   drinkName,
   drinkCategory,

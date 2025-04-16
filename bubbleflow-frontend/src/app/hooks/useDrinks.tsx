@@ -116,7 +116,7 @@ export const useDeleteDrink = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const deleteDrink = useCallback(async (drink: Drink) => {
+    const deleteDrink = async (drink: Drink) => {
         setLoading(true);
         setError(null);
         try {
@@ -130,7 +130,7 @@ export const useDeleteDrink = () => {
         finally {
             setLoading(false);
         }
-    }, []);
+    };
 
     return {
         loading,

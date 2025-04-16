@@ -1,6 +1,7 @@
 package com.team64.BubbleFlowBackend.service;
 
 import com.team64.BubbleFlowBackend.model.Drink;
+import com.team64.BubbleFlowBackend.model.DrinkRaw;
 import com.team64.BubbleFlowBackend.repository.DrinkRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,13 +37,16 @@ public class DrinkService {
 
 
     //Update a drink
-    public void updateDrink(Drink drink) {
+    public void updateDrink(DrinkRaw drink) {
         Drink existingDrink = drinkRepo.findById(drink.getDrink_id()).orElse(null);
         if (existingDrink != null) {
+            System.out.println("Updating drink "+ drink.getDrink_name() +" with ID: " + drink.getDrink_id());
             existingDrink.setDrink_name(drink.getDrink_name());
             existingDrink.setDrink_price(drink.getDrink_price());
             existingDrink.setActive_months(drink.getActive_months());
             drinkRepo.save(existingDrink);
+        }else{
+            System.out.println("Drink with ID " + drink.getDrink_id() + " not found.");
         }
     }
 }

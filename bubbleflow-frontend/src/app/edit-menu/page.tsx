@@ -132,6 +132,8 @@ export default function EditMenu() {
     return aCat.localeCompare(bCat);
   });
 
+  
+
   return (
     <main className="flex flex-col px-16 pb-4">
       <div>

@@ -18,6 +18,9 @@ public class DrinkRaw {
     @Column(name = "active_months")
     private String active_months;
 
+    @Transient //this is not in the database, but we need it to send the category name to the front-end
+    private String drink_category_name; //front-end sends this instead of ID
+
     //default constructor
     public DrinkRaw() {}
     
@@ -60,5 +63,13 @@ public class DrinkRaw {
 
     public void setActive_months(String active_months) {
         this.active_months = active_months;
+    }
+
+    public void setDrink_category_name(String drink_category_name) {
+        this.drink_category_name = drink_category_name;
+    }
+
+    public String getDrink_category_name() {
+        return drink_category_name;
     }
 }
