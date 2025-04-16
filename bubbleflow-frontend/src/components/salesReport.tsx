@@ -95,7 +95,7 @@ export default function SalesReport() {
                 key={item.itemName}
                 id={item.quantitySold}
                 name={item.itemName}
-                type={item.type}
+                category={item.category}
                 price={`${item.totalSales.toFixed(2)}`}
                 revenue={`$${item.totalSales}`}
               />
