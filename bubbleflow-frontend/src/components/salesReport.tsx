@@ -77,11 +77,10 @@ export default function SalesReport() {
           <p>To</p>
           <DatePicker value={selectedEndDate} onChange={setSelectedEndDate}/>
         </div>
-        {isLoading && (
-          <span className="text-gray-500 flex items-center">Loading report...</span>
-        )}
       </div>
-      
+      {isLoading && (
+        <span className="text-gray-500 flex items-center">Loading...</span>
+      )}
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
           {error}

@@ -25,38 +25,38 @@ export default function ManageEmployees() {
       id: "1",
       name: "Sophia Phu",
       email: "sophiatiffphu@gmail.com",
-      phone: "(832) 886 7189",
+      phone: "(123) 123 1234",
       role: "Employee",
     },
     {
       id: "2",
-      name: "Ur Mom",
-      email: "urmomsigma69@ligma.com",
-      phone: "(555) 123 4567",
-      role: "Manager",
+      name: "Luke Crittell",
+      email: "lccrittel@tamu.edu",
+      phone: "(123) 456 7890",
+      role: "Cashier",
     },
     {
       id: "3",
-      name: "Ur Mom",
-      email: "urmomsigma69@ligma.com",
-      phone: "(555) 123 4567",
-      role: "Manager",
+      name: "Josh Colborn",
+      email: "jcolborn@tamu.edu",
+      phone: "(111) 111 1111",
+      role: "Drink Wizard",
     },
     {
       id: "4",
-      name: "Ur Mom",
-      email: "urmomsigma69@ligma.com",
+      name: "Abhisri Dasari",
+      email: "abhisri.dasari@tamu.edu",
       phone: "(555) 123 4567",
-      role: "Manager",
+      role: "Cashier",
     },
     {
       id: "5",
-      name: "Ur Mom",
-      email: "urmomsigma69@ligma.com",
-      phone: "(555) 123 4567",
+      name: "Cameron Stone",
+      email: "cstone@tamu.edu",
+      phone: "(666) 123 4568",
       role: "Manager",
     },
-    {
+    /*{
       id: "6",
       name: "Ur Mom",
       email: "urmomsigma69@ligma.com",
@@ -83,7 +83,7 @@ export default function ManageEmployees() {
       email: "urmomsigma69@ligma.com",
       phone: "(555) 123 4567",
       role: "Manager",
-    },
+    },*/
   ];
   const categoryOptions = ["Employee", "Manager"];
   const [position, setPosition] = useState("Employee");
