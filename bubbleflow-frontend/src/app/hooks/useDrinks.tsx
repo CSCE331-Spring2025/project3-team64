@@ -59,3 +59,82 @@ export const useDrinkCategories = () => {
         fetchDrinkCategories
     };
 };
+
+export const useAddDrink = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const addDrink = useCallback(async (drink: Drink) => {
+        setLoading(true);
+        setError(null);
+        try {
+            await drinkService.addDrink(drink);
+        }
+        catch(err) {
+            setError('failed to add drink');
+            console.error(err);
+        }
+        finally {
+            setLoading(false);
+        }
+    }, []);
+
+    return {
+        loading,
+        error,
+        addDrink
+    };
+};
+
+export const useUpdateDrink = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const updateDrink = useCallback(async (drink: Drink) => {
+        setLoading(true);
+        setError(null);
+        try {
+            await drinkService.updateDrink(drink);
+        }
+        catch(err) {
+            setError('failed to update drink');
+            console.error(err);
+        }
+        finally {
+            setLoading(false);
+        }
+    }, []);
+
+    return {
+        loading,
+        error,
+        updateDrink
+    };
+}
+
+export const useDeleteDrink = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const deleteDrink = useCallback(async (drink: Drink) => {
+        setLoading(true);
+        setError(null);
+        try {
+            console.log("Sending drink to delete:", drink);
+            await drinkService.deleteDrink(drink);
+        }
+        catch(err) {
+            setError('failed to delete drink');
+            console.error(err);
+        }
+        finally {
+            setLoading(false);
+        }
+    }, []);
+
+    return {
+        loading,
+        error,
+        deleteDrink
+    };
+}

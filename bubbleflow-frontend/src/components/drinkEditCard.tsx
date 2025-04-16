@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/select";
 import Image from "next/image";
 import { useExtras } from "@/app/hooks/useExtras";
+import { useDeleteDrink, useUpdateDrink  } from "@/app/hooks/useDrinks";
 import { Extra } from "@/app/service/types";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { DrinkCategory, Drink } from "@/app/service/types";
@@ -45,16 +46,36 @@ export default function DrinkEditCard({
 }: DrinkCardProps) {
   const [category, setCategory] = useState<string>(drinkCategory || "")
   const [isOpen, setIsOpen] = useState(false);
+  
+  const { deleteDrink } = useDeleteDrink();
+  const { updateDrink } = useUpdateDrink();
+  //add drink is done in the edit-menu/page.tsx
+  
+  //Handle drink deletion (when you click "delete <item name>")
+  const handleDelete = async () => {
+    const drink: Drink = {
+      drink_id: drinkId,
+      drink_category: { drink_category_id: 0, drink_category_name: category },
+      drink_name: drinkName,
+      drink_price: drinkPrice,
+      active_months: null,
+    };
+    await deleteDrink(drink);
+    setIsOpen(false);
+  };
 
-  /*const categoryOptions = [
-    "Milk Teas",
-    "Brewed Tea",
-    "Fruit Tea",
-    "Fresh Milk",
-    "Ice Blended",
-    "Tea Mojito",
-    "Creama",
-  ];*/
+  //Handle drink modification (when you click "edit menu item")
+  const handleUpdate = async () => {
+    const drink: Drink = {
+      drink_id: drinkId,
+      drink_category: { drink_category_id: 0, drink_category_name: category },
+      drink_name: drinkName,
+      drink_price: drinkPrice,
+      active_months: null,
+    };
+    await updateDrink(drink);
+    setIsOpen(false);
+  };
 
   const toppings = [ //putting seasonal selection in toppings area from normal drink card
     "January",
@@ -176,7 +197,7 @@ export default function DrinkEditCard({
               deleted, you cannot undo it!
             </p>
           </div>
-          <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]">
+          <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]" onClick={() => handleDelete()}>
             Delete {drinkName}
           </Button>
         </DialogContent>
