@@ -87,6 +87,16 @@ export default function ManageEmployees() {
   ];
   const categoryOptions = ["Employee", "Manager"];
   const [position, setPosition] = useState("Employee");
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredEmployees = employees.filter((employee) => {
+    const term = searchTerm.toLowerCase();
+    return (
+      employee.name.toLowerCase().includes(term) ||
+      employee.email.toLowerCase().includes(term)
+    );
+  });
   return (
     <main className="flex flex-col px-16 pb-4 ">
       <div className="flex items-center justify-between -mt-4">
@@ -94,6 +104,8 @@ export default function ManageEmployees() {
         <div className=" flex items-center gap-2">
           <div className="mt-2 relative w-80">
             <Input
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="border-[#6F403A] h-10 rounded-3xl pr-12"
               placeholder="Search for an Employee"
             />
@@ -152,10 +164,16 @@ export default function ManageEmployees() {
           </Dialog>
         </div>
       </div>
-      <div className=" mt-4 flex flex-col gap-2">
-        {employees.map((employee) => (
-          <EmployeeCard key={employee.id} {...employee} />
-        ))}
+      <div className="mt-4 flex flex-col gap-2">
+        {filteredEmployees.length > 0 ? (
+          filteredEmployees.map((employee) => (
+            <EmployeeCard key={employee.id} {...employee} />
+          ))
+        ) : (
+          <p className=" text-gray-500">
+            No employees match your search.
+          </p>
+        )}
       </div>
     </main>
   );

@@ -103,7 +103,7 @@ export default function SalesReport() {
           </div>
         </div>
       ) : report ? (
-        <div className="text-center py-8">No sales data available for the selected period</div>
+        <div className=" text-gray-500">No sales data available for the selected period</div>
       ) : null}
     </main>
   );
