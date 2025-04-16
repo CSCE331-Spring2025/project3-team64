@@ -1,0 +1,20 @@
+Retrospective meeting held 4/16/2025, 3:15PM
+
+what went right and wrong during the previous sprint?
+    -A lot of us didn't start working until the weekend.
+    -We didn't use Jira to its fullest capacity.
+    -Luke got all the API stuff done really early.
+    -Changes to our PSQL database made queries from project 2 no longer work.
+
+
+what changes (if any) need to be made regarding procedure?
+    -Use Jira better.
+    -Get work done during the week.
+
+
+what adjustments might need to be made to the product backlog?
+    Move the following from sprint 2 to sprint 3:
+    -Manager employee view
+    -Order history
+    -Finish menu-editing page
+    -Payment method selection feature
