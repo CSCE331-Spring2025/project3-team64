@@ -44,8 +44,8 @@ export default function ZReport() {
         <div className="flex items-center gap-2">
           <p className="text-lg font-semibold">Z Report</p>
         </div>
-        {error && <div className="mt-2 text-red-500 text-sm">{error}</div>}
       </div>
+      {error && <div className="mt-4 text-red-500 text-sm">{error}</div>}
       {isLoading && <div className="mt-4 text-gray-500">Loading...</div>}
       {report && !isLoading ? (
         <div className="flex gap-4 mt-4 flex-wrap">
