@@ -23,7 +23,7 @@ class ReportRepoImp implements ZReportRepo {
 
         // Sales & Taxes Summary: Gross sales
         String gross_sales_STS_sql = """
-            SELECT SUM(order_total_price) AS Gross_Sales FROM orders
+            SELECT ROUND(CAST(SUM(order_total_price)AS numeric), 2) AS Gross_Sales FROM orders
             where date(order_date) = CURRENT_DATE
         """;
         String gross_sales = jdbcTemplate.queryForObject(gross_sales_STS_sql, String.class);
@@ -32,7 +32,7 @@ class ReportRepoImp implements ZReportRepo {
 
         // Sales & Taxes Summary: Tax
         String tax_STS_sql = """ 
-            select ROUND(CAST(SUM(order_total_price) * 0.2 AS numeric), 2) as Tax from orders
+            select ROUND(CAST(SUM(order_total_price) * 0.1 AS numeric), 2) as Tax from orders
             where date(order_date) = CURRENT_DATE
         """;
         String tax = jdbcTemplate.queryForObject(tax_STS_sql, String.class);
@@ -41,7 +41,7 @@ class ReportRepoImp implements ZReportRepo {
 
         // Sales & Taxes Summary: Total Net sales
         String total_net_sales_STS_sql = """
-            select ROUND(CAST(SUM(order_total_price) * 0.8 AS numeric), 2) as Total_Net_Sales from orders
+            select ROUND(CAST(SUM(order_total_price) * 0.9 AS numeric), 2) as Total_Net_Sales from orders
             where date(order_date) = CURRENT_DATE
         """;
         String total_net_sales = jdbcTemplate.queryForObject(total_net_sales_STS_sql, String.class);
@@ -98,7 +98,7 @@ class ReportRepoImp implements ZReportRepo {
         // Sales Categories: Total or Gross Sales
         String sales_categories_total_sql = """
             select
-                sum(Drinks.Drink_Price) as Gross_sales
+                ROUND(CAST(sum(Drinks.Drink_Price) AS numeric), 2) as Gross_sales
             from Order_items
             join Drinks
                 on Order_items.Drink_ID = Drinks.Drink_ID
@@ -114,7 +114,7 @@ class ReportRepoImp implements ZReportRepo {
         String payment_details_sql = """
             select 
                 payment_method as Payment_type, 
-                sum(order_total_price) as Amount 
+                ROUND(CAST(sum(order_total_price)AS numeric), 2) as Amount 
             from orders 
             where date(order_date) = CURRENT_DATE
             group by Payment_type 
@@ -130,7 +130,7 @@ class ReportRepoImp implements ZReportRepo {
         // Total Payments
         String total_payments_sql = """
             select 
-                sum(order_total_price) as Total_Amount 
+                ROUND(CAST(sum(order_total_price)AS numeric), 2) as Total_Amount 
             from orders
             where date(order_date) = CURRENT_DATE;
         """;
