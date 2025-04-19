@@ -109,7 +109,7 @@ export default function ManageEmployees() {
               className="border-[#6F403A] h-10 rounded-3xl pr-12"
               placeholder="Search for an Employee"
             />
-            <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
+            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
               <RiSearchLine className="text-white" size={15} />
             </div>
           </div>

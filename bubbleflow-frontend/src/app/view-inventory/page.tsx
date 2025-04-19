@@ -1,7 +1,8 @@
 "use client";
 
 import { InventoryCard } from "@/components/inventoryCard";
-
+import { Input } from "@/components/ui/input";
+import { RiSearchLine } from "react-icons/ri";
 const inventoryItems = [
   {
     name: "Classic Pearl Milk Tea Base",
@@ -26,7 +27,18 @@ const inventoryItems = [
 export default function ViewInventory() {
   return (
     <main className="flex flex-col px-16">
-      <h1 className="text-xl font-semibold">Ingredient Inventory</h1>
+      <div className="flex justify-between">
+        <h1 className="text-xl font-semibold">Ingredient Inventory</h1>
+        <div className="relative w-80">
+            <Input
+              className="border-[#6F403A] h-10 rounded-3xl pr-12"
+              placeholder="Search for an Inventory Item"
+            />
+            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
+              <RiSearchLine className="text-white" size={15} />
+            </div>
+          </div>
+      </div>
       <div className="mt-4 gap-2 grid grid-cols-2">
         {inventoryItems.map((item) => (
           <InventoryCard
