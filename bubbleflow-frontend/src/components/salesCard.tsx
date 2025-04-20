@@ -18,7 +18,7 @@ export default function SalesCard({ id, name, category, price, revenue }: SalesC
     "Fresh Milk": { badgeBg: "bg-[#f0dece]", badgeText: "text-[#6F403A]" },
     "Ice Blended": { badgeBg: "bg-[#ebd1b5]", badgeText: "text-[#6F403A]" },
     "Tea Mojito": { badgeBg: "bg-[#f6cdb1]", badgeText: "text-[#6F403A]" },
-    Creama: { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
+    "Creama": { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
   };
   const categoryColor = (category && categoryColors[category]) || {
     badgeBg: "bg-[#f0dece]",

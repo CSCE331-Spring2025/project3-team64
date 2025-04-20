@@ -1,9 +1,52 @@
 import Image from "next/image";
-
+const categoryColors: Record<string, { badgeBg: string }> = {
+  "Milk Teas": { badgeBg: "bg-[#ead2a2]" },
+  "Brewed Tea": { badgeBg: "bg-[#dfcebb]" },
+  "Fruit Tea": { badgeBg: "bg-[#dbb9a7]" },
+  "Fresh Milk": { badgeBg: "bg-[#f0dece]" },
+  "Ice Blended": { badgeBg: "bg-[#ebd1b5]" },
+  "Tea Mojito": { badgeBg: "bg-[#f6cdb1]" },
+  Creama: { badgeBg: "bg-[#f3ecdf]" },
+};
+const imageMap: Record<string, string> = {
+  "Classic Pearl Milk Tea": "/classic-pearl-milk-tea.png",
+  "Honey Milk Tea": "/honey-milk-tea.png",
+  "Classic Coffee": "/classic-coffee.png",
+  "Ginger Milk Tea": "/ginger-milk-tea.png",
+  "Thai Pearl Milk Tea": "/thai-pearl-milk-tea.png",
+  "Taro Pearl Milk Tea": "/taro-milk-tea.png",
+  "Classic Tea": "/classic-tea.png",
+  "Wintermelon Tea": "/wintermelon-tea.png",
+  "Honey Tea": "/honey-tea.png",
+  "Ginger Tea": "/ginger-tea.png",
+  "Mango Green Tea": "/mango-green-tea.png",
+  "Wintermelon Lemonade": "/wintermelon-tea.png",
+  "Strawberry Tea": "/strawberry-tea.png",
+  "Peach Tea with Aiyu Jelly": "/peach-tea-with-aiyu-jelly.png",
+  "Kiwi Fruit Tea with Aiyu Jelly": "/kiwi-fruit-tea-with-aiyu-jelly.png",
+  "Mango & Passion Fruit Tea": "/mango-&-passion-fruit-tea.png",
+  "Cocoa Lover with Fresh Milk": "/cocoa-lover-with-fresh-milk.png",
+  "Homemade Taro with Fresh Milk": "/homemade-taro-with-fresh-milk.png",
+  "Matcha with Fresh Milk": "/matcha-with-fresh-milk.png",
+  "Oreo Ice Blended with Pearl": "/oreo-ice-blended-with-pearl.png",
+  "Matcha Red Bean Ice Blended with Ice Cream":
+    "/matcha-red-bean-ice-blended-with-ice-cream.png",
+  "Coffee Ice Blended with Ice Cream": "/coffee-ice-blended-with-ice-cream.png",
+  "Mango Ice Blended with Ice Cream": "/mango-ice-blended-with-ice-cream.png",
+  "Strawberry Ice Blended with Lychee Jelly & Ice Cream":
+    "/strawberry-ice-blended-with-lychee-and-ice-cream.png",
+  "Lime Mojito": "/lime-mojito.png",
+  "Mango Mojito": "/mango-mojito.png",
+  "Peach Mojito": "/peach-mojito.png",
+  "Strawberry Mojito": "/strawberry-mojito.png",
+  "Creama Tea": "/creama-tea.png",
+  "Match Creama": "/matcha-creama.png",
+  "Coffee Creama": "/coffee-creama.png",
+  "Cocoa Creama": "/cocoa-creama.png",
+};
 export interface OrderItem {
-  imageSrc: string;
-  imageAlt: string;
   name: string;
+  category: string;
   iceLevel: string;
   sugarLevel: string;
   toppings: string[];
@@ -45,13 +88,18 @@ export function OrderHistoryCard({
       </div>
       <div className="flex flex-col gap-4 mt-2">
         {items.map((item, idx) => {
+          const { badgeBg } = categoryColors[item.category] ?? {
+            badgeBg: "bg-gray-200",
+          };
           return (
             <div key={idx} className="flex gap-6">
-              <div className="bg-[#ead2a2] rounded-xl flex justify-center py-4 w-1/6">
+              <div
+                className={`${badgeBg} rounded-xl flex justify-center py-4 w-1/6`}
+              >
                 <div className="transition-transform duration-300 hover:scale-110">
                   <Image
-                    src={item.imageSrc}
-                    alt={item.imageAlt}
+                    src={imageMap[item.name] || "/classic-pearl-milk-tea.png"}
+                    alt={item.name}
                     width={60}
                     height={60}
                   />
