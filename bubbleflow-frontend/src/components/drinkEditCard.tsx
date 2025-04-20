@@ -64,6 +64,7 @@ export default function DrinkEditCard({
     };
     await deleteDrink(drink);
     setIsOpen(false);
+    window.location.reload(); //refresh the page to show the changes
   };
 
   //Handle drink modification (when you click "edit menu item")
@@ -77,6 +78,7 @@ export default function DrinkEditCard({
     };
     await updateDrink(drink);
     setIsOpen(false);
+    window.location.reload(); //refresh the page to show the changes
   };
 
   //handle updating item price
