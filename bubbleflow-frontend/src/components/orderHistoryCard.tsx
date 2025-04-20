@@ -56,6 +56,7 @@ export interface OrderItem {
 export interface OrderHistoryCardProps {
   orderNumber: number | string;
   total: string;
+  paymentMethod: string;
   date: string;
   time: string;
   orderedBy: string;
@@ -65,6 +66,7 @@ export interface OrderHistoryCardProps {
 export function OrderHistoryCard({
   orderNumber,
   total,
+  paymentMethod,
   date,
   time,
   orderedBy,
@@ -79,6 +81,7 @@ export function OrderHistoryCard({
     <div className="border border-[#6F403A] p-4 rounded-xl">
       <div className="flex justify-between">
         <p className="font-semibold">Order #{orderNumber}</p>
+
         <p className="font-semibold">Total: ${fmt(total)}</p>
       </div>
       <div className="flex justify-between text-sm mt-1">
@@ -86,9 +89,9 @@ export function OrderHistoryCard({
           <p>{date}</p>
           <p>{time}</p>
         </div>
-        <div className="flex gap-2">
-          <p>Ordered by</p>
-          <p className="text-gray-500">{orderedBy}</p>
+        <div className=" flex gap-4">
+          <p>Payed with <span className=" text-gray-500">{paymentMethod}</span></p>
+          <p>Ordered by <span className=" text-gray-500">{orderedBy}</span></p>
         </div>
       </div>
       <div className="flex flex-col gap-4 mt-2">

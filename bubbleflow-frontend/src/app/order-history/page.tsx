@@ -8,6 +8,7 @@ const orderHistoryData: OrderHistoryCardProps[] = [
   {
     orderNumber: 69,
     total: "14.28",
+    paymentMethod:"Apple Pay",
     date: "January 1st 2025",
     time: "12:00 AM",
     orderedBy: "Sophia Phu",
@@ -33,6 +34,7 @@ const orderHistoryData: OrderHistoryCardProps[] = [
   {
     orderNumber: 70,
     total: "11.4",
+    paymentMethod:"Credit Card",
     date: "January 2nd 2025",
     time: "2:15 PM",
     orderedBy: "Ur Mom",
@@ -58,6 +60,7 @@ const orderHistoryData: OrderHistoryCardProps[] = [
   {
     orderNumber: 71,
     total: "11.48",
+    paymentMethod:"Apple Pay",
     date: "January 3rd 2025",
     time: "5:15 PM",
     orderedBy: "Among Us",
@@ -93,6 +96,7 @@ export default function OrderHistory() {
             <OrderHistoryCard
               key={order.orderNumber}
               orderNumber={order.orderNumber}
+              paymentMethod={order.paymentMethod}
               total={order.total}
               date={order.date}
               time={order.time}
