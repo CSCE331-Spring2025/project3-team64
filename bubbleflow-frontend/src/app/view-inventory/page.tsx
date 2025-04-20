@@ -23,11 +23,29 @@ const inventoryItems = [
     badgeText: "sigma sigma",
     itemId: "3",
   },
+  {
+    name: "Taro Powder",
+    amount: "5 lbs",
+    badgeText: "sigma sigma",
+    itemId: "3",
+  },
+  {
+    name: "Taro Powder",
+    amount: "5 lbs",
+    badgeText: "sigma sigma",
+    itemId: "3",
+  },
+  {
+    name: "Taro Powder",
+    amount: "5 lbs",
+    badgeText: "sigma sigma",
+    itemId: "3",
+  },
 ];
 
 export default function ViewInventory() {
   return (
-    <main className="flex flex-col px-16">
+    <main className="flex flex-col px-16 pb-4">
       <div className="flex justify-between items-center">
         <h1 className="text-xl font-semibold">Ingredient Inventory</h1>
         <div className="relative w-80">
