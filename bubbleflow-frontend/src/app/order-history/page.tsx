@@ -1,7 +1,5 @@
 "use client";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { DatePicker } from "@/components/datePicker";
 import {
   OrderHistoryCard,
   OrderHistoryCardProps,
@@ -80,6 +78,16 @@ export default function OrderHistory() {
     <main className="flex flex-col px-16 pb-4">
       <div className="">
         <p className=" text-xl font-semibold">Order history</p>
+        <div className=" flex gap-4 mt-2">
+            <div className="flex gap-2 items-center">
+              <p>From</p>
+              <DatePicker />
+            </div>
+            <div className="flex gap-2 items-center">
+              <p>To</p>
+              <DatePicker />
+            </div>
+          </div>
         <div className="mt-4 flex flex-col gap-4">
           {orderHistoryData.map((order) => (
             <OrderHistoryCard
