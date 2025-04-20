@@ -160,7 +160,7 @@ export default function ViewOrder() {
             </div>
           </DialogTrigger>
           <DialogContent>
-            <DialogTitle className=" flex justify-center text-3xl">${total}</DialogTitle>
+            <DialogTitle className=" flex justify-center text-3xl">${total.toFixed(2)}</DialogTitle>
             <div className=" flex flex-col justify-center text-center">
               <p>Transaction Complete</p>
               <p className=" text-sm text-gray-400">Order #69</p>

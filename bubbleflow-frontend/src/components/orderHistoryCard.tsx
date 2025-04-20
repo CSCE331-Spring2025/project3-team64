@@ -70,11 +70,16 @@ export function OrderHistoryCard({
   orderedBy,
   items,
 }: OrderHistoryCardProps) {
+  const fmt = (value: string | number | undefined) => {
+    const cleaned = String(value ?? "0").replace(/[^0-9.-]+/g, "");
+    const num = parseFloat(cleaned);
+    return (isNaN(num) ? 0 : num).toFixed(2);
+  };
   return (
     <div className="border border-[#6F403A] p-4 rounded-xl">
       <div className="flex justify-between">
         <p className="font-semibold">Order #{orderNumber}</p>
-        <p className="font-semibold">Total: {total}</p>
+        <p className="font-semibold">Total: ${fmt(total)}</p>
       </div>
       <div className="flex justify-between text-sm mt-1">
         <div className="flex gap-4">
@@ -117,7 +122,7 @@ export function OrderHistoryCard({
                       )}
                     </div>
                   </div>
-                  <p className="font-semibold">{item.price}</p>
+                  <p className="font-semibold">${fmt(item.price)}</p>
                 </div>
               </div>
             </div>

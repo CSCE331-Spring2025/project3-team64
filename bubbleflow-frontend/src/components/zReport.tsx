@@ -10,17 +10,14 @@ export default function ZReport() {
   const [report, setReport] = useState<Report | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // format date for display in the report
   const getFormattedDisplayDate = (dateString: string) => {
     const date = new Date(dateString);
     return format(date, "MMMM d, yyyy");
   };
 
-  // fetch report data function
   const fetchReportData = async () => {
     setIsLoading(true);
     setError(null);
-
     try {
       const data = await reportService.getZReport();
       setReport(data);
@@ -33,10 +30,12 @@ export default function ZReport() {
     }
   };
 
-  // Fetch report data when component mounts
   useEffect(() => {
     fetchReportData();
   }, []);
+
+  const fmt = (value: number | string | undefined) =>
+    Number(value ?? 0).toFixed(2);
 
   return (
     <div className="mt-4 px-2">
@@ -45,26 +44,29 @@ export default function ZReport() {
           <p className="text-lg font-semibold">Z Report</p>
         </div>
       </div>
+
       {error && <div className="mt-4 text-red-500 text-sm">{error}</div>}
       {isLoading && <div className="mt-4 text-gray-500">Loading...</div>}
+
       {report && !isLoading ? (
         <div className="flex gap-4 mt-4 flex-wrap">
           <div className="w-full max-w-[450px] border border-[#6F403A] p-4 rounded-xl flex flex-col gap-4">
             <div>
               <p className="text-lg font-semibold">Z Report Summary</p>
               <hr className="border-t-2 border-[#6F403A] my-2" />
+
               <div className="flex flex-col gap-1">
                 <div className="flex justify-between text-sm">
                   <p>Net Sales</p>
-                  <p>${report.total_NET_SALES}</p>
+                  <p>${fmt(report.total_NET_SALES)}</p>
                 </div>
                 <div className="flex justify-between text-sm">
                   <p>Tax</p>
-                  <p>${report.tax}</p>
+                  <p>${fmt(report.tax)}</p>
                 </div>
                 <div className="flex justify-between text-sm font-semibold">
                   <p>Gross Sales</p>
-                  <p>${report.gross_SALES}</p>
+                  <p>${fmt(report.gross_SALES)}</p>
                 </div>
               </div>
             </div>
@@ -84,14 +86,16 @@ export default function ZReport() {
                   <React.Fragment key={idx}>
                     <div className="pt-1">{category.category}</div>
                     <div className="pt-1 text-center">{category.quantity}</div>
-                    <div className="pt-1 text-right">${category.sales}</div>
+                    <div className="pt-1 text-right">
+                      ${fmt(category.sales)}
+                    </div>
                   </React.Fragment>
                 ))}
               </div>
               <hr className="border-t border-[#6F403A] my-2" />
               <div className="flex justify-between font-semibold">
                 <p>Total</p>
-                <p>${report.sales_CATEGORY_TOTAL}</p>
+                <p>${fmt(report.sales_CATEGORY_TOTAL)}</p>
               </div>
             </div>
 
@@ -104,23 +108,22 @@ export default function ZReport() {
               <hr className="border-t-2 border-[#6F403A] my-2" />
 
               <div className="grid gap-1 max-h-64 overflow-y-auto">
-                {report.paymentMethods &&
-                  report.paymentMethods.map((payment, idx) => (
-                    <div
-                      key={idx}
-                      className="grid grid-cols-[1fr_auto] gap-6 text-sm"
-                    >
-                      <p>{payment.paymentMethod}</p>
-                      <p>${payment.amount}</p>
-                    </div>
-                  ))}
+                {report.paymentMethods?.map((payment, idx) => (
+                  <div
+                    key={idx}
+                    className="grid grid-cols-[1fr_auto] gap-6 text-sm"
+                  >
+                    <p>{payment.paymentMethod}</p>
+                    <p>${fmt(payment.amount)}</p>
+                  </div>
+                ))}
               </div>
 
               <hr className="border-t border-[#6F403A] my-2" />
 
               <div className="flex justify-between font-semibold">
                 <p>Total Payments</p>
-                <p>${report.total_PAYMENTS}</p>
+                <p>${fmt(report.total_PAYMENTS)}</p>
               </div>
             </div>
           </div>
@@ -159,3 +162,4 @@ export default function ZReport() {
     </div>
   );
 }
+
