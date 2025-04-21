@@ -2,7 +2,7 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { Input } from "@/components/ui/input";
 import CategoryEditCard from "@/components/categoryEditCard";
-import { RiSearchLine, RiAddLine} from "react-icons/ri";
+import { RiSearchLine, RiAddLine } from "react-icons/ri";
 import DrinkEditCard from "@/components/drinkEditCard";
 import MenuCategory from "@/components/menuCategory";
 import { useDrinks, useDrinkCategories } from "@/app/hooks/useDrinks";
@@ -23,11 +23,12 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import DrinkAddMenuCard from "@/components/drinkAddMenuCard";
 
 export default function EditMenu() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [category, setCategory] = useState<string>("Milk Teas")
+  const [category, setCategory] = useState<string>("Milk Teas");
 
   const {
     drinks,
@@ -42,15 +43,7 @@ export default function EditMenu() {
     error: categoriesError,
     fetchDrinkCategories,
   } = useDrinkCategories();
-  /*const categoryOptions = [ //Hard-coded values phased out
-    "Milk Teas",
-    "Brewed Tea",
-    "Fruit Tea",
-    "Fresh Milk",
-    "Ice Blended",
-    "Tea Mojito",
-    "Creama",
-  ];*/
+
   const toppings = [
     "January",
     "Febuary",
@@ -65,6 +58,7 @@ export default function EditMenu() {
     "November",
     "December",
   ];
+
   useEffect(() => {
     fetchDrinks();
     fetchDrinkCategories();
@@ -132,7 +126,11 @@ export default function EditMenu() {
     return aCat.localeCompare(bCat);
   });
 
-  
+  const nextDrinkId =
+  drinks.length > 0
+    ? Math.max(...drinks.map((d) => d.drink_id || 0)) + 1
+    : 1;
+
 
   return (
     <main className="flex flex-col px-16 pb-4">
@@ -199,67 +197,7 @@ export default function EditMenu() {
             <RiSearchLine className="text-white" size={15} />
           </div>
         </div>
-        <div>
-          <Dialog>
-            <DialogTrigger>
-              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26]">
-                <RiAddLine className="text-white" size={18} />
-              </div>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Add Menu Item</DialogTitle>
-              </DialogHeader>
-              <div className="flex flex-col gap-8 py-4">
-                <div className="items-center gap-4">
-                  <Label className="mb-2">Item Name</Label>
-                  <Input placeholder="Item Name" />
-                </div>
-                <div className="items-center gap-4">
-                  <Label className="mb-2">Item Category</Label>
-                  <Select value={category} onValueChange={setCategory}>
-                    <SelectTrigger className=" w-full">
-                      <SelectValue placeholder="Milk Tea" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.map((option, idx) => (
-                        <SelectItem key={idx} value={option.drink_category_name}>
-                          <span>
-                            {option.drink_category_name}
-                          </span>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="items-center gap-4">
-                  <Label className="mb-2">Price</Label>
-                  <Input placeholder="Price" />
-                </div>
-                <div>
-                  <Label className="mb-2">Seasonal Range</Label>
-                  <div className=" flex flex-wrap gap-2">
-                    {toppings.map((topping, idx) => (
-                      <Badge
-                        key={idx}
-                        className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
-                      >
-                        <div className="w-4 h-4 rounded-full border mr-1"></div>
-                        <p className="text-sm font-normal">{topping}</p>
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <Button
-                type="submit"
-                className=" bg-[#6F403A] hover:bg-[#4E2D26]"
-              >
-                Create Menu Item
-              </Button>
-            </DialogContent>
-          </Dialog>
-        </div>
+        <DrinkAddMenuCard categoryOptions={categories} nextDrinkId={nextDrinkId} />
       </div>
       <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
         {orderedDrinks.map((drink, index) => (
