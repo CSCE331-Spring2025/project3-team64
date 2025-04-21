@@ -42,10 +42,25 @@ public class DrinkController {
 
     //Add a drink
     @PostMapping("/addDrink")
-    public void addDrink(Drink drink) {
-        drinkService.addDrink(drink);
-    }
+    public void addDrink(@RequestBody Map<String, Object> requestBody) {
+        try {
+            Drink drink = new Drink();
 
+            drink.setDrink_name((String) requestBody.get("drink_name"));
+            drink.setDrink_price(Double.parseDouble(requestBody.get("drink_price").toString()));
+            drink.setActive_months((String) requestBody.get("active_months"));
+
+            // get the category ID from the request
+            int categoryId = Integer.parseInt(requestBody.get("drink_category_id").toString());
+
+            drinkService.addDrink(drink, categoryId);
+
+        }
+        catch(Exception e){
+            System.out.println("Error adding drink: " + e.getMessage());
+            throw e;
+        }
+    }
 
     //modify drink
     @RequestMapping(value = "/updateDrink", method = RequestMethod.POST)

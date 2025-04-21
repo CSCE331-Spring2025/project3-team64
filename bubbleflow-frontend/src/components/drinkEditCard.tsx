@@ -19,11 +19,10 @@ import {
 } from "@/components/ui/select";
 import Image from "next/image";
 import { useExtras } from "@/app/hooks/useExtras";
-import { useDeleteDrink, useUpdateDrink  } from "@/app/hooks/useDrinks";
+import { useDeleteDrink, useUpdateDrink } from "@/app/hooks/useDrinks";
 import { Extra } from "@/app/service/types";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { DrinkCategory, Drink } from "@/app/service/types";
-
 
 interface DrinkCardProps {
   drinkName: string;
@@ -44,38 +43,81 @@ export default function DrinkEditCard({
   itemId,
   categoryOptions,
 }: DrinkCardProps) {
-  const [category, setCategory] = useState<string>(drinkCategory || "")
+  // Debug log to check props
+  useEffect(() => {
+    console.log("DrinkEditCard props:", {
+      drinkName,
+      drinkCategory,
+      drinkPrice,
+      drinkId,
+      categoryOptions
+    });
+  }, [drinkName, drinkCategory, drinkPrice, drinkId, categoryOptions]);
+
+  const [category, setCategory] = useState<string>(drinkCategory || "");
   const [drink_price_input, setPrice] = useState<number>(drinkPrice);
   const [drink_name_input, setName] = useState<string>(drinkName);
   const [isOpen, setIsOpen] = useState(false);
   
+  // Update state when props change
+  useEffect(() => {
+    setCategory(drinkCategory || "");
+    setPrice(drinkPrice);
+    setName(drinkName);
+  }, [drinkCategory, drinkPrice, drinkName]);
+  
   const { deleteDrink } = useDeleteDrink();
   const { updateDrink } = useUpdateDrink();
-  //add drink is done in the edit-menu/page.tsx
   
-  //Handle drink deletion (when you click "delete <item name>")
+  //Handle drink deletion
   const handleDelete = async () => {
+    // Find the selected category object for proper ID
+    const selectedCategory = categoryOptions.find(option => option.drink_category_name === category);
+    
+    if (!selectedCategory) {
+      console.error("Category not found for deletion");
+      return;
+    }
+    
     const drink: Drink = {
       drink_id: drinkId,
-      drink_category: { drink_category_id: 0, drink_category_name: category },
+      drink_category: { 
+        drink_category_id: selectedCategory.drink_category_id, 
+        drink_category_name: category 
+      },
       drink_name: drinkName,
       drink_price: drinkPrice,
       active_months: null,
     };
+    
+    console.log("Deleting drink:", drink);
     await deleteDrink(drink);
     setIsOpen(false);
     window.location.reload(); //refresh the page to show the changes
   };
 
-  //Handle drink modification (when you click "edit menu item")
+  //Handle drink modification
   const handleUpdate = async () => {
+    // Find the selected category object
+    const selectedCategory = categoryOptions.find(option => option.drink_category_name === category);
+    
+    if (!selectedCategory) {
+      console.error("Category not found for update");
+      return;
+    }
+    
     const drink: Drink = {
       drink_id: drinkId,
-      drink_category: { drink_category_id: 0, drink_category_name: category },
+      drink_category: { 
+        drink_category_id: selectedCategory.drink_category_id, 
+        drink_category_name: category 
+      },
       drink_name: drink_name_input,
       drink_price: drink_price_input,
       active_months: null,
     };
+    
+    console.log("Updating drink:", drink);
     await updateDrink(drink);
     setIsOpen(false);
     window.location.reload(); //refresh the page to show the changes
@@ -95,9 +137,9 @@ export default function DrinkEditCard({
     setName(newName);
   };
 
-  const toppings = [ //putting seasonal selection in toppings area from normal drink card
+  const toppings = [
     "January",
-    "Febuary",
+    "February", // Fixed spelling of February
     "March",
     "April",
     "May",
@@ -109,21 +151,22 @@ export default function DrinkEditCard({
     "November",
     "December",
   ];
-  const categoryColors: Record<string, { badgeBg: string; badgeText: string }> =
-    {
-      "Milk Teas": { badgeBg: "bg-[#ead2a2]", badgeText: "text-[#6F403A]" },
-      "Brewed Tea": { badgeBg: "bg-[#dfcebb]", badgeText: "text-[#6F403A]" },
-      "Fruit Tea": { badgeBg: "bg-[#dbb9a7]", badgeText: "text-[#6F403A]" },
-      "Fresh Milk": { badgeBg: "bg-[#f0dece]", badgeText: "text-[#6F403A]" },
-      "Ice Blended": { badgeBg: "bg-[#ebd1b5]", badgeText: "text-[#6F403A]" },
-      "Tea Mojito": { badgeBg: "bg-[#f6cdb1]", badgeText: "text-[#6F403A]" },
-      Creama: { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
-    };
+  
+  const categoryColors: Record<string, { badgeBg: string; badgeText: string }> = {
+    "Milk Teas": { badgeBg: "bg-[#ead2a2]", badgeText: "text-[#6F403A]" },
+    "Brewed Tea": { badgeBg: "bg-[#dfcebb]", badgeText: "text-[#6F403A]" },
+    "Fruit Tea": { badgeBg: "bg-[#dbb9a7]", badgeText: "text-[#6F403A]" },
+    "Fresh Milk": { badgeBg: "bg-[#f0dece]", badgeText: "text-[#6F403A]" },
+    "Ice Blended": { badgeBg: "bg-[#ebd1b5]", badgeText: "text-[#6F403A]" },
+    "Tea Mojito": { badgeBg: "bg-[#f6cdb1]", badgeText: "text-[#6F403A]" },
+    Creama: { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
+  };
 
   const categoryColor = (drinkCategory && categoryColors[drinkCategory]) || {
     badgeBg: "bg-[#f0dece]",
     badgeText: "text-[#6F403A]",
   };
+  
   return (
     <div className="border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
       <div
@@ -142,7 +185,7 @@ export default function DrinkEditCard({
         </Badge>
         <p className="text-sm">${Number(drinkPrice).toFixed(2)}</p>
       </div>
-      <div className=" flex gap-2">
+      <div className="flex gap-2">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
             <Button className="mt-6 flex-1 bg-[#6F403A] hover:bg-[#4E2D26]">
@@ -156,13 +199,17 @@ export default function DrinkEditCard({
             <div className="flex flex-col gap-8 py-4">
               <div className="items-center gap-4">
                 <Label className="mb-2">Item Name</Label>
-                <Input placeholder="Item Name" defaultValue={drinkName} onChange={handleNameChange} />
+                <Input 
+                  placeholder="Item Name" 
+                  value={drink_name_input} 
+                  onChange={handleNameChange} 
+                />
               </div>
               <div className="items-center gap-4">
                 <Label className="mb-2">Item Category</Label>
                 <Select value={category} onValueChange={setCategory}>
-                  <SelectTrigger className=" w-full">
-                    <SelectValue placeholder="Milk Tea" />
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Category" />
                   </SelectTrigger>
                   <SelectContent>
                     {categoryOptions.map((option, idx) => (
@@ -177,11 +224,16 @@ export default function DrinkEditCard({
               </div>
               <div className="items-center gap-4">
                 <Label className="mb-2">Price</Label>
-                <Input type="number" placeholder="Price" defaultValue={drinkPrice} onChange={handlePriceChange} />
+                <Input 
+                  type="number" 
+                  placeholder="Price" 
+                  value={drink_price_input} 
+                  onChange={handlePriceChange} 
+                />
               </div>
               <div>
                 <Label className="mb-2">Seasonal Range</Label>
-                <div className=" flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
                   {toppings.map((topping, idx) => (
                     <Badge
                       key={idx}
@@ -194,36 +246,45 @@ export default function DrinkEditCard({
                 </div>
               </div>
             </div>
-            <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]" onClick={() => handleUpdate()}>
-              Edit Menu Item
+            <Button 
+              type="submit" 
+              className="bg-[#6F403A] hover:bg-[#4E2D26]" 
+              onClick={handleUpdate}
+            >
+              Save Changes
             </Button>
           </DialogContent>
         </Dialog>
         <Dialog>
           <DialogTrigger>
             <div className="bg-[#6F403A] w-8 h-8 mt-6 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300">
-            <RiDeleteBin5Line className="text-white" size={20} />
+              <RiDeleteBin5Line className="text-white" size={20} />
             </div>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Delete {drinkName}</DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col gap-8 py-2">
-            <p className=" text-sm">
-              Are you sure you want to delete {drinkName}? Once {drinkName} is
-              deleted, you cannot undo it!
-            </p>
-          </div>
-          <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]" onClick={() => handleDelete()}>
-            Delete {drinkName}
-          </Button>
-        </DialogContent>
+            <DialogHeader>
+              <DialogTitle>Delete {drinkName}</DialogTitle>
+            </DialogHeader>
+            <div className="flex flex-col gap-8 py-2">
+              <p className="text-sm">
+                Are you sure you want to delete {drinkName}? Once {drinkName} is
+                deleted, you cannot undo it!
+              </p>
+            </div>
+            <Button 
+              type="submit" 
+              className="bg-[#6F403A] hover:bg-[#4E2D26]" 
+              onClick={handleDelete}
+            >
+              Delete {drinkName}
+            </Button>
+          </DialogContent>
         </Dialog>
       </div>
     </div>
   );
 }
+
 
 // Separate component for the dialog contents (NOT USED IN THIS PAGE)
 function DrinkCustomizationDialog({

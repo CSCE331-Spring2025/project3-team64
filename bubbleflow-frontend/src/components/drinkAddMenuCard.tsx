@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Drink, DrinkCategory } from "@/app/service/types";
+import { Drink, DrinkCategory, DrinkRequest } from "@/app/service/types";
 import { useAddDrink } from "@/app/hooks/useDrinks";
 import { RiAddLine } from "react-icons/ri";
 
@@ -26,6 +26,7 @@ interface DrinkAddMenuCardProps {
   nextDrinkId: number;
 
 }
+
 
 export default function DrinkAddMenuCard({ categoryOptions, nextDrinkId }: DrinkAddMenuCardProps) {
   const [category, setCategory] = useState("Milk Teas");
@@ -50,20 +51,20 @@ export default function DrinkAddMenuCard({ categoryOptions, nextDrinkId }: Drink
   const handleCreateDrink = async () => {
     const selectedCategory = categoryOptions.find(option => option.drink_category_name === category);
     if (!selectedCategory) {
-      // Handle case where the category doesn't exist
       console.error("Category not found");
       return;
     }
-    const drink: Drink = {
-      drink_id: nextDrinkId,
-      drink_category: { drink_category_id: selectedCategory.drink_category_id, drink_category_name: selectedCategory.drink_category_name },
+  
+    const drinkRequest = {
       drink_name: drink_name_input,
       drink_price: drink_price_input,
-      active_months: null,
+      active_months: seasonalMonths.join(","),
+      drink_category_id: selectedCategory.drink_category_id
     };
-    await addDrink(drink);
+    
+    await addDrink(drinkRequest);
     setIsOpen(false);
-    //window.location.reload();
+    window.location.reload();
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,7 +109,7 @@ export default function DrinkAddMenuCard({ categoryOptions, nextDrinkId }: Drink
             <Input placeholder="Item Name" value={drink_name_input} onChange={handleNameChange} />
           </div>
           <div className="items-center gap-4">
-            <Label className="mb-2">Item Category {category}</Label>
+            <Label className="mb-2">Item Category</Label>
             <Select value={category} onValueChange={handleCategorySelection}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Milk Tea" />

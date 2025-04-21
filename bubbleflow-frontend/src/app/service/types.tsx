@@ -84,4 +84,11 @@ export interface ItemSale {
     type: string;
 }
 
+// to create a new drink
+export interface DrinkRequest  {
+    drink_name: string;
+    drink_price: number;
+    active_months: string;
+    drink_category_id: number;
+  };
 

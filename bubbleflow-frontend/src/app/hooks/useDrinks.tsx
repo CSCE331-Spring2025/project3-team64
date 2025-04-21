@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { drinkService } from "../service/drinkService";
-import { Drink, DrinkCategory } from "../service/types";
+import { Drink, DrinkCategory, DrinkRequest } from "../service/types";
 
 export const useDrinks = () => {
     const [drinks, setDrinks] = useState<Drink[]>([]);
@@ -61,30 +61,18 @@ export const useDrinkCategories = () => {
 };
 
 export const useAddDrink = () => {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-
-    const addDrink = useCallback(async (drink: Drink) => {
-        setLoading(true);
-        setError(null);
-        try {
-            await drinkService.addDrink(drink);
-        }
-        catch(err) {
-            setError('failed to add drink');
-            console.error(err);
-        }
-        finally {
-            setLoading(false);
-        }
-    }, []);
-
-    return {
-        loading,
-        error,
-        addDrink
+    const addDrink = async (drinkRequest: DrinkRequest) => {
+    try{
+        return await drinkService.addDrink(drinkRequest as any);
+    }
+    catch(error){
+        console.error('Error adding drink:', error);
+        throw error;
+      }
     };
-};
+    
+    return { addDrink };
+  };
 
 export const useUpdateDrink = () => {
     const [loading, setLoading] = useState(false);
