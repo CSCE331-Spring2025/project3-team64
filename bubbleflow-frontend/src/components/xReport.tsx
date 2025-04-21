@@ -78,7 +78,7 @@ export default function XReport() {
               <div className="flex flex-col gap-1">
                 <div className="flex justify-between text-sm">
                   <p>Total Sales</p>
-                  <p>${report.totalSales}</p>
+                  <p>${(report?.totalSales ?? 0).toFixed(2)}</p>
                 </div>
                 <div className="flex justify-between text-sm">
                   <p>Total Transactions</p>
@@ -103,7 +103,7 @@ export default function XReport() {
                       {hourData.transactionCount}
                     </div>
                     <div className="pt-1 text-right">
-                      ${hourData.totalSales}
+                      ${hourData.totalSales.toFixed(2)}
                     </div>
                   </React.Fragment>
                 ))}
@@ -111,7 +111,7 @@ export default function XReport() {
               <hr className="border-t border-[#6F403A] my-2" />
               <div className="flex justify-between font-semibold">
                 <p>Total</p>
-                <p>${report.totalSales}</p>
+                <p>${(report?.totalSales ?? 0).toFixed(2)}</p>
               </div>
             </div>
           </div>

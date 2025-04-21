@@ -1,7 +1,5 @@
 "use client";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { DatePicker } from "@/components/datePicker";
 import {
   OrderHistoryCard,
   OrderHistoryCardProps,
@@ -9,7 +7,8 @@ import {
 const orderHistoryData: OrderHistoryCardProps[] = [
   {
     orderNumber: 69,
-    total: "$14.28",
+    total: "14.28",
+    paymentMethod:"Apple Pay",
     date: "January 1st 2025",
     time: "12:00 AM",
     orderedBy: "Sophia Phu",
@@ -20,7 +19,7 @@ const orderHistoryData: OrderHistoryCardProps[] = [
         iceLevel:"100% Ice",
         sugarLevel:"100% Sugar",
         toppings: ["Boba, Creama, Lychee Jelly"],
-        price: "$5.99",
+        price: "5.99",
       },
       {
         name: "Taro Pearl Milk Tea",
@@ -28,13 +27,14 @@ const orderHistoryData: OrderHistoryCardProps[] = [
         iceLevel:"100% Ice",
         sugarLevel:"100% Sugar",
         toppings: ["No Toppings"],
-        price: "$6.29",
+        price: "6.29",
       },
     ],
   },
   {
     orderNumber: 70,
-    total: "$11.48",
+    total: "11.4",
+    paymentMethod:"Credit Card",
     date: "January 2nd 2025",
     time: "2:15 PM",
     orderedBy: "Ur Mom",
@@ -45,7 +45,7 @@ const orderHistoryData: OrderHistoryCardProps[] = [
         iceLevel:"75% Ice",
         sugarLevel:"75% Sugar",
         toppings: ["Grass Jelly", "Aiyu Jelly"],
-        price: "$5.49",
+        price: "5.49",
       },
       {
         name: "Ginger Tea",
@@ -53,13 +53,14 @@ const orderHistoryData: OrderHistoryCardProps[] = [
         iceLevel:"No Ice",
         sugarLevel:"No Sugar",
         toppings: ["Boba"],
-        price: "$5.99",
+        price: "5.99",
       },
     ],
   },
   {
     orderNumber: 71,
-    total: "$11.48",
+    total: "11.48",
+    paymentMethod:"Apple Pay",
     date: "January 3rd 2025",
     time: "5:15 PM",
     orderedBy: "Among Us",
@@ -70,7 +71,7 @@ const orderHistoryData: OrderHistoryCardProps[] = [
         iceLevel:"75% Ice",
         sugarLevel:"75% Sugar",
         toppings: ["Lychee Jelly", "Aiyu Jelly", "Boba"],
-        price: "$5.49",
+        price: "5.49",
       },
     ],
   },
@@ -80,11 +81,22 @@ export default function OrderHistory() {
     <main className="flex flex-col px-16 pb-4">
       <div className="">
         <p className=" text-xl font-semibold">Order history</p>
+        <div className=" flex gap-4 mt-2">
+            <div className="flex gap-2 items-center">
+              <p>From</p>
+              <DatePicker />
+            </div>
+            <div className="flex gap-2 items-center">
+              <p>To</p>
+              <DatePicker />
+            </div>
+          </div>
         <div className="mt-4 flex flex-col gap-4">
           {orderHistoryData.map((order) => (
             <OrderHistoryCard
               key={order.orderNumber}
               orderNumber={order.orderNumber}
+              paymentMethod={order.paymentMethod}
               total={order.total}
               date={order.date}
               time={order.time}
