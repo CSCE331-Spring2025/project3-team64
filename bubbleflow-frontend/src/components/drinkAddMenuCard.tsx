@@ -136,11 +136,9 @@ export default function DrinkAddMenuCard({ categoryOptions, nextDrinkId }: Drink
                   <Badge
                     key={idx}
                     onClick={() => toggleMonth(month)}
-                    className={`rounded-4xl px-2 cursor-pointer border-gray-200 flex items-center ${
-                      selected ? "bg-black text-white" : "bg-white text-black"
-                    }`}
+                    className={`rounded-4xl px-2 cursor-pointer border-gray-200 flex items-center bg-white text-black`}
                   >
-                    <div className={`w-4 h-4 rounded-full border mr-1 ${selected ? "bg-white" : ""}`}></div>
+                    <div className={`w-4 h-4 rounded-full border mr-1 ${selected ? "bg-black" : "bg-white"}`}></div>
                     <p className="text-sm font-normal">{month}</p>
                   </Badge>
                 );
