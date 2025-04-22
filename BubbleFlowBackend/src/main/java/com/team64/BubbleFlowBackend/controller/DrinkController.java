@@ -1,20 +1,20 @@
 package com.team64.BubbleFlowBackend.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.team64.BubbleFlowBackend.model.Drink;
-import com.team64.BubbleFlowBackend.model.DrinkRaw;
-import com.team64.BubbleFlowBackend.service.DrinkService;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
-import java.util.Map;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.team64.BubbleFlowBackend.model.Drink;
+import com.team64.BubbleFlowBackend.model.DrinkRaw;
+import com.team64.BubbleFlowBackend.service.DrinkService;
 
 
 @RestController
@@ -71,6 +71,7 @@ public class DrinkController {
         drink.setDrink_name(requestBody.get("drink_name").asText());
         drink.setDrink_price(requestBody.get("drink_price").asDouble());
         drink.setDrink_category_name(requestBody.get("drink_category").get("drink_category_name").asText());
+        drink.setActive_months(requestBody.get("active_months").asText());
         //System.out.println("Drink name: " + drink.getDrink_category_name());
         drinkService.updateDrink(drink);
     }
