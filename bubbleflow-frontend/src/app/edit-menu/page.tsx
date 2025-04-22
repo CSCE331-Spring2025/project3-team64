@@ -214,6 +214,7 @@ export default function EditMenu() {
             drinkId={drink?.drink_id}
             itemId={Date.now()}
             categoryOptions={categories}
+            active_months={drink.active_months || null}
           />
         ))}
       </div>
