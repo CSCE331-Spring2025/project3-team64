@@ -247,7 +247,6 @@ export default function DrinkEditCard({
                   defaultValue={drink_price_input}
                   onChange={handlePriceChange} 
                 />
-              {drink_price_input}
               </div>
               <div>
                 <Label className="mb-2">Seasonal Range</Label>
