@@ -48,11 +48,12 @@ export default function EmployeeCard({
   function handleUpdate(): void {
     const employee = {
       employee_id: employee_id,
-      employee_name: employee_name,
-      employee_email: employee_email,
-      employee_phone: employee_phone,
-      employee_position: employee_position,
+      employee_name: new_employee_name,
+      employee_email: new_employee_email,
+      employee_phone: new_employee_phone,
+      employee_position: new_employee_position
     };
+    console.log("Updating employee with id:", employee_id, "Data:", employee);
     updateEmployee(employee);
   }
 
@@ -67,12 +68,27 @@ export default function EmployeeCard({
     { id: "2", label: "Manager" },
   ];
   
-  console.log("Employee data (received by employeeCard): ",employee_id, employee_name, employee_email, employee_phone, employee_position);
-  const [position, setPosition] = useState(employee_position);
-  const [id, setID] = useState(employee_id);
-  const [name, setName] = useState(employee_name);
-  const [email, setEmail] = useState(employee_email);
-  const [phone, setPhone] = useState(employee_phone);
+  //Debugging: console.log("Employee data (received by employeeCard): ",employee_id, employee_name, employee_email, employee_phone, employee_position);
+  const [new_employee_position, setPosition] = useState(employee_position);
+  const [new_employee_name, setName] = useState(employee_name);
+  const [new_employee_email, setEmail] = useState(employee_email);
+  const [new_employee_phone, setPhone] = useState(employee_phone);
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newName = event.target.value;
+    setName(newName);
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+  };
+
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newPhone = event.target.value;
+    setPhone(newPhone);
+  };
+
   
   return (
     <div className="flex justify-between border p-4 border-[#6F403A] rounded-xl">
@@ -107,19 +123,28 @@ export default function EmployeeCard({
               <div className="flex flex-col gap-8 py-4">
                 <div className="items-center gap-4">
                   <Label className="mb-2">Name</Label>
-                  <Input defaultValue={employee_name}/>
+                  <Input
+                    defaultValue={employee_name}
+                    onChange={handleNameChange}
+                  />
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Email</Label>
-                  <Input defaultValue={employee_email} />
+                  <Input
+                    defaultValue={employee_email}
+                    onChange={handleEmailChange}
+                  />
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Phone Number</Label>
-                  <Input defaultValue={employee_phone} />
+                  <Input
+                    defaultValue={employee_phone}
+                    onChange={handlePhoneChange}
+                  />
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Position</Label>
-                  <Select value={position} onValueChange={setPosition}>
+                  <Select value={new_employee_position} onValueChange={setPosition}>
                     <SelectTrigger className=" w-full">
                     <SelectValue defaultValue={employee_position} />
                     </SelectTrigger>

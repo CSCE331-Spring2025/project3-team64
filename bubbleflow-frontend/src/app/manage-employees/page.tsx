@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
-import { useEmployees, useDeleteEmployee } from "../hooks/useEmployees";
+import { useEmployees, useAddEmployee } from "@/app/hooks/useEmployees";
 import { Employee } from "@/app/service/types";
 
 export default function ManageEmployees() {
@@ -32,6 +32,8 @@ export default function ManageEmployees() {
     fetchEmployees
   } = useEmployees();
 
+  const {addEmployee} = useAddEmployee();
+
   useEffect(() => {
     fetchEmployees();
   }, [fetchEmployees]);
@@ -40,8 +42,43 @@ export default function ManageEmployees() {
     console.log(employeesData);
   }, [employeesData]);
 
-  const categoryOptions = ["Employee", "Manager"];
-  const [position, setPosition] = useState("Employee");
+  const [new_employee_position, setPosition] = useState("Employee");
+  const [new_employee_name, setName] = useState("");
+  const [new_employee_email, setEmail] = useState("");
+  const [new_employee_phone, setPhone] = useState("");
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newName = event.target.value;
+    setName(newName);
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+  };
+
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newPhone = event.target.value;
+    setPhone(newPhone);
+  };
+
+  function handleAdd() {
+    const new_employee = {
+      employee_id: 0,
+      employee_name: new_employee_name,
+      employee_email: new_employee_email,
+      employee_phone: new_employee_phone,
+      employee_position: new_employee_position
+    };
+    console.log("Adding new employee:", new_employee);
+    addEmployee(new_employee);
+    fetchEmployees(); // Refresh the employee list after adding a new employee
+  }
+
+  const categoryOptions = [
+    { id: "1", label: "Employee" },
+    { id: "2", label: "Manager" },
+  ];
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -55,7 +92,7 @@ export default function ManageEmployees() {
   }
 
   const filteredEmployees = employeesData.filter((employee) => {
-    console.log("Employee data: ",employee.employee_name, employee.employee_email, employee.employee_position);
+    //console.log("Employee data: ",employee.employee_name, employee.employee_email, employee.employee_position);
     if (!searchTerm) return true; // If no search term, show all employees
     
     const term = searchTerm.toLowerCase();
@@ -63,6 +100,11 @@ export default function ManageEmployees() {
       employee?.employee_name?.toLowerCase().includes(term) ||
       employee?.employee_email?.toLowerCase().includes(term)
     );
+  });
+
+  const sortedEmployees = filteredEmployees.sort((a, b) => {
+    if(a.employee_id < b.employee_id) return -1;
+    return 1;
   });
   
   return (
@@ -94,27 +136,36 @@ export default function ManageEmployees() {
               <div className="flex flex-col gap-8 py-4">
                 <div className="items-center gap-4">
                   <Label className="mb-2">Name</Label>
-                  <Input placeholder="Name" />
+                  <Input
+                    defaultValue={""}
+                    onChange={handleNameChange}
+                  />
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Email</Label>
-                  <Input placeholder="Email" />
+                  <Input
+                    defaultValue={""}
+                    onChange={handleEmailChange}
+                  />
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Phone Number</Label>
-                  <Input placeholder="Phone Number" />
+                  <Input
+                    defaultValue={"(###) ###-####"}
+                    onChange={handlePhoneChange}
+                  />
                 </div>
                 <div className="items-center gap-4">
                   <Label className="mb-2">Position</Label>
-                  <Select value={position} onValueChange={setPosition}>
+                  <Select value={new_employee_position} onValueChange={setPosition}>
                     <SelectTrigger className=" w-full">
-                      <SelectValue placeholder="Employee" />
+                    <SelectValue defaultValue={new_employee_position} />
                     </SelectTrigger>
                     <SelectContent>
-                      {categoryOptions.map((option, idx) => (
-                        <SelectItem key={idx} value={option}>
+                      {categoryOptions.map((option) => (
+                        <SelectItem key={option.id} value={option.label}>
                           <span>
-                            {option}
+                            {option.label}
                           </span>
                         </SelectItem>
                       ))}
@@ -125,6 +176,7 @@ export default function ManageEmployees() {
               <Button
                 type="submit"
                 className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+                onClick={handleAdd}
               >
                 Add Employee
               </Button>
@@ -133,8 +185,8 @@ export default function ManageEmployees() {
         </div>
       </div>
       <div className="mt-4 flex flex-col gap-2">
-        {filteredEmployees.length > 0 ? (
-          filteredEmployees.map((employee) => (
+        {sortedEmployees.length > 0 ? (
+          sortedEmployees.map((employee) => (
             <EmployeeCard key={employee.employee_id} {...employee} />
           ))
         ) : (

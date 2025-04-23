@@ -39,6 +39,6 @@ public class EmployeeController {
 
     @PostMapping("/updateEmployee")
     public void updateEmployee(@RequestBody Employee employee) {
-        employeeService.saveEmployee(employee);
+        employeeService.updateEmployee(employee);
     }
 }

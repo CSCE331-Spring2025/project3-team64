@@ -16,6 +16,7 @@ export const employeeService = {
     },
 
     updateEmployee: (employeeId: number, employee: Employee) => {
+        console.log("Updating employee with ID:", employeeId, "Data:", employee);
         return api.post(`/employees/updateEmployee`, employee).then(res => res.data);
     },
 };
