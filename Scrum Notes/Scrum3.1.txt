@@ -17,6 +17,7 @@ Meeting time: 4/23/2025, 3:15PM
     -Manager and cashier required features carry over from Project 2:
         -Order creation: done
         -Manager editing for all major tables: almost done (need some back-end functionality)
+        -Seasonal drink functionality
     -Menu boards: Done(?)
     -Two above-and-beyond thematic functionalities:
         -service driven chat-bot (in progress)
