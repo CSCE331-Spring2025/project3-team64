@@ -1,0 +1,23 @@
+Meeting time: 4/23/2025, 3:15PM
+
+1) What we've completed/started work on this sprint
+    -Finished drink editing/adding for manager side
+    -Implemented employee management functionality
+    -Designed chat-bot in Figma
+    -Created UI for inventory and order history pages.
+
+2) What still needs to get done
+    -Text size change setting for accessibility.
+    -Make and link back-end functionality for UI inventory
+    -Allergy checker/warning for checking inventory items. 
+    -Protected routes
+
+3) Read through the requirements and make sure we meet them all
+    -Final demo Due date: Friday May 2nd
+    -Manager and cashier required features carry over from Project 2:
+        -Order creation: done
+        -Manager editing for all major tables: almost done (need some back-end functionality)
+    -Menu boards: Done(?)
+    -Two above-and-beyond thematic functionalities:
+        -service driven chat-bot (in progress)
+        -nutritional/allergen facts (planned)
