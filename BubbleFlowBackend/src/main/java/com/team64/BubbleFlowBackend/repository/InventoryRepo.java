@@ -1,3 +1,4 @@
+package com.team64.BubbleFlowBackend.repository;
 // Keep track of the inventory in the database
 // String sql = "SELECT * FROM inventory ORDER BY item_id";
 
@@ -15,8 +16,11 @@
 
 // fix
 
-package com.team64.BubbleFlowBackend.repository;
 import com.team64.BubbleFlowBackend.model.Inventory;
+import com.team64.BubbleFlowBackend.model.DummyEntity;
+import com.team64.BubbleFlowBackend.model.OrderExtraRaw;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -25,7 +29,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public interface InventoryRepo {
+public interface InventoryRepo extends JpaRepository<DummyEntity, Integer>{
     // Basic Inventory Overview: View all items in inventory
     @Query(value = "SELECT * FROM inventory ORDER BY item_id", nativeQuery = true)
     List<Object[]> getAllInventoryItems();
