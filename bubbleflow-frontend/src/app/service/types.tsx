@@ -90,5 +90,13 @@ export interface DrinkRequest  {
     drink_price: number;
     active_months: string;
     drink_category_id: number;
-  };
+}
 
+//Names copied directly from database.
+export interface Employee {
+    employee_id: number;
+    employee_name: string;
+    employee_email: string;
+    employee_phone: string;
+    employee_position: string;
+};

@@ -20,11 +20,26 @@ public class EmployeeService {
         return employeeRepo.findById(id).orElse(null);
     }
 
-    // public Employee saveEmployee(Employee employee) {
-    //     return employeeRepo.save(employee);
-    // }
+    public Employee saveEmployee(Employee employee) {
+        return employeeRepo.save(employee);
+    }
 
-    // public void deleteEmployee(Long id) {
-    //     employeeRepo.deleteById(id);
-    // }
+    public void deleteEmployeeById(int id) {
+        System.out.println("Deleting employee with ID: " + id);
+        employeeRepo.deleteById(id);
+    }
+
+    public void updateEmployee(Employee employee) {
+        Employee existingEmployee = employeeRepo.findById(employee.getEmployee_id()).orElse(null);
+        if (existingEmployee != null) {
+            System.out.println("Updating employee " + employee.getEmployee_name() + " with ID: " + employee.getEmployee_id());
+            existingEmployee.setEmployee_name(employee.getEmployee_name());
+            existingEmployee.setEmployee_phone(employee.getEmployee_phone());
+            existingEmployee.setEmployee_email(employee.getEmployee_email());
+            existingEmployee.setEmployee_position(employee.getEmployee_position());
+            employeeRepo.save(existingEmployee);
+        } else {
+            System.out.println("Employee with ID " + employee.getEmployee_id() + " not found.");
+        }
+    }
 }

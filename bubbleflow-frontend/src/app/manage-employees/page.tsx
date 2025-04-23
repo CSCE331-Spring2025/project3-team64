@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect, ChangeEvent } from "react";
 import { Input } from "@/components/ui/input";
 import EmployeeCard from "@/components/employeeCard";
 import { RiSearchLine, RiAddLine } from "react-icons/ri";
@@ -18,85 +19,52 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+
+import { useEmployees, useDeleteEmployee } from "../hooks/useEmployees";
+import { Employee } from "@/app/service/types";
+
 export default function ManageEmployees() {
-  const employees = [
-    {
-      id: "1",
-      name: "Sophia Phu",
-      email: "sophiatiffphu@gmail.com",
-      phone: "(123) 123 1234",
-      role: "Employee",
-    },
-    {
-      id: "2",
-      name: "Luke Crittell",
-      email: "lccrittel@tamu.edu",
-      phone: "(123) 456 7890",
-      role: "Cashier",
-    },
-    {
-      id: "3",
-      name: "Josh Colborn",
-      email: "jcolborn@tamu.edu",
-      phone: "(111) 111 1111",
-      role: "Drink Wizard",
-    },
-    {
-      id: "4",
-      name: "Abhisri Dasari",
-      email: "abhisri.dasari@tamu.edu",
-      phone: "(555) 123 4567",
-      role: "Cashier",
-    },
-    {
-      id: "5",
-      name: "Cameron Stone",
-      email: "cstone@tamu.edu",
-      phone: "(666) 123 4568",
-      role: "Manager",
-    },
-    /*{
-      id: "6",
-      name: "Ur Mom",
-      email: "urmomsigma69@ligma.com",
-      phone: "(555) 123 4567",
-      role: "Manager",
-    },
-    {
-      id: "7",
-      name: "Ur Mom",
-      email: "urmomsigma69@ligma.com",
-      phone: "(555) 123 4567",
-      role: "Manager",
-    },
-    {
-      id: "8",
-      name: "Ur Mom",
-      email: "urmomsigma69@ligma.com",
-      phone: "(555) 123 4567",
-      role: "Manager",
-    },
-    {
-      id: "9",
-      name: "Ur Mom",
-      email: "urmomsigma69@ligma.com",
-      phone: "(555) 123 4567",
-      role: "Manager",
-    },*/
-  ];
+
+  const {
+    employees: employeesData,
+    loading: employeesLoading,
+    error: employeesError,
+    fetchEmployees
+  } = useEmployees();
+
+  useEffect(() => {
+    fetchEmployees();
+  }, [fetchEmployees]);
+
+  useEffect(() => {
+    console.log(employeesData);
+  }, [employeesData]);
+
   const categoryOptions = ["Employee", "Manager"];
   const [position, setPosition] = useState("Employee");
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredEmployees = employees.filter((employee) => {
+  if (employeesLoading) {
+    return <div className="px-16">Loading...</div>;
+  }
+  if (employeesError) {
+    return (
+      <div className="px-16">Error: {employeesError}</div>
+    );
+  }
+
+  const filteredEmployees = employeesData.filter((employee) => {
+    console.log("Employee data: ",employee.employee_name, employee.employee_email, employee.employee_position);
+    if (!searchTerm) return true; // If no search term, show all employees
+    
     const term = searchTerm.toLowerCase();
     return (
-      employee.name.toLowerCase().includes(term) ||
-      employee.email.toLowerCase().includes(term)
+      employee?.employee_name?.toLowerCase().includes(term) ||
+      employee?.employee_email?.toLowerCase().includes(term)
     );
   });
+  
   return (
     <main className="flex flex-col px-16 pb-4 ">
       <div className="flex items-center justify-between -mt-4">
@@ -167,7 +135,7 @@ export default function ManageEmployees() {
       <div className="mt-4 flex flex-col gap-2">
         {filteredEmployees.length > 0 ? (
           filteredEmployees.map((employee) => (
-            <EmployeeCard key={employee.id} {...employee} />
+            <EmployeeCard key={employee.employee_id} {...employee} />
           ))
         ) : (
           <p className=" text-gray-500">
