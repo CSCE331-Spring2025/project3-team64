@@ -131,6 +131,8 @@ export default function DrinkEditCard({
     const newPrice = parseFloat(event.target.value);
     if (!isNaN(newPrice)) {
       setPrice(newPrice);
+    } else {
+      setPrice(0);
     }
   };
 
@@ -242,9 +244,10 @@ export default function DrinkEditCard({
                 <Input 
                   type="number" 
                   placeholder="Price" 
-                  value={drink_price_input} 
+                  defaultValue={drink_price_input}
                   onChange={handlePriceChange} 
                 />
+              {drink_price_input}
               </div>
               <div>
                 <Label className="mb-2">Seasonal Range</Label>

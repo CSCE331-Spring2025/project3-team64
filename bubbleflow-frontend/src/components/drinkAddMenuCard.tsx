@@ -75,6 +75,8 @@ export default function DrinkAddMenuCard({ categoryOptions, nextDrinkId }: Drink
     const newPrice = parseFloat(event.target.value);
     if (!isNaN(newPrice)) {
       setPrice(newPrice);
+    } else {
+      setPrice(0);
     }
   };
   
