@@ -47,7 +47,7 @@ export default function ViewInventory() {
   return (
     <main className="flex flex-col px-16 pb-4">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-semibold">Ingredient Inventory</h1>
+        <h1 className="text-xl font-semibold">Inventory</h1>
         <div className="relative w-80">
           <Input
             className="border-[#6F403A] h-10 rounded-3xl pr-12"
