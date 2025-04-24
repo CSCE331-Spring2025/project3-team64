@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { RiPencilLine, RiFileCopyLine, RiDeleteBin5Line } from "react-icons/ri";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DrinkEditDialog from "@/components/editCard";
 
 interface OrderCardProps {
@@ -48,6 +48,7 @@ export default function OrderCard({
 }: OrderCardProps) {
   //function to control customization dialog state
   const [isOpen, setIsOpen] = useState(false);
+  const [highContrast, setHighContrast] = useState(false);
 
   const categoryBackgrounds: Record<string, string> = {
     "Milk Teas": "bg-[#ead2a2]",
@@ -59,6 +60,12 @@ export default function OrderCard({
     Creama: "bg-[#f3ecdf]",
     default: "bg-[#f0dece]",
   };
+
+  useEffect(() => {
+    const flag = localStorage.getItem("high-contrast");
+    setHighContrast(flag === "true");
+  }, []);
+
   // const sugarOptions = ["No Sugar", "Less Sugar", "Half Sugar", "Full Sugar"];
   // const iceOptions = ["No Ice", "Less Ice", "Regular Ice", "Extra Ice"];
   // const myToppings = [
@@ -69,9 +76,11 @@ export default function OrderCard({
   //   "Aloe",
   //   "Coconut Jelly",
   // ];
-  console.log(drinkCategory);
-  const imageBgColor =
-    categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
+  //console.log(drinkCategory);
+
+  const imageBgColor = highContrast ? 
+  {imgBg: "bg-white"} :
+  categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
 
   const handleDelete = () => {
     let orderItems = JSON.parse(localStorage.getItem("orderItems") || "[]");
@@ -117,9 +126,9 @@ export default function OrderCard({
   };
 
   return (
-    <div className="flex gap-4 border border-[#6F403A] p-2 rounded-xl pr-4">
+    <div className="flex gap-4 border border-primary p-2 rounded-xl pr-4">
       <div
-        className={`${imageBgColor} rounded-xl flex justify-center py-4 w-1/4`}
+        className={`${imageBgColor} rounded-xl flex justify-center py-4 w-1/4 border-1 border-border`}
       >
         <div className="transition-transform duration-300 hover:scale-110">
           <Image src={imageSrc} alt={drinkName} width={60} height={75} />
@@ -127,15 +136,15 @@ export default function OrderCard({
       </div>
       <div className="flex justify-between w-3/4">
         <div>
-          <p className="font-semibold text-[#6F403A]">{drinkName}</p>
-          <p className="text-sm text-gray-400">{iceLevel}</p>
-          <p className="text-sm text-gray-400">{sugarLevel}</p>
-          <p className="text-sm text-gray-400">
+          <p className="font-semibold text-primary">{drinkName}</p>
+          <p className="text-sm text-sidebar-ring">{iceLevel}</p>
+          <p className="text-sm text-sidebar-ring">{sugarLevel}</p>
+          <p className="text-sm text-sidebar-ring">
             {toppings.length > 0 ? toppings.join(", ") : "No Toppings"}
           </p>
         </div>
         <div className="flex flex-col gap-2">
-          <p className="text-right text-[#6F403A] font-semibold">
+          <p className="text-right text-primary font-semibold">
             ${totalPrice.toFixed(2)}
           </p>
           <div className="flex gap-2">
@@ -143,7 +152,7 @@ export default function OrderCard({
               <Dialog>
                 <DialogTrigger asChild>
                   <div
-                    className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] hover:-translate-y-1 duration-300"
+                    className="bg-primary w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-muted hover:-translate-y-1 duration-300"
                     onClick={() => setIsOpen(true)}
                   >
                     <RiPencilLine className="text-white" size={20} />
@@ -166,13 +175,13 @@ export default function OrderCard({
               </Dialog>
             }
             <div
-              className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300"
+              className="bg-primary w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-muted cursor-pointer hover:-translate-y-1 duration-300"
               onClick={handleCopy}
             >
               <RiFileCopyLine className="text-white" size={20} />
             </div>
             <div
-              className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300"
+              className="bg-primary w-8 h-8 rounded-full flex items-center justify-center mb-2 hover:bg-muted cursor-pointer hover:-translate-y-1 duration-300"
               onClick={handleDelete}
             >
               <RiDeleteBin5Line className="text-white" size={20} />

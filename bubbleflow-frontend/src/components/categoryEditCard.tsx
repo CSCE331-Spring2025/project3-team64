@@ -55,7 +55,7 @@ export default function CategoryEditCard({
     (categoryName && iconMapping[categoryName]) || iconMapping.default;
 
   return (
-    <div className="relative outline outline-[#6F403A] p-4 rounded-md min-h-30 h-full w-30 hover:-translate-y-2 duration-300 ">
+    <div className="relative outline outline-primary p-4 rounded-md min-h-30 h-full w-30 hover:-translate-y-2 duration-300 ">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <RiMore2Line className="absolute top-2 right-2 text-xl cursor-pointer hover:-translate-y-1 duration-300" size={16} />
@@ -65,7 +65,7 @@ export default function CategoryEditCard({
             <Dialog>
               <DialogTrigger>
                 <div className="flex items-center w-full gap-2 justify-center">
-                  <RiDeleteBin5Line />
+                  <RiDeleteBin5Line className="text-border"/>
                   Delete Category
                 </div>
               </DialogTrigger>
@@ -81,7 +81,7 @@ export default function CategoryEditCard({
                 </div>
                 <Button
                   type="submit"
-                  className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+                  className=" bg-primary hover:bg-muted"
                 >
                   Delete {categoryName}
                 </Button>
@@ -93,7 +93,7 @@ export default function CategoryEditCard({
             <Dialog>
               <DialogTrigger>
                 <div className="flex items-center w-full gap-2 justify-center">
-                  <RiPencilLine />
+                  <RiPencilLine className="text-border"/>
                   Edit Category
                 </div>
               </DialogTrigger>
@@ -109,7 +109,7 @@ export default function CategoryEditCard({
                 </div>
                 <Button
                   type="submit"
-                  className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+                  className=" bg-primary hover:bg-muted"
                 >
                   Edit Menu Category
                 </Button>
@@ -118,11 +118,11 @@ export default function CategoryEditCard({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <div className="bg-[#6F403A] w-10 h-10 rounded-full flex items-center justify-center mb-2">
+      <div className="bg-primary w-10 h-10 rounded-full flex items-center justify-center mb-2">
         <Icon className="text-white" size={20} />
       </div>
       <p className="text-sm font-semibold">{categoryName}</p>
-      <p className="text-xs text-gray-500">{itemCount} Items</p>
+      <p className="text-xs text-sidebar-ring">{itemCount} Items</p>
     </div>
   );
 }

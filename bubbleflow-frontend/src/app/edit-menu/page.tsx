@@ -175,7 +175,7 @@ export default function EditMenu() {
               </div>
               <Button
                 type="submit"
-                className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+                className=" bg-primary hover:bg-muted"
               >
                 Create Menu Category
               </Button>
@@ -186,14 +186,14 @@ export default function EditMenu() {
       <div className="mt-2 flex items-center gap-2">
         <div className="relative w-full">
           <Input
-            className="border-[#6F403A] h-10 rounded-3xl pr-12"
+            className="border-primary h-10 rounded-3xl pr-12"
             placeholder="Search for Menu Item"
             value={searchTerm}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setSearchTerm(e.target.value)
             }
           />
-          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-primary w-7 h-7 rounded-full flex items-center justify-center">
             <RiSearchLine className="text-white" size={15} />
           </div>
         </div>

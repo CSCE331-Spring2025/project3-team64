@@ -53,7 +53,7 @@ export function DatePicker({ onChange, value, format: dateFormat = "PPP" }: Date
             variant={"outline"}
             className={cn(
               "justify-start text-left font-normal rounded-xl",
-              !date && "text-muted-foreground"
+              !date && "text-gray-500"
             )}
           >
             <RiCalendarLine className="mr-2 h-4 w-4" />

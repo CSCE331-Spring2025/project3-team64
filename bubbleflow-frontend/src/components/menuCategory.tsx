@@ -24,8 +24,8 @@ export default function MenuCategory({
     (categoryName && iconMapping[categoryName]) || iconMapping.default;
 
   return (
-    <div className="outline outline-[#6F403A] p-4 rounded-md min-h-30 h-full w-30 hover:-translate-y-2 duration-300 ">
-      <div className="bg-[#6F403A] w-10 h-10 rounded-full flex items-center justify-center mb-2">
+    <div className="outline outline-primary p-4 rounded-md min-h-30 h-full w-30 hover:-translate-y-2 duration-300 ">
+      <div className="bg-primary w-10 h-10 rounded-full flex items-center justify-center mb-2">
         <Icon className="text-white" size={20} />
       </div>
       <p className="text-sm font-semibold">{categoryName}</p>

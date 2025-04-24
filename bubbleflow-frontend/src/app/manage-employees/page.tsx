@@ -116,16 +116,16 @@ export default function ManageEmployees() {
             <Input
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="border-[#6F403A] h-10 rounded-3xl pr-12"
+              className="border-primary h-10 rounded-3xl pr-12"
               placeholder="Search for an Employee"
             />
-            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
-              <RiSearchLine className="text-white" size={15} />
+            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary w-7 h-7 rounded-full flex items-center justify-center">
+              <RiSearchLine className="text-white bg-primary" size={15} />
             </div>
           </div>
           <Dialog>
             <DialogTrigger>
-              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26] mt-2">
+              <div className="bg-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-muted mt-2">
                 <RiAddLine className="text-white" size={18} />
               </div>
             </DialogTrigger>
@@ -175,7 +175,7 @@ export default function ManageEmployees() {
               </div>
               <Button
                 type="submit"
-                className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+                className=" bg-primary hover:bg-muted"
                 onClick={handleAdd}
               >
                 Add Employee
@@ -190,7 +190,7 @@ export default function ManageEmployees() {
             <EmployeeCard key={employee.employee_id} {...employee} />
           ))
         ) : (
-          <p className=" text-gray-500">
+          <p className=" text-sidebar-ring">
             No employees match your search.
           </p>
         )}

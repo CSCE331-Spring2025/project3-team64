@@ -71,10 +71,10 @@ export default function XReport() {
       )}
       {report && !isLoading ? (
         <div className="flex gap-4 mt-4 flex-wrap">
-          <div className="w-full max-w-[450px] border border-[#6F403A] p-4 rounded-xl flex flex-col gap-4">
+          <div className="w-full max-w-[450px] border border-primary p-4 rounded-xl flex flex-col gap-4">
             <div>
               <p className="text-lg font-semibold">X Report Summary</p>
-              <hr className="border-t-2 border-[#6F403A] my-2" />
+              <hr className="border-t-2 border-primary my-2" />
               <div className="flex flex-col gap-1">
                 <div className="flex justify-between text-sm">
                   <p>Total Sales</p>
@@ -94,7 +94,7 @@ export default function XReport() {
                 <div className="font-semibold pb-1">Transactions</div>
                 <div className="font-semibold pb-1 text-right">Sales</div>
                 <div className="col-span-3">
-                  <hr className="border-t-2 border-[#6F403A]" />
+                  <hr className="border-t-2 border-primary" />
                 </div>
                 {report.hourlySales?.map((hourData, idx) => (
                   <React.Fragment key={idx}>
@@ -108,7 +108,7 @@ export default function XReport() {
                   </React.Fragment>
                 ))}
               </div>
-              <hr className="border-t border-[#6F403A] my-2" />
+              <hr className="border-t border-primary my-2" />
               <div className="flex justify-between font-semibold">
                 <p>Total</p>
                 <p>${(report?.totalSales ?? 0).toFixed(2)}</p>
@@ -116,7 +116,7 @@ export default function XReport() {
             </div>
           </div>
 
-          <div className="flex flex-col border border-[#6F403A] items-center text-center p-4 rounded-xl self-start">
+          <div className="flex flex-col border border-primary items-center text-center p-4 rounded-xl self-start">
             <p className="text-lg font-semibold">Report Generation Details</p>
             <div className="mt-2 flex flex-col">
               <p className="font-semibold">X Report</p>

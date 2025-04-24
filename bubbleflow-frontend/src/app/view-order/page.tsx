@@ -104,21 +104,21 @@ export default function ViewOrder() {
             />
           ))
         ) : (
-          <p className="text-gray-500">
+          <p className="text-sidebar-ring">
             There are no items in the cart. Please go order some drinks. 
           </p>
         )}
       </div>
-      <div className="border border-[#6F403A] p-2 px-4 w-1/3 rounded-xl">
+      <div className="border border-primary p-2 px-4 w-1/3 rounded-xl">
         <div className="flex justify-between">
           <p className="text-sm">Subtotal</p>
           <p className="text-sm">${orderPrice.toFixed(2)}</p>
         </div>
         <div className="flex justify-between">
-          <p className="text-sm text-gray-400">Tax (10%)</p>
-          <p className="text-sm text-gray-400">${tax.toFixed(2)}</p>
+          <p className="text-sm text-sidebar-ring">Tax (10%)</p>
+          <p className="text-sm text-sidebar-ring">${tax.toFixed(2)}</p>
         </div>
-        <hr className="mt-4 mb-4 border-[#6F403A]" />
+        <hr className="mt-4 mb-4 border-primary" />
         <div className="flex justify-between">
           <p className="font-semibold">Total</p>
           <p className="font-semibold">${total.toFixed(2)}</p>
@@ -126,20 +126,20 @@ export default function ViewOrder() {
         <div className="mt-2">
           <p className="font-semibold">Payment Method</p>
           <div className="flex gap-2 mt-2">
-            <div className="border border-[#6F403A] p-2 rounded-xl w-1/3 flex flex-col items-center justify-center">
-              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center">
+            <div className="border border-primary p-2 rounded-xl w-1/3 flex flex-col items-center justify-center">
+              <div className="bg-primary w-8 h-8 rounded-full flex items-center justify-center">
                 <RiBankCardLine className="text-white" size={20} />
               </div>
               <p className="text-sm">Credit Card</p>
             </div>
-            <div className="border border-[#6F403A] p-2 rounded-xl w-1/3 flex flex-col items-center justify-center">
-              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center">
+            <div className="border border-primary p-2 rounded-xl w-1/3 flex flex-col items-center justify-center">
+              <div className="bg-primary w-8 h-8 rounded-full flex items-center justify-center">
                 <RiBankCard2Line className="text-white" size={20} />
               </div>
               <p className="text-sm">Gift Card</p>
             </div>
-            <div className="border border-[#6F403A] p-2 rounded-xl w-1/3 flex flex-col items-center justify-center">
-              <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center">
+            <div className="border border-primary p-2 rounded-xl w-1/3 flex flex-col items-center justify-center">
+              <div className="bg-primary w-8 h-8 rounded-full flex items-center justify-center">
                 <RiAppleLine className="text-white" size={20} />
               </div>
               <p className="text-sm">Apple Pay</p>
@@ -154,7 +154,7 @@ export default function ViewOrder() {
           }}>
           <DialogTrigger className="w-full" asChild>
             <div onClick={() => submitOrderHook()}>
-              <Button className="bg-[#6F403A] w-full mb-4 mt-4 hover:bg-[#4E2D26]">
+              <Button className="bg-primary w-full mb-4 mt-4 hover:bg-muted">
                 Submit Order
               </Button>
             </div>
@@ -163,13 +163,13 @@ export default function ViewOrder() {
             <DialogTitle className=" flex justify-center text-3xl">${total.toFixed(2)}</DialogTitle>
             <div className=" flex flex-col justify-center text-center">
               <p>Transaction Complete</p>
-              <p className=" text-sm text-gray-400">Order #69</p>
+              <p className=" text-sm sidebar-ring">Order #69</p>
             </div>
             <div className=" flex flex-col gap-4 mt-4">
-              <Button className="bg-[#6F403A]">Print Reciept</Button>
-              <Button className="bg-[#6F403A]">Email Reciept</Button>
-              <Button className="bg-[#6F403A]">Text Reciept</Button>
-              <Button className="bg-[#6F403A]">No Reciept</Button>
+              <Button className="bg-primary">Print Reciept</Button>
+              <Button className="bg-primary">Email Reciept</Button>
+              <Button className="bg-primary">Text Reciept</Button>
+              <Button className="bg-primary">No Reciept</Button>
             </div>
           </DialogContent>
         </Dialog>

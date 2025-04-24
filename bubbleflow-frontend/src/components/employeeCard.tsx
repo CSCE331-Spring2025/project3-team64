@@ -91,7 +91,7 @@ export default function EmployeeCard({
 
   
   return (
-    <div className="flex justify-between border p-4 border-[#6F403A] rounded-xl">
+    <div className="flex justify-between border p-4 border-primary rounded-xl">
       <div>
         <p className="font-semibold">{employee_name}</p>
         <div className="flex gap-4 text-sm text-gray-400">
@@ -111,7 +111,7 @@ export default function EmployeeCard({
             <DialogTrigger>
               <div
                 onClick={handleEdit}
-                className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300"
+                className="bg-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-muted cursor-pointer hover:-translate-y-1 duration-300"
               >
                 <RiPencilLine className="text-white" size={20} />
               </div>
@@ -162,7 +162,7 @@ export default function EmployeeCard({
               </div>
               <Button
                 type="submit"
-                className=" bg-[#6F403A] hover:bg-[#4E2D26]"
+                className=" bg-primary hover:bg-muted"
                 onClick={handleUpdate}
               >
                 Edit Employee
@@ -171,7 +171,7 @@ export default function EmployeeCard({
           </Dialog>
           <div
             onClick={handleDelete}
-            className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300"
+            className="bg-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-muted cursor-pointer hover:-translate-y-1 duration-300"
           >
             <RiDeleteBin5Line className="text-white" size={20} />
           </div>
