@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { OrderSubmission, OrderItemWithExtras } from "@/app/service/types";
 
 const categoryColors: Record<string, { badgeBg: string }> = {
   "Milk Teas": { badgeBg: "bg-[#ead2a2]" },
@@ -46,14 +47,14 @@ const imageMap: Record<string, string> = {
   "Coffee Creama": "/coffee-creama.png",
   "Cocoa Creama": "/cocoa-creama.png",
 };
-export interface OrderItem {
+/*export interface OrderItem {
   name: string;
   category: string;
   iceLevel: string;
   sugarLevel: string;
   toppings: string[];
   price: string;
-}
+}*/
 
 export interface OrderHistoryCardProps {
   orderNumber: number | string;
@@ -62,7 +63,7 @@ export interface OrderHistoryCardProps {
   date: string;
   time: string;
   orderedBy: string;
-  items: OrderItem[];
+  items: OrderItemWithExtras[];
 }
 
 export function OrderHistoryCard({
@@ -102,7 +103,7 @@ export function OrderHistoryCard({
       <div className="flex flex-col gap-4 mt-2">
         {items.map((item, idx) => {
           const { badgeBg } = 
-          categoryColors[item.category] ?? {
+          categoryColors[item.drink.drink_category.drink_category_name] ?? {
             badgeBg: "bg-gray-200",
           };
           return (
@@ -112,8 +113,8 @@ export function OrderHistoryCard({
               >
                 <div className="transition-transform duration-300 hover:scale-110">
                   <Image
-                    src={imageMap[item.name] || "/classic-pearl-milk-tea.png"}
-                    alt={item.name}
+                    src={imageMap[item.drink.drink_name] || "/classic-pearl-milk-tea.png"}
+                    alt={item.drink.drink_name}
                     width={60}
                     height={60}
                   />
@@ -122,16 +123,19 @@ export function OrderHistoryCard({
               <div className="flex flex-1">
                 <div className="flex flex-1 justify-between">
                   <div>
-                    <p className="text-primary font-semibold">{item.name}</p>
+                    <p className="text-primary font-semibold">{item.drink.drink_name}</p>
                     <div className="text-sm text-gray-400">
-                      {<p>{item.iceLevel}</p>}
-                      {<p>{item.sugarLevel}</p>}
-                      {item.toppings.length > 0 && (
-                        <p>{item.toppings.join(", ")}</p>
+                      {<p>{"100% Ice (placeholder)"}</p>}
+                      {<p>{"100% Sugar (placeholder)"}</p>}
+                      {item.extras.length > 0 && (
+                        <p>{item.extras.map((extra) => extra.extra.extra_name).join(", ")}</p>
                       )}
                     </div>
                   </div>
-                  <p className="font-semibold">${fmt(item.price)}</p>
+                  <p>{fmt(
+                    item.drink.drink_price +
+                    item.extras.reduce((acc, extra) => acc + extra.extra.extra_price, 0)
+                  )}</p>
                 </div>
               </div>
             </div>

@@ -100,3 +100,34 @@ export interface Employee {
     employee_phone: string;
     employee_position: string;
 };
+
+
+//The following interfaces are used to receive order data from the backend:
+//ExtraID, OrderExtra, DrinkWithExtras, Order
+export interface ExtraID{
+    order_item_id: number;
+    extras_id: number;
+}
+
+export interface OrderExtra{
+    id: ExtraID;
+    extra: Extra;
+}
+
+export interface OrderItemWithExtras {
+    order_item_id: number;
+    order_id: number;
+    drink_id: number;
+    drink: Drink;
+    extras: OrderExtra[];
+}
+
+export interface Order {
+  orderId: number,
+  customer: string,
+  order_total_price: number,
+  order_date: string,
+  employee_id: number,
+  payment_method: string,
+  items: OrderItemWithExtras[],
+}

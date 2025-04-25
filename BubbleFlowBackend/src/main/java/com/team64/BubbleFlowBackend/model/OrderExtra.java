@@ -1,5 +1,7 @@
 package com.team64.BubbleFlowBackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class OrderExtra{
     @ManyToOne
     @MapsId("order_item_id")
     @JoinColumn(name = "order_item_id")
+    @JsonIgnore // Prevents infinite recursion when serializing
     private OrderItem order_item;
 
     //@Column(name = "extras_id")
