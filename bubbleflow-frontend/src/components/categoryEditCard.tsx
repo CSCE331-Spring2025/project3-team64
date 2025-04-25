@@ -122,7 +122,7 @@ export default function CategoryEditCard({
         <Icon className="text-white" size={20} />
       </div>
       <p className="text-sm font-semibold">{categoryName}</p>
-      <p className="text-xs text-sidebar-ring">{itemCount} Items</p>
+      <p className="text-xs text-gray-500">{itemCount} Items</p>
     </div>
   );
 }

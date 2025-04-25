@@ -24,7 +24,7 @@ export function InventoryCard({
       </div>
       <div className="flex gap-2 justify-between items-center">
         <div className="flex gap-4 items-center">
-          <Badge className="bg-sidebar-border border-border border-1 text-primary font-normal px-3 rounded-3xl">
+          <Badge className="bg-[#f0dece] text-[#6F403A] font-normal px-3 rounded-3xl">
             {badgeText}
           </Badge>
           <p className="text-sm text-gray-500">ID: {itemId}</p>

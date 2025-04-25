@@ -137,6 +137,7 @@ export default function ManageEmployees() {
                 <div className="items-center gap-4">
                   <Label className="mb-2">Name</Label>
                   <Input
+                    placeholder="Employee Name"
                     defaultValue={""}
                     onChange={handleNameChange}
                   />
@@ -144,6 +145,7 @@ export default function ManageEmployees() {
                 <div className="items-center gap-4">
                   <Label className="mb-2">Email</Label>
                   <Input
+                    placeholder="Employee Email"
                     defaultValue={""}
                     onChange={handleEmailChange}
                   />
@@ -151,6 +153,7 @@ export default function ManageEmployees() {
                 <div className="items-center gap-4">
                   <Label className="mb-2">Phone Number</Label>
                   <Input
+                    placeholder={"(###) ###-####"}
                     defaultValue={"(###) ###-####"}
                     onChange={handlePhoneChange}
                   />

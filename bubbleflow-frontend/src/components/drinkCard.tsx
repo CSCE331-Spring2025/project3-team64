@@ -39,7 +39,6 @@ export default function DrinkCard({
   itemId,
 }: DrinkCardProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [highContrast, setHighContrast] = useState(false);
   const categoryColors: Record<string, { badgeBg: string; badgeText: string }> =
     {
       "Milk Teas": { badgeBg: "bg-[#ead2a2]", badgeText: "text-[#6F403A]" },
@@ -51,13 +50,8 @@ export default function DrinkCard({
       Creama: { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
     };
 
-  useEffect(() => {
-    const flag = localStorage.getItem("high-contrast");
-    setHighContrast(flag === "true");
-  }, []);
 
-  const categoryColor = highContrast ?
-  { badgeBg: "bg-muted-foreground", badgeText: "text-muted" } :
+  const categoryColor = 
   (drinkCategory && categoryColors[drinkCategory]) || {
     badgeBg: "bg-[#f0dece]",
     badgeText: "text-[#6F403A]",
@@ -65,7 +59,7 @@ export default function DrinkCard({
   return (
     <div className="border border-primary p-2 rounded-xl flex flex-col justify-between">
       <div
-        className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4 border-1 border-border`}
+        className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4`}
       >
         <div className="transition-transform duration-300 hover:scale-110">
           <Image src={imageSrc} alt={drinkName} width={75} height={75} />
@@ -301,7 +295,7 @@ function DrinkCustomizationDialog({
                 return (
                   <Badge
                     key={topping.extra_id}
-                    className="rounded-4xl px-2 bg-white text-black border-sidebar-ring flex items-center"
+                    className="rounded-4xl px-2 bg-white text-black border border-gray-200 flex items-center"
                     variant={isSelected ? "default" : "outline"}
                     onClick={() => handleToppingSelection(topping)}
                   >
@@ -309,7 +303,7 @@ function DrinkCustomizationDialog({
                       className={
                         isSelected
                           ? "w-4 h-4 rounded-full border mr-1 bg-black border-black"
-                          : "w-4 h-4 rounded-full border mr-1"
+                          : "w-4 h-4 rounded-full border border-gray-200  mr-1"
                       }
                     ></div>
                     <p className="text-sm font-normal">{topping.extra_name}</p>

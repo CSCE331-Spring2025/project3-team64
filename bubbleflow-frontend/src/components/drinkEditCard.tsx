@@ -61,7 +61,6 @@ export default function DrinkEditCard({
   const [drink_name_input, setName] = useState<string>(drinkName);
   const [isOpen, setIsOpen] = useState(false);
   const [seasonalMonths, setSeasonalMonths] = useState<string[]>([]);
-  const [highContrast, setHighContrast] = useState(false);
   
   // Update state when props change
   useEffect(() => {
@@ -69,11 +68,6 @@ export default function DrinkEditCard({
     setPrice(drinkPrice);
     setName(drinkName);
   }, [drinkCategory, drinkPrice, drinkName]);
-  
-  useEffect(() => {
-    const flag = localStorage.getItem("high-contrast");
-    setHighContrast(flag === "true");
-  }, []);
 
   const { deleteDrink } = useDeleteDrink();
   const { updateDrink } = useUpdateDrink();
@@ -185,8 +179,7 @@ export default function DrinkEditCard({
     Creama: { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
   };
 
-  const categoryColor = highContrast ?
-  { badgeBg: "bg-muted-foreground", badgeText: "text-muted" } :
+  const categoryColor = 
   (drinkCategory && categoryColors[drinkCategory]) || {
     badgeBg: "bg-[#f0dece]",
     badgeText: "text-[#6F403A]",
@@ -195,7 +188,7 @@ export default function DrinkEditCard({
   return (
     <div className="border border-primary p-2 rounded-xl flex flex-col justify-between">
       <div
-        className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4 border-1 border-border`}
+        className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4`}
       >
         <div className="transition-transform duration-300 hover:scale-110">
           <Image src={imageSrc} alt={drinkName} width={75} height={75} />
@@ -265,9 +258,9 @@ export default function DrinkEditCard({
                     <Badge
                       key={idx}
                       onClick={() => toggleMonth(month)}
-                      className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
+                      className="rounded-4xl px-2 bg-white text-black border border-gray-200 flex items-center"
                     >
-                      <div className={`w-4 h-4 rounded-full border mr-1 ${selected ? "bg-black" : "bg-white"}`}></div>
+                      <div className={`w-4 h-4 rounded-full border border-gray-200 mr-1 ${selected ? "bg-black" : "bg-white"}`}></div>
                       <p className="text-sm font-normal">{month}</p>
                     </Badge>
                     );

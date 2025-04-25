@@ -115,8 +115,8 @@ export default function ViewOrder() {
           <p className="text-sm">${orderPrice.toFixed(2)}</p>
         </div>
         <div className="flex justify-between">
-          <p className="text-sm text-sidebar-ring">Tax (10%)</p>
-          <p className="text-sm text-sidebar-ring">${tax.toFixed(2)}</p>
+          <p className="text-sm text-gray-400">Tax (10%)</p>
+          <p className="text-sm text-gray-400">${tax.toFixed(2)}</p>
         </div>
         <hr className="mt-4 mb-4 border-primary" />
         <div className="flex justify-between">

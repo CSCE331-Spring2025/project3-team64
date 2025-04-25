@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { RiPencilLine, RiFileCopyLine, RiDeleteBin5Line } from "react-icons/ri";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DrinkEditDialog from "@/components/editCard";
 
 interface OrderCardProps {
@@ -48,7 +48,6 @@ export default function OrderCard({
 }: OrderCardProps) {
   //function to control customization dialog state
   const [isOpen, setIsOpen] = useState(false);
-  const [highContrast, setHighContrast] = useState(false);
 
   const categoryBackgrounds: Record<string, string> = {
     "Milk Teas": "bg-[#ead2a2]",
@@ -61,10 +60,6 @@ export default function OrderCard({
     default: "bg-[#f0dece]",
   };
 
-  useEffect(() => {
-    const flag = localStorage.getItem("high-contrast");
-    setHighContrast(flag === "true");
-  }, []);
 
   // const sugarOptions = ["No Sugar", "Less Sugar", "Half Sugar", "Full Sugar"];
   // const iceOptions = ["No Ice", "Less Ice", "Regular Ice", "Extra Ice"];
@@ -78,8 +73,7 @@ export default function OrderCard({
   // ];
   //console.log(drinkCategory);
 
-  const imageBgColor = highContrast ? 
-  {imgBg: "bg-white"} :
+  const imageBgColor = 
   categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;
 
   const handleDelete = () => {
@@ -128,7 +122,7 @@ export default function OrderCard({
   return (
     <div className="flex gap-4 border border-primary p-2 rounded-xl pr-4">
       <div
-        className={`${imageBgColor} rounded-xl flex justify-center py-4 w-1/4 border-1 border-border`}
+        className={`${imageBgColor} rounded-xl flex justify-center py-4 w-1/4`}
       >
         <div className="transition-transform duration-300 hover:scale-110">
           <Image src={imageSrc} alt={drinkName} width={60} height={75} />
@@ -137,9 +131,9 @@ export default function OrderCard({
       <div className="flex justify-between w-3/4">
         <div>
           <p className="font-semibold text-primary">{drinkName}</p>
-          <p className="text-sm text-sidebar-ring">{iceLevel}</p>
-          <p className="text-sm text-sidebar-ring">{sugarLevel}</p>
-          <p className="text-sm text-sidebar-ring">
+          <p className="text-sm text-gray-400">{iceLevel}</p>
+          <p className="text-sm text-gray-400">{sugarLevel}</p>
+          <p className="text-sm text-gray-400">
             {toppings.length > 0 ? toppings.join(", ") : "No Toppings"}
           </p>
         </div>

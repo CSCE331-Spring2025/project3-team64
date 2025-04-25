@@ -243,7 +243,7 @@ interface DrinkCardProps {
                       variant={isSelected ? "default" : "outline"}
                       onClick={() => handleToppingSelection(topping)}
                     >
-                      <div className={isSelected ? "w-4 h-4 rounded-full border mr-1 bg-black border-black" : "w-4 h-4 rounded-full border mr-1"}></div>
+                      <div className={isSelected ? "w-4 h-4 rounded-full border mr-1 bg-black " : "w-4 h-4 rounded-full border border-gray-200 mr-1"}></div>
                       <p className="text-sm font-normal">{topping.extra_name}</p>
                     </Badge>
                   );

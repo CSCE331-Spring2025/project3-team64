@@ -74,12 +74,7 @@ export function OrderHistoryCard({
   orderedBy,
   items,
 }: OrderHistoryCardProps) {
-  const [highContrast, setHighContrast] = useState(false);
 
-  useEffect(() => {
-    const flag = localStorage.getItem("high-contrast");
-    setHighContrast(flag === "true");
-  }, []);
 
   const fmt = (value: string | number | undefined) => {
     const cleaned = String(value ?? "0").replace(/[^0-9.-]+/g, "");
@@ -106,15 +101,14 @@ export function OrderHistoryCard({
       </div>
       <div className="flex flex-col gap-4 mt-2">
         {items.map((item, idx) => {
-          const { badgeBg } = highContrast ?
-          { badgeBg: "bg-muted-foreground"} :
+          const { badgeBg } = 
           categoryColors[item.category] ?? {
             badgeBg: "bg-gray-200",
           };
           return (
             <div key={idx} className="flex gap-6">
               <div
-                className={`${badgeBg} rounded-xl flex justify-center py-4 w-1/6 border-1 border-border`}
+                className={`${badgeBg} rounded-xl flex justify-center py-4 w-1/6`}
               >
                 <div className="transition-transform duration-300 hover:scale-110">
                   <Image

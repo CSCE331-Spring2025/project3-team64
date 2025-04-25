@@ -1,6 +1,5 @@
 import React from 'react';
 import { Badge } from './ui/badge';
-import { useEffect, useState } from 'react';
 
 interface SalesCardProps {
   id: number;
@@ -11,7 +10,6 @@ interface SalesCardProps {
 }
 
 export default function SalesCard({ id, name, category, price, revenue }: SalesCardProps){
-  const [highContrast, setHighContrast] = useState(false);
   const categoryColors: Record<string, { badgeBg: string; badgeText: string }> =
   {
     "Milk Teas": { badgeBg: "bg-[#ead2a2]", badgeText: "text-[#6F403A]" },
@@ -23,13 +21,7 @@ export default function SalesCard({ id, name, category, price, revenue }: SalesC
     "Creama": { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
   };
 
-  useEffect(() => {
-      const flag = localStorage.getItem("high-contrast");
-      setHighContrast(flag === "true");
-    }, []);
-
-  const categoryColor = highContrast ?
-  { badgeBg: "bg-muted-foreground", badgeText: "text-muted" } :
+  const categoryColor =
   (category && categoryColors[category]) || {
     badgeBg: "bg-[#f0dece]",
     badgeText: "text-[#6F403A]",
@@ -46,7 +38,7 @@ export default function SalesCard({ id, name, category, price, revenue }: SalesC
       <div className="flex flex-col gap-1">
         <p className="font-semibold">{name}</p>
         <div className="flex gap-4">
-          <Badge className={`${categoryColor.badgeBg} ${categoryColor.badgeText} font-normal px-3 rounded-3xl border-1 border-border`}>
+          <Badge className={`${categoryColor.badgeBg} ${categoryColor.badgeText} font-normal px-3 rounded-3xl`}>
             {category}
           </Badge>
           <p className="text-sm text-gray-500">${fmt(price)}</p>

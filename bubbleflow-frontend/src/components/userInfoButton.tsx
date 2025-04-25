@@ -10,7 +10,6 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { GoogleTranslate } from "./GoogleTranslate";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 // import {
 //   Select,
@@ -34,7 +33,7 @@ import {
   RiLoginBoxLine,
   RiSettingsLine,
 } from "react-icons/ri";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export default function UserInfoButton() {
   const { data: session } = useSession();
@@ -52,7 +51,7 @@ export default function UserInfoButton() {
     setHighContrast(value);
     localStorage.setItem("high-contrast", value.toString());
     document.documentElement.classList.toggle("high-contrast", value);
-  }
+  };
 
   return (
     <DropdownMenu>
@@ -80,7 +79,7 @@ export default function UserInfoButton() {
               onClick={() => signOut({ callbackUrl: "/" })}
               className="flex items-center justify-center gap-2"
             >
-              <RiLogoutBoxLine className="w-5 h-5 text-primary" />
+              <RiLogoutBoxLine className="w-5 h-5 text-gray-400" />
               Sign Out
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -91,7 +90,7 @@ export default function UserInfoButton() {
               onClick={() => signIn("google", { callbackUrl: "/select-role" })}
               className="flex items-center justify-center gap-2"
             >
-              <RiLoginBoxLine className="w-5 h-5 text-primary" />
+              <RiLoginBoxLine className="w-5 h-5 text-gray-400" />
               Sign In
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -103,32 +102,35 @@ export default function UserInfoButton() {
         >
           <Dialog>
             <DialogTrigger className="flex items-center justify-center gap-2">
-              <RiSettingsLine className="w-5 h-5 text-primary" />
+              <RiSettingsLine className="w-5 h-5 text-gray-400" />
               <span>Settings</span>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Settings</DialogTitle>
-            </DialogHeader>
-            <div className="flex flex-col gap-8 py-4">
-              <div className="items-center gap-4">
-                <Label className="mb-2">Language</Label>
-                <GoogleTranslate/>
-              </div>
-              <div className="items-center gap-4">
-                <Label className="mb-2">High Contrast Mode</Label>
-                <div className="flex items-center gap-2">
-                  <Switch id="contrast-toggle" 
+              <DialogHeader>
+                <DialogTitle>Settings</DialogTitle>
+              </DialogHeader>
+              <div className="flex flex-col gap-8 py-4">
+                <div className="items-center gap-4">
+                  <Label className="mb-2">Language</Label>
+                  <GoogleTranslate />
+                </div>
+                <div className="flex flex-cols items-center gap-4">
+                  <Label>High Contrast Mode</Label>
+                  <Switch
+                    id="contrast-toggle"
                     checked={highContrast}
                     onCheckedChange={toggleHighContrast}
-                    />
+                  />
                 </div>
               </div>
-            </div>
-            <Button type="submit" className=" bg-primary hover:bg-muted" onClick={() => window.location.reload()}>
-              Apply Settings
-            </Button>
-          </DialogContent>
+              <Button
+                type="submit"
+                className=" bg-primary hover:bg-muted"
+                onClick={() => window.location.reload()}
+              >
+                Apply Settings
+              </Button>
+            </DialogContent>
           </Dialog>
         </DropdownMenuItem>
       </DropdownMenuContent>
