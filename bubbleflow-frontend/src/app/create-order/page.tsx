@@ -136,7 +136,7 @@ export default function CreateOrder() {
             setSearchTerm(e.target.value)
           }
         />
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-primary w-7 h-7 rounded-full flex items-center justify-center">
+        <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary w-7 h-7 rounded-full flex items-center justify-center">
           <RiSearchLine className="text-white" size={15} />
         </div>
       </div>
