@@ -25,7 +25,6 @@ import {
   RiLogoutBoxLine,
   RiLoginBoxLine,
   RiSettingsLine,
-  RiZoomInLine,
 } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import { Slider } from "@/components/ui/slider";
@@ -35,7 +34,6 @@ export default function UserInfoButton() {
 
   const [highContrast, setHighContrast] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(100);
-  const [zoomEnabled, setZoomEnabled] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
@@ -59,8 +57,6 @@ export default function UserInfoButton() {
     }
     
     if (storedZoomEnabled === "true") {
-      setZoomEnabled(true);
-      
       // apply the zoom if it's enabled
       const level = storedZoom ? parseInt(storedZoom) : 100;
       applyZoom(level);
@@ -114,7 +110,7 @@ export default function UserInfoButton() {
     localStorage.setItem("zoom-level", zoomLevel.toString());
     
     const shouldEnableZoom = zoomLevel !== 100;
-    setZoomEnabled(shouldEnableZoom);
+
     localStorage.setItem("zoom-enabled", shouldEnableZoom.toString());
     
     if(shouldEnableZoom){
@@ -148,11 +144,8 @@ export default function UserInfoButton() {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent 
-          side="bottom" 
-          align="start" 
-          className="dropdown-content" 
-          style={{ zIndex: 9999 }}
-          sideOffset={5}
+          side="bottom" align="end"
+        
         >
           {session?.user ? (
             <>
@@ -202,22 +195,13 @@ export default function UserInfoButton() {
                   </div>
                   
                   <div className="flex flex-col gap-2">
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-4 mb-2">
                       <Label htmlFor="zoom-setting" className="flex items-center gap-2">
-                        <RiZoomInLine className="w-5 h-5" />
                         Zoom
                       </Label>
-                      <Switch
-                        id="zoom-setting"
-                        checked={zoomEnabled || zoomLevel !== 100}
-                        onCheckedChange={(checked) => {
-                          setZoomEnabled(checked);
-                          if (!checked) setZoomLevel(100);
-                        }}
-                      />
                     </div>
                     
-                    <div className="bg-secondary rounded p-2 flex flex-col gap-2">
+                    <div className="flex flex-col">
                       <Slider
                         id="zoom-slider"
                         defaultValue={[zoomLevel]}
@@ -225,7 +209,6 @@ export default function UserInfoButton() {
                         min={50}
                         max={150}
                         step={10}
-                        disabled={!zoomEnabled && zoomLevel === 100}
                         onValueChange={handleZoomChange}
                         className="mb-2"
                       />
@@ -235,7 +218,7 @@ export default function UserInfoButton() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
                     <Label htmlFor="contrast-toggle">High Contrast Mode</Label>
                     <Switch
                       id="contrast-toggle"
