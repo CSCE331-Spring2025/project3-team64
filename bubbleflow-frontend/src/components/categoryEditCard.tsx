@@ -65,7 +65,7 @@ export default function CategoryEditCard({
             <Dialog>
               <DialogTrigger>
                 <div className="flex items-center w-full gap-2 justify-center">
-                  <RiDeleteBin5Line className="text-border"/>
+                  <RiDeleteBin5Line className="text-gray-400"/>
                   Delete Category
                 </div>
               </DialogTrigger>
@@ -93,7 +93,7 @@ export default function CategoryEditCard({
             <Dialog>
               <DialogTrigger>
                 <div className="flex items-center w-full gap-2 justify-center">
-                  <RiPencilLine className="text-border"/>
+                  <RiPencilLine className="text-gray-400"/>
                   Edit Category
                 </div>
               </DialogTrigger>
