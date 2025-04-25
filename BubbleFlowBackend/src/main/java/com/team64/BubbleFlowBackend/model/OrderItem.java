@@ -26,6 +26,7 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonIgnore // Prevents infinite recursion when serializing
     private Order order;
 
     @OneToMany(mappedBy = "order_item", cascade = CascadeType.ALL)
