@@ -3,6 +3,7 @@ import { RxGithubLogo, RxHeart } from "react-icons/rx";
 import { WeatherData } from "@/lib/weather";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import ChatBot from "./chatBot";
 
 export default function Footer() {
   const [data, setData] = useState<WeatherData | null>(null);
@@ -39,6 +40,7 @@ export default function Footer() {
               </span>
             </div>
           )}
+          <div className="flex items-center gap-4">
           <a
             href="https://github.com/CSCE331-Spring2025/project3-team64"
             target="_blank"
@@ -47,6 +49,8 @@ export default function Footer() {
           >
             <RxGithubLogo className="w-6 h-6" />
           </a>
+          <ChatBot/>
+          </div>
         </div>
       </div>
     </footer>
