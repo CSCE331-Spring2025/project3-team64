@@ -61,6 +61,7 @@ export default function DrinkEditCard({
   const [drink_name_input, setName] = useState<string>(drinkName);
   const [isOpen, setIsOpen] = useState(false);
   const [seasonalMonths, setSeasonalMonths] = useState<string[]>([]);
+  const [highContrast, setHighContrast] = useState(false);
   
   // Update state when props change
   useEffect(() => {
@@ -69,6 +70,11 @@ export default function DrinkEditCard({
     setName(drinkName);
   }, [drinkCategory, drinkPrice, drinkName]);
   
+  useEffect(() => {
+    const flag = localStorage.getItem("high-contrast");
+    setHighContrast(flag === "true");
+  }, []);
+
   const { deleteDrink } = useDeleteDrink();
   const { updateDrink } = useUpdateDrink();
   
@@ -179,15 +185,17 @@ export default function DrinkEditCard({
     Creama: { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
   };
 
-  const categoryColor = (drinkCategory && categoryColors[drinkCategory]) || {
+  const categoryColor = highContrast ?
+  { badgeBg: "bg-muted-foreground", badgeText: "text-muted" } :
+  (drinkCategory && categoryColors[drinkCategory]) || {
     badgeBg: "bg-[#f0dece]",
     badgeText: "text-[#6F403A]",
   };
   
   return (
-    <div className="border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
+    <div className="border border-primary p-2 rounded-xl flex flex-col justify-between">
       <div
-        className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4`}
+        className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4 border-1 border-border`}
       >
         <div className="transition-transform duration-300 hover:scale-110">
           <Image src={imageSrc} alt={drinkName} width={75} height={75} />
@@ -205,7 +213,7 @@ export default function DrinkEditCard({
       <div className="flex gap-2">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
-            <Button className="mt-6 flex-1 bg-[#6F403A] hover:bg-[#4E2D26]">
+            <Button className="mt-6 flex-1 bg-primary hover:bg-muted">
               Edit Drink
             </Button>
           </DialogTrigger>
@@ -269,7 +277,7 @@ export default function DrinkEditCard({
             </div>
             <Button 
               type="submit" 
-              className="bg-[#6F403A] hover:bg-[#4E2D26]" 
+              className="bg-primary hover:bg-muted" 
               onClick={handleUpdate}
             >
               Save Changes
@@ -278,7 +286,7 @@ export default function DrinkEditCard({
         </Dialog>
         <Dialog>
           <DialogTrigger>
-            <div className="bg-[#6F403A] w-8 h-8 mt-6 rounded-full flex items-center justify-center hover:bg-[#4E2D26] cursor-pointer hover:-translate-y-1 duration-300">
+            <div className="bg-primary w-8 h-8 mt-6 rounded-full flex items-center justify-center hover:bg-muted cursor-pointer hover:-translate-y-1 duration-300">
               <RiDeleteBin5Line className="text-white" size={20} />
             </div>
           </DialogTrigger>
@@ -294,7 +302,7 @@ export default function DrinkEditCard({
             </div>
             <Button 
               type="submit" 
-              className="bg-[#6F403A] hover:bg-[#4E2D26]" 
+              className="bg-primary hover:bg-muted" 
               onClick={handleDelete}
             >
               Delete {drinkName}

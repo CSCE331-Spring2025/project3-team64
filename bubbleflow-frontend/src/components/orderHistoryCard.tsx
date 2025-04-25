@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
 const categoryColors: Record<string, { badgeBg: string }> = {
   "Milk Teas": { badgeBg: "bg-[#ead2a2]" },
   "Brewed Tea": { badgeBg: "bg-[#dfcebb]" },
@@ -72,13 +74,21 @@ export function OrderHistoryCard({
   orderedBy,
   items,
 }: OrderHistoryCardProps) {
+  const [highContrast, setHighContrast] = useState(false);
+
+  useEffect(() => {
+    const flag = localStorage.getItem("high-contrast");
+    setHighContrast(flag === "true");
+  }, []);
+
   const fmt = (value: string | number | undefined) => {
     const cleaned = String(value ?? "0").replace(/[^0-9.-]+/g, "");
     const num = parseFloat(cleaned);
     return (isNaN(num) ? 0 : num).toFixed(2);
   };
+  
   return (
-    <div className="border border-[#6F403A] p-4 rounded-xl">
+    <div className="border border-primary p-4 rounded-xl">
       <div className="flex justify-between">
         <p className="font-semibold">Order #{orderNumber}</p>
 
@@ -96,13 +106,15 @@ export function OrderHistoryCard({
       </div>
       <div className="flex flex-col gap-4 mt-2">
         {items.map((item, idx) => {
-          const { badgeBg } = categoryColors[item.category] ?? {
+          const { badgeBg } = highContrast ?
+          { badgeBg: "bg-muted-foreground"} :
+          categoryColors[item.category] ?? {
             badgeBg: "bg-gray-200",
           };
           return (
             <div key={idx} className="flex gap-6">
               <div
-                className={`${badgeBg} rounded-xl flex justify-center py-4 w-1/6`}
+                className={`${badgeBg} rounded-xl flex justify-center py-4 w-1/6 border-1 border-border`}
               >
                 <div className="transition-transform duration-300 hover:scale-110">
                   <Image
@@ -116,7 +128,7 @@ export function OrderHistoryCard({
               <div className="flex flex-1">
                 <div className="flex flex-1 justify-between">
                   <div>
-                    <p className="text-[#6F403A] font-semibold">{item.name}</p>
+                    <p className="text-primary font-semibold">{item.name}</p>
                     <div className="text-sm text-gray-400">
                       {<p>{item.iceLevel}</p>}
                       {<p>{item.sugarLevel}</p>}

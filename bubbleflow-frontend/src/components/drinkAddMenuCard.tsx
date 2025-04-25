@@ -97,7 +97,7 @@ export default function DrinkAddMenuCard({ categoryOptions, nextDrinkId }: Drink
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger>
-                    <div className="bg-[#6F403A] w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#4E2D26]">
+                    <div className="bg-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-muted">
                       <RiAddLine className="text-white" size={18} />
                     </div>
                   </DialogTrigger>
@@ -150,7 +150,7 @@ export default function DrinkAddMenuCard({ categoryOptions, nextDrinkId }: Drink
         </div>
         <Button
           type="submit"
-          className="bg-[#6F403A] hover:bg-[#4E2D26]"
+          className="bg-primary hover:bg-muted"
           onClick={handleCreateDrink}
         >
           Create Menu Item

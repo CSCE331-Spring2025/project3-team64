@@ -27,15 +27,32 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
 import {
   RiUserLine,
   RiLogoutBoxLine,
   RiLoginBoxLine,
   RiSettingsLine,
 } from "react-icons/ri";
+import {useEffect, useState} from "react";
 
 export default function UserInfoButton() {
   const { data: session } = useSession();
+
+  const [highContrast, setHighContrast] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("high-contrast");
+    const isEnabled = stored === "true";
+    setHighContrast(isEnabled);
+    document.documentElement.classList.toggle("high-contrast", isEnabled);
+  }, []);
+
+  const toggleHighContrast = (value: boolean) => {
+    setHighContrast(value);
+    localStorage.setItem("high-contrast", value.toString());
+    document.documentElement.classList.toggle("high-contrast", value);
+  }
 
   return (
     <DropdownMenu>
@@ -63,7 +80,7 @@ export default function UserInfoButton() {
               onClick={() => signOut({ callbackUrl: "/" })}
               className="flex items-center justify-center gap-2"
             >
-              <RiLogoutBoxLine className="w-5 h-5" />
+              <RiLogoutBoxLine className="w-5 h-5 text-primary" />
               Sign Out
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -74,7 +91,7 @@ export default function UserInfoButton() {
               onClick={() => signIn("google", { callbackUrl: "/select-role" })}
               className="flex items-center justify-center gap-2"
             >
-              <RiLoginBoxLine className="w-5 h-5" />
+              <RiLoginBoxLine className="w-5 h-5 text-primary" />
               Sign In
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -86,7 +103,7 @@ export default function UserInfoButton() {
         >
           <Dialog>
             <DialogTrigger className="flex items-center justify-center gap-2">
-              <RiSettingsLine className="w-5 h-5" />
+              <RiSettingsLine className="w-5 h-5 text-primary" />
               <span>Settings</span>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
@@ -99,11 +116,16 @@ export default function UserInfoButton() {
                 <GoogleTranslate/>
               </div>
               <div className="items-center gap-4">
-                <Label className="mb-2">Contrast</Label>
-                <Input placeholder="None" />
+                <Label className="mb-2">High Contrast Mode</Label>
+                <div className="flex items-center gap-2">
+                  <Switch id="contrast-toggle" 
+                    checked={highContrast}
+                    onCheckedChange={toggleHighContrast}
+                    />
+                </div>
               </div>
             </div>
-            <Button type="submit" className=" bg-[#6F403A] hover:bg-[#4E2D26]" onClick={() => window.location.reload()}>
+            <Button type="submit" className=" bg-primary hover:bg-muted" onClick={() => window.location.reload()}>
               Apply Settings
             </Button>
           </DialogContent>

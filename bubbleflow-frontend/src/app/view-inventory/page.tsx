@@ -50,10 +50,10 @@ export default function ViewInventory() {
         <h1 className="text-xl font-semibold">Inventory</h1>
         <div className="relative w-80">
           <Input
-            className="border-[#6F403A] h-10 rounded-3xl pr-12"
+            className="border-primary h-10 rounded-3xl pr-12"
             placeholder="Search for an Inventory Item"
           />
-          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
+          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary w-7 h-7 rounded-full flex items-center justify-center">
             <RiSearchLine className="text-white" size={15} />
           </div>
         </div>
@@ -84,10 +84,10 @@ export default function ViewInventory() {
           </div>
           <div className="relative w-80">
             <Input
-              className="border-[#6F403A] h-10 rounded-3xl pr-12"
+              className="border-primary h-10 rounded-3xl pr-12"
               placeholder="Search for an Inventory Item"
             />
-            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#6F403A] w-7 h-7 rounded-full flex items-center justify-center">
+            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary w-7 h-7 rounded-full flex items-center justify-center">
               <RiSearchLine className="text-white" size={15} />
             </div>
           </div>

@@ -1,3 +1,4 @@
+//High-contrast compliant
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -38,6 +39,7 @@ export default function DrinkCard({
   itemId,
 }: DrinkCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [highContrast, setHighContrast] = useState(false);
   const categoryColors: Record<string, { badgeBg: string; badgeText: string }> =
     {
       "Milk Teas": { badgeBg: "bg-[#ead2a2]", badgeText: "text-[#6F403A]" },
@@ -49,14 +51,21 @@ export default function DrinkCard({
       Creama: { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
     };
 
-  const categoryColor = (drinkCategory && categoryColors[drinkCategory]) || {
+  useEffect(() => {
+    const flag = localStorage.getItem("high-contrast");
+    setHighContrast(flag === "true");
+  }, []);
+
+  const categoryColor = highContrast ?
+  { badgeBg: "bg-muted-foreground", badgeText: "text-muted" } :
+  (drinkCategory && categoryColors[drinkCategory]) || {
     badgeBg: "bg-[#f0dece]",
     badgeText: "text-[#6F403A]",
   };
   return (
-    <div className="border border-[#6F403A] p-2 rounded-xl flex flex-col justify-between">
+    <div className="border border-primary p-2 rounded-xl flex flex-col justify-between">
       <div
-        className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4`}
+        className={`${categoryColor.badgeBg} rounded-xl flex justify-center py-4 border-1 border-border`}
       >
         <div className="transition-transform duration-300 hover:scale-110">
           <Image src={imageSrc} alt={drinkName} width={75} height={75} />
@@ -73,7 +82,7 @@ export default function DrinkCard({
       </div>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Button className="mt-6 w-full bg-[#6F403A] hover:bg-[#4E2D26]">
+          <Button className="mt-6 w-full bg-primary hover:bg-muted">
             Select Item
           </Button>
         </DialogTrigger>
@@ -292,7 +301,7 @@ function DrinkCustomizationDialog({
                 return (
                   <Badge
                     key={topping.extra_id}
-                    className="rounded-4xl px-2 bg-white text-black border-gray-200 flex items-center"
+                    className="rounded-4xl px-2 bg-white text-black border-sidebar-ring flex items-center"
                     variant={isSelected ? "default" : "outline"}
                     onClick={() => handleToppingSelection(topping)}
                   >
@@ -319,7 +328,7 @@ function DrinkCustomizationDialog({
       </div>
       <Button
         type="submit"
-        className="bg-[#6F403A] hover:bg-[#4E2D26]"
+        className="bg-primary hover:bg-muted"
         onClick={handleAddToOrder}
         disabled={extrasLoading}
       >

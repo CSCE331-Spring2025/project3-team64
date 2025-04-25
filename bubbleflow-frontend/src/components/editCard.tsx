@@ -256,7 +256,7 @@ interface DrinkCardProps {
         </div>
         <Button 
           type="submit" 
-          className="bg-[#6F403A] hover:bg-[#4E2D26]" 
+          className="bg-primary hover:bg-muted" 
           onClick={handleEditConf}
           disabled={extrasLoading}
         >
