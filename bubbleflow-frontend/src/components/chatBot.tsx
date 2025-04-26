@@ -69,7 +69,7 @@ export default function ChatBot() {
           size={20}
         />
       </div>
-      <div className="flex-1 overflow-y-auto p-4 text-sm space-y-3 flex flex-col">
+      <div className="flex-1 overflow-y-auto p-4 text-sm space-y-3 flex flex-col no-scrollbar">
         {messages
           .filter(m => m.role !== "system")
           .map((m, i) => (
@@ -81,7 +81,7 @@ export default function ChatBot() {
             >
               <div
                 className={`max-w-72 rounded-xl ${
-                  m.role === "user" ? "bg-[#f0dece] p-2 items-center" : ""
+                  m.role === "user" ? "bg-[#f0dece] p-2 px-4 items-center" : ""
                 }`}
               >
                 {m.content}
