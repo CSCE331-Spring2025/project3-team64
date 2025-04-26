@@ -78,8 +78,8 @@ export default function ChatBot() {
   }
 
   return (
-    <div className="fixed bottom-6 right-16 w-96 h-[500px] flex flex-col bg-white border rounded-lg shadow-lg">
-      <div className="flex items-center justify-between p-4 bg-[#f0dece] text-[#6F403A] rounded-t-lg">
+    <div className="fixed bottom-6 right-16 w-96 h-[500px] flex flex-col bg-white border border-primary rounded-lg shadow-lg">
+      <div className="flex items-center justify-between p-4 bg-[#f0dece] text-primary rounded-t-lg">
         <h3 className="font-semibold">Bubbleflow Assistant</h3>
         <RiCloseLine
           className="cursor-pointer -mt-6 -mr-2"
