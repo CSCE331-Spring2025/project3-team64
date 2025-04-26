@@ -1,18 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { RiCloseLine, RiMessageFill } from "react-icons/ri";
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: "system", content: "You are sigma, a helpful assistant for users that are ordering off an application called Bubbleflow, which is a point of sales system for sharetea. I want you to be imformative about Sharetea's menu  offerings and be able to help costomers with the order placing process. When the conversation starts, you should post a message saying Hi, I\&apos;m Sigma, Bubbleflow\&apos;s AI Assistant! How can i help you today?" },
+    {
+      role: "system",
+      content:
+        "You are sigma, a helpful assistant for users that are ordering off an application called Bubbleflow, which is a point of sales system for the bubble tea shop chain Sharetea."
+    }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (
+      isOpen &&
+      messages.length === 1 &&
+      messages[0].role === "system"
+    ) {
+      const greeting = {
+        role: "assistant",
+        content:
+          "Hi, I'm Sigma, Bubbleflow's AI Assistant! How can I help you today?"
+      };
+      setMessages((prev) => [...prev, greeting]);
+    }
+  }, [isOpen, messages]);
 
   async function sendMessage() {
     if (!input.trim()) return;
@@ -27,13 +45,13 @@ export default function ChatBot() {
       const res = await fetch("http://localhost:3000/api/openai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: updated }),
+        body: JSON.stringify({ messages: updated })
       });
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
       const data = await res.json();
-      setMessages(prev => [
+      setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.text ?? "[no reply]" },
+        { role: "assistant", content: data.text ?? "[no reply]" }
       ]);
     } catch (err: any) {
       console.error(err);
@@ -50,12 +68,12 @@ export default function ChatBot() {
 
   if (!isOpen) {
     return (
-      <Button
+      <div
         onClick={() => setIsOpen(true)}
-        className="rounded-full w-6 h-6 p-0 shadow-lg bg-black text-white"
+        className="rounded-full flex items-center justify-center w-6 h-6  bg-black text-white"
       >
-        <RiMessageFill size={24} />
-      </Button>
+        <RiMessageFill size={16} />
+      </div>
     );
   }
 
@@ -64,14 +82,14 @@ export default function ChatBot() {
       <div className="flex items-center justify-between p-4 bg-[#f0dece] text-[#6F403A] rounded-t-lg">
         <h3 className="font-semibold">Bubbleflow Assistant</h3>
         <RiCloseLine
-          className="cursor-pointer"
+          className="cursor-pointer -mt-6 -mr-2"
           onClick={() => setIsOpen(false)}
-          size={20}
+          size={16}
         />
       </div>
       <div className="flex-1 overflow-y-auto p-4 text-sm space-y-3 flex flex-col no-scrollbar">
         {messages
-          .filter(m => m.role !== "system")
+          .filter((m) => m.role !== "system")
           .map((m, i) => (
             <div
               key={i}
@@ -80,8 +98,8 @@ export default function ChatBot() {
               }`}
             >
               <div
-                className={`max-w-72 rounded-xl ${
-                  m.role === "user" ? "bg-[#f0dece] p-2 px-4 items-center" : ""
+                className={`max-w-72 ${
+                  m.role === "user" ? "bg-[#f0dece] rounded-xl p-2 px-3 items-center justify-center" : ""
                 }`}
               >
                 {m.content}
@@ -97,11 +115,12 @@ export default function ChatBot() {
           <div className="self-start text-sm text-red-500">Error: {error}</div>
         )}
       </div>
+
       <form onSubmit={handleSend} className="flex items-center p-4 space-x-2">
         <Input
           value={input}
-          onChange={e => setInput(e.target.value)}
-          onKeyDown={e => {
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
               sendMessage();
