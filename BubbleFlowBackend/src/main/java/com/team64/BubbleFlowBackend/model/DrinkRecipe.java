@@ -15,8 +15,8 @@ public class DrinkRecipe {
     @Column(name = "drink_id")
     private int drink_id;
 
-    @Column(name = "quanity_used")
-    private int quantity_used;
+    @Column(name = "quantity_used")
+    private Double quantity_used;
 
     public DrinkRecipe() {}
 
@@ -36,11 +36,11 @@ public class DrinkRecipe {
         this.drink_id = drink_id;
     }
 
-    public int getQuantity_used() {
+    public Double getQuantity_used() {
         return quantity_used;
     }
 
-    public void setQuantity_used(int quantity_used) {
+    public void setQuantity_used(Double quantity_used) {
         this.quantity_used = quantity_used;
     }
 }
