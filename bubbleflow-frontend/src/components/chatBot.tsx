@@ -10,7 +10,7 @@ export default function ChatBot() {
     {
       role: "system",
       content:
-        "You are sigma, a helpful assistant for users that are ordering off an application called Bubbleflow, which is a point of sales system for the bubble tea shop chain Sharetea."
+        "You are sigma, a helpful assistant for users that are ordering off an application called Bubbleflow, which is a point of sales system for the bubble tea shop chain Sharetea. During your messages, I do not want any markdown text, just regular text."
     }
   ]);
   const [input, setInput] = useState("");
