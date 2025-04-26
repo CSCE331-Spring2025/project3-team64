@@ -108,7 +108,7 @@ export default function ChatBot() {
           ))}
         {loading && (
           <div className="self-start italic text-sm text-gray-500">
-            Assistant is typing…
+            Sigma is typing…
           </div>
         )}
         {error && (
