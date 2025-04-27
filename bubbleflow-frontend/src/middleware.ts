@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
-import { getToken } from "next-auth/jwt"; // Correct import for JWT
-import { authOptions } from "./lib/auth"; // Import your auth options
+import { getToken } from "next-auth/jwt";
+
+//Handle route protection for pages that require a sign in
 
 export async function middleware(req: NextRequest) {
   console.log("test");
