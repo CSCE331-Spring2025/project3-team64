@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { OrderSubmission, OrderItemWithExtras } from "@/app/service/types";
+import { OrderItemWithExtras } from "@/app/service/types";
 
 const categoryColors: Record<string, { badgeBg: string }> = {
   "Milk Teas": { badgeBg: "bg-[#ead2a2]" },
@@ -76,7 +75,21 @@ export function OrderHistoryCard({
   items,
 }: OrderHistoryCardProps) {
 
+  const dateTime = new Date(`${date}T${time}`)
 
+  // 2. Format the date as "April 27, 2025"
+  const formattedDate = dateTime.toLocaleDateString('en-US', {
+    month: 'long',
+    day:   'numeric',
+    year:  'numeric',
+  })
+
+  // 3. Format the time as "20:21" (24-hour, zero-padded)
+  const formattedTime = dateTime.toLocaleTimeString('en-US', {
+    hour12: true,
+    hour:   'numeric',
+    minute: '2-digit',
+  })
   const fmt = (value: string | number | undefined) => {
     const cleaned = String(value ?? "0").replace(/[^0-9.-]+/g, "");
     const num = parseFloat(cleaned);
@@ -92,8 +105,8 @@ export function OrderHistoryCard({
       </div>
       <div className="flex justify-between text-sm mt-1">
         <div className="flex gap-4">
-          <p>{date}</p>
-          <p>{time}</p>
+          <p>{formattedDate}</p>
+          <p>{formattedTime}</p>
         </div>
         <div className=" flex gap-4">
           <p>Payed with <span className=" text-gray-500">{paymentMethod}</span></p>
