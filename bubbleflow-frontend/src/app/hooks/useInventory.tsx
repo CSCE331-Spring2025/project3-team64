@@ -12,6 +12,7 @@ export const useGetInventory = () => {
         setError(null);
         try {
             const data = await inventoryService.getInventory();
+            //console.log("Fetched inventory data:", data);
             setInventory(data);
         }
         catch(err) {
@@ -64,5 +65,84 @@ export const useGetInventoryUsage = () => {
         loading,
         error,
         fetchInventoryUsage
+    };
+};
+
+export const useUpdateInventoryItem = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const updateItem = useCallback(async (updatedItem: InventoryItem) => {
+        setLoading(true);
+        setError(null);
+        try {
+            //console.log("Sending updated item to backend:", updatedItem);
+            await inventoryService.updateItem(updatedItem);
+        }
+        catch(err) {
+            setError('failed to update item');
+            console.error(err);
+        }
+        finally {
+            setLoading(false);
+        }
+    }, []);
+
+    return {
+        loading,
+        error,
+        updateItem
+    };
+};
+
+export const useAddInventoryItem = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const addItem = useCallback(async (newItem: InventoryItem) => {
+        setLoading(true);
+        setError(null);
+        try {
+            await inventoryService.addItem(newItem);
+        }
+        catch(err) {
+            setError('failed to add item');
+            console.error(err);
+        }
+        finally {
+            setLoading(false);
+        }
+    }, []);
+
+    return {
+        loading,
+        error,
+        addItem
+    };
+};
+
+export const useDeleteInventoryItem = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const deleteItem = useCallback(async (itemId: number) => {
+        setLoading(true);
+        setError(null);
+        try {
+            await inventoryService.deleteItem(itemId);
+        }
+        catch(err) {
+            setError('failed to delete item');
+            console.error(err);
+        }
+        finally {
+            setLoading(false);
+        }
+    }, []);
+
+    return {
+        loading,
+        error,
+        deleteItem
     };
 };

@@ -1,43 +1,40 @@
 package com.team64.BubbleFlowBackend.model;
 import jakarta.persistence.*;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
-@Table(name = "inventory")
+@Table(name = "Inventory")
 public class InventoryItem {
-    @Id
-    @SequenceGenerator(name = "seq", sequenceName = "seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @Column(name = "Item_ID")
-    private int itemId;
 
-    @Column(name = "Item_Name")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Item_ID")
+    private Long itemId;
+
+    @Column(name = "Item_Name", nullable = false)
     private String itemName;
 
-    @Column(name = "Item_Metric")
+    @Column(name = "Item_Metric", nullable = false)
     private String itemMetric;
 
-    @Column(name = "Item_Quantity")
-    private int quantity;
+    @Column(name = "Item_Quantity", nullable = false)
+    private double quantity;
 
     public InventoryItem() {
-        // Default constructor
     }
 
-    public InventoryItem(int itemId, String itemName, String itemMetric, int quantity) {
-        this.itemId = itemId;
+    public InventoryItem(String itemName, String itemMetric, double quantity) {
         this.itemName = itemName;
         this.itemMetric = itemMetric;
         this.quantity = quantity;
     }
 
-    public int getItemId() {
+    // Getters and Setters
+    public Long getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(Long itemId) {
         this.itemId = itemId;
     }
 
@@ -57,12 +54,11 @@ public class InventoryItem {
         this.itemMetric = itemMetric;
     }
 
-    public int getQuantity() {
+    public double getItemQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity(double itemQuantity) {
+        this.quantity = itemQuantity;
     }
-    
 }

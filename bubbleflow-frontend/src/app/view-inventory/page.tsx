@@ -34,7 +34,7 @@ export default function ViewInventory() {
 
   useEffect(() => {
     fetchInventory();
-    console.log(inventory);
+    //console.log(inventory);
   }, [fetchInventory]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function ViewInventory() {
       const formattedStartDate = startDate.toISOString().slice(0, 10);
       const formattedEndDate = endDate.toISOString().slice(0, 10);
       fetchInventoryUsage(formattedStartDate, formattedEndDate);
-      console.log("Fetching inventory usage for dates:", startDate, endDate);
+      //console.log("Fetching inventory usage for dates:", startDate, endDate);
     }
   }, [startDate, endDate, fetchInventoryUsage]);
 
@@ -122,7 +122,8 @@ export default function ViewInventory() {
           <InventoryCard
             key={item.itemId}
             name={item.itemName}
-            amount={`${item.quantity} ${item.itemMetric}`}
+            amount={parseFloat(item.quantity.toFixed(5))}
+            metric= {item.itemMetric}
             badgeText={
               item.quantity <= 0
                 ? "Out of Stock"
@@ -130,7 +131,7 @@ export default function ViewInventory() {
                 ? "Low Stock"
                 : "Good"
             }
-            itemId={item.itemId.toString()}
+            itemId={item.itemId}
           />
         ))
       ))}
@@ -176,10 +177,11 @@ export default function ViewInventory() {
           <div>Loading inventory usage...</div>
         ) : (
           filterredInventoryUsage?.map((item) => (
-            <InventoryCard
+            <InventoryUsageCard
               key={item.itemId}
               name={item.itemName}
-              amount={`${parseFloat(item.total_quantity_used.toFixed(5))} ${item.itemMetric} Used`}
+              amount={`${parseFloat(item.total_quantity_used.toFixed(5))}`}
+              metric= {item.itemMetric}
               badgeText={""}
               itemId={item.itemId.toString()}
             />

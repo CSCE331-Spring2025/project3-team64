@@ -1,6 +1,7 @@
 package com.team64.BubbleFlowBackend.controller;
 
 import com.team64.BubbleFlowBackend.model.Inventory;
+import com.team64.BubbleFlowBackend.model.InventoryItem;
 import com.team64.BubbleFlowBackend.service.InventoryItemService;
 import com.team64.BubbleFlowBackend.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.List;
 public class InventoryController {
     @Autowired
     private InventoryService inventoryService;
+    @Autowired
     private InventoryItemService inventoryItemService;
 
     @GetMapping
@@ -25,16 +27,25 @@ public class InventoryController {
         return inventoryService.getInventory();
     }
 
-
-
-    /*@PostMapping("/addItem")
-    public void addItem(@RequestBody Inventory.Item item) {
-        inventoryItemService.addItem(item);
-    }*/
-
     @GetMapping("/usage")
     public List<Object[]> getInventoryUsage(@RequestParam String startDate, @RequestParam String endDate) {
         return inventoryService.getInventoryUsage(startDate, endDate);
+    }
+
+    @PostMapping("/addItem")
+    public void addItem(@RequestBody InventoryItem item) {
+        inventoryItemService.addItem(item);
+    }
+
+    @PostMapping("/updateItem")
+    public void updateItem(@RequestBody InventoryItem item) {
+        //System.out.println("Updating item: " + item.getItemId() + " with name: " + item.getItemName() + " and quantity: " + item.getItemQuantity());
+        inventoryItemService.updateItem(item);
+    }
+    
+    @DeleteMapping("/deleteItem")
+    public void deleteItem(@RequestParam int itemId) {
+        inventoryItemService.deleteItem(itemId);
     }
 }
 
