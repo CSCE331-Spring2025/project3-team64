@@ -76,6 +76,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.87 0.0681 84.41);
   --sidebar-ring: oklch(0.708 0 0);
+  --myBorder: oklch(0.5 0 0);
 }
 
 .dark {
@@ -113,6 +114,8 @@
 }
 
 .high-contrast {
+  --border: theme("colors.black");
+  --myBorder: oklch(0 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0 0 0);
   --card: oklch(1 0 0);
@@ -155,5 +158,8 @@
     -ms-overflow-style: none;
     /* Hide scrollbar for Firefox */
     scrollbar-width: none;
+  }
+  .border-my {
+    border-color: var(--myBorder);
   }
 }
