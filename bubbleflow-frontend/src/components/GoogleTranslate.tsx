@@ -115,7 +115,7 @@ function LanguageSelector({
       <SelectTrigger className="w-full border border-gray-300 rounded-md p-2">
         <SelectValue placeholder="Select a language" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="z-[10000]">
         {languages.map((lang) => (
           <SelectItem key={lang.value} value={lang.value}>
             <span>{lang.label}</span>

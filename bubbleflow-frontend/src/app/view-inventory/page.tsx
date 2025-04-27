@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, ChangeEvent } from "react";
 import { InventoryCard } from "@/components/inventoryCard";
+import { InventoryUsageCard } from "@/components/inventoryUsageCard";
 import { Input } from "@/components/ui/input";
 import { RiSearchLine } from "react-icons/ri";
 import { DatePicker } from "@/components/datePicker";
