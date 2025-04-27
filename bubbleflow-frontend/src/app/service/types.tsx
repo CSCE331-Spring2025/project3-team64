@@ -146,7 +146,7 @@ export interface Inventory{
     totalItems: number;
 }
 
-export interface inventoryUsageItem {
+export interface InventoryUsageItem {
     itemId: number;
     itemName: string;
     itemMetric: string;
