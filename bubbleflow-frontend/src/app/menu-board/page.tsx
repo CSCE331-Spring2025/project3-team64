@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDrinks, useDrinkCategories } from "../hooks/useDrinks";
 import { useExtras } from "@/app/hooks/useExtras";
 import { Drink, Extra } from "@/app/service/types";
+import { Badge } from "@/components/ui/badge";
 
 export default function MenuBoard(){
   const {
@@ -120,7 +121,7 @@ export default function MenuBoard(){
         <div className="flex flex-col gap-4 w-1/3">
         <div className="border border-[#6F403A] p-4 rounded-xl bg-[#FAEED3]">
           <div>
-            <p className="text-[#6F403A] font-semibold">Ice Levels</p>
+            <p className="text-[#6F403A] font-semibold mb-1">Ice Levels</p>
             <div className="flex flex-col gap-1">
               {iceLevels.map((level: string, idx: number) => (
                 <p key={idx} className="text-sm">
@@ -128,31 +129,30 @@ export default function MenuBoard(){
                 </p>
               ))}
             </div>
-            <p className="text-[#6F403A] font-semibold mt-4">Sugar Levels</p>
-            <div className="flex gap-4 justify-between">
+            <p className="text-[#6F403A] font-semibold mt-4 mb-1">Sugar Levels</p>
+            <div className="flex gap-1 gap-x-2 flex-wrap">
               {sugarLevels.map((option: string[], idx: number) => (
                 <div key={idx} className="flex flex-col items-center">
-                  <p className="font-semibold">{option[0]}</p>
-                  <p className="text-sm">{option[1]}</p>
+                  <Badge className=" bg-white text-black border-gray-400 rounded-xl text-sm font-normal">{option[0]} {option[1]}</Badge>
                 </div>
               ))}
             </div>
-            <p className="text-[#6F403A] font-semibold mt-4">
+            <p className="text-[#6F403A] font-semibold mt-4 mb-1">
               Toppings
             </p>
             <div className="flex flex-col">
               <p className="font-semibold">$0.75</p>
-              <div className="flex flex-wrap gap-1 gap-x-4 text-sm" >
+              <div className="flex flex-wrap gap-1 gap-x-2" >
                 {toppings075.map((topping: [string, number], idx: number) => (
-                  <p key={idx}>{topping[0]}</p>
+                  <Badge className=" bg-white text-black border-gray-400 rounded-xl text-sm font-normal" key={idx}>{topping[0]}</Badge>
                 ))}
               </div>
             </div>
             <div className="flex flex-col mt-2">
                 <p className="font-semibold">$1.00</p>
-              <div className="grid grid-cols-2 gap-1 text-sm">
+              <div className="flex flex-wrap gap-1 gap-x-2 text-sm">
                 {toppings100.map((topping: [string, number], idx: number) => (
-                  <p key={idx}>{topping[0]}</p>
+                  <Badge className=" bg-white text-black border-gray-400 rounded-xl text-sm font-normal" key={idx}>{topping[0]}</Badge>
                 ))}
               </div>
             </div>
