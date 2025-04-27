@@ -132,7 +132,7 @@ export function OrderHistoryCard({
                       )}
                     </div>
                   </div>
-                  <p>{fmt(
+                  <p className=" font-semibold text-primary">${fmt(
                     item.drink.drink_price +
                     item.extras.reduce((acc, extra) => acc + extra.extra.extra_price, 0)
                   )}</p>
