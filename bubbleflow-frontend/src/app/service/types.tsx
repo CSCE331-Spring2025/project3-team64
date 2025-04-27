@@ -145,3 +145,10 @@ export interface Inventory{
     outOfStockItems: InventoryItem[];
     totalItems: number;
 }
+
+export interface inventoryUsageItem {
+    itemId: number;
+    itemName: string;
+    itemMetric: string;
+    total_quantity_used: number;
+}

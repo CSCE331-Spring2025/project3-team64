@@ -106,4 +106,8 @@ public class InventoryService {
     private int getTotalInventoryQuantity() {
         return inventoryRepo.getTotalInventoryQuantity().get(0).intValue();
     }
+
+    public List<Object[]> getInventoryUsage(String startDate, String endDate) {
+        return inventoryRepo.getInventoryUsage(startDate, endDate);
+    }
 }
