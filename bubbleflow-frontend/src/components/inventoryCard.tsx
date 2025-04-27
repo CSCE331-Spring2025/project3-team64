@@ -13,7 +13,7 @@ interface InventoryCardProps {
 export function InventoryCard({
   name,
   amount,
-  badgeText,
+  badgeText, //currently used to show stock status (Good, Low Stock, Out of Stock)
   itemId,
 }: InventoryCardProps) {
   return (
