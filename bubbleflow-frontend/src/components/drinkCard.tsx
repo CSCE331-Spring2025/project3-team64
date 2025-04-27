@@ -295,7 +295,7 @@ function DrinkCustomizationDialog({
                 return (
                   <Badge
                     key={topping.extra_id}
-                    className="rounded-4xl px-2 bg-white text-black border border-gray-200 flex items-center"
+                    className="rounded-4xl px-2 bg-white text-black border border-border flex items-center"
                     variant={isSelected ? "default" : "outline"}
                     onClick={() => handleToppingSelection(topping)}
                   >
@@ -303,7 +303,7 @@ function DrinkCustomizationDialog({
                       className={
                         isSelected
                           ? "w-4 h-4 rounded-full border mr-1 bg-black border-black"
-                          : "w-4 h-4 rounded-full border border-gray-200  mr-1"
+                          : "w-4 h-4 rounded-full border border-border  mr-1"
                       }
                     ></div>
                     <p className="text-sm font-normal">{topping.extra_name}</p>

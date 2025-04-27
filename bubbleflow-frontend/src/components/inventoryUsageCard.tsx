@@ -17,6 +17,15 @@ export function InventoryUsageCard({
   badgeText,
   itemId,
 }: InventoryUsageCardProps) {
+  const formattedAmount = amount
+  .split(" ")
+  .map((word, idx) =>
+    idx === 1
+      ? word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      : word
+  )
+  .join(" ");
+  console.log(formattedAmount)
   return (
     <div className="flex flex-col gap-1 border border-primary p-4 rounded-xl">
       <div className="flex justify-between">

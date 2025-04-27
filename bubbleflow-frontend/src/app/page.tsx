@@ -4,19 +4,31 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+
 
 export default function Home() {
 const router = useRouter();
+const searchParams = useSearchParams();
+const error = searchParams.get("error");
 
-  const handleLogin = () => {
-    // Perform login logic here
-    // After successful login, navigate to the dashboard
-    // (it just makes the button switch pages for rn)
-    router.push("/select-role");
+  const handleLogin = async () => {
+    // the illusion,,,, of choice....
+    const result = await signIn("google", { callbackUrl: "/select-role", redirect: false });
+    if(result?.error){
+      console.error("google login error", result.error);
+    } else {
+      router.push("/select-role");
+    }
   };
 
-  const handleGoogleLogin = () => {
-    signIn("google", { callbackUrl: "/select-role" });
+  const handleGoogleLogin = async () => {
+    const result = await signIn("google", { callbackUrl: "/select-role", redirect: false });
+    if(result?.error){
+      console.error("google login error", result.error);
+    } else {
+      router.push("/select-role");
+    }
   };
 
   return (
@@ -37,6 +49,11 @@ const router = useRouter();
           <Button className=" bg-primary flex-1 hover:bg-muted" onClick={handleLogin}>Login</Button>
           <Button className=" bg-primary flex-1 hover:bg-muted" onClick={handleGoogleLogin}>Login with Google</Button>
         </div>
+        {error === "AccessDenied" && (
+          <p className="mt-4 text-red-600 font-semibold">
+            Access Denied: Please use your organization account
+          </p>
+        )}
       </div>
     </main>
   );

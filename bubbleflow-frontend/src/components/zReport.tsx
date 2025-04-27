@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { format } from "date-fns";
+import { format,parseISO } from "date-fns";
 import { reportService } from "@/app/service/reportService";
 import { Report } from "@/app/service/types";
 
@@ -11,7 +11,7 @@ export default function ZReport() {
   const [error, setError] = useState<string | null>(null);
 
   const getFormattedDisplayDate = (dateString: string) => {
-    const date = new Date(dateString);
+    const date = parseISO(dateString);
     return format(date, "MMMM d, yyyy");
   };
 
@@ -139,18 +139,19 @@ export default function ZReport() {
             </div>
 
             <div className="flex flex-col mt-2">
-              <p className="font-semibold">Report Date</p>
-              <p className="text-sm">
-                {report.reportDate
-                  ? getFormattedDisplayDate(report.reportDate)
-                  : format(new Date(), "MMMM d, yyyy")}
-              </p>
-              <p className="font-semibold mt-2">Generated At</p>
-              <p className="text-sm">
-                {report.generatedAt
-                  ? format(new Date(report.generatedAt), "HH:mm:ss")
-                  : format(new Date(), "HH:mm:ss")}
-              </p>
+              <p className="font-semibold">Generated On</p>
+              <div className=" flex gap-1">
+                <p className="text-sm">
+                  {report.reportDate
+                    ? getFormattedDisplayDate(report.reportDate)
+                    : format(new Date(), "MMMM d, yyyy")}
+                </p>
+                <p className=" text-sm">
+                  {report.generatedAt
+                    ? format(new Date(report.generatedAt), "HH:mm:ss")
+                    : format(new Date(), "HH:mm:ss")}
+                </p>
+              </div>
             </div>
           </div>
         </div>

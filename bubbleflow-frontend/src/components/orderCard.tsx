@@ -131,9 +131,9 @@ export default function OrderCard({
       <div className="flex justify-between w-3/4">
         <div>
           <p className="font-semibold text-primary">{drinkName}</p>
-          <p className="text-sm text-gray-400">{iceLevel}</p>
-          <p className="text-sm text-gray-400">{sugarLevel}</p>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-border">{iceLevel}</p>
+          <p className="text-sm text-border">{sugarLevel}</p>
+          <p className="text-sm text-border">
             {toppings.length > 0 ? toppings.join(", ") : "No Toppings"}
           </p>
         </div>
