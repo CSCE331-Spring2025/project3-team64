@@ -1,6 +1,7 @@
 "use client";
 
 import { InventoryCard } from "@/components/inventoryCard";
+import { InventoryUsageCard } from "@/components/inventoryUsageCard";
 import { Input } from "@/components/ui/input";
 import { RiSearchLine } from "react-icons/ri";
 import { DatePicker } from "@/components/datePicker";
@@ -95,7 +96,7 @@ export default function ViewInventory() {
       </div>
       <div className="mt-4 gap-2 grid grid-cols-2">
         {inventoryItems.map((item) => (
-          <InventoryCard
+          <InventoryUsageCard
             key={item.itemId}
             name={item.name}
             amount={item.amount}

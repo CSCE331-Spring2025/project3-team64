@@ -3,19 +3,19 @@
 import { Badge } from "@/components/ui/badge";
 import { RiDeleteBin5Line} from "react-icons/ri";
 
-interface InventoryEditCardProps {
+interface InventoryUsageCardProps {
   name: string;
   amount: string;
   badgeText: string;
   itemId: string;
 }
 
-export function InventoryEditCard({
+export function InventoryUsageCard({
   name,
   amount,
   badgeText,
   itemId,
-}: InventoryEditCardProps) {
+}: InventoryUsageCardProps) {
   return (
     <div className="flex flex-col gap-1 border border-primary p-4 rounded-xl">
       <div className="flex justify-between">
