@@ -176,7 +176,7 @@ export default function ViewInventory() {
           <div>Loading inventory usage...</div>
         ) : (
           filterredInventoryUsage?.map((item) => (
-            <InventoryCard
+            <InventoryUsageCard
               key={item.itemId}
               name={item.itemName}
               amount={`${parseFloat(item.total_quantity_used.toFixed(5))} ${item.itemMetric} Used`}
