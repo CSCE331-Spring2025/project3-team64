@@ -103,7 +103,7 @@ export interface Employee {
 
 
 //The following interfaces are used to receive order data from the backend:
-//ExtraID, OrderExtra, DrinkWithExtras, Order
+//ExtraID, OrderExtra, OrderItemWithExtras, Order
 export interface ExtraID{
     order_item_id: number;
     extras_id: number;
@@ -130,4 +130,25 @@ export interface Order {
   employee_id: number,
   payment_method: string,
   items: OrderItemWithExtras[],
+}
+
+//used for inventory
+export interface InventoryItem {
+    itemId: number;
+    itemName: string;
+    itemMetric: string;
+    quantity: number;
+}
+
+export interface Inventory{
+    items: InventoryItem[];
+    outOfStockItems: InventoryItem[];
+    totalItems: number;
+}
+
+export interface inventoryUsageItem {
+    itemId: number;
+    itemName: string;
+    itemMetric: string;
+    total_quantity_used: number;
 }

@@ -35,7 +35,7 @@ const categoryOptions = [
 export function InventoryCard({
   name,
   amount,
-  badgeText,
+  badgeText, //currently used to show stock status (Good, Low Stock, Out of Stock)
   itemId,
 }: InventoryCardProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>(badgeText);
