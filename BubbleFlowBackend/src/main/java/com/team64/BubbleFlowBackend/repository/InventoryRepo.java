@@ -62,4 +62,36 @@ public interface InventoryRepo extends JpaRepository<DummyEntity, Integer>{
 
     // @Query(value = "SELECT * FROM inventory WHERE item_id = :item_id", nativeQuery = true)
     // Inventory getItemById(@Param("item_id") int item_id);
+
+    //Get inventory usage for a specific date range.
+    @Query(value = ("""
+        WITH Drink_Order_Count AS (
+            SELECT 
+                oi.Drink_ID,
+                COUNT(*) AS Drink_Count
+            FROM 
+                Order_Items oi
+            JOIN 
+                Orders o ON oi.Order_ID = o.Order_ID
+            WHERE 
+                o.Order_date BETWEEN CAST(:startDate AS TIMESTAMP) AND CAST(:endDate AS TIMESTAMP)
+            GROUP BY 
+                oi.Drink_ID
+        )
+        SELECT 
+            i.Item_ID,
+            i.Item_Name,
+            i.Item_Metric,
+            SUM(dr.Quantity_Used * doc.Drink_Count) AS Total_Quantity_Used
+        FROM 
+            Drink_Order_Count doc
+        JOIN 
+            Drink_Recipe dr ON doc.Drink_ID = dr.Drink_ID
+        JOIN 
+            Inventory i ON dr.Item_ID = i.Item_ID
+        GROUP BY 
+            i.Item_ID, i.Item_Name, i.Item_Metric
+        ORDER BY 
+            Total_Quantity_Used DESC;"""), nativeQuery = true)
+    List<Object[]> getInventoryUsage(@Param("startDate") String startDate, @Param("endDate") String endDate);
 }
