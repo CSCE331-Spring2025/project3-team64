@@ -95,8 +95,8 @@ export default function OrderHistory() {
 
   console.log(orders);
 
-  const [startDate, setStartDate] = useState<Date>(orders.length>0 ? new Date(orders[0].order_date.split("T")[0]) : new Date(1));
-  const [endDate, setEndDate] = useState<Date>(orders.length>0 ? new Date(orders[0].order_date.split("T")[0]) : new Date());
+  const [startDate, setStartDate] = useState<Date>(new Date(1));
+  const [endDate, setEndDate] = useState<Date>(new Date());
   console.log("Start date:", startDate, "End date:", endDate);
   
   const dateNow = new Date();

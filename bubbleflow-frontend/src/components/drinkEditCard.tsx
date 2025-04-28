@@ -258,9 +258,9 @@ export default function DrinkEditCard({
                     <Badge
                       key={idx}
                       onClick={() => toggleMonth(month)}
-                      className="rounded-4xl px-2 bg-white text-black border border-gray-200 flex items-center"
+                      className="rounded-4xl px-2 bg-white text-black border border-border flex items-center"
                     >
-                      <div className={`w-4 h-4 rounded-full border border-gray-200 mr-1 ${selected ? "bg-black" : "bg-white"}`}></div>
+                      <div className={`w-4 h-4 rounded-full border border-border mr-1 ${selected ? "bg-black" : "bg-white"}`}></div>
                       <p className="text-sm font-normal">{month}</p>
                     </Badge>
                     );
