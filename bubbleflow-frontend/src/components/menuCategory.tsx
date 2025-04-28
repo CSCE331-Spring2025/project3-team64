@@ -16,6 +16,7 @@ const iconMapping: Record<string, React.ComponentType<{ className?: string; size
   default: RiBook3Line,
 };
 
+//Menu category card component
 export default function MenuCategory({
   categoryName,
   itemCount,

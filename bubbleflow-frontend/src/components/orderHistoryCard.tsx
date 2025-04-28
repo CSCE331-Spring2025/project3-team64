@@ -65,6 +65,7 @@ export interface OrderHistoryCardProps {
   items: OrderItemWithExtras[];
 }
 
+// Displays order history items for the manager side
 export function OrderHistoryCard({
   orderNumber,
   total,

@@ -32,6 +32,7 @@ interface OrderItem {
   itemId: number;
 }
 
+// Displays information about an order item on the View Order page
 export default function OrderCard({
   drinkName,
   drinkCategory,
@@ -59,19 +60,6 @@ export default function OrderCard({
     Creama: "bg-[#f3ecdf]",
     default: "bg-[#f0dece]",
   };
-
-
-  // const sugarOptions = ["No Sugar", "Less Sugar", "Half Sugar", "Full Sugar"];
-  // const iceOptions = ["No Ice", "Less Ice", "Regular Ice", "Extra Ice"];
-  // const myToppings = [
-  //   "Boba",
-  //   "Grass Jelly",
-  //   "Pudding",
-  //   "Red Bean",
-  //   "Aloe",
-  //   "Coconut Jelly",
-  // ];
-  //console.log(drinkCategory);
 
   const imageBgColor = 
   categoryBackgrounds[drinkCategory] || categoryBackgrounds.default;

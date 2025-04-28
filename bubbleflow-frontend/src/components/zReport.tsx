@@ -5,6 +5,7 @@ import { format,parseISO } from "date-fns";
 import { reportService } from "@/app/service/reportService";
 import { Report } from "@/app/service/types";
 
+// Z report component
 export default function ZReport() {
   const [isLoading, setIsLoading] = useState(false);
   const [report, setReport] = useState<Report | null>(null);

@@ -9,6 +9,7 @@ interface SalesCardProps {
   revenue: string;
 }
 
+//Used in sales report to format the individual sales
 export default function SalesCard({ id, name, category, price, revenue }: SalesCardProps){
   const categoryColors: Record<string, { badgeBg: string; badgeText: string }> =
   {

@@ -32,6 +32,8 @@ const categoryOptions = [
   { id: "1", label: "GMI" },
   { id: "2", label: "NGMI" },
 ];
+
+// Displays manager side inventory item info cards
 export function InventoryCard({
   name,
   amount,

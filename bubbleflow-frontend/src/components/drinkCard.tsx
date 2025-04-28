@@ -30,6 +30,7 @@ interface DrinkCardProps {
   itemId: number;
 }
 
+// Displays customer and employee side drink card
 export default function DrinkCard({
   drinkName,
   drinkCategory,

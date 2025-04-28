@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { RiCloseLine, RiMessageFill } from "react-icons/ri";
 
+//Chatbot functionality
+
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([

@@ -32,6 +32,8 @@ const managerRoutes: { title: string; href: string; description: string }[] = [
     description: "Access detailed sales and performance reports.",
   },
 ];
+
+//Navbar component; dynamic based on what page we are on
 export default function NavBar() {
   //const prefLangCookie = getPrefLangCookie();
   const pathname = usePathname();

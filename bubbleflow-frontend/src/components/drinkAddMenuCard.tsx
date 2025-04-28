@@ -27,7 +27,7 @@ interface DrinkAddMenuCardProps {
 
 }
 
-
+//Displays manager side drink addition menu card
 export default function DrinkAddMenuCard({ categoryOptions, nextDrinkId }: DrinkAddMenuCardProps) {
   const [category, setCategory] = useState("Milk Teas");
   const [drink_name_input, setName] = useState("");
