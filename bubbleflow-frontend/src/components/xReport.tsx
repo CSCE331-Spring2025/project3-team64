@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { reportService } from "@/app/service/reportService";
 import { Report } from "@/app/service/types";
 
+// X report component
 export default function XReport() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
     new Date()

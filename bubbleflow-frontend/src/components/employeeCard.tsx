@@ -30,6 +30,7 @@ interface EmployeeCardProps {
   employee_position: string;
 }
 
+// EmployeeCard is the editing/management employee info cards
 export default function EmployeeCard({
   employee_id,
   employee_name,

@@ -11,6 +11,7 @@ import { Inventory, InventoryItem, InventoryUsageItem } from "@/app/service/type
 
 const LOW_INVENTORY_THRESHOLD = 10; //also dfined in the backend InventoryRepo.java
 
+//View inventory page, manager side
 export default function ViewInventory() {
   //Datepicker states
   const [startDate, setStartDate] = useState<Date>(new Date(1));

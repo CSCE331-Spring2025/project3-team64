@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { useEmployees, useAddEmployee } from "@/app/hooks/useEmployees";
 import { Employee } from "@/app/service/types";
 
+// Employee management page, manager side
 export default function ManageEmployees() {
 
   const {

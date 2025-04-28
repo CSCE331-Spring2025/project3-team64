@@ -1,3 +1,4 @@
+//Weather api data type
 export interface WeatherData {
     coord: {
       lon: number;

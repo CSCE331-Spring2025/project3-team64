@@ -6,6 +6,7 @@ import { reportService } from "@/app/service/reportService";
 import { Report } from "@/app/service/types";
 import { format } from "date-fns";
 
+//Sales report component
 export default function SalesReport() {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | undefined>(
     new Date()

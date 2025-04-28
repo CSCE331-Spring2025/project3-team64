@@ -6,80 +6,8 @@ import {
   OrderHistoryCard,
   OrderHistoryCardProps,
 } from "@/components/orderHistoryCard";
-/*const orderHistoryData: OrderHistoryCardProps[] = [
-  {
-    orderNumber: 69,
-    total: "14.28",
-    paymentMethod:"Apple Pay",
-    date: "January 1st 2025",
-    time: "12:00 AM",
-    orderedBy: "Sophia Phu",
-    items: [
-      {
-        name: "Classic Pearl Milk Tea",
-        category: "Milk Teas",
-        iceLevel:"100% Ice",
-        sugarLevel:"100% Sugar",
-        toppings: ["Boba, Creama, Lychee Jelly"],
-        price: "5.99",
-      },
-      {
-        name: "Taro Pearl Milk Tea",
-        category: "Milk Teas",
-        iceLevel:"100% Ice",
-        sugarLevel:"100% Sugar",
-        toppings: ["No Toppings"],
-        price: "6.29",
-      },
-    ],
-  },
-  {
-    orderNumber: 70,
-    total: "11.4",
-    paymentMethod:"Credit Card",
-    date: "January 2nd 2025",
-    time: "2:15 PM",
-    orderedBy: "Ur Mom",
-    items: [
-      {
-        name: "Taro Pearl Milk Tea",
-        category: "Milk Teas",
-        iceLevel:"75% Ice",
-        sugarLevel:"75% Sugar",
-        toppings: ["Grass Jelly", "Aiyu Jelly"],
-        price: "5.49",
-      },
-      {
-        name: "Ginger Tea",
-        category: "Brewed Tea",
-        iceLevel:"No Ice",
-        sugarLevel:"No Sugar",
-        toppings: ["Boba"],
-        price: "5.99",
-      },
-    ],
-  },
-  {
-    orderNumber: 71,
-    total: "11.48",
-    paymentMethod:"Apple Pay",
-    date: "January 3rd 2025",
-    time: "5:15 PM",
-    orderedBy: "Among Us",
-    items: [
-      {
-        name: "Peach Mojito",
-        category: "Tea Mojito",
-        iceLevel:"75% Ice",
-        sugarLevel:"75% Sugar",
-        toppings: ["Lychee Jelly", "Aiyu Jelly", "Boba"],
-        price: "5.49",
-      },
-    ],
-  },
-];*/
 
-
+// Order History page, manager side
 export default function OrderHistory() {
   //Load order data
   const {

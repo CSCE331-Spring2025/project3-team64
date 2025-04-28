@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
+// Select role page for post-login navigation
 export default function Home() {
   const router = useRouter();
 

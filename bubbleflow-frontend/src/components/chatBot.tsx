@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { RiCloseLine, RiMessageFill } from "react-icons/ri";
 
+//Chatbot functionality
+
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -42,7 +44,7 @@ export default function ChatBot() {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:3000/api/openai", {
+      const res = await fetch("https://bubbleflow.vercel.app/api/openai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: updated })

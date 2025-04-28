@@ -35,6 +35,7 @@ interface DrinkCardProps {
   active_months: string | null;
 }
 
+// Displays manager side drink editing card
 export default function DrinkEditCard({
   drinkName,
   drinkCategory,

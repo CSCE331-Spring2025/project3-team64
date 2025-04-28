@@ -29,6 +29,7 @@ import {
 import { useEffect, useState } from "react";
 import { Slider } from "@/components/ui/slider";
 
+// Component for the user info button that handles accessibility and auth
 export default function UserInfoButton() {
   const { data: session } = useSession();
 

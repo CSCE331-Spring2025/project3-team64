@@ -10,6 +10,7 @@ interface InventoryUsageCardProps {
   itemId: string;
 }
 
+// Displays manager side inventory item info cards
 export function InventoryUsageCard({
   name,
   amount,

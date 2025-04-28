@@ -1,6 +1,7 @@
 "use client";
 import { GoogleTranslate } from "@/components/GoogleTranslate";
 
+//Test page; this can be deleted honestly
 export default function ExamplePage() {
   return (
     <div className="p-6">

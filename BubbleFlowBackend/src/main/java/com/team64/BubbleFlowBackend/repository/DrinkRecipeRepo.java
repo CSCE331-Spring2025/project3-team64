@@ -1,0 +1,8 @@
+package com.team64.BubbleFlowBackend.repository;
+
+import com.team64.BubbleFlowBackend.model.DrinkRecipe;
+import com.team64.BubbleFlowBackend.model.Inventory;
+import com.team64.BubbleFlowBackend.model.Drink;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+public interface DrinkRecipeRepo extends JpaRepository<DrinkRecipe, Integer> {}

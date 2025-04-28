@@ -31,6 +31,7 @@ const languages = [
 
 const includedLanguages = languages.map((lang) => lang.value).join(",");
 
+//Google translate component, utilizes API
 export function GoogleTranslate() {
   const [langCookie, setLangCookie] = React.useState("/auto/en");
 

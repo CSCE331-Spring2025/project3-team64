@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import ChatBot from "./chatBot";
 
+//Footer component, on every page
 export default function Footer() {
   const [data, setData] = useState<WeatherData | null>(null);
 

@@ -28,6 +28,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+// CategoryEditCard is the card that displays manager side category info
 interface CategoryEditCard {
   categoryName?: string;
   itemCount: number;
