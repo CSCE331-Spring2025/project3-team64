@@ -118,7 +118,7 @@ export function OrderHistoryCard({
         {items.map((item, idx) => {
           const { badgeBg } = 
           categoryColors[item.drink.drink_category.drink_category_name] ?? {
-            badgeBg: "bg-gray-200",
+            badgeBg: "bg-[#f0dece]",
           };
           return (
             <div key={idx} className="flex gap-6">
