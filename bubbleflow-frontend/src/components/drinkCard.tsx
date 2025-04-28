@@ -50,9 +50,7 @@ export default function DrinkCard({
       Creama: { badgeBg: "bg-[#f3ecdf]", badgeText: "text-[#6F403A]" },
     };
 
-
-  const categoryColor = 
-  (drinkCategory && categoryColors[drinkCategory]) || {
+  const categoryColor = (drinkCategory && categoryColors[drinkCategory]) || {
     badgeBg: "bg-[#f0dece]",
     badgeText: "text-[#6F403A]",
   };
@@ -108,14 +106,31 @@ function DrinkCustomizationDialog({
   setIsOpen,
 }: DrinkCardProps & { isOpen: boolean; setIsOpen: (open: boolean) => void }) {
   const { extras, loading: extrasLoading, fetchExtras } = useExtras();
-
+  const [allergenAlerts, setAllergenAlerts] = useState<string>("None");
+  useEffect(() => {
+    const fetchAllergens = async () => {
+      try {
+        const res = await fetch(
+          "https://bubbleflow-backend.onrender.com/allergens"
+        );
+        if (!res.ok) throw new Error("Failed to fetch allergens");
+        const data: Array<{ drinkName: string; allergenAlerts: string }> =
+          await res.json();
+        const match = data.find((a) => a.drinkName === drinkName);
+        setAllergenAlerts(match?.allergenAlerts ?? "None");
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    if (isOpen) fetchAllergens();
+  }, [drinkName, isOpen]);
   // Fetch extras when the dialog opens
   useEffect(() => {
     if (isOpen) {
       fetchExtras();
     }
   }, [isOpen, fetchExtras]);
-  
+
   useEffect(() => {
     console.log(extras);
   }, [extras]);
@@ -124,11 +139,9 @@ function DrinkCustomizationDialog({
     extras: Extra[],
     categoryId: number
   ): Extra[] => {
-    return extras.filter(
-      (extra) => extra.extra_category_id === categoryId
-    );
+    return extras.filter((extra) => extra.extra_category_id === categoryId);
   };
-  
+
   const sugarOptions: Extra[] = filterExtraByCategoryId(extras || [], 2);
   const iceOptions: Extra[] = filterExtraByCategoryId(extras || [], 1);
   const toppings: Extra[] = filterExtraByCategoryId(extras || [], 3);
@@ -188,21 +201,29 @@ function DrinkCustomizationDialog({
       imageSrc,
       sugarLevel: selectedSugarObj?.extra_name || "No Sugar",
       iceLevel: selectedIceObj?.extra_name || "No Ice",
-      toppings: selectedToppings.length === 0 ? ["No Toppings"] : selectedToppings.map(t => t.extra_name),
-      toppingIds: selectedToppings.map(t => t.extra_id),
+      toppings:
+        selectedToppings.length === 0
+          ? ["No Toppings"]
+          : selectedToppings.map((t) => t.extra_name),
+      toppingIds: selectedToppings.map((t) => t.extra_id),
       drinkId,
       itemId: Date.now(),
     };
 
     // Edit the price total Local Variable
-    orderItem.topPrice = selectedToppings.reduce((acc, topping) => acc + topping.extra_price, 0);
+    orderItem.topPrice = selectedToppings.reduce(
+      (acc, topping) => acc + topping.extra_price,
+      0
+    );
     orderItem.totalPrice = orderItem.topPrice + orderItem.drinkPrice;
     const currentTotal = parseFloat(localStorage.getItem("orderprice") || "0");
     const newTotal = currentTotal + orderItem.totalPrice;
     localStorage.setItem("orderprice", newTotal.toString());
 
     //Save the total drink price as the price of the drink + toppings (this is 7 billion times easier than the alternative)
-    const existingOrders = JSON.parse(localStorage.getItem("orderItems") || "[]");
+    const existingOrders = JSON.parse(
+      localStorage.getItem("orderItems") || "[]"
+    );
     existingOrders.push(orderItem);
     localStorage.setItem("orderItems", JSON.stringify(existingOrders));
 
@@ -232,9 +253,7 @@ function DrinkCustomizationDialog({
               {sugarOptions.length > 0 ? (
                 sugarOptions.map((option) => (
                   <SelectItem key={option.extra_id} value={option.extra_name}>
-                    <span>
-                      {option.extra_name}
-                    </span>
+                    <span>{option.extra_name}</span>
                   </SelectItem>
                 ))
               ) : (
@@ -242,8 +261,7 @@ function DrinkCustomizationDialog({
                   <span>
                     {extrasLoading
                       ? "Loading options..."
-                      : "No options available"
-                    }
+                      : "No options available"}
                   </span>
                 </SelectItem>
               )}
@@ -267,17 +285,15 @@ function DrinkCustomizationDialog({
               {iceOptions.length > 0 ? (
                 iceOptions.map((option) => (
                   <SelectItem key={option.extra_id} value={option.extra_name}>
-                    <span>
-                      {option.extra_name}
-                    </span>
+                    <span>{option.extra_name}</span>
                   </SelectItem>
                 ))
               ) : (
                 <SelectItem disabled value="loading">
                   <span>
-                  {extrasLoading
-                    ? "Loading options..."
-                    : "No options available"}
+                    {extrasLoading
+                      ? "Loading options..."
+                      : "No options available"}
                   </span>
                 </SelectItem>
               )}
@@ -319,6 +335,16 @@ function DrinkCustomizationDialog({
             )}
           </div>
         </div>
+      </div>
+      <div>
+        {allergenAlerts === "None" ? (
+          <p className="text-sm font-semibold -mb-2 -mt-2">No Common Allergens</p>
+        ) : (
+          <p className="text-sm -mb-2 -mt-2">
+            <span className="font-semibold">Common Allergens: </span>
+            {allergenAlerts}
+          </p>
+        )}
       </div>
       <Button
         type="submit"
