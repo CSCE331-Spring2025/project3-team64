@@ -15,7 +15,13 @@ public class InventoryItemService {
         this.inventoryItemRepo = inventoryItemRepo;
     }
     
-    public List<InventoryItem> getAllInventoryItems() {
-        return inventoryItemRepo.findAll();
+    public void addItem(InventoryItem item) {
+        inventoryItemRepo.save(item);
+    }
+    public void updateItem(InventoryItem item) {
+        inventoryItemRepo.save(item);
+    }
+    public void deleteItem(int itemId) {
+        inventoryItemRepo.deleteById(itemId);
     }
 }

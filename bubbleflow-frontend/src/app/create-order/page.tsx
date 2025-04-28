@@ -83,6 +83,7 @@ export default function CreateOrder() {
     "Cocoa Creama": "/cocoa-creama.png",
   };
 
+
     //Get current moonth string to compare against drink's active months
     const currentMonthString = new Date().toLocaleString("default", { month: "long" });
 
