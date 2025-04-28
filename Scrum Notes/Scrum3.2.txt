@@ -1,0 +1,22 @@
+Meeting time: 4/27/2025 10:35PM
+Attending: Josh, Sophia, Luke, Cameron
+
+1) What (if anything) still NEEDS to get done?
+    -Allergen display in front-end or backend
+    -Deploy backend
+    -Re-deploy front-end with API keys, debug npm build errors
+    -Filter drinks by seasonal
+    -Work on written assignments
+    -Add window.location.reload() for editing stuff that doesn't 
+
+2) What objectives are we dropping from our MVP?
+    -Submitting ice & sugar selection to database
+    -Saving payment methods (we don't have payment API anyways)
+    -Translation doesn't work in a few places (bug)
+
+3) Who's going to present what during the demo?
+    -APIs, Accessibility, protected routes: Luke
+    -Menu board & Chat bot: Sophia
+    -Customer view & order history: Cameron
+    -Manager Employees, Inventory: Josh
+    -Manager reports: Abhisri
