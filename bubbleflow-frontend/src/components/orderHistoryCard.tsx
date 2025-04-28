@@ -139,8 +139,8 @@ export function OrderHistoryCard({
                   <div>
                     <p className="text-primary font-semibold">{item.drink.drink_name}</p>
                     <div className="text-sm text-gray-400">
-                      {<p>{"100% Ice (placeholder)"}</p>}
-                      {<p>{"100% Sugar (placeholder)"}</p>}
+                      {<p>{"100% Ice"}</p>}
+                      {<p>{"100% Sugar"}</p>}
                       {item.extras.length > 0 && (
                         <p>{item.extras.map((extra) => extra.extra.extra_name).join(", ")}</p>
                       )}
