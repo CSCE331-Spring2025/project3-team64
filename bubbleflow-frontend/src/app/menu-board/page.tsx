@@ -5,6 +5,7 @@ import { useExtras } from "@/app/hooks/useExtras";
 import { Drink, Extra } from "@/app/service/types";
 import { Badge } from "@/components/ui/badge";
 
+//Menu board display page
 export default function MenuBoard(){
   const {
     drinks,

@@ -15,7 +15,7 @@ import { useSession } from "next-auth/react";
 
 
 
-
+//Order view page, customer side
 export default function ViewOrder() {
   interface Order {
     drinkName: string;

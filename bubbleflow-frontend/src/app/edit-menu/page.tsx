@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import DrinkAddMenuCard from "@/components/drinkAddMenuCard";
 
+// Menu editing page, manager side
 export default function EditMenu() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");

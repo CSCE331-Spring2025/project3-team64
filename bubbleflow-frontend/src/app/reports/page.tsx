@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SalesReport from "@/components/salesReport";
 import XReport from "@/components/xReport";
 
+// Reports page for the manager
 export default function Reports() {
   return (
     <main className="flex flex-col px-16 pb-4">
