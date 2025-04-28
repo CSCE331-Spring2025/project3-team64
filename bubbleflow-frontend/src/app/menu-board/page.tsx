@@ -100,7 +100,7 @@ export default function MenuBoard(){
             return (
               <div
                 key={index}
-                className="border border-[#6F403A] p-4 rounded-xl"
+                className="border border-primary p-4 rounded-xl"
               >
                 <p className="font-semibold">
                   {category.drink_category_name}
@@ -120,9 +120,9 @@ export default function MenuBoard(){
           })}
         </div>
         <div className="flex flex-col gap-4 w-1/3">
-        <div className="border border-[#6F403A] p-4 rounded-xl bg-[#FAEED3]">
+        <div className="border border-primary p-4 rounded-xl bg-[#FAEED3]">
           <div>
-            <p className="text-[#6F403A] font-semibold mb-1">Ice Levels</p>
+            <p className="text-primary font-semibold mb-1">Ice Levels</p>
             <div className="flex flex-col gap-1">
               {iceLevels.map((level: string, idx: number) => (
                 <p key={idx} className="text-sm">
@@ -130,7 +130,7 @@ export default function MenuBoard(){
                 </p>
               ))}
             </div>
-            <p className="text-[#6F403A] font-semibold mt-4 mb-1">Sugar Levels</p>
+            <p className="text-primary font-semibold mt-4 mb-1">Sugar Levels</p>
             <div className="flex gap-1 gap-x-2 flex-wrap">
               {sugarLevels.map((option: string[], idx: number) => (
                 <div key={idx} className="flex flex-col items-center">
@@ -138,7 +138,7 @@ export default function MenuBoard(){
                 </div>
               ))}
             </div>
-            <p className="text-[#6F403A] font-semibold mt-4 mb-1">
+            <p className="text-primary font-semibold mt-4 mb-1">
               Toppings
             </p>
             <div className="flex flex-col">
