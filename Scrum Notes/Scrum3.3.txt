@@ -1,0 +1,32 @@
+Meeting time: 4/28/2025, 3:15PM
+Attendees: Everyone (Josh, Sophia, Cameron, Luke, Abhisri)
+
+1) Read through requirements (out loud) of the Sprint 3 demo due today and ensure we meet all of them.
+  -We read through them and do meet all of the requirements
+
+2) Plan out exactly what will be done in the demo and in what order.
+  -Time.is & introductions
+  -Demo APIs (Weather, OAuth, Translate): Luke
+  -Demo 1 task for each required above & beyond feature- Sophia
+    -Allergens
+    -Chatbot
+    -Menu board
+  -Demo 1 task for each website view
+    -Customer: placing an order (with allergens) (Sophia)
+    -Manager pages:
+      -Reports: view- Abhisri
+      -Inventory: view & show usage- Abhisri
+      -Order history: view- Josh
+      -Employees: Modify employee- Josh
+      -Menu: edit item- Josh
+  -Demo evidence that front-end connects to backend and makes changes to database: Cameron
+ 
+  -Show accessibility checker on website: Sophia
+  -Time.is
+
+3) What needs to be done after this demo
+  -Sprint 3 retrospective
+  -Final project presentation recording (and slide deck)
+  -Sprint 3 written materials
+  -Peer eval 3
+  -Prepare for final in-class demo this Friday
