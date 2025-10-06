@@ -18,10 +18,10 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user }) {
       const allowedDomain = "tamu.edu";
       
-      if(user.email?.split("@")[1] !== allowedDomain) {
+      /* if(user.email?.split("@")[1] !== allowedDomain) {
         console.log("Blocked sign in attempt");
         return false;
-      }
+      } */
 
       return true;
     },
