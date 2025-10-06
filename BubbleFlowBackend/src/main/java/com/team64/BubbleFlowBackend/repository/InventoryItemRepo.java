@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface InventoryItemRepo extends JpaRepository<InventoryItem, Integer> {
-
+    
 }

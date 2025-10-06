@@ -7,16 +7,16 @@ export const inventoryService = {
         return api.get<Inventory>('/inventory').then(res => res.data);
     },
 
-    updateInventory: (itemId: number, quantity: number) => {
-        return api.put(`/inventory/${itemId}`, { quantity }).then(res => res.data);
+    updateItem: (updatedItem: InventoryItem) => {
+        api.post('/inventory/updateItem', updatedItem).then(res => res.data);
     },
 
-    deleteInventoryItem: (itemId: number) => {
-        return api.delete(`/inventory/${itemId}`).then(res => res.data);
+    addItem: (newItem: InventoryItem) => {
+        api.post('/inventory/addItem', newItem).then(res => res.data);
     },
 
-    addInventoryItem: (item: InventoryItem) => {
-        return api.post('/inventory', item).then(res => res.data);
+    deleteItem: (itemId: number) => {
+        api.delete('/inventory/deleteItem', { params: { itemId } }).then(res => res.data);
     },
 
     getInventoryUsage: (startDate: string, endDate: string) => {

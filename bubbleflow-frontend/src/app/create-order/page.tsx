@@ -83,23 +83,9 @@ export default function CreateOrder() {
     "Cocoa Creama": "/cocoa-creama.png",
   };
 
+
     //Get current moonth string to compare against drink's active months
-    const currentMonth = new Date().getMonth(); // getMonth() returns 0-11, so add 1 to make it 1-12
-    const monthMap: Record<number, string> = {
-      0: "0",
-      1: "1",
-      2: "2",
-      3: "3",
-      4: "4",
-      5: "5",
-      6: "6",
-      7: "7",
-      8: "8",
-      9: "9",
-      10: "a",
-      11: "b",
-    };
-    const currentMonthString = monthMap[currentMonth];
+    const currentMonthString = new Date().toLocaleString("default", { month: "long" });
 
   const filteredDrinks = drinks.filter((drink) => {
     const matchesCategory = selectedCategory
@@ -108,7 +94,10 @@ export default function CreateOrder() {
     const matchesSearch = drink?.drink_name
       ?.toLowerCase()
       .includes(searchTerm.toLowerCase());
-      const isActive = drink?.active_months == null || drink?.active_months.includes(currentMonthString);
+      const isActive = drink?.active_months == null || drink?.active_months.length==0 || drink?.active_months.includes(currentMonthString);
+      if(!isActive){
+        console.log(drink?.drink_name, "Inactive. Active months:", drink?.active_months,"- Current month:", currentMonthString);
+      }
       return matchesCategory && matchesSearch && isActive;
   });
 
